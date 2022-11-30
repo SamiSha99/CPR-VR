@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -1564,6 +1564,7 @@ GameObject:
   - component: {fileID: 566366420}
   - component: {fileID: 566366414}
   - component: {fileID: 566366419}
+  - component: {fileID: 566366421}
   m_Layer: 6
   m_Name: XR Origin
   m_TagString: Untagged
@@ -1808,6 +1809,46 @@ MonoBehaviour:
   m_LocomotionProvider: {fileID: 566366415}
   m_MinHeight: 0
   m_MaxHeight: Infinity
+--- !u!114 &566366421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566366410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d50539c7ef8674f91b27d0bd5d610d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftTeleportation: {fileID: 15786365}
+  rightTeleportation: {fileID: 1207265536}
+  leftActivate:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Left Activate
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: dece1f1e-b3f3-4c0d-980f-262b841cd541
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  rightActivate:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Activate
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 59f7daaa-6ae7-4972-a768-dff3dd44c9fc
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!1 &572099745
 GameObject:
   m_ObjectHideFlags: 0
