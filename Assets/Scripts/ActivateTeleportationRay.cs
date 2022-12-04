@@ -8,29 +8,56 @@ public class ActivateTeleportationRay : MonoBehaviour
 {
     public GameObject leftTeleportation, rightTeleportation;
     public InputActionProperty leftActivate, rightActivate;
+    public bool useRightRay;
+    public GameEvent onTeleportRayActivate, onTeleportRayDeactivate;
 
-    // Update is called once per frame
+    private bool rayActive;
+
+    private void Start()
+    {
+        if (leftTeleportation != null) leftTeleportation.SetActive(false);
+        if (rightTeleportation != null) rightTeleportation.SetActive(false);
+    }
+
     void Update()
     {
-        if(leftTeleportation != null && leftActivate != null)
+        GameObject teleportation;
+        InputActionProperty iap_Activate;
+
+        if (useRightRay)
         {
-            leftTeleportation.SetActive(leftActivate.action.ReadValue<float>() > 0.1f);
+            if (rightTeleportation == null || rightActivate == null) return;
+            teleportation = rightTeleportation;
+            iap_Activate = rightActivate;
+        }
+        else
+        {
+            if (leftTeleportation == null || leftActivate == null) return;
+            teleportation = leftTeleportation;
+            iap_Activate = leftActivate;
         }
 
-        if(rightTeleportation != null && rightActivate != null)
+        if (teleportation != null && iap_Activate != null)
         {
-            rightTeleportation.SetActive(rightActivate.action.ReadValue<float>() > 0.1f);
+            teleportation.SetActive(iap_Activate.action.ReadValue<float>() > 0.1f);
+            if (teleportation.activeSelf || teleportation.activeInHierarchy)
+                OnRayActivation();
+            else
+                OnRayDeactivation();
         }
     }
-    
-    void Start()
+
+    void OnRayActivation()
     {
-        
+        if (rayActive) return;
+        rayActive = true;
+        onTeleportRayActivate.TriggerEvent();
     }
 
-    public void TestEvent()
+    void OnRayDeactivation()
     {
-        Debug.Log("EVENT HAS BEEN TRIGGERED FOR COLLIDING WITH TELEPORTER!!! IN ActivateTeleportationRay");
+        if (!rayActive) return;
+        rayActive = false;
+        onTeleportRayDeactivate.TriggerEvent();
     }
-
 }
