@@ -22,4 +22,15 @@ public class ActivateTeleportationRay : MonoBehaviour
             rightTeleportation.SetActive(rightActivate.action.ReadValue<float>() > 0.1f);
         }
     }
+    
+    void Start()
+    {
+        
+    }
+
+    public void TestEvent()
+    {
+        Debug.Log("EVENT HAS BEEN TRIGGERED FOR COLLIDING WITH TELEPORTER!!! IN ActivateTeleportationRay");
+    }
+
 }
