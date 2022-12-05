@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// A game event based on observers and listeners, not a good solution for params but good for basic stuff
 [CreateAssetMenu(fileName = "GameEvent", menuName = "Game Event", order = 0)]
 public class GameEvent : ScriptableObject
 {

@@ -8,21 +8,12 @@ public class ActivateTeleportationAnchor : MonoBehaviour
     void Start()
     {
         if (m_Cylinder != null)
+        {
             m_Cylinder.SetActive(false);
+            ActivateTeleportationRay.onTeleportRayActivated += ToggleTeleportationAnchor;
+        }
     }
-
-    public void OnTeleportationAnchorEnable()
-    {
-        Debug.Log("Enabled...");
-        ToggleTeleportationAnchor(true);
-    }
-
-    public void OnTeleportationAnchorDisable()
-    {
-        Debug.Log("disabled...");
-        ToggleTeleportationAnchor(false);
-    }
-
+    
     private void ToggleTeleportationAnchor(bool b)
     {
         if (m_Cylinder == null) return;

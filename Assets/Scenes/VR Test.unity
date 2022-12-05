@@ -1267,7 +1267,7 @@ SphereCollider:
   m_GameObject: {fileID: 519056260}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
@@ -1849,11 +1849,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
-  useRightRay: 0
-  onTeleportRayActivate: {fileID: 11400000, guid: f831cfbdd1733424294854f2743bf962,
-    type: 2}
-  onTeleportRayDeactivate: {fileID: 11400000, guid: 84aecc23a25a2df44b8c5750cbbefb4b,
-    type: 2}
+  useRightRay: 1
 --- !u!1 &572099745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3315,6 +3311,7 @@ GameObject:
   - component: {fileID: 1452263152}
   - component: {fileID: 1452263156}
   - component: {fileID: 1452263155}
+  - component: {fileID: 1452263157}
   - component: {fileID: 1452263154}
   m_Layer: 6
   m_Name: Left Hand
@@ -3348,7 +3345,7 @@ SphereCollider:
   m_GameObject: {fileID: 1452263151}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
@@ -3382,10 +3379,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1452263157}
+        m_TargetAssemblyTypeName: HandsGrabItemHandler, Assembly-CSharp
+        m_MethodName: OnItemGrabbed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1452263157}
+        m_TargetAssemblyTypeName: HandsGrabItemHandler, Assembly-CSharp
+        m_MethodName: OnItemDropped
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_OnHoverEntered:
@@ -3627,6 +3648,19 @@ MonoBehaviour:
     m_Reference: {fileID: 7779212132400271959, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!114 &1452263157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452263151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd0b855a7522054ba503ed389d18b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XRDirectInteractor: {fileID: 1452263155}
 --- !u!1 &1869894753
 GameObject:
   m_ObjectHideFlags: 0
@@ -3637,8 +3671,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1869894755}
   - component: {fileID: 1869894754}
-  - component: {fileID: 1869894758}
-  - component: {fileID: 1869894757}
   - component: {fileID: 1869894756}
   m_Layer: 31
   m_Name: Teleportation Anchor
@@ -3768,62 +3800,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Cylinder: {fileID: 1326031549}
---- !u!114 &1869894757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1869894753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dac93acdde45d845aaad8ef5e7cd978, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 84aecc23a25a2df44b8c5750cbbefb4b, type: 2}
-  onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1869894756}
-        m_TargetAssemblyTypeName: ActivateTeleportationAnchor, Assembly-CSharp
-        m_MethodName: OnTeleportationAnchorDisable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1869894758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1869894753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dac93acdde45d845aaad8ef5e7cd978, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: f831cfbdd1733424294854f2743bf962, type: 2}
-  onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1869894756}
-        m_TargetAssemblyTypeName: ActivateTeleportationAnchor, Assembly-CSharp
-        m_MethodName: OnTeleportationAnchorEnable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1887063147
 PrefabInstance:
   m_ObjectHideFlags: 0
