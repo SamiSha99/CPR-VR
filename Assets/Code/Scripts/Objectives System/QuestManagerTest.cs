@@ -5,6 +5,8 @@ using UnityEngine;
 public class QuestManagerTest : MonoBehaviour
 {
     public Quest quest;
+
+    // To-do add a new quest field in the next quest should solve our issue, i hope
     void Start()
     {
         quest.Initialize();
