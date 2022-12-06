@@ -339,10 +339,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6204075408982551716}
+        m_TargetAssemblyTypeName: XRPlayer, Assembly-CSharp
+        m_MethodName: OnItemGrabbed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6204075408982551716}
+        m_TargetAssemblyTypeName: XRPlayer, Assembly-CSharp
+        m_MethodName: OnItemDropped
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_OnHoverEntered:
@@ -878,7 +902,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.005
+    widthMultiplier: 0.02
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -889,8 +913,17 @@ LineRenderer:
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1348,9 +1381,11 @@ GameObject:
   - component: {fileID: 2813000696362214401}
   - component: {fileID: 2813000696362214402}
   - component: {fileID: 2813000696362214407}
-  - component: {fileID: 2813000696362214429}
   - component: {fileID: 2813000696362214400}
+  - component: {fileID: 2813000696362214429}
+  - component: {fileID: 6204075408982551716}
   - component: {fileID: 2813000696362214406}
+  - component: {fileID: 1710751058036957365}
   m_Layer: 6
   m_Name: XR Origin
   m_TagString: Untagged
@@ -1563,6 +1598,20 @@ MonoBehaviour:
   m_LocomotionProvider: {fileID: 2813000696362214428}
   m_MinHeight: 0
   m_MaxHeight: Infinity
+--- !u!114 &2813000696362214400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813000696362214425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 2813000696362214403}
+  m_DelayTime: 0
 --- !u!143 &2813000696362214429
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1581,7 +1630,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &2813000696362214400
+--- !u!114 &6204075408982551716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1590,11 +1639,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2813000696362214425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
+  m_Script: {fileID: 11500000, guid: 44c2648ddef7f624bb2878e869117463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_System: {fileID: 2813000696362214403}
-  m_DelayTime: 0
 --- !u!114 &2813000696362214406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1636,6 +1683,19 @@ MonoBehaviour:
     m_Reference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   useRightRay: 0
+--- !u!114 &1710751058036957365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813000696362214425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8ef860e6d760546b305f4adcd8e0a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 11400000, guid: 5ca93a7e61f452b439e547ebb21d3c1a, type: 2}
 --- !u!1 &2813000696651412028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1647,7 +1707,6 @@ GameObject:
   - component: {fileID: 2813000696651412003}
   - component: {fileID: 2813000696651412007}
   - component: {fileID: 2813000696651412000}
-  - component: {fileID: 2813000696651412006}
   - component: {fileID: 2813000696651412001}
   m_Layer: 6
   m_Name: Left Hand
@@ -1894,8 +1953,8 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2813000696651412006}
-        m_TargetAssemblyTypeName: HandsGrabItemHandler, Assembly-CSharp
+      - m_Target: {fileID: 6204075408982551716}
+        m_TargetAssemblyTypeName: XRPlayer, Assembly-CSharp
         m_MethodName: OnItemGrabbed
         m_Mode: 0
         m_Arguments:
@@ -1909,8 +1968,8 @@ MonoBehaviour:
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2813000696651412006}
-        m_TargetAssemblyTypeName: HandsGrabItemHandler, Assembly-CSharp
+      - m_Target: {fileID: 6204075408982551716}
+        m_TargetAssemblyTypeName: XRPlayer, Assembly-CSharp
         m_MethodName: OnItemDropped
         m_Mode: 0
         m_Arguments:
@@ -1971,19 +2030,6 @@ MonoBehaviour:
   m_HapticHoverCancelIntensity: 0
   m_HapticHoverCancelDuration: 0
   m_AllowHoverHapticsWhileSelecting: 1
---- !u!114 &2813000696651412006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2813000696651412028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd0b855a7522054ba503ed389d18b04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  XRDirectInteractor: {fileID: 2813000696651412000}
 --- !u!135 &2813000696651412001
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2385,7 +2431,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.005
+    widthMultiplier: 0.02
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2396,8 +2442,17 @@ LineRenderer:
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

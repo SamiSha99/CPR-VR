@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Grab Ball
   m_EditorClassIdentifier: 
   information:
-    name: 
-    desc: 
+    name: Grab the ball!
+    desc: Grab the blue ball on the counter
   goals:
   - {fileID: 1104490421370696078}
 --- !u!114 &1104490421370696078
@@ -33,4 +33,4 @@ MonoBehaviour:
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
-  objectName: 
+  objectName: Blue Ball

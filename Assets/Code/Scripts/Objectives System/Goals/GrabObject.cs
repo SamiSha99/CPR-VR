@@ -8,7 +8,7 @@ public abstract class GrabObject : Quest.QuestGoal
     public override void Initialize()
     {
         base.Initialize();
-        // sub the action here!!!
+        XRPlayer.onItemGrabbed += OnGrabbingObject;
     }
 
     public override string GetDescription()
@@ -16,9 +16,9 @@ public abstract class GrabObject : Quest.QuestGoal
         return $"Grab a/an {objectName}";
     }
 
-    private void OnGrabbingObject(GameObject o)
+    private void OnGrabbingObject(GameObject o, bool dropped)
     {
-        if(o.name == objectName)
+        if(!dropped && o.name == objectName)
         {
             currentAmount++;
             Evaluate();
