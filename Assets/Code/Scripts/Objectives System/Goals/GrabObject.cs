@@ -6,6 +6,8 @@ public class GrabObject : Quest.QuestGoal
 {
     [Tooltip("The exact name of the object in the hierarchy.")]
     public string objectName;
+    [Tooltip("Will remove completion if dropped.")]
+    public bool disqualifyOnDropping;
     public override void Initialize()
     {
         base.Initialize();
@@ -14,20 +16,22 @@ public class GrabObject : Quest.QuestGoal
 
     public override string GetDescription()
     {
-        return $"Grab a/an {objectName}";
+        return $"Hold the {objectName}";
     }
 
     private void OnGrabbingObject(GameObject o, bool dropped)
     {
-        if(!dropped && o.name == objectName)
-        {
+        if(o.name != objectName) return;
+        if(dropped)
+            currentAmount--;
+        else 
             currentAmount++;
-            Evaluate();
-        }
+        Evaluate(!disqualifyOnDropping);
     }
 
-    protected override void CleanUp()
+    public override void CleanUp()
     {
+        base.CleanUp();
         XRPlayer.onItemGrabbed -= OnGrabbingObject;
     }
 }

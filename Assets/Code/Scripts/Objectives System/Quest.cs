@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEditor;
 
 // From https://www.youtube.com/watch?v=-65u991cdtw
@@ -12,7 +13,10 @@ public class Quest : ScriptableObject
     [System.Serializable]
     public struct Info 
     {
-        public string name, desc;
+        [Tooltip("Name of the information.")]
+        public string name;
+        [Tooltip("Description of the information.")]
+        public string desc;
     };
 
     public Info information;
@@ -23,7 +27,8 @@ public class Quest : ScriptableObject
     {
         protected string description;
         public int currentAmount { get; protected set; }
-        public int requiredAmout = 1;
+        [Tooltip("The amount of times required to finish this goal to be \"Completed\".")]
+        public int requiredAmount = 1;
         public bool completed { get; protected set; }
         [HideInInspector] public UnityEvent goalCompleted;
 
@@ -35,22 +40,27 @@ public class Quest : ScriptableObject
             currentAmount = 0;
         }
 
-        protected void Evaluate()
+        protected void Evaluate(bool detachAndCleanup = true)
         {
-            if(currentAmount >= requiredAmout)
-                Complete();
+            if(currentAmount >= requiredAmount)
+                Complete(detachAndCleanup);
+            else
+                Incomplete();
         }
 
-        private void Complete()
+        private void Complete(bool detachAndCleanup = true)
         {
             completed = true;
             goalCompleted.Invoke();
-            goalCompleted.RemoveAllListeners();
-            CleanUp();
+            if(detachAndCleanup) CleanUp();
+        }
+        
+        private void Incomplete()
+        {
+            completed = false;
         }
 
-        protected abstract void CleanUp();
-
+        public virtual void CleanUp() => goalCompleted.RemoveAllListeners();
         public virtual void Skip() => Complete();
     }
 
@@ -83,6 +93,8 @@ public class Quest : ScriptableObject
         {
             questCompleted.Invoke(this);
             questCompleted.RemoveAllListeners();
+            // Final clean up
+            foreach(var goal in goals) goal.CleanUp();
         }
     }
 }
