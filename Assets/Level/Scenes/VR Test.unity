@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 449239743}
   - component: {fileID: 449239744}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Blue Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -916,6 +916,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1710751058036957365, guid: bb5e242ba78d4bb47a1c35edde699f81,
+        type: 3}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 449239738}
     - target: {fileID: 2813000695809725777, guid: bb5e242ba78d4bb47a1c35edde699f81,
         type: 3}
       propertyPath: m_InteractionManager

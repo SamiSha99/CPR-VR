@@ -17,4 +17,9 @@ public class XRPlayer : MonoBehaviour
         onItemGrabbed?.Invoke(args.interactableObject.transform.gameObject, true);
         Debug.Log("GameObject dropped: " + args.interactableObject.transform.gameObject.name);
     }
+
+    static public void ActionCallTestLMAO(GameObject o)
+    {
+        onItemGrabbed?.Invoke(o, false);
+    }
 }

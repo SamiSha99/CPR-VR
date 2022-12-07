@@ -5,17 +5,22 @@ using UnityEngine;
 public class QuestManagerTest : MonoBehaviour
 {
     public Quest quest;
-
+    public GameObject ball;
     // To-do add a new quest field in the next quest should solve our issue, i hope
-    void Start()
+    void Awake()
     {
-        quest.Initialize();
-        quest.questCompleted.AddListener(OnQuestCompleted);
+        quest.Initialize(OnQuestCompleted);
         Debug.Log("Begin quest => \"" + quest.information.name + "\"| desc: " + quest.information.desc);
+        //TestGrabTheBallLMAO();
     }
 
     private void OnQuestCompleted(Quest q)
     {
-        Debug.Log("Quest compelted! =>" + q.information.name);
+        Debug.Log("Quest completed! =>" + q.information.name);
     }
+
+    //public void TestGrabTheBallLMAO()
+    //{
+    //    XRPlayer.ActionCallTestLMAO(ball);
+    //}
 }

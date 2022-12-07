@@ -1696,6 +1696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 5ca93a7e61f452b439e547ebb21d3c1a, type: 2}
+  ball: {fileID: 0}
 --- !u!1 &2813000696651412028
 GameObject:
   m_ObjectHideFlags: 0

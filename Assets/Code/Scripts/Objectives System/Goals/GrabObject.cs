@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GrabObject : Quest.QuestGoal
+public class GrabObject : Quest.QuestGoal
 {
+    [Tooltip("The exact name of the object in the hierarchy.")]
     public string objectName;
     public override void Initialize()
     {
@@ -23,5 +24,10 @@ public abstract class GrabObject : Quest.QuestGoal
             currentAmount++;
             Evaluate();
         }
+    }
+
+    protected override void CleanUp()
+    {
+        XRPlayer.onItemGrabbed -= OnGrabbingObject;
     }
 }
