@@ -7,31 +7,26 @@ public class GrabObject : Quest.QuestGoal
     [Tooltip("The exact name of the object in the hierarchy.")]
     public string objectName;
     [Tooltip("Will remove completion if dropped.")]
-    public bool disqualifyOnDropping;
+    public bool shouldHold;
     public override void Initialize()
     {
         base.Initialize();
-        XRPlayer.onItemGrabbed += OnGrabbingObject;
-    }
-
-    public override string GetDescription()
-    {
-        return $"Hold the {objectName}";
+        XREvents.onItemGrabbed += OnGrabbingObject;
     }
 
     private void OnGrabbingObject(GameObject o, bool dropped)
     {
         if(o.name != objectName) return;
-        if(dropped)
+        if(shouldHold && dropped)
             currentAmount--;
         else 
             currentAmount++;
-        Evaluate(!disqualifyOnDropping);
+        Evaluate(!shouldHold);
     }
 
     public override void CleanUp()
     {
         base.CleanUp();
-        XRPlayer.onItemGrabbed -= OnGrabbingObject;
+        XREvents.onItemGrabbed -= OnGrabbingObject;
     }
 }

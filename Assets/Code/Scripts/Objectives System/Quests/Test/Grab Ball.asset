@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2486330845044556262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b0828ab65512241a26380e06ae041a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  requiredAmount: 1
+  goalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  objectName: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20ae815cee5f654d90351d67923a8d2, type: 3}
+  m_Name: Grab Ball
+  m_EditorClassIdentifier: 
+  information:
+    name: Grab Ball
+    desc: Grab the Blue one!
+  nextQuest: {fileID: 11400000, guid: 29c054721e007a846842d959baed9f62, type: 2}
+  goals:
+  - {fileID: -2486330845044556262}

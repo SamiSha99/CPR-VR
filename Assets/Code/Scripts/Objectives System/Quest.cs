@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 using UnityEditor;
 
 // From https://www.youtube.com/watch?v=-65u991cdtw
-
+[System.Serializable]
 public class Quest : ScriptableObject
 {
     [System.Serializable]
@@ -20,12 +20,14 @@ public class Quest : ScriptableObject
     };
 
     public Info information;
+    
+    public Quest nextQuest;
     public bool completed { get; protected set; }
     public QuestCompletedEvent questCompleted;
 
     public abstract class QuestGoal : ScriptableObject
     {
-        protected string description;
+        public string description;
         public int currentAmount { get; protected set; }
         [Tooltip("The amount of times required to finish this goal to be \"Completed\".")]
         public int requiredAmount = 1;
@@ -106,11 +108,11 @@ public class QuestCompletedEvent : UnityEvent<Quest> { }
 public class QuestEditor : Editor
 {
     SerializedProperty m_QuestInfoProperty;
-
+    SerializedProperty m_QuestNextQuestProperty;
     List<string> m_QuestGoalType;
     SerializedProperty m_QuestGoalListProperty;
 
-    [MenuItem("Assets/Quest", priority = 0)]
+    [MenuItem("Assets/Create/New Quest", priority = 0)]
     public static void CreateQuest()
     {
         var newQuest = CreateInstance<Quest>();
@@ -121,6 +123,8 @@ public class QuestEditor : Editor
     {
         // info
         m_QuestInfoProperty = serializedObject.FindProperty(nameof(Quest.information));
+        // next quest if specified
+        m_QuestNextQuestProperty = serializedObject.FindProperty(nameof(Quest.nextQuest));
         // goals
         m_QuestGoalListProperty = serializedObject.FindProperty(nameof(Quest.goals));
         var lookup = typeof(Quest.QuestGoal);
@@ -137,12 +141,15 @@ public class QuestEditor : Editor
         var depth = child.depth;
         child.NextVisible(true);
         EditorGUILayout.LabelField("Quest info", EditorStyles.boldLabel);
+        // title + desc from info
         while(child.depth > depth)
         {
             EditorGUILayout.PropertyField(child, true);
             child.NextVisible(false);
         }
-
+        // Add quest
+        child = m_QuestNextQuestProperty.Copy();
+        EditorGUILayout.PropertyField(child, true);
         // next goal?
         int choice = EditorGUILayout.Popup("Add new Quest Goal", -1, m_QuestGoalType.ToArray());
         
@@ -159,8 +166,8 @@ public class QuestEditor : Editor
         
         Editor ed = null;
         int toDelete = -1;
-        Texture2D arrowUp = EditorGUIUtility.Load("Assets/Icons/upArrow.png") as Texture2D,
-            arrowDown = EditorGUIUtility.Load("Assets/Icons/downArrow.png") as Texture2D;
+        Texture2D arrowUp = EditorGUIUtility.Load(GlobalHelper.GetIcon("upArrow.png")) as Texture2D,
+            arrowDown = EditorGUIUtility.Load(GlobalHelper.GetIcon("downArrow.png")) as Texture2D;
 
         for (int i = 0; i < m_QuestGoalListProperty.arraySize; ++i)
         {

@@ -10,22 +10,33 @@ public class QuestManager : MonoBehaviour
 
     void Awake()
     {
-        onLoadQuest.Initialize(OnQuestCompleted);
-        Print("[BEGIN QUEST] => \"" + onLoadQuest.information.name + "\"Description: " + onLoadQuest.information.desc);
-        if(debugging)
-            for(int i = 0; i < onLoadQuest.goals.Count; i++) 
-                Print("[QUEST GOAL " + (i + 1) +"] => \"" + onLoadQuest.goals[i].GetDescription() + " | [REQUIRED AMOUNT] => " + onLoadQuest.goals[i].requiredAmount);
+        if(onLoadQuest != null) BeginQuest(onLoadQuest);
         
+       
+        
+    }
+
+    private void BeginQuest(Quest q)
+    {
+        q.Initialize(OnQuestCompleted);
+        Print("[BEGIN QUEST] => \"" + q.information.name + "\"Description: " + q.information.desc);
+        if (debugging)
+            for (int i = 0; i < q.goals.Count; i++)
+                Print("[QUEST GOAL " + (i + 1) + "] => \"" + q.goals[i].GetDescription() + " | [REQUIRED AMOUNT] => " + q.goals[i].requiredAmount);
     }
 
     private void OnQuestCompleted(Quest q)
     {
         Print("[QUEST COMPLETED] => \"" + q.information.name + "\"");
+        if (q.nextQuest != null)
+        {
+            BeginQuest(q.nextQuest);
+        }
     }
 
     private void Print(string s)
     {
         if(!debugging) return;
-        Debug.Log(s);
+        GlobalHelper.Print(this, s);
     }
 }
