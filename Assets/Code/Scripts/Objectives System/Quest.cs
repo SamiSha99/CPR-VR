@@ -7,6 +7,8 @@ using UnityEngine.Serialization;
 using UnityEditor;
 
 // From https://www.youtube.com/watch?v=-65u991cdtw
+// Quests represents objectives handled by the Quest Manager, all they do is store data and run accordingly to their designed function as a scriptable object.
+// See goals for more info.
 [System.Serializable]
 public class Quest : ScriptableObject
 {
