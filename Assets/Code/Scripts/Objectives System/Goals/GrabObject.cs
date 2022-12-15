@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GrabObject : Quest.QuestGoal
 {
-    [Tooltip("The exact name of the object in the hierarchy.")]
+    [Tooltip("The exact name of the object in the hierarchy, requires to have XRGrabInteractable.")]
     public string objectName;
-    [Tooltip("Will remove completion if dropped.")]
+    [Tooltip("Set true if we want to remove progress if dropped.")]
     public bool shouldHold;
     public override void Initialize()
     {
