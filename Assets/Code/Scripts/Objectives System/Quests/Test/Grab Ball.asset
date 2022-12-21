@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b0828ab65512241a26380e06ae041a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Grab the Blue round ball!
   requiredAmount: 1
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
-  objectName: 
+  objectName: Blue Ball
+  shouldHold: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
