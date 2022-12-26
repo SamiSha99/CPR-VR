@@ -81,5 +81,6 @@ public class XREvents : MonoBehaviour
     {
         if (!debugging) return;
         GlobalHelper.Print(this, s);
+        //GlobalHelper.Print<>(s);
     }
 }

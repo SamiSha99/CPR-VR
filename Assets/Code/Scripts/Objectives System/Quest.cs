@@ -26,7 +26,7 @@ public class Quest : ScriptableObject
     public Quest nextQuest;
     public bool completed { get; protected set; }
     public QuestCompletedEvent questCompleted;
-
+    public QuestGoalUpdatedEvent questGoalUpdated;
     public abstract class QuestGoal : ScriptableObject
     {
         public string description;
@@ -35,6 +35,9 @@ public class Quest : ScriptableObject
         public int requiredAmount = 1;
         public bool completed { get; protected set; }
         [HideInInspector] public UnityEvent goalCompleted;
+        // Quest related to this goal
+        private Quest quest;
+        [HideInInspector] public int index = 0;
 
         public virtual string GetDescription() { return description; }
         
@@ -44,12 +47,20 @@ public class Quest : ScriptableObject
             currentAmount = 0;
         }
 
+        public virtual void Initialize(Quest q)
+        {
+            quest = q;
+            Initialize();
+        }
+
         protected void Evaluate(bool detachAndCleanup = true)
         {
             if(currentAmount >= requiredAmount)
                 Complete(detachAndCleanup);
             else
                 Incomplete();
+            if(quest != null)
+                quest.questGoalUpdated?.Invoke(this);
         }
 
         private void Complete(bool detachAndCleanup = true)
@@ -69,25 +80,32 @@ public class Quest : ScriptableObject
     }
 
     public List<QuestGoal> goals;
-
-    public void Initialize()
+    // Init the Quest, returns the quest itself on completion
+    public Quest Initialize()
     {
         completed = false;
         questCompleted = new QuestCompletedEvent();
+        questGoalUpdated = new QuestGoalUpdatedEvent();
         
+        int index = 0;
         foreach (var goal in goals)
         {
-            goal.Initialize();
+            goal.Initialize(this);
             goal.goalCompleted.AddListener(delegate { CheckGoals(); }); 
+            goal.index = index;
+            index++;
         }
-         
+        return this;
     }
-
-    public void Initialize(UnityAction<Quest> manager)
+    // Adds the Delegate call from QuestManager, return the Quest itself
+    public Quest Initialize(UnityAction<Quest> manager, UnityAction<QuestGoal> updater)
     {
-        Initialize();
-        if(manager != null)
-            questCompleted.AddListener(manager);
+        Quest q = Initialize();
+        
+        if(manager != null) questCompleted.AddListener(manager);
+        if(updater != null) questGoalUpdated.AddListener(updater);
+
+        return q;
     }
 
     private void CheckGoals()
@@ -104,8 +122,10 @@ public class Quest : ScriptableObject
 }
 
 public class QuestCompletedEvent : UnityEvent<Quest> { }
+public class QuestGoalUpdatedEvent : UnityEvent<Quest.QuestGoal> { }
 
 #if UNITY_EDITOR
+// Unity inspector editor for the Quest system.
 [CustomEditor(typeof(Quest))]
 public class QuestEditor : Editor
 {

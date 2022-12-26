@@ -37,7 +37,7 @@ public class ActivateTeleportationRay : MonoBehaviour
             iap_Activate = leftActivate;
         }
 
-        if (teleportation != null && iap_Activate != null)
+        if (teleportation != null && iap_Activate != null && iap_Activate.action != null)
         {
             teleportation.SetActive(iap_Activate.action.ReadValue<float>() > 0.1f);
             OnRayActivation(teleportation.activeSelf || teleportation.activeInHierarchy);

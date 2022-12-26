@@ -21,6 +21,8 @@ public class GrabObject : Quest.QuestGoal
             currentAmount--;
         else 
             currentAmount++;
+
+        GlobalHelper.Print<GrabObject>("Grabbed, touched, whateve" + currentAmount);
         Evaluate(!shouldHold);
     }
 

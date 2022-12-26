@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2486330845044556262
+--- !u!114 &-8346441948274145533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,14 +9,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09b0828ab65512241a26380e06ae041a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d3117f3952dc5d439a4dcfcb03391ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Grab the Blue round ball!
+  description: Touch the Red Ball
+  requiredAmount: 5
+  goalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  index: 2
+  objectName: Red Ball
+  shouldHold: 0
+--- !u!114 &-5983985485176788506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3117f3952dc5d439a4dcfcb03391ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Hold the Green ball!
   requiredAmount: 1
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
+  index: 1
+  objectName: Green Ball
+  shouldHold: 1
+--- !u!114 &-5713630611569068603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3117f3952dc5d439a4dcfcb03391ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Grab the Blue Ball
+  requiredAmount: 1
+  goalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  index: 0
   objectName: Blue Ball
   shouldHold: 0
 --- !u!114 &11400000
@@ -34,6 +75,8 @@ MonoBehaviour:
   information:
     name: Grab Ball
     desc: Grab the Blue one!
-  nextQuest: {fileID: 11400000, guid: 29c054721e007a846842d959baed9f62, type: 2}
+  nextQuest: {fileID: 0}
   goals:
-  - {fileID: -2486330845044556262}
+  - {fileID: -5713630611569068603}
+  - {fileID: -5983985485176788506}
+  - {fileID: -8346441948274145533}
