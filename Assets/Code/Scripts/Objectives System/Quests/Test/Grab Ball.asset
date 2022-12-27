@@ -1,25 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8346441948274145533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d3117f3952dc5d439a4dcfcb03391ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Touch the Red Ball
-  requiredAmount: 5
-  goalCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  index: 2
-  objectName: Red Ball
-  shouldHold: 0
 --- !u!114 &-5983985485176788506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +40,25 @@ MonoBehaviour:
   index: 0
   objectName: Blue Ball
   shouldHold: 0
+--- !u!114 &-3123833131821799915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdab48828f194c48b23e0e9034a37dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Touch the Red Ball
+  requiredAmount: 10
+  goalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  index: 0
+  objectName: Red Ball
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,4 +78,4 @@ MonoBehaviour:
   goals:
   - {fileID: -5713630611569068603}
   - {fileID: -5983985485176788506}
-  - {fileID: -8346441948274145533}
+  - {fileID: -3123833131821799915}

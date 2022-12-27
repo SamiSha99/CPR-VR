@@ -37,6 +37,10 @@ public class XREvents : MonoBehaviour
     public void ProcessHoverEvent(BaseInteractionEventArgs args, bool exited)
     {
         GameObject o = args.interactableObject.transform.gameObject;
+        // Interactor
+        GameObject o2 = args.interactorObject.transform.gameObject;
+        if(o2.name == "Left Grab Ray" || o2.name == "Right Grab Ray" ) return;
+
         if (exited) OnItemUntouched(o);
         else OnItemTouched(o);
     }
