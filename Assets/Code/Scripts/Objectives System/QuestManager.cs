@@ -12,7 +12,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private GameObject questGoalList;
     [SerializeField] private GameObject questGoalCellPrefab;
     [HeaderAttribute("Data")]
-    [SerializeField] private Quest activeQuest;
+    [SerializeField] static public Quest activeQuest;
     [HeaderAttribute("Other")]
     [Tooltip("When level is loaded, start this quest immediatly.")]
     public Quest onLoadQuest;
@@ -25,7 +25,7 @@ public class QuestManager : MonoBehaviour
 
     private void BeginQuest(Quest q)
     {
-        q.Initialize(OnQuestCompleted, OnUpdateGoalProgress);
+        activeQuest = q.Initialize(OnQuestCompleted, OnUpdateGoalProgress);
         
         if (debugging)
         {

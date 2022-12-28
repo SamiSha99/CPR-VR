@@ -1,5 +1,45 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8545849041836071864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdab48828f194c48b23e0e9034a37dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: put it in yellow
+  requiredAmount: 1
+  goalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  index: 0
+  objectName: First Aid Kit
+  isPlayerTouch: 0
+--- !u!114 &-3771366800070340750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3117f3952dc5d439a4dcfcb03391ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: get first aid
+  requiredAmount: 1
+  goalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  index: 0
+  objectName: First Aid Kit
+  shouldHold: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,7 +53,9 @@ MonoBehaviour:
   m_Name: Get the First AID
   m_EditorClassIdentifier: 
   information:
-    name: 
-    desc: 
+    name: cpr LOL
+    desc: test test test
   nextQuest: {fileID: 0}
-  goals: []
+  goals:
+  - {fileID: -3771366800070340750}
+  - {fileID: -8545849041836071864}
