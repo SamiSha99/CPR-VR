@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdab48828f194c48b23e0e9034a37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: put it in yellow
+  description: Drop it near the patient.
   requiredAmount: 1
+  goalCompletedCommand: FirstAidKit_PutNearPatient_Complete
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
-  index: 0
+  index: 1
   objectName: First Aid Kit
   isPlayerTouch: 0
 --- !u!114 &-3771366800070340750
@@ -32,8 +33,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3117f3952dc5d439a4dcfcb03391ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: get first aid
+  description: Grab the First Aid Kit.
   requiredAmount: 1
+  goalCompletedCommand: FirstAidKit_GetAidKit_Complete
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
@@ -50,12 +52,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e20ae815cee5f654d90351d67923a8d2, type: 3}
-  m_Name: Get the First AID
+  m_Name: 1) Get the First AID
   m_EditorClassIdentifier: 
   information:
-    name: cpr LOL
-    desc: test test test
-  nextQuest: {fileID: 0}
+    name: Grab the First Aid Kit
+    desc: First Aid Kit contains everything we need to do CPR
+  beginQuestCommand: FirstAidKit_Begin
+  completeQuestCommand: FirstAidKit_Complete
+  nextQuest: {fileID: 11400000, guid: 60225f92834087349920aa35fa6b9bda, type: 2}
   goals:
   - {fileID: -3771366800070340750}
   - {fileID: -8545849041836071864}

@@ -7,42 +7,40 @@ public class QuestEventTouch : MonoBehaviour
 {
     public static event Action<GameObject, bool> onItemTouched;
     public List<string> allowedNames;
-    public GameObject _lastCollider;
+    [Tooltip("Hide the gameobject on run time, assuming we are handling it somewhere else.")]
+    public bool _hidden;
+    [Tooltip("runs SetActive(false)")]
+    public bool deactivateOnCompletion;
+    [HideInInspector] public GameObject _lastTouchCollider, _lastUntouchCollider;
     void Awake()
     {
-        gameObject.SetActive(false);
+        if(_hidden) Hide();
     }
     void OnTriggerEnter(Collider other)
     {
-        if(allowedNames.Count <= 0) return;
         if(!IsAllowed(other.gameObject.name)) return;
-        _lastCollider = other.gameObject;
-        Invoke("OnItemTouched", 0.01f);
-        return;
-    }
-
-    void RealEventTriggerTest()
-    {
-        onItemTouched?.Invoke(_lastCollider, false);
+        _lastTouchCollider = other.gameObject;
+        GlobalHelper.Invoke(this, () => ProcessEvent(other.gameObject, false), 0.01f);
     }
     void OnTriggerExit(Collider other)
     {
-        if(allowedNames.Count <= 0) return;
         if(!IsAllowed(other.gameObject.name)) return;
-        _lastCollider = other.gameObject;
-        Invoke("OnItemUnTouched", 0.01f);
+        _lastUntouchCollider = other.gameObject;
+        GlobalHelper.Invoke(this, () => ProcessEvent(other.gameObject, true), 0.01f);
     }
-    
-    private void OnItemTouched() => ProcessEvent(_lastCollider, false);
-    private void OnItemUnTouched() => ProcessEvent(_lastCollider, false);
-
     private void ProcessEvent(GameObject o, bool untouch)
     {
         onItemTouched?.Invoke(o, untouch);
+        if(deactivateOnCompletion) gameObject.SetActive(false);
     }
 
+    public void Hide() => ToggleHidden(true);
+    public void Unhide() => ToggleHidden(false);
+    private void ToggleHidden(bool _hidden = false) => transform.ToggleHidden(_hidden);
+    
     private bool IsAllowed(string n)
     {
+        if(allowedNames.Count <= 0) return false;
         foreach(string _name in allowedNames) if(_name == n) return true;
         return false;
     }

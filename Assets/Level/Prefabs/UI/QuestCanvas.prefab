@@ -78,7 +78,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 750, y: 75}
+  m_CellSize: {x: 750, y: 50}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 1
@@ -457,7 +457,7 @@ RectTransform:
   m_GameObject: {fileID: 5548396111691642698}
   m_LocalRotation: {x: 0, y: -0.71018535, z: 0, w: 0.7040148}
   m_LocalPosition: {x: 0, y: 0, z: -0.063}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_LocalScale: {x: 0.001459211, y: 0.001459211, z: 0.001459211}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5548396110893324332}
@@ -548,8 +548,7 @@ MonoBehaviour:
   questGoalList: {fileID: 5548396109928705242}
   questGoalCellPrefab: {fileID: 6520434368555698449, guid: 045572e7186aec648a7cb46948f86465,
     type: 3}
-  activeQuest: {fileID: 0}
-  onLoadQuest: {fileID: 11400000, guid: 5ca93a7e61f452b439e547ebb21d3c1a, type: 2}
+  onLoadQuest: {fileID: 11400000, guid: 9f0c776f9398adb469bec746a5a783ae, type: 2}
   debugging: 0
 --- !u!1 &5548396111984584351
 GameObject:

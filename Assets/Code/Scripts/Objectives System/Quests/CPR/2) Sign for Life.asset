@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20ae815cee5f654d90351d67923a8d2, type: 3}
+  m_Name: 2) Sign for Life
+  m_EditorClassIdentifier: 
+  information:
+    name: Sign of Life
+    desc: Learn to the currnet state of the patient.
+  beginQuestCommand: 
+  completeQuestCommand: 
+  nextQuest: {fileID: 0}
+  goals:
+  - {fileID: 6344231713625611355}
+--- !u!114 &6344231713625611355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdab48828f194c48b23e0e9034a37dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Pat the patient's shoulders.
+  requiredAmount: 30
+  goalCompletedCommand: 
+  goalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  index: 0
+  objectName: Patient Shoulder
+  isPlayerTouch: 1

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1447031613864743232}
   - component: {fileID: 5325466806966085545}
   m_Layer: 7
-  m_Name: Quest Location
+  m_Name: Target Location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9df8993e97211b408d2864896d0b0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowedNames: []
+  allowedNames:
+  - First Aid Kit
+  _lastTouchCollider: {fileID: 0}
+  _lastUntouchCollider: {fileID: 0}
 --- !u!1 &6873533062203902554
 GameObject:
   m_ObjectHideFlags: 0

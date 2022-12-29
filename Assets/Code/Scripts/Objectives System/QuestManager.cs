@@ -16,17 +16,22 @@ public class QuestManager : MonoBehaviour
     [HeaderAttribute("Other")]
     [Tooltip("When level is loaded, start this quest immediatly.")]
     public Quest onLoadQuest;
+    public GameEventCommand onQuestBegin, onQuestCompleted, onQuestGoalCompleted;
     public bool debugging;
 
-    void Awake()
+    void Start()
     {
-        if(onLoadQuest != null) BeginQuest(onLoadQuest);
+        if(onLoadQuest != null)
+        { 
+            GlobalHelper.Invoke(this, () => BeginQuest(onLoadQuest), 3.0f);
+        }
     }
 
     private void BeginQuest(Quest q)
     {
         activeQuest = q.Initialize(OnQuestCompleted, OnUpdateGoalProgress);
-        
+        //Print("Begin Quest Command? => " + activeQuest.beginQuestCommand);
+        onQuestBegin?.TriggerEvent(activeQuest.beginQuestCommand);
         if (debugging)
         {
             Print("[BEGIN QUEST] => \"" + q.information.name + "\"Description: " + q.information.desc);
@@ -43,14 +48,15 @@ public class QuestManager : MonoBehaviour
         {
             GameObject p = Instantiate(questGoalCellPrefab, questGoalList.transform);
             p.name = "Quest Goal " + (i + 1);
-            p.transform.FindComponent<TextMeshProUGUI>("Goal Text").text = q.goals[i].GetDescription();
-            p.transform.FindComponent<TextMeshProUGUI>("Goal Amount").text = q.goals[i].currentAmount + "/" + q.goals[i].requiredAmount;
+            p.transform.FindComponent<TextMeshProUGUI>("Goal Text").text = $"{i + 1}) " + q.goals[i].GetDescription();
+            p.transform.FindComponent<TextMeshProUGUI>("Goal Amount").text = q.goals[i].requiredAmount > 1 ? (q.goals[i].currentAmount + "/" + q.goals[i].requiredAmount) : "";
         }
     }
 
     private void OnQuestCompleted(Quest q)
     {
         Print("[QUEST COMPLETED] => \"" + q.information.name + "\"");
+        onQuestCompleted?.TriggerEvent(q.completeQuestCommand);
         CleanUpGoalList();
         if (q.nextQuest != null) BeginQuest(q.nextQuest);
     }
@@ -76,6 +82,7 @@ public class QuestManager : MonoBehaviour
         {
             goalTextCell.color = Color.green;
             goalAmountCell.color = Color.green;
+            onQuestGoalCompleted?.TriggerEvent(goal.goalCompletedCommand);
         }
         else
         {

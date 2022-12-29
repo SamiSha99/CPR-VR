@@ -7,10 +7,7 @@ using System;
 public class XREvents : MonoBehaviour
 {
     public bool debugging;
-    public static event Action<GameObject, bool> onItemGrabbed;
-    public static event Action<GameObject, bool> onItemInteracted;
-    public static event Action<GameObject, bool> onItemTouched;
-
+    public static event Action<GameObject, bool> onItemGrabbed, onItemInteracted, onItemTouched;
     public void OnSelectEnteredEvent(SelectEnterEventArgs args) => ProcessSelectEvent(args, false);
     public void OnSelectExitedEvent(SelectExitEventArgs args) => ProcessSelectEvent(args, true);
     public void OnHoverEnteredEvent(HoverEnterEventArgs args) => ProcessHoverEvent(args, false);
@@ -39,6 +36,7 @@ public class XREvents : MonoBehaviour
         GameObject o = args.interactableObject.transform.gameObject;
         // Interactor
         GameObject o2 = args.interactorObject.transform.gameObject;
+        // Only direct interactables can trigger touch
         if(o2.name == "Left Grab Ray" || o2.name == "Right Grab Ray" ) return;
 
         if (exited) OnItemUntouched(o);

@@ -19,7 +19,7 @@ public class TouchObject : Quest.QuestGoal
 
     private void OnTouchingObject(GameObject o, bool untouched)
     {
-        GlobalHelper.Print<TouchObject>("o.name =" + o.name + "objectName = " + objectName + "| untouch? =>" + untouched);
+        //GlobalHelper.Print<TouchObject>("o.name =" + o.name + "objectName = " + objectName + "| untouch? =>" + untouched);
         if (o.name != objectName) return;
         if(untouched) return;
         currentAmount++;
