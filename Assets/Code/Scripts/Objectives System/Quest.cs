@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEditor;
 
-// From https://www.youtube.com/watch?v=-65u991cdtw
+// Reference from https://www.youtube.com/watch?v=-65u991cdtw, the system itself isn't the same like in the video anymore as we need more features added.
 // Quests represents objectives handled by the Quest Manager, all they do is store data and run accordingly to their designed function as a scriptable object.
 // See goals for more info.
 [System.Serializable]
@@ -23,9 +23,10 @@ public class Quest : ScriptableObject
 
     public Info information;
     [Tooltip("Command listeners will recieve this command on quest begin to react accordingly.")]
-    public string beginQuestCommand = "";
+    public string beginQuestCommand = "???_Begin";
     [Tooltip("Command listeners will recieve this command on quest completion to react accordingly.")]
-    public string completeQuestCommand = "";
+    public string completeQuestCommand = "???_Complete";
+    [Tooltip("On completion, immediatly start the following quest.")]
     public Quest nextQuest;
     public bool completed { get; protected set; }
     public QuestCompletedEvent questCompleted;
@@ -36,7 +37,7 @@ public class Quest : ScriptableObject
         public int currentAmount { get; protected set; }
         [Tooltip("The amount of times required to finish this goal to be \"Completed\".")]
         public int requiredAmount = 1;
-        public string goalCompletedCommand = "";
+        public string goalCompletedCommand = "???_Complete";
         public bool completed { get; protected set; }
         [HideInInspector] public UnityEvent goalCompleted;
         // Quest related to this goal

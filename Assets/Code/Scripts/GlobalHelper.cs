@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
-using System.Linq;
 using System.Collections.Generic;
-using static System.Type;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 // Utility Class
 public static class GlobalHelper
 {
@@ -50,29 +49,24 @@ public static class GlobalHelper
     // Supports Colliders, Mesh Renders and Rigidbody, will add eventually more when needed.
     // Cons: Will un/hide everything willingly and doesn't not consider or respect pre-hidden or meant to be hidden content
     // The opposite is also true.
-    public static void ToggleHidden(this Transform transform, bool _hidden)
+    public static void ToggleHidden(this Transform transform, bool _hidden = true, bool disableCollision = true, bool disableRBs = true)
     {
+        GameObject go = transform.gameObject;
+        if(go.HasComponent<Renderer>()) Array.ForEach(transform.GetComponents<Renderer>(), x => x.enabled = !_hidden);
+        if(go.HasComponent<Collider>()) Array.ForEach(transform.GetComponents<Collider>(), x => x.enabled = !_hidden);
+        if(go.HasComponent<Rigidbody>()) Array.ForEach(transform.GetComponents<Rigidbody>(), x => x.isKinematic = _hidden);
+
         List<Transform> children = null;
-
-        if(transform.gameObject.HasComponent<Renderer>())
-            Array.ForEach(transform.GetComponents<Renderer>(), x => x.enabled = !_hidden);
-        if(transform.gameObject.HasComponent<Collider>())
-            Array.ForEach(transform.GetComponents<Collider>(), x => x.enabled = !_hidden);
-        if(transform.gameObject.HasComponent<Rigidbody>())
-            Array.ForEach(transform.GetComponents<Rigidbody>(), x => x.isKinematic = _hidden);
-
         children = GlobalHelper.GetChildren(transform, children, true);
         
         if(children.Count <= 0) return;
-
+        
         foreach(Transform child in children)
         {
-            if(child.gameObject.HasComponent<Renderer>())
-                Array.ForEach(child.gameObject.GetComponents<Renderer>(), x => x.enabled = !_hidden);
-            if(child.gameObject.HasComponent<Collider>())
-                Array.ForEach(child.gameObject.GetComponents<Collider>(), x => x.enabled = !_hidden);
-            if(child.gameObject.HasComponent<Rigidbody>())
-                Array.ForEach(transform.GetComponents<Rigidbody>(), x => x.isKinematic = _hidden);
+            go = child.gameObject;
+            if(go.HasComponent<Renderer>()) Array.ForEach(go.GetComponents<Renderer>(), x => x.enabled = !_hidden);
+            if(go.HasComponent<Collider>()) Array.ForEach(go.GetComponents<Collider>(), x => x.enabled = !_hidden);
+            if(go.HasComponent<Rigidbody>()) Array.ForEach(go.GetComponents<Rigidbody>(), x => x.isKinematic = _hidden);
         }
     }
     // Get all children of a parent and return into a transformList using a tree search
@@ -89,15 +83,28 @@ public static class GlobalHelper
 
         return transformList;
     }
-
     // Invoke that allows parameter passing via lambda expression (anonymous function)
-    public static void Invoke(this MonoBehaviour mb, Action f, float delay)
-    {
-        mb.StartCoroutine(InvokeRoutine(f, delay));
-    }
+    public static void Invoke(this MonoBehaviour mb, Action f, float delay) => mb.StartCoroutine(InvokeRoutine(f, delay));    
     private static IEnumerator InvokeRoutine(System.Action f, float delay)
     {
         yield return new WaitForSeconds(delay);
         f();
+    }
+    // THIS IS ALL WRONG! FIX!!!
+    public const int LAYER_INTERACTABLE = 3;
+    public const int LAYER_DIRECT_INTERACTABLE = 4;
+    public const int LAYER_RAY_INTERACTABLE = 5;
+    public static void ChangeInteractionLayerMask(this XRBaseInteractable xrBase, int[] add = null, int[] remove = null)
+    {
+        Print<UnityEngine.Object>(xrBase.interactionLayers.value.ToString());
+        foreach(int i in add) xrBase.interactionLayers += i;
+        foreach(int i in remove) xrBase.interactionLayers -= i;
+    }
+    // WIP???
+    public static int[] GetLayerMasks(string[] layers)
+    {
+        int[] ints = new int[layers.Length];
+        for(int i = 0; i < layers.Length; i++) ints[i] = InteractionLayerMask.GetMask(layers[i]);
+        return ints.Length == 0 ? null : ints;
     }
 }

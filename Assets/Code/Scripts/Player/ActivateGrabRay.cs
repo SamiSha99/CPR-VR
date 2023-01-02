@@ -7,11 +7,11 @@ public class ActivateGrabRay : MonoBehaviour
 {
     public GameObject leftGrabRay, rightGrabRay;
     public XRDirectInteractor leftDirectGrab, rightDirectGrab;
-    //public ContinuousMoveProviderBase mover;
-    // Update is called once per frame
     void Update()
     {
-        leftGrabRay.SetActive(leftDirectGrab.interactablesSelected.Count == 0);        
-        rightGrabRay.SetActive(rightDirectGrab.interactablesSelected.Count == 0);
+        if(leftGrabRay != null && leftDirectGrab != null)
+            leftGrabRay.SetActive(leftDirectGrab.interactablesSelected.Count == 0);        
+        if(rightGrabRay != null && rightDirectGrab != null)
+            rightGrabRay.SetActive(rightDirectGrab.interactablesSelected.Count == 0);
     }
 }

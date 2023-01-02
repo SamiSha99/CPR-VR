@@ -15,8 +15,8 @@ MonoBehaviour:
   information:
     name: Sign of Life
     desc: Learn to the currnet state of the patient.
-  beginQuestCommand: 
-  completeQuestCommand: 
+  beginQuestCommand: SignofLife_Begin
+  completeQuestCommand: SignofLIfe_Complete
   nextQuest: {fileID: 0}
   goals:
   - {fileID: 6344231713625611355}
@@ -34,7 +34,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Pat the patient's shoulders.
   requiredAmount: 30
-  goalCompletedCommand: 
+  goalCompletedCommand: ???_Complete
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
