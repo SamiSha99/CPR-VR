@@ -5,13 +5,33 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ActivateGrabRay : MonoBehaviour
 {
+    const string LEFT_GRAB_RAY_NAME = "Left Grab Ray";
+    const string RIGHT_GRAB_RAY_NAME = "Right Grab Ray";
+    const string GRAB_RAY_DISABLED = " (DISABLED)";
+
     public GameObject leftGrabRay, rightGrabRay;
     public XRDirectInteractor leftDirectGrab, rightDirectGrab;
+    // For now, rays are entirely disabled, only by direct grabbing.
+    public bool leftGrabRayEnabled = false, rightGrabRayEnabled = false;
+    
+    void Awake()
+    {
+        EnableGrabRay(leftGrabRayEnabled, rightGrabRayEnabled);
+    }
+
     void Update()
     {
         if(leftGrabRay != null && leftDirectGrab != null)
-            leftGrabRay.SetActive(leftDirectGrab.interactablesSelected.Count == 0);        
+            leftGrabRay.SetActive(leftGrabRayEnabled && leftDirectGrab.interactablesSelected.Count == 0);        
         if(rightGrabRay != null && rightDirectGrab != null)
-            rightGrabRay.SetActive(rightDirectGrab.interactablesSelected.Count == 0);
+            rightGrabRay.SetActive(rightGrabRayEnabled && rightDirectGrab.interactablesSelected.Count == 0);
+    }
+
+    public void EnableGrabRay(bool left, bool right)
+    {
+        leftGrabRayEnabled = left;
+        rightGrabRayEnabled = right;
+        if(leftGrabRay != null) leftGrabRay.name = LEFT_GRAB_RAY_NAME + (left ? "" : GRAB_RAY_DISABLED);
+        if(rightGrabRay != null) rightGrabRay.name = RIGHT_GRAB_RAY_NAME + (right ? "" : GRAB_RAY_DISABLED);
     }
 }
