@@ -14,9 +14,10 @@ public class GrabObject : Quest.QuestGoal
         XREvents.onItemGrabbed += OnGrabbingObject;
     }
 
-    private void OnGrabbingObject(GameObject o, bool dropped)
+    private void OnGrabbingObject(GameObject o, GameObject instigator, bool dropped)
     {
         if(o.name != objectName) return;
+        
         if(shouldHold && dropped)
             currentAmount--;
         else 

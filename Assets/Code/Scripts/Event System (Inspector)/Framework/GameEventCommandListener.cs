@@ -21,7 +21,7 @@ public class GameEventCommandListener : MonoBehaviour
     public void OnEventTriggered(string command)
     {
         if(!IsValidListener()) return;
-        //GlobalHelper.Print<GameEventCommandListener>($"Comparing between {this.command} == {command} bool result: {this.command == command}");
+        //GlobalHelper.Print<GameEventCommandListener>($"Comparing between {command} == {this.command} bool result: {this.command == command} in GameObject: {transform.gameObject.name}");
         if(this.command != command) return;
         //GlobalHelper.Print<GameEventCommandListener>("PASSED THE EVENT COMMAND CHECK!");
         onEventTriggered?.Invoke(command);

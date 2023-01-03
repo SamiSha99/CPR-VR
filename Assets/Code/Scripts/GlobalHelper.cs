@@ -20,7 +20,7 @@ public static class GlobalHelper
     public static string GetShader(string name) { return PATH_SHADERS + name; }
     public static string GetParticle(string name) { return PATH_PARTICLES + name; }
     public static string GeObject(string name) { return PATH_OBJECTS + name; }
-    // Prints
+    // Print function with "typeof" being passed, helps with debug reasons in which a specified class name will pin point where this was called
     public static void Print<T>(this T _class, string msg) => Debug.Log("[" + _class.ToString().ToUpper() +"] | " + msg);
     public static void Print<T>(string msg) where T : UnityEngine.Object => Debug.Log("[" + typeof(T).ToString().ToUpper() +"] | " + msg);
     // Search for a component and return true if said component exists
@@ -45,9 +45,9 @@ public static class GlobalHelper
         }
         return comp;
     }
-    // Hides the component from being visible, the component is still active, its just their components are completely invisible and none interactive.
-    // Supports Colliders, Mesh Renders and Rigidbody, will add eventually more when needed.
-    // Cons: Will un/hide everything willingly and doesn't not consider or respect pre-hidden or meant to be hidden content
+    // Hides the component from being visible, the component is still active, its just their components are completely none interactive.
+    // Supports Colliders, Renderers and Rigidbody, will add eventually more when needed.
+    // Cons: Will un/hide everything willingly and doesn't consider nor respect pre-hidden or meant to be hidden content
     // The opposite is also true.
     public static void ToggleHidden(this Transform transform, bool _hidden = true, bool disableCollision = true, bool disableRBs = true)
     {
@@ -76,7 +76,8 @@ public static class GlobalHelper
     {
         if (transformList == null) transformList = new List<Transform>();
         
-        foreach (Transform child in parent) {
+        foreach (Transform child in parent) 
+        {
             transformList.Add(child);
             if(getChildrenOfChild) GetChildren(child, transformList, getChildrenOfChild);
         }
@@ -90,21 +91,12 @@ public static class GlobalHelper
         yield return new WaitForSeconds(delay);
         f();
     }
-    // THIS IS ALL WRONG! FIX!!!
-    public const int LAYER_INTERACTABLE = 3;
-    public const int LAYER_DIRECT_INTERACTABLE = 4;
-    public const int LAYER_RAY_INTERACTABLE = 5;
-    public static void ChangeInteractionLayerMask(this XRBaseInteractable xrBase, int[] add = null, int[] remove = null)
+    // Returns the top most gameobject that owns this child
+    public static GameObject GetGameObjectRoot(this GameObject o)
     {
-        Print<UnityEngine.Object>(xrBase.interactionLayers.value.ToString());
-        foreach(int i in add) xrBase.interactionLayers += i;
-        foreach(int i in remove) xrBase.interactionLayers -= i;
-    }
-    // WIP???
-    public static int[] GetLayerMasks(string[] layers)
-    {
-        int[] ints = new int[layers.Length];
-        for(int i = 0; i < layers.Length; i++) ints[i] = InteractionLayerMask.GetMask(layers[i]);
-        return ints.Length == 0 ? null : ints;
+        Transform root = null;
+        root = o.transform;
+        while(root.parent != null) root = root.parent;
+        return root.gameObject;
     }
 }

@@ -12,6 +12,9 @@ using UnityEditor;
 [System.Serializable]
 public class Quest : ScriptableObject
 {
+    public const string DEFAULT_QUEST_BEGIN_COMMAND = "???_Begin";
+    public const string DEFAULT_QUEST_COMPLETE_COMMAND = "???_Complete";
+
     [System.Serializable]
     public struct Info 
     {
@@ -23,9 +26,9 @@ public class Quest : ScriptableObject
 
     public Info information;
     [Tooltip("Command listeners will recieve this command on quest begin to react accordingly.")]
-    public string beginQuestCommand = "???_Begin";
+    public string beginQuestCommand = DEFAULT_QUEST_BEGIN_COMMAND;
     [Tooltip("Command listeners will recieve this command on quest completion to react accordingly.")]
-    public string completeQuestCommand = "???_Complete";
+    public string completeQuestCommand = DEFAULT_QUEST_COMPLETE_COMMAND;
     [Tooltip("On completion, immediatly start the following quest.")]
     public Quest nextQuest;
     public bool completed { get; protected set; }
@@ -33,6 +36,8 @@ public class Quest : ScriptableObject
     public QuestGoalUpdatedEvent questGoalUpdated;
     public abstract class QuestGoal : ScriptableObject
     {
+        public const string DEFAULT_QUEST_GOAL_COMPLETE_COMMAND = "???_Complete";
+
         public string description;
         public int currentAmount { get; protected set; }
         [Tooltip("The amount of times required to finish this goal to be \"Completed\".")]
@@ -172,22 +177,25 @@ public class QuestEditor : Editor
         var child = m_QuestInfoProperty.Copy();
         var depth = child.depth;
         child.NextVisible(true);
-        EditorGUILayout.LabelField("Quest info", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Quest Info", EditorStyles.boldLabel);
         // title + desc from info
         while(child.depth > depth)
         {
             EditorGUILayout.PropertyField(child, true);
             child.NextVisible(false);
         }
+        // Add quest
+        child = m_QuestNextQuestProperty.Copy();
+        EditorGUILayout.PropertyField(child, true);
+        EditorGUILayout.LabelField("Quest Commands", EditorStyles.boldLabel);
         // Add begin and complete command to GUI
         child = m_QuestBeginCommandProperty.Copy();
         EditorGUILayout.PropertyField(child, true);
         child = m_QuestCompleteCommandProperty.Copy();
         EditorGUILayout.PropertyField(child, true);
-        // Add quest
-        child = m_QuestNextQuestProperty.Copy();
-        EditorGUILayout.PropertyField(child, true);
+
         // next goal?
+        EditorGUILayout.LabelField("Goals", EditorStyles.boldLabel);
         int choice = EditorGUILayout.Popup("Add new Quest Goal", -1, m_QuestGoalType.ToArray());
         
         if(choice != -1)
@@ -256,9 +264,7 @@ public class QuestEditor : Editor
         {
             var item = m_QuestGoalListProperty.GetArrayElementAtIndex(toDelete).objectReferenceValue;
             DestroyImmediate(item, true);
-
             m_QuestGoalListProperty.DeleteArrayElementAtIndex(toDelete);
-            //m_QuestGoalListProperty.DeleteArrayElementAtIndex(toDelete);
         }
 
         serializedObject.ApplyModifiedProperties();

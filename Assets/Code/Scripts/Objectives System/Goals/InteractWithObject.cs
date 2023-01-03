@@ -14,9 +14,12 @@ public class InteractWithObject : Quest.QuestGoal
         XREvents.onItemInteracted += OnInteractingObject;
     }
 
-    private void OnInteractingObject(GameObject o, bool uninteracted)
+    private void OnInteractingObject(GameObject o, GameObject instigator, bool uninteracted)
     {
         if (o.name != objectName) return;
+        
+        //instigator = instigator.root;
+
         if(shouldHold && uninteracted)
             currentAmount--;
         else

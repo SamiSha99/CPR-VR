@@ -16,7 +16,7 @@ MonoBehaviour:
     name: Sign of Life
     desc: Learn to the currnet state of the patient.
   beginQuestCommand: SignofLife_Begin
-  completeQuestCommand: SignofLIfe_Complete
+  completeQuestCommand: SignofLife_Complete
   nextQuest: {fileID: 0}
   goals:
   - {fileID: 6344231713625611355}

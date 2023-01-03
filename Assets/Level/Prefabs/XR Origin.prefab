@@ -2054,6 +2054,7 @@ GameObject:
   - component: {fileID: 2813000696362214406}
   - component: {fileID: 6204075408982551716}
   - component: {fileID: 2813000695804507361}
+  - component: {fileID: 1301566481}
   m_Layer: 6
   m_Name: XR Origin
   m_TagString: Untagged
@@ -2180,7 +2181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 2813000696362214403}
-  m_TurnSpeed: 60
+  m_TurnSpeed: 80
   m_LeftHandTurnAction:
     m_UseReference: 0
     m_Action:
@@ -2291,13 +2292,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.5
   m_Radius: 0.125
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_SlopeLimit: 30
+  m_StepOffset: 0.15
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &2813000696362214406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2368,6 +2369,23 @@ MonoBehaviour:
   rightGrabRay: {fileID: 5804103084485414024}
   leftDirectGrab: {fileID: 2813000696651412000}
   rightDirectGrab: {fileID: 2813000695440645979}
+  leftGrabRayEnabled: 0
+  rightGrabRayEnabled: 0
+--- !u!114 &1301566481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813000696362214425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cfafcdc910257459d593143e6de48e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 2813000696016401094}
+  lookingAtObject: {fileID: 0}
+  xrEvents: {fileID: 6204075408982551716}
 --- !u!1 &2813000696651412028
 GameObject:
   m_ObjectHideFlags: 0

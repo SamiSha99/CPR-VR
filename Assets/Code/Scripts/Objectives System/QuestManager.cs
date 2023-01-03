@@ -19,16 +19,13 @@ public class QuestManager : MonoBehaviour
     public GameEventCommand onQuestBegin, onQuestCompleted, onQuestGoalCompleted;
     public bool debugging;
 
-    void Start()
-    {
-        if(onLoadQuest != null)
-        { 
-            GlobalHelper.Invoke(this, () => BeginQuest(onLoadQuest), 3.0f);
-        }
-    }
+    void Start() => BeginQuest(onLoadQuest);
+    
 
     private void BeginQuest(Quest q)
     {
+        if(q == null) return;
+        
         activeQuest = q.Initialize(OnQuestCompleted, OnUpdateGoalProgress);
         //Print("Begin Quest Command? => " + activeQuest.beginQuestCommand);
         onQuestBegin?.TriggerEvent(activeQuest.beginQuestCommand);

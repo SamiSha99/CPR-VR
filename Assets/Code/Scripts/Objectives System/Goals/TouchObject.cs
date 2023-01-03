@@ -17,11 +17,11 @@ public class TouchObject : Quest.QuestGoal
             QuestEventTouch.onItemTouched += OnTouchingObject;
     }
 
-    private void OnTouchingObject(GameObject o, bool untouched)
+    private void OnTouchingObject(GameObject o, GameObject instigator, bool untouched)
     {
-        //GlobalHelper.Print<TouchObject>("o.name =" + o.name + "objectName = " + objectName + "| untouch? =>" + untouched);
         if (o.name != objectName) return;
         if(untouched) return;
+        //GlobalHelper.Print<TouchObject>(instigator.name + " | Root: " + instigator.GetGameObjectRoot().name);
         currentAmount++;
         Evaluate();
     }

@@ -6,11 +6,11 @@ using System;
 
 public class QuestEventTouch : MonoBehaviour
 {
-    public static event Action<GameObject, bool> onItemTouched;
+    public static event Action<GameObject, GameObject, bool> onItemTouched;
     public List<string> allowedNames;
     public List<GameObject> allowedGameObjects;
     public Transform snapPoint;
-    [Tooltip("runs SetActive(false)")]
+    [Tooltip("Runs SetActive(false).")]
     public bool deactivateOnCompletion;
     [HideInInspector] public GameObject _lastTouchCollider, _lastUntouchCollider;
     void OnTriggerEnter(Collider other)
@@ -27,12 +27,19 @@ public class QuestEventTouch : MonoBehaviour
     }
     private void ProcessEvent(GameObject o, bool untouch)
     {
-        onItemTouched?.Invoke(o, untouch);
+        XRGrabInteractable2 xr2 = o.GetComponent<XRGrabInteractable2>();
+        GameObject instigator = null;
+        
+        if(xr2 != null) instigator = xr2._lastInteractorSelect;
+        //GlobalHelper.Print<QuestEventTouch>("" + instigator);
+        onItemTouched?.Invoke(o, instigator, untouch);
+        
         if(snapPoint != null && !untouch)
         {
             TryReleasingGrabbedObject(o);
             o.transform.SetPositionAndRotation(snapPoint.position, snapPoint.rotation);
         }
+        
         if(deactivateOnCompletion) gameObject.SetActive(false);
     }
     private bool IsAllowed(GameObject go)
