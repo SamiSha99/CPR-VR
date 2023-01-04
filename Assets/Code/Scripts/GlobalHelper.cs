@@ -91,12 +91,6 @@ public static class GlobalHelper
         yield return new WaitForSeconds(delay);
         f();
     }
-    // Returns the top most gameobject that owns this child
-    public static GameObject GetGameObjectRoot(this GameObject o)
-    {
-        Transform root = null;
-        root = o.transform;
-        while(root.parent != null) root = root.parent;
-        return root.gameObject;
-    }
+    // Returns the top most gameobject parent of this child
+    public static GameObject GetGameObjectRoot(this GameObject o) { return o.transform.root.gameObject; }
 }
