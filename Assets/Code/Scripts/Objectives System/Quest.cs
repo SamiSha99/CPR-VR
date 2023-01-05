@@ -20,8 +20,9 @@ public class Quest : ScriptableObject
     {
         [Tooltip("Name of the information.")]
         public string name;
+        [TextArea(4,4)]
         [Tooltip("Description of the information.")]
-        public string desc;
+        public string description;
     };
 
     public Info information;
@@ -189,6 +190,7 @@ public class QuestEditor : Editor
         EditorGUILayout.PropertyField(child, true);
         EditorGUILayout.LabelField("Quest Commands", EditorStyles.boldLabel);
         // Add begin and complete command to GUI
+        // TO DO: simplify this process! one command + _complete OR _begin, this way less complications and less variables!!!
         child = m_QuestBeginCommandProperty.Copy();
         EditorGUILayout.PropertyField(child, true);
         child = m_QuestCompleteCommandProperty.Copy();

@@ -56,7 +56,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   information:
     name: Grab the First Aid Kit
-    desc: First Aid Kit contains everything we need to do CPR
+    description: '<i>First Aid Kit</i> is <b>important</b>.
+
+
+      Let''s get started!'
   beginQuestCommand: FirstAidKit_Begin
   completeQuestCommand: FirstAidKit_Complete
   nextQuest: {fileID: 11400000, guid: 60225f92834087349920aa35fa6b9bda, type: 2}

@@ -31,13 +31,13 @@ public class QuestManager : MonoBehaviour
         onQuestBegin?.TriggerEvent(activeQuest.beginQuestCommand);
         if (debugging)
         {
-            Print("[BEGIN QUEST] => \"" + q.information.name + "\"Description: " + q.information.desc);
+            Print("[BEGIN QUEST] => \"" + q.information.name + "\"Description: " + q.information.description);
             for (int i = 0; i < q.goals.Count; i++)
                 Print("[QUEST GOAL " + (i + 1) + "] => \"" + q.goals[i].GetDescription() + " | [REQUIRED AMOUNT] => " + q.goals[i].requiredAmount);
         }
 
         questName.text = q.information.name;
-        questDescription.text = q.information.desc;
+        questDescription.text = q.information.description;
 
         if(questGoalList == null || questGoalCellPrefab == null) return;
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   information:
     name: Sign of Life
-    desc: Learn to the currnet state of the patient.
+    description: description here!!!!
   beginQuestCommand: SignofLife_Begin
   completeQuestCommand: SignofLife_Complete
   nextQuest: {fileID: 0}
