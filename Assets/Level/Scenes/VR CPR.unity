@@ -4217,6 +4217,8 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  _lastInteractorSelect: {fileID: 0}
+  _lastInteractorHover: {fileID: 0}
 --- !u!4 &2811077831895203359
 Transform:
   m_ObjectHideFlags: 0

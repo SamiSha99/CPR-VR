@@ -14,8 +14,12 @@ public class PlayerLookAtObject : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && IsHitValid(hit))
         {
-            xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, false);
+            // what we previously were looking at
+            // avoid first unlook as "null" 
+            if(lookingAtObject != null) xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, false);
             lookingAtObject = hit.collider.gameObject;
+            // what we are looking at
+            if(lookingAtObject) xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, true);
         }
     
     }
