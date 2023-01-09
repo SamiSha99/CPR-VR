@@ -45,7 +45,7 @@ public class XREvents : MonoBehaviour
     // Events
     public void ProcessLookAtEvent(GameObject o, GameObject instigator, bool lookingAt)
     {
-        GlobalHelper.Print<XREvents>($"Target: {o.name}, Instigated by: {instigator.name}, lookingAt: {lookingAt}");
+        //GlobalHelper.Print<XREvents>($"Target: {o.name}, Instigated by: {instigator.name}, lookingAt: {lookingAt}");
         onItemLookedAt?.Invoke(o, instigator, lookingAt);
     }
     private void OnItemGrabbed(GameObject o, GameObject instigator)

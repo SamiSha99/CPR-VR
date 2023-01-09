@@ -2386,6 +2386,8 @@ MonoBehaviour:
   _camera: {fileID: 2813000696016401094}
   lookingAtObject: {fileID: 0}
   xrEvents: {fileID: 6204075408982551716}
+  _Debugging: 0
+  lineRendererGameObject: {fileID: 0}
 --- !u!1 &2813000696651412028
 GameObject:
   m_ObjectHideFlags: 0

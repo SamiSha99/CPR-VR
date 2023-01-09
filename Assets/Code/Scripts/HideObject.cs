@@ -14,6 +14,7 @@ public class HideObject : MonoBehaviour
         transform.ToggleHidden(_hidden);
         this._hidden = _hidden;
     }
+    public void ToggleHidden() => SetHidden(!_hidden);
     public bool IsHidden() { return _hidden; }
 
     void OnValidate() => SetHidden(_hidden);
