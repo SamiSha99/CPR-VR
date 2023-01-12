@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GrabObject : Quest.QuestGoal
 {
-    [Tooltip("The exact name of the object in the hierarchy, requires to have XRGrabInteractable.")]
-    public string objectName;
     [Tooltip("Set true if we want to remove progress if dropped.")]
     public bool shouldHold;
     public override void Initialize()
@@ -16,14 +14,8 @@ public class GrabObject : Quest.QuestGoal
 
     private void OnGrabbingObject(GameObject o, GameObject instigator, bool dropped)
     {
-        if(o.name != objectName) return;
-        
-        if(shouldHold && dropped)
-            currentAmount--;
-        else 
-            currentAmount++;
-
-        //GlobalHelper.Print<GrabObject>("Grabbed, touched, whateve" + currentAmount);
+        if(objectiveNameList.Contains(o.name)) return;
+        currentAmount = shouldHold && dropped ? (currentAmount - 1) : (currentAmount + 1);
         Evaluate(!shouldHold);
     }
 

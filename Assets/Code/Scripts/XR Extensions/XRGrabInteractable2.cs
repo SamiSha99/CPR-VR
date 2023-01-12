@@ -1,17 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 // Additional variables meant to remember who interacted when it comes to the player
 public class XRGrabInteractable2 : XRGrabInteractable
 {
-    public GameObject _lastInteractorSelect, _lastInteractorHover;
+    //public static event Action<GameObject, GameObject, bool> onItemShake;
+
+    [Header("XR Grab Interactable 2")]
+    public GameObject _lastInteractorSelect;
+    public GameObject _lastInteractorHover;
+
+    [Header("Restore to Origin")]
     public bool restoreOriginalPosition;
     public bool restoreOriginalRotation;
     Vector3 originalPosition;
     Quaternion originalRotation;
-    public float restorationSpeed = 4;
+    public bool snapToOrigin;
+    public float restorationSpeed = 10;
+    [Header("XR Shake Event")]
+    [Tooltip("Set makes shaking less tedious by giving more points for less shake.")]
+    public float shakeMultiplier = 1;
+    float accumulatedShakeDistance = 0, allshake = 0;
+    Vector3 lastPosition;
+    Quaternion lastRotation;
+    float shakeEventDelaySeconds = 0.25f, shakeEventDelay;
+
     void Start()
     {
         if(restoreOriginalPosition) originalPosition = transform.position;
@@ -20,15 +36,43 @@ public class XRGrabInteractable2 : XRGrabInteractable
         {
             GetComponent<Rigidbody>().isKinematic = true;
         }
+        lastPosition = transform.position;
+        lastRotation = transform.rotation;
+        shakeEventDelay = shakeEventDelaySeconds;
     }
 
     void Update()
     {
-        if(interactorsSelecting != null && interactorsSelecting.Count <= 0)
+        if(interactorsSelecting.Count <= 0)
         {   
-            transform.position = Vector3.Lerp(transform.position, originalPosition, restorationSpeed * Time.deltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, originalRotation, restorationSpeed * Time.deltaTime);
+            if(snapToOrigin)
+            {
+                if(restoreOriginalPosition) transform.position = originalPosition;
+                if(restoreOriginalRotation) transform.rotation = originalRotation;
+            }
+            else
+            {
+                if(restoreOriginalPosition) transform.position = Vector3.Lerp(transform.position, originalPosition, restorationSpeed * Time.deltaTime);
+                if(restoreOriginalRotation) transform.rotation = Quaternion.Lerp(transform.rotation, originalRotation, Mathf.Clamp(restorationSpeed * Time.deltaTime, 0f, 0.99f));      
+            }
         }
+        else if(shakeEventDelay > 0)
+        { 
+            shakeEventDelay = Mathf.Max(shakeEventDelay - Time.deltaTime, 0.0f);
+            // distance from position movement
+            accumulatedShakeDistance += Vector3.Distance(transform.position, lastPosition) * shakeMultiplier;
+            // distance from directional rotation
+            accumulatedShakeDistance += Vector3.Distance(transform.rotation * Vector3.forward, lastRotation * Vector3.forward) * shakeMultiplier;
+            if(shakeEventDelay <= 0)
+            {
+                shakeEventDelay = shakeEventDelaySeconds;
+                allshake += accumulatedShakeDistance;
+                XREvents.OnItemShake(gameObject, _lastInteractorSelect, accumulatedShakeDistance);
+                accumulatedShakeDistance = 0;
+            }
+        }
+        lastPosition = transform.position;
+        lastRotation = transform.rotation;
     }
     public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase) => base.ProcessInteractable(updatePhase);
     // Remember who selected/hovered

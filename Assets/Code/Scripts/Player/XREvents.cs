@@ -8,6 +8,7 @@ public class XREvents : MonoBehaviour
 {
     public bool debugging;
     public static event Action<GameObject, GameObject, bool> onItemGrabbed, onItemInteracted, onItemTouched, onItemLookedAt;
+    public static event Action<GameObject, GameObject, float> onItemShaked;
     // XR Events
     public void OnSelectEnteredEvent(SelectEnterEventArgs args) => ProcessSelectEvent(args, false);
     public void OnSelectExitedEvent(SelectExitEventArgs args) => ProcessSelectEvent(args, true);
@@ -46,6 +47,10 @@ public class XREvents : MonoBehaviour
     public void ProcessLookAtEvent(GameObject o, GameObject instigator, bool lookingAt)
     {
         //GlobalHelper.Print<XREvents>($"Target: {o.name}, Instigated by: {instigator.name}, lookingAt: {lookingAt}");
+        if(lookingAt)
+            Print("Gameobject looking at: " + o.name);
+        else
+            Print("Gameobject no longer looking at: " + o.name);
         onItemLookedAt?.Invoke(o, instigator, lookingAt);
     }
     private void OnItemGrabbed(GameObject o, GameObject instigator)
@@ -77,6 +82,12 @@ public class XREvents : MonoBehaviour
     {
         Print("GameObject untouched: " + o.name);
         onItemTouched?.Invoke(o, instigator, true);
+    }
+
+    public static void OnItemShake(GameObject o, GameObject instigator, float shakeAmount = 0)
+    {
+        GlobalHelper.Print<XREvents>("Shake Amount: " + shakeAmount);
+        onItemShaked?.Invoke(o, instigator, shakeAmount);
     }
 
     private void Print(string s)

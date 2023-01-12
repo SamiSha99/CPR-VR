@@ -37,7 +37,7 @@ public class HelpHighlighter : MonoBehaviour
         }
         else
             ToggleHighlighter(belowDistance);
-        GlobalHelper.Print<XREvents>($"Left Hand distance: {Vector3.Distance(leftHandPos, pos)}, Right Hand distance: {Vector3.Distance(rightHandPos, pos)} | Required range: {radiusRange}");
+        //GlobalHelper.Print<XREvents>($"Left Hand distance: {Vector3.Distance(leftHandPos, pos)}, Right Hand distance: {Vector3.Distance(rightHandPos, pos)} | Required range: {radiusRange}");
     }
     
     void ToggleHighlighter(bool b)

@@ -12,8 +12,8 @@ using UnityEditor;
 [System.Serializable]
 public class Quest : ScriptableObject
 {
-    public const string DEFAULT_QUEST_BEGIN_COMMAND = "???_Begin";
-    public const string DEFAULT_QUEST_COMPLETE_COMMAND = "???_Complete";
+    public const string QUEST_BEGIN_COMMAND = "_Begin";
+    public const string QUEST_COMPLETE_COMMAND = "_Complete";
 
     [System.Serializable]
     public struct Info 
@@ -26,25 +26,34 @@ public class Quest : ScriptableObject
     };
 
     public Info information;
-    [Tooltip("Command listeners will recieve this command on quest begin to react accordingly.")]
-    public string beginQuestCommand = DEFAULT_QUEST_BEGIN_COMMAND;
-    [Tooltip("Command listeners will recieve this command on quest completion to react accordingly.")]
-    public string completeQuestCommand = DEFAULT_QUEST_COMPLETE_COMMAND;
+    [Tooltip("Command listeners will recieve this command on different quest states using \"THIS + _CommandName\".\nCommand types:\n_Begin\n_Complete")]
+    public string questCommand = "???";
     [Tooltip("On completion, immediatly start the following quest.")]
     public Quest nextQuest;
     public bool completed { get; protected set; }
     public QuestCompletedEvent questCompleted;
     public QuestGoalUpdatedEvent questGoalUpdated;
+    [System.Serializable]
     public abstract class QuestGoal : ScriptableObject
     {
-        public const string DEFAULT_QUEST_GOAL_COMPLETE_COMMAND = "???_Complete";
-
+        public enum GoalUIType {
+            GUIT_Default, // 0
+            GUIT_Checkbox, // 1
+            GUIT_ProgressBar // 2
+        };
+        public const string QUEST_GOAL_COMPLETE_COMMAND = "_Goal_Complete";
         public string description;
         public int currentAmount { get; protected set; }
         [Tooltip("The amount of times required to finish this goal to be \"Completed\".")]
         public int requiredAmount = 1;
-        public string goalCompletedCommand = "???_Complete";
+        [Tooltip("Quest Canvas will showcase based on what we've selected for the UI type.\n\nGUIT_Default = \"1/10\"\nGUIT_Checkbox = Empty box with a checkmark on completion\nGUIT_ProgressBar = A fill in progress bar")]
+        public GoalUIType _GoalUIType;
+        [Tooltip("On Goal Completetion run this command, where \"COMMAND_NAME + _Goal_Complete\"")]
+        public string goalCompletedCommand = "???";
         public bool completed { get; protected set; }
+        [Tooltip("Contains list of \"names\" for allowed GameObjects.")]
+        [SerializeField] [NonReorderable]
+        public List<string> objectiveNameList;
         [HideInInspector] public UnityEvent goalCompleted;
         // Quest related to this goal
         private Quest quest;
@@ -67,11 +76,13 @@ public class Quest : ScriptableObject
         protected void Evaluate(bool detachAndCleanup = true)
         {
             if(currentAmount >= requiredAmount)
+            {
                 Complete(detachAndCleanup);
+                requiredAmount = currentAmount;
+            }
             else
                 Incomplete();
-            if(quest != null)
-                quest.questGoalUpdated?.Invoke(this);
+            if(quest != null) quest.questGoalUpdated?.Invoke(this);
         }
 
         private void Complete(bool detachAndCleanup = true)
@@ -118,8 +129,8 @@ public class Quest : ScriptableObject
 
         return q;
     }
-
-    private void CheckGoals()
+    // Cleanup Quest if all Goals were completed, return true if Quest Complete
+    private bool CheckGoals()
     {
         completed = goals.All(g => g.completed);
         if(completed)
@@ -128,7 +139,9 @@ public class Quest : ScriptableObject
             questCompleted.RemoveAllListeners();
             // Final clean up
             foreach(var goal in goals) goal.CleanUp();
+            return true;
         }
+        return false;
     }
 }
 
@@ -141,8 +154,7 @@ public class QuestGoalUpdatedEvent : UnityEvent<Quest.QuestGoal> { }
 public class QuestEditor : Editor
 {
     SerializedProperty m_QuestInfoProperty;
-    SerializedProperty m_QuestBeginCommandProperty;
-    SerializedProperty m_QuestCompleteCommandProperty;
+    SerializedProperty m_QuestCommandProperty;
     SerializedProperty m_QuestNextQuestProperty;
     List<string> m_QuestGoalType;
     SerializedProperty m_QuestGoalListProperty;
@@ -159,8 +171,7 @@ public class QuestEditor : Editor
         // info
         m_QuestInfoProperty = serializedObject.FindProperty(nameof(Quest.information));
         // commands when beginning and completing the quest
-        m_QuestBeginCommandProperty = serializedObject.FindProperty(nameof(Quest.beginQuestCommand));
-        m_QuestCompleteCommandProperty = serializedObject.FindProperty(nameof(Quest.completeQuestCommand));
+        m_QuestCommandProperty = serializedObject.FindProperty(nameof(Quest.questCommand));
         // next quest if specified
         m_QuestNextQuestProperty = serializedObject.FindProperty(nameof(Quest.nextQuest));
         // goals
@@ -188,21 +199,21 @@ public class QuestEditor : Editor
         // Add quest
         child = m_QuestNextQuestProperty.Copy();
         EditorGUILayout.PropertyField(child, true);
-        EditorGUILayout.LabelField("Quest Commands", EditorStyles.boldLabel);
-        // Add begin and complete command to GUI
-        // TO DO: simplify this process! one command + _complete OR _begin, this way less complications and less variables!!!
-        child = m_QuestBeginCommandProperty.Copy();
-        EditorGUILayout.PropertyField(child, true);
-        child = m_QuestCompleteCommandProperty.Copy();
+        // Add quest command to GUI
+        child = m_QuestCommandProperty.Copy();
         EditorGUILayout.PropertyField(child, true);
 
-        // next goal?
-        EditorGUILayout.LabelField("Goals", EditorStyles.boldLabel);
+        // Quest Goals + sort
         int choice = EditorGUILayout.Popup("Add new Quest Goal", -1, m_QuestGoalType.ToArray());
         
+        // Extremely buggy
+        //child = m_QuestGoalListProperty.Copy();
+        //EditorGUILayout.PropertyField(child, true);
+
         if(choice != -1)
         {
             var newInstance = CreateInstance(m_QuestGoalType[choice]);
+            newInstance.name = m_QuestGoalType[choice].ToString();
             AssetDatabase.AddObjectToAsset(newInstance, target);
             m_QuestGoalListProperty.InsertArrayElementAtIndex(m_QuestGoalListProperty.arraySize);
             m_QuestGoalListProperty.GetArrayElementAtIndex(m_QuestGoalListProperty.arraySize - 1).objectReferenceValue = newInstance;
@@ -213,15 +224,18 @@ public class QuestEditor : Editor
         
         Editor ed = null;
         int toDelete = -1;
-        Texture2D arrowUp = EditorGUIUtility.Load(GlobalHelper.GetIcon("upArrow.png")) as Texture2D,
-            arrowDown = EditorGUIUtility.Load(GlobalHelper.GetIcon("downArrow.png")) as Texture2D;
+        Texture2D arrowUp = EditorGUIUtility.Load(GlobalHelper.GetIcon("upArrow.png")) as Texture2D;
+        Texture2D arrowDown = EditorGUIUtility.Load(GlobalHelper.GetIcon("downArrow.png")) as Texture2D;
 
+        // List cannot be modified if its exactly 1
+        // Soft fix: add another one to the list as dummy that does nothing
         for (int i = 0; i < m_QuestGoalListProperty.arraySize; ++i)
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.BeginVertical();
             SerializedProperty item = m_QuestGoalListProperty.GetArrayElementAtIndex(i);
             SerializedObject obj = new SerializedObject(item.objectReferenceValue);
+            obj.Update();
             CreateCachedEditor(item.objectReferenceValue, null, ref ed);
             ed.OnInspectorGUI();
             var oldcolor = GUI.backgroundColor;
@@ -270,7 +284,7 @@ public class QuestEditor : Editor
         }
 
         serializedObject.ApplyModifiedProperties();
+       
     }
 }
-
 #endif

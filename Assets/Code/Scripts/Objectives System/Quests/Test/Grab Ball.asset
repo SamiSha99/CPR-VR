@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Hold the Green ball!
   requiredAmount: 1
+  goalCompletedCommand: ???
+  objectList: []
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
   index: 1
-  objectName: Green Ball
   shouldHold: 1
 --- !u!114 &-5713630611569068603
 MonoBehaviour:
@@ -34,11 +35,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Grab the Blue Ball
   requiredAmount: 1
+  goalCompletedCommand: ???
+  objectList: []
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
   index: 0
-  objectName: Blue Ball
   shouldHold: 0
 --- !u!114 &-3123833131821799915
 MonoBehaviour:
@@ -54,11 +56,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Touch the Red Ball
   requiredAmount: 10
+  goalCompletedCommand: ???
+  objectList: []
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
   index: 0
-  objectName: Red Ball
+  isPlayerTouch: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +77,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   information:
     name: Grab Ball
-    desc: Grab the Blue one!
+    description: 
+  questCommand: ???
   nextQuest: {fileID: 0}
   goals:
   - {fileID: -5713630611569068603}
