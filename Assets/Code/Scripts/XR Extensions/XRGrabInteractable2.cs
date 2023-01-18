@@ -26,7 +26,7 @@ public class XRGrabInteractable2 : XRGrabInteractable
     float accumulatedShakeDistance = 0, allshake = 0;
     Vector3 lastPosition;
     Quaternion lastRotation;
-    float shakeEventDelaySeconds = 0.25f, shakeEventDelay;
+    float shakeEventDelaySeconds = 0.03334f, shakeEventDelay;
 
     void Start()
     {

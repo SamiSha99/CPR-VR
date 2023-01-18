@@ -19,7 +19,7 @@ public class QuestManager : MonoBehaviour
     public GameEventCommand onQuestBegin, onQuestCompleted, onQuestGoalCompleted;
     public bool debugging;
 
-    const string GAMEOBJECT_NAME_GOAL_TITLE = "Goal Name";
+    const string GAMEOBJECT_NAME_GOAL_TITLE = "Goal Text";
     const string GAMEOBJECT_NAME_GOAL_VALUE = "Goal Value";
 
     void Start() => BeginQuest(onLoadQuest);
@@ -46,9 +46,32 @@ public class QuestManager : MonoBehaviour
         {
             GameObject p = Instantiate(questGoalCellPrefab, questGoalList.transform);
             p.name = "Quest Goal " + (i + 1);
-            p.transform.FindComponent<TextMeshProUGUI>("Goal Text").text = $"{i + 1}) " + q.goals[i].GetDescription();
-            // NEED WORKING HERE!!!
-            p.transform.FindComponent<TextMeshProUGUI>("Goal Amount").text = q.goals[i].requiredAmount > 1 ? (q.goals[i].currentAmount + "/" + q.goals[i].requiredAmount) : "";
+            p.transform.FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE).text = $"{i + 1}) " + q.goals[i].GetDescription();
+
+            // Values
+            GameObject valueObject = p.transform.Find(GAMEOBJECT_NAME_GOAL_VALUE).gameObject;
+            // Numbers
+            TextMeshProUGUI textMesh = valueObject.transform.FindComponent<TextMeshProUGUI>("Amount Value");
+            textMesh.text = (q.goals[i].currentAmount + "/" + q.goals[i].requiredAmount);
+            // Checkbox
+            GameObject checkboxObject = valueObject.transform.Find("Checkbox").gameObject;
+            // Progress
+            GameObject progressObject = valueObject.transform.Find("Progress").gameObject;
+
+            switch(q.goals[i]._GoalUIType)
+            {
+                case Quest.QuestGoal.GoalUIType.GUIT_Default:
+                default:
+                    textMesh.gameObject.SetActive(true);
+                    break;
+                case Quest.QuestGoal.GoalUIType.GUIT_Checkbox:
+                    checkboxObject.SetActive(true);
+                    break;
+                case Quest.QuestGoal.GoalUIType.GUIT_ProgressBar:
+                    progressObject.SetActive(true);
+                    progressObject.GetComponent<ProgressBar>()._slider.value = 0;
+                    break;
+            }
         }
     }
     private void OnQuestCompleted(Quest q)
@@ -103,10 +126,12 @@ public class QuestManager : MonoBehaviour
                     checkbox.CheckmarkBox(goal.completed);
                 break;
             case Quest.QuestGoal.GoalUIType.GUIT_ProgressBar:
+                float norm = goal.currentAmount/goal.requiredAmount;
+                Debug.Log("Progress updating... Normalized: " + norm);
+                goalValueCell.transform.FindComponent<ProgressBar>("Progress").UpdateProgressBar(norm);
                 break;
         }
-        if(goal.completed)
-            onQuestGoalCompleted?.TriggerEvent(goal.goalCompletedCommand);
+        if(goal.completed) onQuestGoalCompleted?.TriggerEvent(goal.goalCompletedCommand);
     }
 
     private void CleanUpGoalList()

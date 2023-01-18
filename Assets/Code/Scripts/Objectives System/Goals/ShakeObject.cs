@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class ShakeObject : Quest.QuestGoal
 {
-    [HideInInspector] public float accumulatedShake;
     public override void Initialize()
     {
         base.Initialize();
         XREvents.onItemShaked += OnShakeObject;
-        accumulatedShake = 0;
+        _GoalUIType = GoalUIType.GUIT_ProgressBar;
     }
-
     private void OnShakeObject(GameObject o, GameObject instigator, float shakeAmount)
     {
         if (!objectiveNameList.Contains(o.name)) return;
-        accumulatedShake += shakeAmount;
-        currentAmount = Mathf.FloorToInt(accumulatedShake);
+        currentAmount += shakeAmount;
         Evaluate();
     }
-
     public override void CleanUp()
     {
         base.CleanUp();

@@ -86,7 +86,7 @@ public class XREvents : MonoBehaviour
 
     public static void OnItemShake(GameObject o, GameObject instigator, float shakeAmount = 0)
     {
-        GlobalHelper.Print<XREvents>("Shake Amount: " + shakeAmount);
+        //Print("Shake Amount: " + shakeAmount);
         onItemShaked?.Invoke(o, instigator, shakeAmount);
     }
 

@@ -43,9 +43,9 @@ public class Quest : ScriptableObject
         };
         public const string QUEST_GOAL_COMPLETE_COMMAND = "_Goal_Complete";
         public string description;
-        public int currentAmount { get; protected set; }
+        public float currentAmount { get; protected set; }
         [Tooltip("The amount of times required to finish this goal to be \"Completed\".")]
-        public int requiredAmount = 1;
+        public float requiredAmount = 1;
         [Tooltip("Quest Canvas will showcase based on what we've selected for the UI type.\n\nGUIT_Default = \"1/10\"\nGUIT_Checkbox = Empty box with a checkmark on completion\nGUIT_ProgressBar = A fill in progress bar")]
         public GoalUIType _GoalUIType;
         [Tooltip("On Goal Completetion run this command, where \"COMMAND_NAME + _Goal_Complete\"")]
@@ -78,7 +78,7 @@ public class Quest : ScriptableObject
             if(currentAmount >= requiredAmount)
             {
                 Complete(detachAndCleanup);
-                requiredAmount = currentAmount;
+                currentAmount = requiredAmount;
             }
             else
                 Incomplete();
