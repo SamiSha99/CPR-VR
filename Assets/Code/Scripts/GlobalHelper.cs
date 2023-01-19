@@ -13,6 +13,7 @@ public static class GlobalHelper
     const string PATH_SHADERS = "Assets/Art/Shaders/";
     const string PATH_PARTICLES = "Assets/Art/Particles/";
     const string PATH_OBJECTS = "Assets/Art/Objects/";
+    const string PATH_AUDIO_CLIPS = "Assets/Audio";
     // Path way search to specific items, just look up the name of the file + extension
     public static string GetIcon(string name) { return PATH_ICONS + name; }
     public static string GetTexture(string name) { return PATH_TEXTURES + name; }

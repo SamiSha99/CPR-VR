@@ -13,6 +13,9 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private GameObject questGoalCellPrefab;
     [HeaderAttribute("Data")]
     [SerializeField] static public Quest activeQuest;
+    [HeaderAttribute("Sound")]
+    [SerializeField] private AudioClip checkmarkSound;
+    [SerializeField] private AudioClip writingSound;
     [HeaderAttribute("Other")]
     [Tooltip("When level is loaded, start this quest immediatly.")]
     public Quest onLoadQuest;
@@ -57,7 +60,11 @@ public class QuestManager : MonoBehaviour
             GameObject checkboxObject = valueObject.transform.Find("Checkbox").gameObject;
             // Progress
             GameObject progressObject = valueObject.transform.Find("Progress").gameObject;
-
+            
+            textMesh.gameObject?.SetActive(false);
+            checkboxObject?.SetActive(false);
+            progressObject?.SetActive(false);
+            
             switch(q.goals[i]._GoalUIType)
             {
                 case Quest.QuestGoal.GoalUIType.GUIT_Default:
@@ -66,6 +73,7 @@ public class QuestManager : MonoBehaviour
                     break;
                 case Quest.QuestGoal.GoalUIType.GUIT_Checkbox:
                     checkboxObject.SetActive(true);
+                    checkboxObject.GetComponent<Checkbox>()?.CheckmarkBox(false);
                     break;
                 case Quest.QuestGoal.GoalUIType.GUIT_ProgressBar:
                     progressObject.SetActive(true);
@@ -78,6 +86,11 @@ public class QuestManager : MonoBehaviour
     {
         Print("[QUEST COMPLETED] => \"" + q.information.name + "\"");
         onQuestCompleted?.TriggerEvent(q.questCommand + Quest.QUEST_COMPLETE_COMMAND);
+        AudioSource.PlayClipAtPoint(writingSound, transform.position);
+        GlobalHelper.Invoke(this, () => OnPostQuestComplete(q), 3.0f);
+    }
+    private void OnPostQuestComplete(Quest q)
+    {
         CleanUpGoalList();
         if (q.nextQuest != null) BeginQuest(q.nextQuest);
     }
@@ -98,49 +111,38 @@ public class QuestManager : MonoBehaviour
         
         TextMeshProUGUI goalTextCell = transformArr[index].FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE);
         GameObject goalValueCell = transformArr[index].Find(GAMEOBJECT_NAME_GOAL_VALUE).gameObject;
-        // Based on the UI type, handle the UI
+
         switch(goal._GoalUIType)
         {
             case Quest.QuestGoal.GoalUIType.GUIT_Default:
             default:
                 TextMeshProUGUI goalAmountCell = goalValueCell.transform.FindComponent<TextMeshProUGUI>("Amount Value");
                 goalAmountCell.text = goal.currentAmount + "/" + goal.requiredAmount;
-                if(goal.completed)
-                {
-                    goalTextCell.color = Color.green;
-                    goalAmountCell.color = Color.green;
-                }
-                else
-                {
-                    goalTextCell.color = Color.white;
-                    goalAmountCell.color = Color.white;
-                }
+                goalAmountCell.color = goal.completed ? Color.green : Color.white;
                 break;
             case Quest.QuestGoal.GoalUIType.GUIT_Checkbox:
-                Checkbox checkbox = goalValueCell.transform.FindComponent<Checkbox>("Checkbox");
-                if(checkbox == null)
-                {
-                    Debug.LogWarning("checkbox returned null in QuestManager! Are you sure you specified the FindComponent correctly?");
-                }
-                else
-                    checkbox.CheckmarkBox(goal.completed);
+                goalValueCell.transform.FindComponent<Checkbox>("Checkbox")?.CheckmarkBox(goal.completed);
                 break;
             case Quest.QuestGoal.GoalUIType.GUIT_ProgressBar:
-                float norm = goal.currentAmount/goal.requiredAmount;
-                Debug.Log("Progress updating... Normalized: " + norm);
-                goalValueCell.transform.FindComponent<ProgressBar>("Progress").UpdateProgressBar(norm);
+                float normalized = goal.currentAmount/goal.requiredAmount;
+                goalValueCell.transform.FindComponent<ProgressBar>("Progress")?.UpdateProgressBar(normalized);
                 break;
         }
-        if(goal.completed) onQuestGoalCompleted?.TriggerEvent(goal.goalCompletedCommand);
+        if(goal.completed) 
+        {
+            goalTextCell.color = Color.green;
+            onQuestGoalCompleted?.TriggerEvent(goal.goalCompletedCommand);
+            AudioSource.PlayClipAtPoint(checkmarkSound, transform.position);
+        }
+        else
+            goalTextCell.color = Color.white;
     }
-
     private void CleanUpGoalList()
     {
         while(questGoalList.transform.childCount > 0) DestroyImmediate(questGoalList.transform.GetChild(0).gameObject);
         questName.text = "No Objectives";
         questDescription.text = "You are all caught up! Good job!";
     }
-
     private void Print(string s)
     {
         if(!debugging) return;
