@@ -29,7 +29,6 @@ public class QuestEventTouch : MonoBehaviour
     {
         XRGrabInteractable2 xr2 = o.GetComponent<XRGrabInteractable2>();
         GameObject instigator = null;
-        
         if(xr2 != null) instigator = xr2._lastInteractorSelect;
         //GlobalHelper.Print<QuestEventTouch>("" + instigator);
         onItemTouched?.Invoke(o, instigator, untouch);

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5552431176542604619
+--- !u!114 &-275496617053543430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,20 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bdab48828f194c48b23e0e9034a37dd, type: 3}
-  m_Name: 
+  m_Script: {fileID: 11500000, guid: 2753b97071531ef40b0e1b0a50df7875, type: 3}
+  m_Name: ShakeObject
   m_EditorClassIdentifier: 
-  description: Drop it near the patient.
-  requiredAmount: 1
-  _GoalUIType: 1
-  goalCompletedCommand: Put_Near_Patient
+  description: Shake their Left Shoulder for any response.
+  requiredAmount: 2
+  _GoalUIType: 2
+  goalCompletedCommand: Shake_Shoulders_Left
   objectiveNameList:
-  - First Aid
+  - mixamorig12:LeftArm
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
-  index: 1
-  isPlayerTouch: 0
+  index: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,20 +32,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e20ae815cee5f654d90351d67923a8d2, type: 3}
-  m_Name: Get the First Aid
+  m_Name: 2) Sign of Life
   m_EditorClassIdentifier: 
   information:
-    name: Grab the First Aid Kit
-    description: '<i>First Aid Kit</i> is <b>important</b>.
-
-
-      Let''s get started!'
-  questCommand: Get_First_Aid
-  nextQuest: {fileID: 11400000, guid: baa483dd6cf61e0409633fbfb487b8d9, type: 2}
+    name: Sign of Life
+    description: Check if there's any sign of breathing!
+  questCommand: Sign_of_Life
+  nextQuest: {fileID: 11400000, guid: d755e33b7ed897d418f38f1880513fcb, type: 2}
   goals:
-  - {fileID: 1281565303368154162}
-  - {fileID: -5552431176542604619}
---- !u!114 &1281565303368154162
+  - {fileID: -275496617053543430}
+  - {fileID: 2397912991406155838}
+--- !u!114 &2397912991406155838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,16 +51,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d3117f3952dc5d439a4dcfcb03391ba, type: 3}
-  m_Name: 
+  m_Script: {fileID: 11500000, guid: 2753b97071531ef40b0e1b0a50df7875, type: 3}
+  m_Name: ShakeObject
   m_EditorClassIdentifier: 
-  description: Grab the First Aid Kit.
-  requiredAmount: 1
-  _GoalUIType: 1
-  goalCompletedCommand: Get_Aid_Kit
-  objectiveNameList: []
+  description: Shake their Right Shoulder for any response.
+  requiredAmount: 2
+  _GoalUIType: 2
+  goalCompletedCommand: Shake_Shoulders_Right
+  objectiveNameList:
+  - mixamorig12:RightArm
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
-  index: 0
-  shouldHold: 0
+  index: 1

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabObject : Quest.QuestGoal
+public class NearObject : Quest.QuestGoal
 {
     [Tooltip("Set true if we want to remove progress if dropped.")]
-    public bool shouldHold;
+    public float _NearbyRange = 1.0f;
     public override void Initialize()
     {
         base.Initialize();
@@ -15,8 +15,8 @@ public class GrabObject : Quest.QuestGoal
     private void OnGrabbingObject(GameObject o, GameObject instigator, bool dropped)
     {
         if(!objectiveNameList.Contains(o.name)) return;
-        currentAmount = shouldHold && dropped ? (currentAmount - 1) : (currentAmount + 1);
-        Evaluate(!shouldHold);
+        currentAmount = requiredAmount;
+        Evaluate();
     }
 
     public override void CleanUp()

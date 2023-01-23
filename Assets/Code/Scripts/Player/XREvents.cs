@@ -8,7 +8,8 @@ public class XREvents : MonoBehaviour
 {
     public bool debugging;
     public static event Action<GameObject, GameObject, bool> onItemGrabbed, onItemInteracted, onItemTouched, onItemLookedAt;
-    public static event Action<GameObject, GameObject, float> onItemShaked;
+    public static event Action<GameObject, GameObject, float> onItemShaked; // Grab Innteractable 2
+    public static event Action<GameObject, GameObject> onItemGrabbedNearby; // Grab Innteractable 2
     // XR Events
     public void OnSelectEnteredEvent(SelectEnterEventArgs args) => ProcessSelectEvent(args, false);
     public void OnSelectExitedEvent(SelectExitEventArgs args) => ProcessSelectEvent(args, true);
@@ -44,51 +45,15 @@ public class XREvents : MonoBehaviour
         else OnItemTouched(o, interactor);
     }
     // Events
-    public void ProcessLookAtEvent(GameObject o, GameObject instigator, bool lookingAt)
-    {
-        //GlobalHelper.Print<XREvents>($"Target: {o.name}, Instigated by: {instigator.name}, lookingAt: {lookingAt}");
-        if(lookingAt)
-            Print("Gameobject looking at: " + o.name);
-        else
-            Print("Gameobject no longer looking at: " + o.name);
-        onItemLookedAt?.Invoke(o, instigator, lookingAt);
-    }
-    private void OnItemGrabbed(GameObject o, GameObject instigator)
-    {
-        Print("GameObject grabbed: " + o.name);
-        onItemGrabbed?.Invoke(o, instigator, false);
-    }
-    private void OnItemDropped(GameObject o, GameObject instigator)
-    {
-        Print("GameObject dropped: " + o.name);
-        onItemGrabbed?.Invoke(o, instigator, true);
-    }
-    private void OnItemInteracted(GameObject o, GameObject instigator)
-    {
-        Print("GameObject interacted: " + o.name);
-        onItemInteracted?.Invoke(o, instigator, false);
-    }
-    private void OnItemUninteracted(GameObject o, GameObject instigator)
-    {
-        Print("GameObject uninteracted: " + o.name);
-        onItemInteracted?.Invoke(o, instigator, true);
-    }
-    private void OnItemTouched(GameObject o, GameObject instigator)
-    {
-        Print("GameObject touched: " + o.name);
-        onItemTouched?.Invoke(o, instigator, false);
-    }
-    private void OnItemUntouched(GameObject o, GameObject instigator)
-    {
-        Print("GameObject untouched: " + o.name);
-        onItemTouched?.Invoke(o, instigator, true);
-    }
-
-    public static void OnItemShake(GameObject o, GameObject instigator, float shakeAmount = 0)
-    {
-        //Print("Shake Amount: " + shakeAmount);
-        onItemShaked?.Invoke(o, instigator, shakeAmount);
-    }
+    public void ProcessLookAtEvent(GameObject o, GameObject instigator, bool lookingAt) => onItemLookedAt?.Invoke(o, instigator, lookingAt);
+    private void OnItemGrabbed(GameObject o, GameObject instigator) => onItemGrabbed?.Invoke(o, instigator, false);
+    private void OnItemDropped(GameObject o, GameObject instigator) => onItemGrabbed?.Invoke(o, instigator, true);
+    private void OnItemInteracted(GameObject o, GameObject instigator) => onItemInteracted?.Invoke(o, instigator, false);
+    private void OnItemUninteracted(GameObject o, GameObject instigator) => onItemInteracted?.Invoke(o, instigator, true);
+    private void OnItemTouched(GameObject o, GameObject instigator) => onItemTouched?.Invoke(o, instigator, false);
+    private void OnItemUntouched(GameObject o, GameObject instigator) => onItemTouched?.Invoke(o, instigator, true);
+    public static void OnItemShake(GameObject o, GameObject instigator, float shakeAmount = 0) => onItemShaked?.Invoke(o, instigator, shakeAmount);
+    public static void OnItemGrabbedNearby(GameObject o, GameObject instigator) => onItemGrabbedNearby?.Invoke(o, instigator);
 
     private void Print(string s)
     {

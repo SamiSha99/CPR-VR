@@ -32,10 +32,7 @@ public class XRGrabInteractable2 : XRGrabInteractable
     {
         if(restoreOriginalPosition) originalPosition = transform.position;
         if(restoreOriginalRotation) originalRotation = transform.rotation;
-        if(restoreOriginalPosition || restoreOriginalRotation)
-        {
-            GetComponent<Rigidbody>().isKinematic = true;
-        }
+        if(restoreOriginalPosition || restoreOriginalRotation) GetComponent<Rigidbody>().isKinematic = true;
         lastPosition = transform.position;
         lastRotation = transform.rotation;
         shakeEventDelay = shakeEventDelaySeconds;
@@ -71,6 +68,9 @@ public class XRGrabInteractable2 : XRGrabInteractable
                 accumulatedShakeDistance = 0;
             }
         }
+
+        if(interactorsSelecting.Count > 0) XREvents.OnItemGrabbedNearby(gameObject, _lastInteractorSelect);
+        
         lastPosition = transform.position;
         lastRotation = transform.rotation;
     }

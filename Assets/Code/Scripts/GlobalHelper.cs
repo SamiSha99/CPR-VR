@@ -85,7 +85,8 @@ public static class GlobalHelper
 
         return transformList;
     }
-    // Invoke that allows parameter passing via lambda expression (anonymous function)
+    // Invoke that allows parameter passing via lambda expression
+    // Example: GlobalHelper.Invoke(this, () => MyFunctionName(parameter1, parameter2), 3.0f);
     public static void Invoke(this MonoBehaviour mb, Action f, float delay) => mb.StartCoroutine(InvokeRoutine(f, delay));    
     private static IEnumerator InvokeRoutine(System.Action f, float delay)
     {
@@ -93,5 +94,7 @@ public static class GlobalHelper
         f();
     }
     // Returns the top most gameobject parent of this child
-    public static GameObject GetGameObjectRoot(this GameObject o) { return o.transform.root.gameObject; }
+    public static GameObject GetGameObjectRoot(this GameObject o) => o.transform.root.gameObject;
+    // Returns the camera of this Owned player object (works with root too)
+    public static GameObject GetXRCamera(this GameObject o) => o.GetGameObjectRoot().transform.Find("Camera Offset/XR Camera").gameObject;
 }

@@ -2387,7 +2387,8 @@ MonoBehaviour:
   lookingAtObject: {fileID: 0}
   xrEvents: {fileID: 6204075408982551716}
   _Debugging: 0
-  lineRendererGameObject: {fileID: 0}
+  lineRendererGameObject: {fileID: 7388031509279900289, guid: 9e1a4940e3902b947a457154c029a216,
+    type: 3}
 --- !u!1 &2813000696651412028
 GameObject:
   m_ObjectHideFlags: 0
