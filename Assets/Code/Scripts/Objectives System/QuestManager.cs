@@ -143,6 +143,15 @@ public class QuestManager : MonoBehaviour
         questName.text = "No Objectives";
         questDescription.text = "You are all caught up! Good job!";
     }
+    public static void ForceCompleteGoal(int index)
+    {
+        if(activeQuest == null) return;
+        activeQuest.goals[index].Skip();
+    }
+    public static void ForceCompleteQuest()
+    {
+        foreach (Quest.QuestGoal goal in activeQuest.goals) goal.Skip();
+    }
     private void Print(string s)
     {
         if(!debugging) return;

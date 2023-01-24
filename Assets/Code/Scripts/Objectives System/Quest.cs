@@ -76,18 +76,17 @@ public class Quest : ScriptableObject
         protected void Evaluate(bool detachAndCleanup = true)
         {
             if(currentAmount >= requiredAmount)
-            {
                 Complete(detachAndCleanup);
-                currentAmount = requiredAmount;
-            }
             else
                 Incomplete();
+            
             if(quest != null) quest.questGoalUpdated?.Invoke(this);
         }
 
         private void Complete(bool detachAndCleanup = true)
         {
             completed = true;
+            currentAmount = requiredAmount;
             goalCompleted.Invoke();
             if(detachAndCleanup) CleanUp();
         }
