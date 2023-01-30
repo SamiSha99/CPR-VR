@@ -96,5 +96,7 @@ public static class GlobalHelper
     // Returns the top most gameobject parent of this child
     public static GameObject GetGameObjectRoot(this GameObject o) => o.transform.root.gameObject;
     // Returns the camera of this Owned player object (works with root too)
-    public static GameObject GetXRCamera(this GameObject o) => o.GetGameObjectRoot().transform.Find("Camera Offset/XR Camera").gameObject;
+    public static GameObject GetXRCameraObject(this GameObject o) => o.GetGameObjectRoot().transform.Find("Camera Offset/XR Camera").gameObject;
+    // Get player
+    public static GameObject GetPlayer() => GameObject.FindWithTag("Player");
 }
