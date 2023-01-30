@@ -20,11 +20,7 @@ public class HelpHighlighter : MonoBehaviour
         DoHighlighter();
     }
 
-    void Update()
-    {
-       DoHighlighter();
-       
-    }
+    void Update() => DoHighlighter();
 
     void DoHighlighter()
     {

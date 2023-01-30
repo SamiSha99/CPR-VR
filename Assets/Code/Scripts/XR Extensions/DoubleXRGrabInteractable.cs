@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+// This is terrible, never used and not necessary but also buggy as hell.
+// Avoid.
 public class DoubleXRGrabInteractable : XRGrabInteractable
 {
     [SerializeField] private Transform _secondAttachTransform;

@@ -27,6 +27,9 @@ public class TouchObject : Quest.QuestGoal
     public override void CleanUp()
     {
         base.CleanUp();
-        XREvents.onItemTouched -= OnTouchingObject;
+        if(isPlayerTouch)
+            XREvents.onItemTouched -= OnTouchingObject;
+        else
+            QuestEventTouch.onItemTouched -= OnTouchingObject;
     }
 }

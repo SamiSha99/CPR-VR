@@ -227,7 +227,7 @@ public class QuestEditor : Editor
         Texture2D arrowDown = EditorGUIUtility.Load(GlobalHelper.GetIcon("downArrow.png")) as Texture2D;
 
         // List cannot be modified if its exactly 1
-        // Soft fix: add another one to the list as dummy that does nothing
+        // Soft fix: Make it [NonReorderable] for now
         for (int i = 0; i < m_QuestGoalListProperty.arraySize; ++i)
         {
             EditorGUILayout.BeginHorizontal();

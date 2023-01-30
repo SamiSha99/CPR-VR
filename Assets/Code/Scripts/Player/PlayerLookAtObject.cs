@@ -21,7 +21,6 @@ public class PlayerLookAtObject : MonoBehaviour
         {
             if(lr == null) lr = Instantiate(lineRendererGameObject).GetComponent<LineRenderer>();
             
-            //bool bhit = Physics.Raycast(camPos, camDir, out hit, Mathf.Infinity, ~(1 << 30));
             lr.startColor = Color.red;
             lr.endColor = Color.red;
             lr.startWidth = 0.01f;
@@ -29,7 +28,6 @@ public class PlayerLookAtObject : MonoBehaviour
             
             lr.SetPosition(0, camPos + Vector3.down * 0.05f);
             lr.SetPosition(1, camDir * 50);
-            //Debug.DrawLine(camPos, bhit ? hit.point : camDir, Color.red);
         }
         
         if(Physics.Raycast(camPos, camDir, out hit, Mathf.Infinity) && IsHitValid(hit))
@@ -39,7 +37,7 @@ public class PlayerLookAtObject : MonoBehaviour
             if(lookingAtObject != null) xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, false);
             lookingAtObject = hit.collider.gameObject;
             // what we are looking at
-            if(lookingAtObject) xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, true);
+            if(lookingAtObject != null) xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, true);
         }
     
     }

@@ -7,13 +7,10 @@ public class AnimateHandOnInput : MonoBehaviour
 {
     public InputActionProperty pinchAnimationAction, gripAnimationAction;
     public Animator handAnimator;
-    // Start is called before the first frame update
     void Start()
     {
         if(handAnimator == null) Debug.LogWarning("handAnimator is not specified, returned " + handAnimator);
     }
-
-    // Update is called once per frame
     void Update()
     {
         if(pinchAnimationAction != null)
