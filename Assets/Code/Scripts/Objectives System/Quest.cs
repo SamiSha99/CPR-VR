@@ -39,7 +39,8 @@ public class Quest : ScriptableObject
         public enum GoalUIType {
             GUIT_Default, // 0
             GUIT_Checkbox, // 1
-            GUIT_ProgressBar // 2
+            GUIT_ProgressBar, // 2
+            GUIT_None // 3 (Empty)
         };
         public const string QUEST_GOAL_COMPLETE_COMMAND = "_Goal_Complete";
         public string description;

@@ -47,6 +47,8 @@ public class QuestManager : MonoBehaviour
 
         for(int i = 0; i < q.goals.Count; i++)
         {
+            if(q.goals[i]._GoalUIType == Quest.QuestGoal.GoalUIType.GUIT_None) continue;
+
             GameObject p = Instantiate(questGoalCellPrefab, questGoalList.transform);
             p.name = "Quest Goal " + (i + 1);
             p.transform.FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE).text = $"{i + 1}) " + q.goals[i].GetDescription();
@@ -79,6 +81,8 @@ public class QuestManager : MonoBehaviour
                     progressObject.SetActive(true);
                     progressObject.GetComponent<ProgressBar>()._slider.value = 0;
                     break;
+                case Quest.QuestGoal.GoalUIType.GUIT_None:
+                    break;
             }
         }
     }
@@ -99,7 +103,9 @@ public class QuestManager : MonoBehaviour
     {
         List<Transform> transformList = new List<Transform>();
         Transform[] transformArr;
-        
+
+        if(goal._GoalUIType == Quest.QuestGoal.GoalUIType.GUIT_None) return; // Don't update
+
         transformArr = GlobalHelper.GetChildren(questGoalList.transform, transformList, false).ToArray();
         int index = goal.index;
 
@@ -126,6 +132,8 @@ public class QuestManager : MonoBehaviour
             case Quest.QuestGoal.GoalUIType.GUIT_ProgressBar:
                 float normalized = goal.currentAmount/goal.requiredAmount;
                 goalValueCell.transform.FindComponent<ProgressBar>("Progress")?.UpdateProgressBar(normalized);
+                break;
+            case Quest.QuestGoal.GoalUIType.GUIT_None:
                 break;
         }
         if(goal.completed) 
