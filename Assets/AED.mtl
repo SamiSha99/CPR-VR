@@ -1,0 +1,218 @@
+# Max2Mtl Version 4.0 Mar 10th, 2001
+#
+# Multi/Sub wall_charger (5) to come 
+#
+newmtl charger_mount
+Ka  0.85 0.85 0.65
+Kd  0.85 0.85 0.65
+Ks  0.9 0.9 0.9
+d  1
+Ns  2.1
+illum 2
+#
+newmtl charger_LED
+Ka  0.04 0.85 0
+Kd  0.04 0.85 0
+Ks  0.9 0.9 0.9
+d  1
+Ns  2.7
+illum 2
+#
+newmtl charger_LED_symbol
+Ka  0 0 0
+Kd  0 0 0
+Ks  0.9 0.9 0.9
+d  1
+Ns  3.1
+illum 2
+#
+newmtl charger_spring_clips
+Ka  0.82 0.82 0.73
+Kd  0.82 0.82 0.73
+Ks  0.9 0.9 0.9
+d  1
+Ns  4.5
+illum 2
+#
+newmtl charger_contacts
+Ka  0.2 0.2 0.2
+Kd  0.2 0.2 0.2
+Ks  0.9 0.9 0.9
+d  1
+Ns  12.1
+illum 2
+#
+# Multi/Sub wall_charger done 
+#
+# Multi/Sub Electrodes (6) to come 
+#
+newmtl Beige_cable
+Ka  0.9 0.85 0.62
+Kd  0.9 0.85 0.62
+Ks  0.9 0.9 0.9
+d  1
+Ns  2.5
+illum 2
+#
+newmtl electrode_plug_blue
+Ka  0.12 0.09 0.65
+Kd  0.12 0.09 0.65
+Ks  0.9 0.9 0.9
+d  1
+Ns  6.6
+illum 2
+#
+newmtl AED_pad
+Ka  0.91 0.91 0.91
+Kd  0.91 0.91 0.91
+Ks  0.9 0.9 0.9
+d  1
+Ns  2.2
+illum 2
+map_Kd AED_p1D.jpg
+#
+newmtl AED_pad_2
+Ka  0.91 0.91 0.91
+Kd  0.91 0.91 0.91
+Ks  0.9 0.9 0.9
+d  1
+Ns  2.2
+illum 2
+map_Kd AED_p2D.jpg
+#
+newmtl electrode_foil_pack
+Ka  0.59 0.59 0.59
+Kd  0.59 0.59 0.59
+Ks  0.9 0.9 0.9
+d  1
+Ns  0
+illum 2
+#
+newmtl Silver_foil
+Ka  0.34 0.34 0.34
+Kd  0.34 0.34 0.34
+Ks  0.9 0.9 0.9
+d  1
+Ns  8.8
+illum 2
+#
+# Multi/Sub Electrodes done 
+#
+# Multi/Sub AED (10) to come 
+#
+newmtl Case
+Ka  0.89 0.76 0.06
+Kd  0.89 0.76 0.06
+Ks  0.9 0.9 0.9
+d  1
+Ns  3.8
+illum 2
+#
+newmtl Lid
+Ka  0.59 0.59 0.59
+Kd  0.59 0.59 0.59
+Ks  0.9 0.9 0.9
+d  1
+Ns  0
+illum 2
+#
+newmtl LCD_bezel
+Ka  0.4 0.4 0.4
+Kd  0.4 0.4 0.4
+Ks  0.9 0.9 0.9
+d  1
+Ns  2.7
+illum 2
+map_Kd AED_bezD.jpg
+bump AED_bezB.jpg
+#
+newmtl glass
+Ka  0.59 0.59 0.59
+Kd  0.59 0.59 0.59
+Ks  0.9 0.9 0.9
+d  0.2
+Ns  5.4
+illum 2
+#
+newmtl Material__6
+Ka  0 0 0
+Kd  0 0 0
+Ks  0.9 0.9 0.9
+d  1
+Ns  0
+illum 2
+#
+newmtl green_LED
+Ka  0 0.56 0.03
+Kd  0 0.56 0.03
+Ks  0.9 0.9 0.9
+d  1
+Ns  7
+illum 2
+#
+newmtl LCD
+Ka  0.05 0.58 0.6
+Kd  0.05 0.58 0.6
+Ks  0.9 0.9 0.9
+d  1
+Ns  0.6
+illum 2
+map_Kd AED_scn4.gif
+#
+newmtl shock_btn
+Ka  0.9 0.18 0.15
+Kd  0.9 0.18 0.15
+Ks  0.9 0.9 0.9
+d  1
+Ns  5.8
+illum 2
+map_Kd AED_sbtn.jpg
+#
+newmtl chrome
+Ka  0.59 0.59 0.59
+Kd  0.59 0.59 0.59
+Ks  0.9 0.9 0.9
+d  1
+Ns  11.8
+illum 2
+#
+newmtl manual_key_lbl
+Ka  0.63 0.59 0.87
+Kd  0.63 0.59 0.87
+Ks  0.9 0.9 0.9
+d  1
+Ns  0
+illum 2
+map_Kd AED_mkey.jpg
+#
+# Multi/Sub AED done 
+#
+# Multi/Sub Battery_pack (3) to come 
+#
+newmtl battery_case
+Ka  0.4 0.4 0.4
+Kd  0.4 0.4 0.4
+Ks  0.9 0.9 0.9
+d  1
+Ns  3.1
+illum 2
+#
+newmtl battery_label
+Ka  0.59 0.59 0.59
+Kd  0.59 0.59 0.59
+Ks  0.9 0.9 0.9
+d  1
+Ns  0
+illum 2
+#
+newmtl chrome
+Ka  0.59 0.59 0.59
+Kd  0.59 0.59 0.59
+Ks  0.9 0.9 0.9
+d  1
+Ns  11.8
+illum 2
+#
+# Multi/Sub Battery_pack done 
+#
+# EOF

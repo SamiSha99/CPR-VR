@@ -1,0 +1,34 @@
+AED model by UVSAR : File information
++++++++++++++++++++++++++++++++++++++
+
+As supplied, the wall-mount charger and stowed electrodes are hidden scene objects.
+
+
+Screen display is selected via the diffuse map of material ID 7 within the AED multi-sub material.
+To mimic a powered-down screen, turn off the diffuse map.
+
+AED_scn1.gif	Advisory warning prior to shock delivery
+AED_scn2.gif	Analysis: Ventricular fibrillation
+AED_scn3.gif	Analysis: Asystole
+AED_scn4.gif	Analysis: Normal sinus
+AED_scn5.gif	Analysis: Post-MI hyperacute
+AED_scn6.gif	CPR cycle message
+
+
+Other textures included:-
+
+AED_batD.jpg			Battery label diffuse map
+AED_batM.jpg			Battery label blend mask
+AED_bezB.jpg			LCD screen bezel bump map
+AED_bexD.jpg			LCD screen bezel diffuse map
+AED_lidD.jpg			Lid decal
+AED_lidM.jpg			Lid decal blend mask
+AED_mkey.jpg			Manual override key decal
+AED_p1D.jpg and AED_p2D.jpg	Electrode pad diffuse maps
+AED_wrpD.jpg			Electrode wrapper label diffuse map
+AED_wrpM.jpg			Electrode wrapper blend mask
+
+
+Note that at time of creation of this model, the brand name CardAED was not in use by any known 
+manufacturer. Any subsequent similarity to brands of products is entirely unintentional. The AED 
+shape and screen/decal artwork is not based on any existing product.

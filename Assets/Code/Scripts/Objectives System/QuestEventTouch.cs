@@ -12,6 +12,7 @@ public class QuestEventTouch : MonoBehaviour
     public Transform snapPoint;
     [Tooltip("Runs SetActive(false).")]
     public bool deactivateOnCompletion;
+    public bool _DestroyObject;
     [HideInInspector] public GameObject _lastTouchCollider, _lastUntouchCollider;
     void OnTriggerEnter(Collider other)
     {
@@ -38,7 +39,8 @@ public class QuestEventTouch : MonoBehaviour
             TryReleasingGrabbedObject(o);
             o.transform.SetPositionAndRotation(snapPoint.position, snapPoint.rotation);
         }
-        
+
+        if(_DestroyObject) Destroy(o);
         if(deactivateOnCompletion) gameObject.SetActive(false);
     }
     private bool IsAllowed(GameObject go)
