@@ -12,9 +12,15 @@ public class LiveLineDrawer : MonoBehaviour
     [HideInInspector] public float rate = 2;
     [Range(0.0f, 1.0f)]
     public float value = 0.5f;
+    public float lerpRate = 5;
+    private float playerDrawerValue;
     public AudioClip GuidanceSound;
     private float currentTime, nextClipPlayTime;
     private bool _enabled;
+
+    private int compressionAmount;
+    private float elapsedCompressionTime; // adds 1/rate for performance and accuracy
+
     void Start()
     {
         if(_UILineRendererPlayer == null || _UILineRendererDemonstration == null) gameObject.SetActive(false);
@@ -24,7 +30,8 @@ public class LiveLineDrawer : MonoBehaviour
     {
         if(!_enabled) return;
 
-        float y = value;
+        playerDrawerValue = Mathf.Lerp(playerDrawerValue, value, Time.deltaTime * lerpRate);
+        float y = playerDrawerValue;
         float demoY = 0.5f + 0.5f * Mathf.Sin(2 * Mathf.PI * currentTime * rate - 0.5f * Mathf.PI);
         currentTime += Time.deltaTime;
         if(nextSample > 0)
@@ -41,7 +48,7 @@ public class LiveLineDrawer : MonoBehaviour
         if(currentTime >= nextClipPlayTime)
         {
             nextClipPlayTime = currentTime + 1/rate;
-            AudioSource.PlayClipAtPoint(GuidanceSound, GlobalHelper.GetPlayer().GetXRCameraObject().transform.position);
+            AudioSource.PlayClipAtPoint(GuidanceSound, GlobalHelper.GetPlayer().GetXRCameraObject().transform.position, 0.5f);
         }
     }
     
@@ -73,6 +80,21 @@ public class LiveLineDrawer : MonoBehaviour
         currentTime = 0;
         _enabled = true;
         nextSample = 1.0f/samplesPerSecond;
+        compressionAmount = -1;
+        elapsedCompressionTime = 0;
+    }
+    public void OnCompressionRecieved()
+    {
+        if(compressionAmount == -1)
+        {
+            compressionAmount = 0;
+        }
+        compressionAmount++;
+    }
+
+    public void OnCompressionGraphInfo(float value)
+    {
+        this.value = value;
     }
 
     public void ShutdownGraphs()
@@ -82,5 +104,7 @@ public class LiveLineDrawer : MonoBehaviour
         currentTime = 0;
         _enabled = false;
         nextSample = 1.0f/samplesPerSecond;
+        compressionAmount = -1;
+        elapsedCompressionTime = 0;
     }
 }

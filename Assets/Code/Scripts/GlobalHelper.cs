@@ -97,6 +97,10 @@ public static class GlobalHelper
     public static GameObject GetGameObjectRoot(this GameObject o) => o.transform.root.gameObject;
     // Returns the camera of this Owned player object (works with root too)
     public static GameObject GetXRCameraObject(this GameObject o) => o.GetGameObjectRoot().transform.Find("Camera Offset/XR Camera").gameObject;
+    // Returns the Left Hand of this Owned player object (works with root too)
+    // param right - Returns the Right Hand instead
+    public static GameObject GetXRHandObject(this GameObject o, bool right = false) => o.GetGameObjectRoot().transform.Find("Camera Offset/" + (right ? "Right Hand" : "Left Hand")).gameObject;
+    
     // Get player
     public static GameObject GetPlayer() => GameObject.FindWithTag("Player");
 }
