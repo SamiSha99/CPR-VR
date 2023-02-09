@@ -131,7 +131,7 @@ public class QuestManager : MonoBehaviour
                 break;
             case Quest.QuestGoal.GoalUIType.GUIT_ProgressBar:
                 float normalized = goal.currentAmount/goal.requiredAmount;
-                goalValueCell.transform.FindComponent<ProgressBar>("Progress")?.UpdateProgressBar(normalized);
+                goalValueCell.transform.FindComponent<ProgressBar>("Progress")?.SetProgressBar(normalized);
                 break;
             case Quest.QuestGoal.GoalUIType.GUIT_None:
                 break;

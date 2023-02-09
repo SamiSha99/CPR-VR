@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
-// Draws 2 different lines, one is guidance, the other is the player, drawing is "sampling" points every second, this is done to avoid calling SetAllDirty in the graphics
-// class being called so much to a point of Unity literally SHITTING itself, could it be better? Yes! Is it needed? NO!!! IT WORKS!!!
+using TMPro;
 public class LiveLineDrawer : MonoBehaviour
 {
     public int samplesPerSecond = 50;
     private float nextSample;
     public UILineRendererList _UILineRendererPlayer, _UILineRendererDemonstration;
+    public ProgressBar _CompressionTimerBar;
+    public TextMeshProUGUI _CompressionAverageText;
     [HideInInspector] public float rate = 2;
-    [Range(0.0f, 1.0f)]
-    public float value = 0.5f;
+    [Range(0.0f, 1.0f)] public float value = 0.5f;
     public float lerpRate = 5;
     private float playerDrawerValue;
     public AudioClip GuidanceSound;
     private float currentTime, nextClipPlayTime;
-    private bool _enabled;
-
-    private int compressionAmount;
+    // Relates to when we started compressing
+    private float nextAverageCompresisonUpdate, postCompressionStartTime;
     private float elapsedCompressionTime; // adds 1/rate for performance and accuracy
+    private int compressionAmount;
+
+    private bool _enabled;
 
     void Start()
     {
@@ -45,11 +47,18 @@ public class LiveLineDrawer : MonoBehaviour
                 MovePoints();
             }
         }
+        // Plays the beep audio to guide the player
         if(currentTime >= nextClipPlayTime)
         {
             nextClipPlayTime = currentTime + 1/rate;
+            if(PlayerStartedCompressing())
+            {
+                elapsedCompressionTime += 1/rate;
+                UpdateAverageCompression();
+            }
             AudioSource.PlayClipAtPoint(GuidanceSound, GlobalHelper.GetPlayer().GetXRCameraObject().transform.position, 0.5f);
         }
+        
     }
     
     void MovePoints()
@@ -85,17 +94,16 @@ public class LiveLineDrawer : MonoBehaviour
     }
     public void OnCompressionRecieved()
     {
-        if(compressionAmount == -1)
+        // Player started
+        if(!PlayerStartedCompressing())
         {
+            elapsedCompressionTime = 0;
             compressionAmount = 0;
         }
         compressionAmount++;
     }
 
-    public void OnCompressionGraphInfo(float value)
-    {
-        this.value = value;
-    }
+    public void OnCompressionGraphInfo(float value) => this.value = value;
 
     public void ShutdownGraphs()
     {
@@ -107,4 +115,13 @@ public class LiveLineDrawer : MonoBehaviour
         compressionAmount = -1;
         elapsedCompressionTime = 0;
     }
+
+    public void UpdateAverageCompression()
+    {
+        _CompressionAverageText.text = $"{compressionAmount/elapsedCompressionTime} cc/s";
+    }
+
+    // -1 implies that we haven't done our first compression, this happens when _UILineRendererPlayer graph hits bottom as 0 value
+    public bool PlayerStartedCompressing() { return compressionAmount != -1; }
+    
 }
