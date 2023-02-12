@@ -16,7 +16,7 @@ MonoBehaviour:
     name: Do Chest Compression
     description: Continue doing chest compression for 15 seconds straight.
   questCommand: CPR
-  nextQuest: {fileID: 0}
+  nextQuest: {fileID: 11400000}
   goals:
   - {fileID: 1772342133432286737}
 --- !u!114 &1772342133432286737

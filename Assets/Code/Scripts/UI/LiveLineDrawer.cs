@@ -6,27 +6,21 @@ using TMPro;
 public class LiveLineDrawer : MonoBehaviour
 {
     public int samplesPerSecond = 50;
-    private float nextSample;
     public UILineRendererList _UILineRendererPlayer, _UILineRendererDemonstration;
     public ProgressBar _CompressionTimerBar;
     public TextMeshProUGUI _CompressionAverageText;
     [HideInInspector] public float rate = 2;
     [Range(0.0f, 1.0f)] public float value = 0.5f;
-    public float lerpRate = 5;
-    private float playerDrawerValue;
     public AudioClip GuidanceSound;
-    private float currentTime, nextClipPlayTime;
-    // Relates to when we started compressing
-    private float nextAverageCompresisonUpdate, postCompressionStartTime;
-    private float elapsedCompressionTime; // adds 1/rate for performance and accuracy
+    private float currentTime, nextClipPlayTime, lastCompressionTime, playerDrawerValue, nextSample, lerpRate = 20;
     private int compressionAmount;
-
     private bool _enabled;
-
+    private ChestCompressionTrial _ChestCompressionTrial;
+    const int PERFECT_CHEST_COMPRESSION_PER_MINUTE = 110;
     void Start()
     {
         if(_UILineRendererPlayer == null || _UILineRendererDemonstration == null) gameObject.SetActive(false);
-        StartGraphs();
+        //StartGraphs(null);
     }
     void Update()
     {
@@ -51,21 +45,23 @@ public class LiveLineDrawer : MonoBehaviour
         if(currentTime >= nextClipPlayTime)
         {
             nextClipPlayTime = currentTime + 1/rate;
-            if(PlayerStartedCompressing())
-            {
-                elapsedCompressionTime += 1/rate;
-                UpdateAverageCompression();
-            }
-            AudioSource.PlayClipAtPoint(GuidanceSound, GlobalHelper.GetPlayer().GetXRCameraObject().transform.position, 0.5f);
+            AudioSource.PlayClipAtPoint(GuidanceSound, Util.GetPlayer().GetXRCameraObject().transform.position, 0.35f);
         }
         
+        if(PlayerStartedCompressing())
+        {
+            _CompressionTimerBar.AddProgressBar(-Time.deltaTime);
+            if(_CompressionTimerBar.IsEmpty()) ShutdownGraphs();
+        }
     }
     
     void MovePoints()
     {
+        Vector2 cords;
         for(int i = 0; i < _UILineRendererPlayer.Points.Count; i++)
         {
-            _UILineRendererPlayer.Points[i] = new Vector2(_UILineRendererPlayer.Points[i].x + 1.0f / samplesPerSecond, _UILineRendererPlayer.Points[i].y);
+            cords = new Vector2(_UILineRendererPlayer.Points[i].x + 1.0f / samplesPerSecond, _UILineRendererPlayer.Points[i].y);
+            _UILineRendererPlayer.Points[i] = cords;
             if(_UILineRendererPlayer.Points[i].x >= 1.0f)
             {
                 _UILineRendererPlayer.Points.RemoveAt(0);
@@ -75,7 +71,8 @@ public class LiveLineDrawer : MonoBehaviour
 
         for(int i = 0; i < _UILineRendererDemonstration.Points.Count; i++)
         {
-            _UILineRendererDemonstration.Points[i] = new Vector2(_UILineRendererDemonstration.Points[i].x + 1.0f / samplesPerSecond, _UILineRendererDemonstration.Points[i].y);
+            cords = new Vector2(_UILineRendererDemonstration.Points[i].x + 1.0f / samplesPerSecond, _UILineRendererDemonstration.Points[i].y);
+            _UILineRendererDemonstration.Points[i] = cords;
             if(_UILineRendererDemonstration.Points[i].x >= 1.0f)
             {
                 _UILineRendererDemonstration.Points.RemoveAt(0);
@@ -84,22 +81,33 @@ public class LiveLineDrawer : MonoBehaviour
         }
     }
 
-    public void StartGraphs()
+    public void StartGraphs(ChestCompressionTrial cct)
     {
         currentTime = 0;
         _enabled = true;
         nextSample = 1.0f/samplesPerSecond;
         compressionAmount = -1;
-        elapsedCompressionTime = 0;
+        lastCompressionTime = 0;
+        _CompressionAverageText.gameObject.SetActive(true);
+        _CompressionTimerBar.gameObject.SetActive(true);
+        _CompressionTimerBar.SetProgressBarClampValues(0, cct != null ? cct._TrialDuration : ChestCompressionTrial.DEFAULT_TIME_TRIAL);
+        _CompressionTimerBar.FillProgressBar();
+        _ChestCompressionTrial = cct;
+        SetCompressionText(PERFECT_CHEST_COMPRESSION_PER_MINUTE);
     }
     public void OnCompressionRecieved()
     {
+        int avgChestCompression;
         // Player started
         if(!PlayerStartedCompressing())
         {
-            elapsedCompressionTime = 0;
+            lastCompressionTime = currentTime;
             compressionAmount = 0;
         }
+        avgChestCompression = (lastCompressionTime != 0 ? Mathf.RoundToInt(1/(currentTime - lastCompressionTime) * 60) : PERFECT_CHEST_COMPRESSION_PER_MINUTE);
+        lastCompressionTime = currentTime;
+        SetCompressionText(avgChestCompression);
+        
         compressionAmount++;
     }
 
@@ -113,12 +121,18 @@ public class LiveLineDrawer : MonoBehaviour
         _enabled = false;
         nextSample = 1.0f/samplesPerSecond;
         compressionAmount = -1;
-        elapsedCompressionTime = 0;
+        lastCompressionTime = 0;
+        nextClipPlayTime = 0;
+        _CompressionAverageText.gameObject.SetActive(false);
+        _CompressionTimerBar.gameObject.SetActive(false);
+        _ChestCompressionTrial.OnTrialFinish();
+        gameObject.SetActive(false);
     }
 
-    public void UpdateAverageCompression()
+    void SetCompressionText(int amount)
     {
-        _CompressionAverageText.text = $"{compressionAmount/elapsedCompressionTime} cc/s";
+        if(_CompressionAverageText == null) return;
+        _CompressionAverageText.text = $"{amount} cc/m";
     }
 
     // -1 implies that we haven't done our first compression, this happens when _UILineRendererPlayer graph hits bottom as 0 value

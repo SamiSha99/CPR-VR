@@ -224,8 +224,8 @@ public class QuestEditor : Editor
         
         Editor ed = null;
         int toDelete = -1;
-        Texture2D arrowUp = EditorGUIUtility.Load(GlobalHelper.GetIcon("upArrow.png")) as Texture2D;
-        Texture2D arrowDown = EditorGUIUtility.Load(GlobalHelper.GetIcon("downArrow.png")) as Texture2D;
+        Texture2D arrowUp = EditorGUIUtility.Load(Util.GetIcon("upArrow.png")) as Texture2D;
+        Texture2D arrowDown = EditorGUIUtility.Load(Util.GetIcon("downArrow.png")) as Texture2D;
 
         // List cannot be modified if its exactly 1
         // Soft fix: Make it [NonReorderable] for now

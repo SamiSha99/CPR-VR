@@ -18,20 +18,20 @@ public class QuestEventTouch : MonoBehaviour
     {
         if(!IsAllowed(other.gameObject)) return;
         _lastTouchCollider = other.gameObject;
-        GlobalHelper.Invoke(this, () => ProcessEvent(other.gameObject, false), 0.01f);
+        Util.Invoke(this, () => ProcessEvent(other.gameObject, false), 0.01f);
     }
     void OnTriggerExit(Collider other)
     {
         if(!IsAllowed(other.gameObject)) return;
         _lastUntouchCollider = other.gameObject;
-        GlobalHelper.Invoke(this, () => ProcessEvent(other.gameObject, true), 0.01f);
+        Util.Invoke(this, () => ProcessEvent(other.gameObject, true), 0.01f);
     }
     private void ProcessEvent(GameObject o, bool untouch)
     {
         XRGrabInteractable2 xr2 = o.GetComponent<XRGrabInteractable2>();
         GameObject instigator = null;
         if(xr2 != null) instigator = xr2._lastInteractorSelect;
-        //GlobalHelper.Print<QuestEventTouch>("" + instigator);
+        //Util.Print<QuestEventTouch>("" + instigator);
         onItemTouched?.Invoke(o, instigator, untouch);
         
         if(snapPoint != null && !untouch)

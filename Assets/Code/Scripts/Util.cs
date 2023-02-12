@@ -2,9 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 // Utility Class
-public static class GlobalHelper
+public static class Util
 {
     const string PATH_ART = "Assets/Art/";
     const string PATH_ICONS = "Assets/Art/Icons/";
@@ -24,6 +23,8 @@ public static class GlobalHelper
     // Print function with "typeof" being passed, helps with debug reasons in which a specified class name will pin point where this was called
     public static void Print<T>(this T _class, string msg) => Debug.Log("[" + _class.ToString().ToUpper() +"] | " + msg);
     public static void Print<T>(string msg) where T : UnityEngine.Object => Debug.Log("[" + typeof(T).ToString().ToUpper() +"] | " + msg);
+    // Print with tagging
+    public static void Print(string tag, string msg) => Debug.Log("[" + tag + "] " + msg);
     // Search for a component and return true if said component exists
     public static bool HasComponent<T>(this GameObject obj) where T : Component
     {
@@ -58,7 +59,7 @@ public static class GlobalHelper
         if(go.HasComponent<Rigidbody>()) Array.ForEach(transform.GetComponents<Rigidbody>(), x => x.isKinematic = _hidden);
 
         List<Transform> children = null;
-        children = GlobalHelper.GetChildren(transform, children, true);
+        children = Util.GetChildren(transform, children, true);
         
         if(children.Count <= 0) return;
         
@@ -86,7 +87,7 @@ public static class GlobalHelper
         return transformList;
     }
     // Invoke that allows parameter passing via lambda expression
-    // Example: GlobalHelper.Invoke(this, () => MyFunctionName(parameter1, parameter2), 3.0f);
+    // Example: Util.Invoke(this, () => MyFunctionName(parameter1, parameter2), 3.0f);
     public static void Invoke(this MonoBehaviour mb, Action f, float delay) => mb.StartCoroutine(InvokeRoutine(f, delay));    
     private static IEnumerator InvokeRoutine(System.Action f, float delay)
     {
@@ -94,13 +95,32 @@ public static class GlobalHelper
         f();
     }
     // Returns the top most gameobject parent of this child
-    public static GameObject GetGameObjectRoot(this GameObject o) => o.transform.root.gameObject;
+    public static GameObject GetRoot(this GameObject o) => o.transform.root.gameObject;
     // Returns the camera of this Owned player object (works with root too)
-    public static GameObject GetXRCameraObject(this GameObject o) => o.GetGameObjectRoot().transform.Find("Camera Offset/XR Camera").gameObject;
+    public static GameObject GetXRCameraObject(this GameObject o) => o.GetRoot().transform.Find("Camera Offset/XR Camera").gameObject;
     // Returns the Left Hand of this Owned player object (works with root too)
     // param right - Returns the Right Hand instead
-    public static GameObject GetXRHandObject(this GameObject o, bool right = false) => o.GetGameObjectRoot().transform.Find("Camera Offset/" + (right ? "Right Hand" : "Left Hand")).gameObject;
-    
+    public static GameObject GetXRHandObject(this GameObject o, bool right = false) => o.GetRoot().transform.Find("Camera Offset/" + (right ? "Right Hand" : "Left Hand")).gameObject;
     // Get player
     public static GameObject GetPlayer() => GameObject.FindWithTag("Player");
+    
+    ////////////
+    // Quests //
+    ////////////
+    public static bool IsQuestActive()
+    {
+        GameObject o = GameObject.Find("QuestCanvas");
+        if(o == null) return false;
+        QuestManager qm = o.GetComponent<QuestManager>();
+        if(qm == null) return false;
+
+        return QuestManager.activeQuest != null;
+    }
+    public static void ForceCompleteCurrentQuest()
+    {
+        GameObject o = GameObject.Find("QuestCanvas");
+        if(o == null) return;
+        QuestManager qm = o.GetComponent<QuestManager>();
+        if(qm == null) return;
+    }
 }

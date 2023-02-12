@@ -19,7 +19,7 @@ public class TouchObject : Quest.QuestGoal
     {
         if (!objectiveNameList.Contains(o.name)) return;
         if(untouched) return;
-        //GlobalHelper.Print<TouchObject>(instigator.name + " | Root: " + instigator.GetGameObjectRoot().name);
+        //Util.Print<TouchObject>(instigator.name + " | Root: " + instigator.GetRoot().name);
         currentAmount++;
         Evaluate();
     }

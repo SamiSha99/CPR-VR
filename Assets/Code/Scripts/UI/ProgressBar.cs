@@ -14,10 +14,13 @@ public class ProgressBar : MonoBehaviour
         _slider.minValue = min;
         _slider.maxValue = max;
     }
-
     // Returns between Min - Max, otherwise returns 0 - 1 if normalized = true (like a precentage betweeb 0 - 1)
     public float GetProgressBarValue(bool normalized = false)
     {
         return !normalized ? _slider.value : Mathf.Clamp01((_slider.value - _slider.minValue)/(_slider.maxValue - _slider.minValue));
     }
+    public void EmptyProgressBar() => SetProgressBar(_slider.minValue);
+    public void FillProgressBar() => SetProgressBar(_slider.maxValue);
+    public bool IsEmpty() { return GetProgressBarValue() <= _slider.minValue; }
+    public bool IsFull() { return GetProgressBarValue() >= _slider.maxValue; }
 }

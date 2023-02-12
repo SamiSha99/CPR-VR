@@ -91,7 +91,7 @@ public class QuestManager : MonoBehaviour
         Print("[QUEST COMPLETED] => \"" + q.information.name + "\"");
         onQuestCompleted?.TriggerEvent(q.questCommand + Quest.QUEST_COMPLETE_COMMAND);
         AudioSource.PlayClipAtPoint(writingSound, transform.position);
-        GlobalHelper.Invoke(this, () => OnPostQuestComplete(q), 3.0f);
+        Util.Invoke(this, () => OnPostQuestComplete(q), 3.0f);
     }
     private void OnPostQuestComplete(Quest q)
     {
@@ -106,7 +106,7 @@ public class QuestManager : MonoBehaviour
 
         if(goal._GoalUIType == Quest.QuestGoal.GoalUIType.GUIT_None) return; // Don't update
 
-        transformArr = GlobalHelper.GetChildren(questGoalList.transform, transformList, false).ToArray();
+        transformArr = Util.GetChildren(questGoalList.transform, transformList, false).ToArray();
         int index = goal.index;
 
         if(index >= transformArr.Length)
@@ -160,9 +160,17 @@ public class QuestManager : MonoBehaviour
     {
         foreach (Quest.QuestGoal goal in activeQuest.goals) goal.Skip();
     }
+    public static bool IsQuestActive()
+    {
+        return QuestManager.activeQuest != null;
+    }
+    public static bool IsQuestType(string questTitle)
+    {
+        return IsQuestActive() && activeQuest.information.name == questTitle;
+    }
     private void Print(string s)
     {
         if(!debugging) return;
-        GlobalHelper.Print<QuestManager>(s);
+        Util.Print<QuestManager>(s);
     }
 }

@@ -39,7 +39,7 @@ public class GrabNearObject : Quest.QuestGoal
     {
         GameObject target = compareRangeTo switch
         {
-            NearbyType.NT_Origin => instigator.GetGameObjectRoot(),
+            NearbyType.NT_Origin => instigator.GetRoot(),
             NearbyType.NT_Camera => instigator.GetXRCameraObject(),
             _ => null
         };

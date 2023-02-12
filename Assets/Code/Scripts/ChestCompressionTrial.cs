@@ -5,7 +5,6 @@ using UnityEngine.UI.Extensions;
 public class ChestCompressionTrial : MonoBehaviour
 {
     public LiveLineDrawer _GraphScript;
-    public GameObject _GraphCanvas;
     public GameObject chest;
     public float rate = 2;
     private bool _CompressionPressed;
@@ -13,21 +12,24 @@ public class ChestCompressionTrial : MonoBehaviour
     [Range(0, 1)]
     public float compressionSize;
     public float chestCompressionAmountScale = 0.25f;
+    public float _TrialDuration = 20.0f;
+    public const float DEFAULT_TIME_TRIAL = 20.0f;
+    private float currentCompressionAmount; 
+    [SerializeField] AudioClip _CompressionSound;
     public void BeginTrial()
     {
-        _GraphCanvas.gameObject.SetActive(true);
         _GraphScript.gameObject.SetActive(true);
         _GraphScript.rate = rate;
-        _GraphScript.StartGraphs();
-        leftHand = GlobalHelper.GetPlayer().GetXRHandObject();
-        rightHand = GlobalHelper.GetPlayer().GetXRHandObject(true);
+        _GraphScript.StartGraphs(this);
+        leftHand = Util.GetPlayer().GetXRHandObject();
+        rightHand = Util.GetPlayer().GetXRHandObject(true);
+        currentCompressionAmount = 1.0f;
     }
 
-    public void FinishTrial()
+    public void OnTrialFinish()
     {
-        _GraphCanvas.gameObject.SetActive(false);
-        _GraphScript.gameObject.SetActive(false);
-        _GraphScript.ShutdownGraphs();
+        if(QuestManager.IsQuestType("Do Chest Compression")) QuestManager.ForceCompleteQuest();
+
     }
     
     void Update()
@@ -39,13 +41,15 @@ public class ChestCompressionTrial : MonoBehaviour
             return;
         }
         float ccValue = CalculatePlayerHandPosition();
+        currentCompressionAmount = Mathf.Lerp(currentCompressionAmount, ccValue, Time.deltaTime * 20);
         _GraphScript.OnCompressionGraphInfo(ccValue);
-        if(ccValue <= 0 && !_CompressionPressed)
+        if(currentCompressionAmount <= 0.4f && !_CompressionPressed)
         {
             _GraphScript.OnCompressionRecieved();
             _CompressionPressed = true;
+            AudioSource.PlayClipAtPoint(_CompressionSound, transform.position, 2.0f);
         }
-        else if(ccValue >= 0.5f && _CompressionPressed)
+        else if(currentCompressionAmount >= 0.8f && _CompressionPressed)
         {
             _CompressionPressed = false;
         }
@@ -59,21 +63,14 @@ public class ChestCompressionTrial : MonoBehaviour
         float leftHandGap = Vector3.Distance(leftHand.transform.position, transform.position);
         float rightHandGap = Vector3.Distance(rightHand.transform.position, transform.position);
         closestHand =  leftHandGap < rightHandGap ? leftHand : rightHand;
-        if(Vector3.Distance(closestHand.transform.position, transform.position) > compressionSize)
-        {
-            return 1.0f;
-        }
+        if(Vector3.Distance(closestHand.transform.position, transform.position) > compressionSize) return 1.0f;
+        
         // Get distance between the compressor and the hand
         float yDistance = closestHand.transform.position.y - transform.position.y;
         // Clamp between Negative and Positive of Half of the Y scale size
         yDistance = Mathf.Clamp(yDistance, transform.localScale.y/-2, transform.localScale.y/2);
         // Offset by half and lerp between 0 - 1, depending on the actual scale
         return Mathf.Lerp(0,1, (transform.localScale.y/2 + yDistance) / transform.localScale.y);
-    }
-
-    float GetAverageScale()
-    {
-        return (transform.localScale.x + transform.localScale.y + transform.localScale.z)/3;
     }
 
     void OnDrawGizmosSelected()
