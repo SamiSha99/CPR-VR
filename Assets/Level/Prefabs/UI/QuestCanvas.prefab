@@ -550,7 +550,7 @@ MonoBehaviour:
     type: 3}
   checkmarkSound: {fileID: 8300000, guid: b3c8d4c494b46554f986f256545825f2, type: 3}
   writingSound: {fileID: 8300000, guid: e450ade54976fca44bd1081fe354f95e, type: 3}
-  onLoadQuest: {fileID: 11400000, guid: 96aef55b16190bf44a2ed116561f7198, type: 2}
+  onLoadQuest: {fileID: 0}
   onQuestBegin: {fileID: 11400000, guid: 44b3ca3e2d292e54fb78ea159f1caa3a, type: 2}
   onQuestCompleted: {fileID: 11400000, guid: a9dc52f9a9332254ea934904cf19177b, type: 2}
   onQuestGoalCompleted: {fileID: 11400000, guid: 2f2823b2633d1bc44b04d51728707996,
