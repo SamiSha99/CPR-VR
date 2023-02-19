@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2650854683700500996
+--- !u!114 &-1021966818343964752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,19 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79c55cddbc33fc34dab8816d67622a8e, type: 3}
-  m_Name: CommandGoal
+  m_Script: {fileID: 11500000, guid: 2bdab48828f194c48b23e0e9034a37dd, type: 3}
+  m_Name: TouchObject
   m_EditorClassIdentifier: 
-  description: 
-  requiredAmount: 1
+  description: Apply both patches
+  requiredAmount: 2
   _GoalUIType: 0
-  goalCompletedCommand: ???
-  objectiveNameList: []
+  goalCompletedCommand: AED_Apply_Patches
+  objectiveNameList:
+  - AED_pad1
+  - AED_pad2
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
   index: 0
-  GoalCommand: AED_Quest_Complete_Goal
+  isPlayerTouch: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,4 +42,27 @@ MonoBehaviour:
   questCommand: AED_Quest
   nextQuest: {fileID: 0}
   goals:
-  - {fileID: -2650854683700500996}
+  - {fileID: -1021966818343964752}
+  - {fileID: 7791550903679297307}
+--- !u!114 &7791550903679297307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c55cddbc33fc34dab8816d67622a8e, type: 3}
+  m_Name: CommandGoal
+  m_EditorClassIdentifier: 
+  description: Wait for the AED for 5 seconds
+  requiredAmount: 1
+  _GoalUIType: 1
+  goalCompletedCommand: Wait_for_AED
+  objectiveNameList: []
+  goalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  index: 1
+  GoalCommand: Wait_for_AED_Goal_Command
