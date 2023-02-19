@@ -24,13 +24,14 @@ public class ChestCompressionTrial : MonoBehaviour
         leftHand = Util.GetPlayer().GetPlayerHandObject();
         rightHand = Util.GetPlayer().GetPlayerHandObject(true);
         currentCompressionAmount = 1.0f;
+        enabled = true;
     }
 
     public void OnTrialFinish()
     {
         QuestManager qm = QuestManager._Instance;
         if(qm.IsQuestType("Do Chest Compression")) qm.ForceCompleteQuest();
-
+        enabled = false;
     }
     
     void Update()
