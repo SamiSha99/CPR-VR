@@ -49,7 +49,7 @@ public class Quest : ScriptableObject
         public float requiredAmount = 1;
         [Tooltip("Quest Canvas will showcase based on what we've selected for the UI type.\n\nGUIT_Default = \"1/10\"\nGUIT_Checkbox = Empty box with a checkmark on completion\nGUIT_ProgressBar = A fill in progress bar")]
         public GoalUIType _GoalUIType;
-        [Tooltip("On Goal Completetion run this command, where \"COMMAND_NAME + _Goal_Complete\"")]
+        [Tooltip("On Goal Completetion run this command, where \"THIS + _Goal_Complete\"")]
         public string goalCompletedCommand = "???";
         public bool completed { get; protected set; }
         [Tooltip("Contains list of \"names\" for allowed GameObjects.")]
@@ -92,11 +92,7 @@ public class Quest : ScriptableObject
             if(detachAndCleanup) CleanUp();
         }
         
-        private void Incomplete()
-        {
-            completed = false;
-        }
-
+        private void Incomplete() => completed = false;
         public virtual void CleanUp() => goalCompleted.RemoveAllListeners();
         public virtual void Skip()
         {

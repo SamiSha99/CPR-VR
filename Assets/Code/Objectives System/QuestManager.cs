@@ -142,7 +142,7 @@ public class QuestManager : MonoBehaviour
         if(goal.completed) 
         {
             goalTextCell.color = Color.green;
-            onQuestGoalCompleted?.TriggerEvent(goal.goalCompletedCommand);
+            onQuestGoalCompleted?.TriggerEvent(goal.goalCompletedCommand + Quest.QuestGoal.QUEST_GOAL_COMPLETE_COMMAND);
             AudioSource.PlayClipAtPoint(checkmarkSound, transform.position);
         }
         else

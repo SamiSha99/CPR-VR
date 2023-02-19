@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using System;
 
@@ -12,8 +13,10 @@ public class QuestEventTouch : MonoBehaviour
     public Transform snapPoint;
     [Tooltip("Runs SetActive(false).")]
     public bool deactivateOnCompletion;
+    [Tooltip("The object is destroyed after being placed here.")]
     public bool _DestroyObject;
     [HideInInspector] public GameObject _lastTouchCollider, _lastUntouchCollider;
+    public UnityEvent OnCompletion;
     void OnTriggerEnter(Collider other)
     {
         if(!IsAllowed(other.gameObject)) return;
@@ -42,6 +45,7 @@ public class QuestEventTouch : MonoBehaviour
 
         if(_DestroyObject) Destroy(o);
         if(deactivateOnCompletion) gameObject.SetActive(false);
+        OnCompletion.Invoke();
     }
     private bool IsAllowed(GameObject go)
     {
