@@ -7,12 +7,15 @@ public class GameManager : MonoBehaviour
     public static GameManager _Instance;
     public List<Quest> _TutorialQuestsLine;
     private List<Quest> default_TutotrialQuestsLine;
+    [Header("EXAM MANAGER")]
+    // Exam
+    public bool isExam;
+    [Tooltip("The exam's content step by step, each step is evaulated.")]
+    public List<Quest> _ExamQuestsLine; // We do this step by step to examinate how fast/slow and effecient the player is and we add score
+    [Tooltip("These tasks are repeated continuously X times, depeding on Repeatable Amount, also evaulated")]
     public List<Quest> _RepeatableQuestLine;
     [Min(1)]
     public int _RepeatableAmount = 1;
-    // Exam
-    public bool isExam;
-    public List<Quest> _ExamQuestsLine; // We do this step by step to examinate how fast/slow and effecient the player is and we add score
     private List<Quest> default_ExamQuestsLine;
     public float score, maxScore;
     void Awake() => _Instance = this;
