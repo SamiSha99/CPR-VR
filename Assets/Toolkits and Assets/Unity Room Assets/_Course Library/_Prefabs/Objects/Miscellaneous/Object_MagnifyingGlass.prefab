@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2581835115806965896}
   - {fileID: 2969174980342569578}
@@ -62,6 +63,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0.13128042}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2140264580367398490}
   m_RootOrder: 0
@@ -85,6 +87,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -152,7 +155,6 @@ GameObject:
   - component: {fileID: 2969174980342569578}
   - component: {fileID: 6547935488217121824}
   - component: {fileID: 6909882243354319958}
-  - component: {fileID: 7430779171823815822}
   m_Layer: 0
   m_Name: MagnifyingGlass._Lens
   m_TagString: Untagged
@@ -170,6 +172,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0.7933537, z: -0, w: -0.60876113}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.09021, y: 0.00361, z: 0.09021}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2140264580367398490}
   m_RootOrder: 1
@@ -193,6 +196,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -223,16 +227,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7430779171823815822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6140807172391510954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0efd09f44c334cc45abf43175b085d56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  otherMaterial: {fileID: 2100000, guid: 5cef0f6d886394d7da0d8b7302569a2f, type: 2}
