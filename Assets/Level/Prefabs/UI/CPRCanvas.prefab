@@ -173,7 +173,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3 cc/s
+  m_text: 110 cc/m
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -200,12 +200,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 40
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 60
+  m_fontSizeMax: 40
   m_fontStyle: 9
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -778,6 +778,8 @@ MonoBehaviour:
   samplesPerSecond: 50
   _UILineRendererPlayer: {fileID: 249702940587126888}
   _UILineRendererDemonstration: {fileID: 249702939638420661}
+  _CompressionTimerBar: {fileID: 249702939217201632}
+  _CompressionAverageText: {fileID: 249702939435913418}
   rate: 2
   value: 0.5
   GuidanceSound: {fileID: 8300000, guid: bebe2907cf65eae4880b026ecdb78e85, type: 3}
@@ -793,7 +795,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c158fd8a70d1734894136ad25a8ef92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _XRCameraTransform: {fileID: 0}
 --- !u!1 &249702940728063287
 GameObject:
   m_ObjectHideFlags: 0

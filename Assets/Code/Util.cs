@@ -149,4 +149,15 @@ public static class Util
 
     public static bool IntToBool(int i) { return i > 0; }
     public static int BoolToInt(bool b) { return b ? 1 : 0; }
+    
+    //###########//
+    // Materials //
+    //###########//
+
+    public static void SetMaterial(this MonoBehaviour mb, Material[] mats)
+    {
+        Renderer r = mb.GetComponent<Renderer>();
+        if(r == null) return;
+        r.materials = mats;
+    }
 }

@@ -16,5 +16,5 @@ public class HideObject : MonoBehaviour
     public void Unhide() => SetHidden(false);
     public void ToggleHidden() => SetHidden(!_hidden);
     public bool IsHidden() { return _hidden; }
-    void OnValidate() => SetHidden(_hidden);
+    //void OnValidate() => SetHidden(_hidden);
 }

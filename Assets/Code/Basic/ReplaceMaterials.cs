@@ -6,10 +6,5 @@ using UnityEngine;
 public class ReplaceMaterials : MonoBehaviour
 {
     public Material[] materials;
-    public void SetMaterial()
-    {
-        Renderer r = GetComponent<Renderer>();
-        if(r == null) return;
-        r.materials = materials;
-    }
+    public void SetMaterial() => this.SetMaterial(materials);
 }
