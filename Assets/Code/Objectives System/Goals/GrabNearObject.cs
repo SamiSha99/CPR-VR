@@ -5,7 +5,7 @@ using UnityEngine;
 // Assume its currently grabbed and close to the player, in whatever way (using XR Camera)
 public class GrabNearObject : Quest.QuestGoal
 {
-    public enum NearbyType 
+    public enum NearbyType
     {
         NT_Origin,
         NT_Camera
@@ -23,8 +23,8 @@ public class GrabNearObject : Quest.QuestGoal
 
     private void OnObjectNearby(GameObject o, GameObject instigator)
     {
-        if(!objectiveNameList.Contains(o.name)) return;
-        if(!InRange(o, instigator)) return;
+        if (!objectiveNameList.Contains(o.name)) return;
+        if (!InRange(o, instigator)) return;
         currentAmount = requiredAmount;
         Evaluate(true);
     }
@@ -43,7 +43,7 @@ public class GrabNearObject : Quest.QuestGoal
             NearbyType.NT_Camera => instigator.GetPlayerCameraObject(),
             _ => null
         };
-        if(target == null) return false;
+        if (target == null) return false;
 
         return Vector3.Distance(o.transform.position, target.transform.position) <= _NearbyRange;
     }

@@ -149,7 +149,8 @@ public static class Util
 
     public static bool IntToBool(int i) { return i > 0; }
     public static int BoolToInt(bool b) { return b ? 1 : 0; }
-    
+    public static Vector3 CreateVectorWithVector(Vector3 v) { return new Vector3(v.x,v.y,v.z);}
+
     //###########//
     // Materials //
     //###########//
@@ -159,5 +160,36 @@ public static class Util
         Renderer r = mb.GetComponent<Renderer>();
         if(r == null) return;
         r.materials = mats;
+    }
+
+    //#######//
+    // Audio //
+    //#######//
+
+    // Get loudness of an audio clip
+    // clipPosition => Current position of the clip (from AudioSource)
+    // clip => The clip we are checking
+    // sampleWindow => The amount of samples.
+    public static float GetLoudnessFromAudioClip(int clipPosition, AudioClip clip, int sampleWindow = 64)
+    {
+        int startPosition = clipPosition - sampleWindow;
+        if(startPosition < 0) return 0;
+        float[] waveData = new float[sampleWindow];
+        clip.GetData(waveData, startPosition);
+        float totalLoudness = 0;
+        for(int i = 0; i < sampleWindow; i++) totalLoudness = Mathf.Abs(waveData[i]);
+        return totalLoudness / sampleWindow;
+    }
+    // Gets the loudness of a microphone
+    public static float GetLoudnessFromMicrophone(AudioClip microphoneClip, int sampleWindow = 64)
+    {
+        return GetLoudnessFromAudioClip(Microphone.GetPosition(Microphone.devices[0]), microphoneClip, sampleWindow);
+    }
+    // Instantiate a Microphone Clip that listens to the microphone.
+    public static AudioClip MicrophoneToAudioClip()
+    {
+        string microphoneName = Microphone.devices[0];
+        AudioClip microphoneClip = Microphone.Start(microphoneName, true, 20, AudioSettings.outputSampleRate);
+        return microphoneClip;
     }
 }

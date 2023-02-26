@@ -15,7 +15,7 @@ public class InteractWithObject : Quest.QuestGoal
 
     private void OnInteractingObject(GameObject o, GameObject instigator, bool uninteracted)
     {
-        if (!objectiveNameList.Contains(o.name)) return;        
+        if (!objectiveNameList.Contains(o.name)) return;
         currentAmount = shouldHold && uninteracted ? (currentAmount - 1) : (currentAmount + 1);
         Evaluate(!shouldHold);
     }

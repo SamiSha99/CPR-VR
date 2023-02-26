@@ -60,15 +60,19 @@ public class ChestCompressionTrial : MonoBehaviour
 
     float CalculatePlayerHandPosition()
     {
-        GameObject closestHand;
-        // Get closest hand
-        float leftHandGap = Vector3.Distance(leftHand.transform.position, transform.position);
-        float rightHandGap = Vector3.Distance(rightHand.transform.position, transform.position);
-        closestHand =  leftHandGap < rightHandGap ? leftHand : rightHand;
-        if(Vector3.Distance(closestHand.transform.position, transform.position) > compressionSize) return 1.0f;
+        // Make sure they are close to each other
+        if(Vector3.Distance(leftHand.transform.position, rightHand.transform.position) * 0.75f > compressionSize)
+        {
+            return 1.0f;
+        }
+        
+        leftHand.transform.position = Util.CreateVectorWithVector(rightHand.transform.position);
+        // How far is the center?
+        Vector3 centerPoint = (leftHand.transform.position + rightHand.transform.position)/2;
+        if(Vector3.Distance(centerPoint, transform.position) > compressionSize) return 1.0f;
         
         // Get distance between the compressor and the hand
-        float yDistance = closestHand.transform.position.y - transform.position.y;
+        float yDistance = centerPoint.y - transform.position.y;
         // Clamp between Negative and Positive of Half of the Y scale size
         yDistance = Mathf.Clamp(yDistance, transform.localScale.y/-2, transform.localScale.y/2);
         // Offset by half and lerp between 0 - 1, depending on the actual scale

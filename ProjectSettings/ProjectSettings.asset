@@ -135,7 +135,10 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: e03e7947e477d9446945aa71dd203b40, type: 2}
+  - {fileID: 4171933789841987139, guid: 96b09967cbadd49488e96faea9ea1da7, type: 2}
+  - {fileID: -6487534540729816317, guid: f4c5b796322f92e46ad9555a49af8790, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -506,7 +509,7 @@ PlayerSettings:
     m_APIs: 10000000
     m_Automatic: 1
   - m_BuildTarget: AndroidPlayer
-    m_APIs: 0b00000008000000
+    m_APIs: 0b000000
     m_Automatic: 0
   m_BuildTargetVRSettings: []
   m_DefaultShaderChunkSizeInMB: 16
@@ -783,7 +786,7 @@ PlayerSettings:
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
   enableRoslynAnalyzers: 1
-  selectedPlatform: 0
+  selectedPlatform: 2
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 0

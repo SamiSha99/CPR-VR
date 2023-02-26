@@ -1,0 +1,1 @@
+This folder contains "quests" grouped into sub folders to represent a quest line, quests will follow each other upon completion and such.

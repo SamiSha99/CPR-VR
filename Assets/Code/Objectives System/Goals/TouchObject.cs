@@ -9,7 +9,7 @@ public class TouchObject : Quest.QuestGoal
     public override void Initialize()
     {
         base.Initialize();
-        if(isPlayerTouch)
+        if (isPlayerTouch)
             XREvents.onItemTouched += OnTouchingObject;
         else
             QuestEventTouch.onItemTouched += OnTouchingObject;
@@ -18,8 +18,7 @@ public class TouchObject : Quest.QuestGoal
     private void OnTouchingObject(GameObject o, GameObject instigator, bool untouched)
     {
         if (!objectiveNameList.Contains(o.name)) return;
-        if(untouched) return;
-        //Util.Print<TouchObject>(instigator.name + " | Root: " + instigator.GetRoot().name);
+        if (untouched) return;
         currentAmount++;
         Evaluate();
     }
@@ -27,7 +26,7 @@ public class TouchObject : Quest.QuestGoal
     public override void CleanUp()
     {
         base.CleanUp();
-        if(isPlayerTouch)
+        if (isPlayerTouch)
             XREvents.onItemTouched -= OnTouchingObject;
         else
             QuestEventTouch.onItemTouched -= OnTouchingObject;
