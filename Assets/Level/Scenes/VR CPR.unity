@@ -1392,10 +1392,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2813000696362214401, guid: bb5e242ba78d4bb47a1c35edde699f81,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2813000696362214425, guid: bb5e242ba78d4bb47a1c35edde699f81,
         type: 3}
       propertyPath: m_Name
       value: XR Origin
+      objectReference: {fileID: 0}
+    - target: {fileID: 2813000696362214428, guid: bb5e242ba78d4bb47a1c35edde699f81,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2813000696362214431, guid: bb5e242ba78d4bb47a1c35edde699f81,
         type: 3}
@@ -2659,11 +2669,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TutorialQuestsLine:
+  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
   - {fileID: 11400000, guid: baa483dd6cf61e0409633fbfb487b8d9, type: 2}
   - {fileID: 11400000, guid: d755e33b7ed897d418f38f1880513fcb, type: 2}
   - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
   - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
-  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
   isExam: 0
   _ExamQuestsLine:
   - {fileID: 11400000, guid: baa483dd6cf61e0409633fbfb487b8d9, type: 2}
@@ -7429,6 +7439,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 249702940151290329, guid: 0e0648f7dbfaba0459105f73beefc9a4,
+        type: 3}
+      propertyPath: m_StartAxis
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 249702940151290329, guid: 0e0648f7dbfaba0459105f73beefc9a4,
+        type: 3}
+      propertyPath: m_Constraint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 249702940151290329, guid: 0e0648f7dbfaba0459105f73beefc9a4,
+        type: 3}
+      propertyPath: m_ChildAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 249702940587126884, guid: 0e0648f7dbfaba0459105f73beefc9a4,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -7458,6 +7483,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CPRCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 249702940674750004, guid: 0e0648f7dbfaba0459105f73beefc9a4,
+        type: 3}
+      propertyPath: value
+      value: 0.589
+      objectReference: {fileID: 0}
+    - target: {fileID: 249702940674750004, guid: 0e0648f7dbfaba0459105f73beefc9a4,
+        type: 3}
+      propertyPath: _DEBUG_slider
+      value: 0.998
       objectReference: {fileID: 0}
     - target: {fileID: 249702940674750005, guid: 0e0648f7dbfaba0459105f73beefc9a4,
         type: 3}
@@ -7574,6 +7609,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 249702941040058207, guid: 0e0648f7dbfaba0459105f73beefc9a4,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e0648f7dbfaba0459105f73beefc9a4, type: 3}
 --- !u!114 &919132149542189485 stripped
@@ -7662,6 +7702,11 @@ PrefabInstance:
     - target: {fileID: 5828337272945981687, guid: a1ae4dea341e9154981d9ee275f542ac,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171604802246587751, guid: a1ae4dea341e9154981d9ee275f542ac,
+        type: 3}
+      propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7415049715436807380, guid: a1ae4dea341e9154981d9ee275f542ac,
@@ -10472,6 +10517,11 @@ PrefabInstance:
       propertyPath: _GraphScript
       value: 
       objectReference: {fileID: 1755146597}
+    - target: {fileID: 8623811625496515001, guid: bcc4468054fc9a141a72657dbecd690d,
+        type: 3}
+      propertyPath: _TrialDuration
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8623811625496515002, guid: bcc4468054fc9a141a72657dbecd690d,
         type: 3}
       propertyPath: onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -181,15 +181,27 @@ public static class Util
         return totalLoudness / sampleWindow;
     }
     // Gets the loudness of a microphone
-    public static float GetLoudnessFromMicrophone(AudioClip microphoneClip, int sampleWindow = 64)
+    public static float GetLoudnessFromMicrophone(AudioClip microphoneClip, int sampleWindow = 64, int micDeviceIndex = 0)
     {
-        return GetLoudnessFromAudioClip(Microphone.GetPosition(Microphone.devices[0]), microphoneClip, sampleWindow);
+        return GetLoudnessFromAudioClip(Microphone.GetPosition(Microphone.devices[micDeviceIndex]), microphoneClip, sampleWindow);
     }
     // Instantiate a Microphone Clip that listens to the microphone.
-    public static AudioClip MicrophoneToAudioClip()
+    public static AudioClip MicrophoneToAudioClip(int index = 0 )
     {
-        string microphoneName = Microphone.devices[0];
+        if(Microphone.devices.Length <= 0)
+        {
+            Print("Microphone", "No microphone devices located, add a microphone device!");
+            return null;
+        }
+        string microphoneName = Microphone.devices[index];
         AudioClip microphoneClip = Microphone.Start(microphoneName, true, 20, AudioSettings.outputSampleRate);
+        if(microphoneClip == null)
+        {
+            Print("Microphone", "Unable to start microphone recording");
+        }
         return microphoneClip;
     }
+    // Halts 
+    public static void StopListeningToMicrophone(int index = 0) => Microphone.End(Microphone.devices[index]);
+    
 }

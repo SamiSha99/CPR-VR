@@ -8,7 +8,7 @@ public class LiveLineDrawer : MonoBehaviour
     public int samplesPerSecond = 50;
     public UILineRendererList _UILineRendererPlayer, _UILineRendererDemonstration;
     public ProgressBar _CompressionTimerBar;
-    public TextMeshProUGUI _CompressionAverageText;
+    public TextMeshProUGUI _CompressionAverageText, _TimerNumberText;
     [HideInInspector] public float rate = 2;
     [Range(0.0f, 1.0f)] public float value = 0.5f;
     public AudioClip GuidanceSound;
@@ -16,7 +16,10 @@ public class LiveLineDrawer : MonoBehaviour
     private int compressionAmount;
     private bool _enabled;
     private ChestCompressionTrial _ChestCompressionTrial;
+
     const int PERFECT_CHEST_COMPRESSION_PER_MINUTE = 110;
+    const string TIMER_FORMAT = "f1";
+    
     void Awake()
     {
         gameObject.SetActive(false);
@@ -52,7 +55,8 @@ public class LiveLineDrawer : MonoBehaviour
         if(PlayerStartedCompressing())
         {
             _CompressionTimerBar.AddProgressBar(-Time.deltaTime);
-            if(_CompressionTimerBar.IsEmpty()) ShutdownGraphs();
+            _TimerNumberText.text = _CompressionTimerBar.GetProgressBarValue().ToString(TIMER_FORMAT);
+            if (_CompressionTimerBar.IsEmpty()) ShutdownGraphs();
         }
     }
     
@@ -87,12 +91,13 @@ public class LiveLineDrawer : MonoBehaviour
         currentTime = 0;
         _enabled = true;
         nextSample = 1.0f/samplesPerSecond;
-        compressionAmount = -1;
+        compressionAmount = 0;//-1;
         lastCompressionTime = 0;
         _CompressionAverageText.gameObject.SetActive(true);
         _CompressionTimerBar.gameObject.SetActive(true);
         _CompressionTimerBar.SetProgressBarClampValues(0, cct != null ? cct._TrialDuration : ChestCompressionTrial.DEFAULT_TIME_TRIAL);
         _CompressionTimerBar.FillProgressBar();
+        _TimerNumberText.text = (cct != null ? cct._TrialDuration : ChestCompressionTrial.DEFAULT_TIME_TRIAL).ToString(TIMER_FORMAT);
         _ChestCompressionTrial = cct;
         SetCompressionText(PERFECT_CHEST_COMPRESSION_PER_MINUTE);
     }
@@ -138,5 +143,4 @@ public class LiveLineDrawer : MonoBehaviour
 
     // -1 implies that we haven't done our first compression, this happens when _UILineRendererPlayer graph hits bottom as 0 value
     public bool PlayerStartedCompressing() { return compressionAmount != -1; }
-    
 }
