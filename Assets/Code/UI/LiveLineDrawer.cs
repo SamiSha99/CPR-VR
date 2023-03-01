@@ -91,7 +91,7 @@ public class LiveLineDrawer : MonoBehaviour
         currentTime = 0;
         _enabled = true;
         nextSample = 1.0f/samplesPerSecond;
-        compressionAmount = 0;//-1;
+        compressionAmount = -1;
         lastCompressionTime = 0;
         _CompressionAverageText.gameObject.SetActive(true);
         _CompressionTimerBar.gameObject.SetActive(true);

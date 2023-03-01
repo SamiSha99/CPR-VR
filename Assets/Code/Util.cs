@@ -25,6 +25,13 @@ public static class Util
     public static string GetParticle(string name) { return PATH_PARTICLES + name; }
     public static string GeObject(string name) { return PATH_OBJECTS + name; }
     
+    //########//
+    // Consts //
+    //########//
+
+    public const float MICROPHONE_LOUDNESS_THRESHOLD = 0.075f;
+    public const int MICROPHONE_LOUDNESS_MULTIPLIER = 100;
+
     //#######//
     // Debug //
     //#######//
@@ -108,7 +115,17 @@ public static class Util
     // param right - Returns the Right Hand instead
     public static GameObject GetPlayerHandObject(this GameObject o, bool right = false) => o.GetRoot().transform.Find("Camera Offset/" + (right ? "Right" : "Left") + " Hand").gameObject;
     public static GameObject GetPlayer() => GameObject.FindWithTag("Player");
-    
+    public static XREvents GetXREvents(GameObject plyr = null)
+    {
+        if(plyr == null) plyr = GetPlayer();
+
+        if((plyr = GetPlayer()) == null)
+        {
+            Print("Utility Class", "Cannot get XREvents, player does not exists?");
+            return null;
+        }
+        return plyr.GetComponent<XREvents>();
+    }
     //########//
     // Quests //
     //########//
@@ -149,7 +166,6 @@ public static class Util
 
     public static bool IntToBool(int i) { return i > 0; }
     public static int BoolToInt(bool b) { return b ? 1 : 0; }
-    public static Vector3 CreateVectorWithVector(Vector3 v) { return new Vector3(v.x,v.y,v.z);}
 
     //###########//
     // Materials //
@@ -203,5 +219,4 @@ public static class Util
     }
     // Halts 
     public static void StopListeningToMicrophone(int index = 0) => Microphone.End(Microphone.devices[index]);
-    
 }

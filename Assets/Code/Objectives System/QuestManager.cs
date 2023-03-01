@@ -28,6 +28,8 @@ public class QuestManager : MonoBehaviour
 
     void Awake() => _Instance = this;
     void Start() => BeginQuest(onLoadQuest);
+    void Update() => activeQuest?.QuestUpdate();
+    
     public void BeginQuest(Quest q)
     {
         if(q == null) return;

@@ -7,8 +7,11 @@ using System;
 public class XREvents : MonoBehaviour
 {
     public bool debugging;
+    private AudioClip microphoneClip;
+
     public static event Action<GameObject, GameObject, bool> onItemGrabbed, onItemInteracted, onItemTouched, onItemLookedAt;
     public static event Action<GameObject, GameObject, float> onItemShaked; // Grab Innteractable 2
+    public static event Action<GameObject, GameObject, float> onTalking; // Grab Innteractable 2
     public static event Action<GameObject, GameObject> onItemGrabbedNearby; // Grab Innteractable 2
     // XR Events
     public void OnSelectEnteredEvent(SelectEnterEventArgs args) => ProcessSelectEvent(args, false);
@@ -44,6 +47,25 @@ public class XREvents : MonoBehaviour
         if (exited) OnItemUntouched(o, interactor);
         else OnItemTouched(o, interactor);
     }
+
+    public void EnableMicRecording()
+    {
+        microphoneClip = Util.MicrophoneToAudioClip();
+    }
+    public void DisableMicRecording()
+    {
+        microphoneClip = null;
+        Util.StopListeningToMicrophone(0);
+    }
+
+    void Update()
+    {
+        if(microphoneClip == null) return;
+        float loudness = Util.GetLoudnessFromMicrophone(microphoneClip, 32) * Util.MICROPHONE_LOUDNESS_MULTIPLIER;
+        if(loudness < Util.MICROPHONE_LOUDNESS_THRESHOLD) loudness = 0;
+        OnTalking(gameObject, gameObject, loudness);
+    }
+
     // Events
     public void ProcessLookAtEvent(GameObject o, GameObject instigator, bool lookingAt) => onItemLookedAt?.Invoke(o, instigator, lookingAt);
     private void OnItemGrabbed(GameObject o, GameObject instigator) => onItemGrabbed?.Invoke(o, instigator, false);
@@ -52,6 +74,7 @@ public class XREvents : MonoBehaviour
     private void OnItemUninteracted(GameObject o, GameObject instigator) => onItemInteracted?.Invoke(o, instigator, true);
     private void OnItemTouched(GameObject o, GameObject instigator) => onItemTouched?.Invoke(o, instigator, false);
     private void OnItemUntouched(GameObject o, GameObject instigator) => onItemTouched?.Invoke(o, instigator, true);
+    private void OnTalking(GameObject o, GameObject instigator, float talkAmount = 0) => onTalking?.Invoke(gameObject, gameObject, talkAmount);
     public static void OnItemShake(GameObject o, GameObject instigator, float shakeAmount = 0) => onItemShaked?.Invoke(o, instigator, shakeAmount);
     public static void OnItemGrabbedNearby(GameObject o, GameObject instigator) => onItemGrabbedNearby?.Invoke(o, instigator);
 

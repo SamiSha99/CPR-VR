@@ -66,7 +66,6 @@ public class ChestCompressionTrial : MonoBehaviour
             return 1.0f;
         }
         
-        leftHand.transform.position = Util.CreateVectorWithVector(rightHand.transform.position);
         // How far is the center?
         Vector3 centerPoint = (leftHand.transform.position + rightHand.transform.position)/2;
         if(Vector3.Distance(centerPoint, transform.position) > compressionSize) return 1.0f;

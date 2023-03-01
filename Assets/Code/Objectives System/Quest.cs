@@ -43,6 +43,7 @@ public class Quest : ScriptableObject
             GUIT_None // 3 (Empty)
         };
         public const string QUEST_GOAL_COMPLETE_COMMAND = "_Goal_Complete";
+        [TextArea(1,3)]
         public string description;
         public float currentAmount { get; protected set; }
         [Tooltip("The amount of times required to finish this goal to be \"Completed\".")]
@@ -61,19 +62,16 @@ public class Quest : ScriptableObject
         [HideInInspector] public int index = 0;
 
         public virtual string GetDescription() { return description; }
-        
         public virtual void Initialize()
         {
             completed = false;
             currentAmount = 0;
         }
-
         public virtual void Initialize(Quest q)
         {
             quest = q;
             Initialize();
         }
-
         protected void Evaluate(bool detachAndCleanup = true)
         {
             if(currentAmount >= requiredAmount)
@@ -83,15 +81,13 @@ public class Quest : ScriptableObject
             
             if(quest != null) quest.questGoalUpdated?.Invoke(this);
         }
-
         private void Complete(bool detachAndCleanup = true)
         {
             completed = true;
             currentAmount = requiredAmount;
-            goalCompleted.Invoke();
+            goalCompleted?.Invoke();
             if(detachAndCleanup) CleanUp();
         }
-        
         private void Incomplete() => completed = false;
         public virtual void CleanUp() => goalCompleted.RemoveAllListeners();
         public virtual void Skip()
@@ -99,6 +95,7 @@ public class Quest : ScriptableObject
             Complete();
             if(quest != null) quest.questGoalUpdated?.Invoke(this);
         }
+        public virtual void QuestGoalUpdate() {}
     }
 
     public List<QuestGoal> goals;
@@ -142,6 +139,10 @@ public class Quest : ScriptableObject
             return true;
         }
         return false;
+    }
+    public void QuestUpdate() 
+    {
+        if(goals.Count > 0) foreach (Quest.QuestGoal g in goals) g.QuestGoalUpdate();
     }
 }
 
