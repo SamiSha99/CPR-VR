@@ -88,3 +88,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   index: 2
+  micDecayAmount: 2.5
+  micSensitivityMultiplier: 1
