@@ -17,7 +17,7 @@ public class TouchObject : Quest.QuestGoal
 
     private void OnTouchingObject(GameObject o, GameObject instigator, bool untouched)
     {
-        if (!objectiveNameList.Contains(o.name)) return;
+        if (objectiveNameList.Count > 0 && !objectiveNameList.Contains(o.name)) return;
         if (untouched) return;
         currentAmount++;
         Evaluate();

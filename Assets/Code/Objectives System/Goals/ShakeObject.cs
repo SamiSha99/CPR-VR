@@ -12,7 +12,7 @@ public class ShakeObject : Quest.QuestGoal
     }
     private void OnShakeObject(GameObject o, GameObject instigator, float shakeAmount)
     {
-        if (!objectiveNameList.Contains(o.name)) return;
+        if (objectiveNameList.Count > 0 && !objectiveNameList.Contains(o.name)) return;
         currentAmount += shakeAmount;
         Evaluate();
     }

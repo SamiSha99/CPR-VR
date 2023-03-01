@@ -23,7 +23,7 @@ public class GrabNearObject : Quest.QuestGoal
 
     private void OnObjectNearby(GameObject o, GameObject instigator)
     {
-        if (!objectiveNameList.Contains(o.name)) return;
+        if (objectiveNameList.Count > 0 && !objectiveNameList.Contains(o.name)) return;
         if (!InRange(o, instigator)) return;
         currentAmount = requiredAmount;
         Evaluate(true);

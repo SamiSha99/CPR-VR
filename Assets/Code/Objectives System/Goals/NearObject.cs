@@ -14,7 +14,7 @@ public class NearObject : Quest.QuestGoal
 
     private void OnGrabbingObject(GameObject o, GameObject instigator, bool dropped)
     {
-        if (!objectiveNameList.Contains(o.name)) return;
+        if (objectiveNameList.Count > 0 && !objectiveNameList.Contains(o.name)) return;
         currentAmount = requiredAmount;
         Evaluate();
     }
