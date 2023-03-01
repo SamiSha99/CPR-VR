@@ -62,7 +62,7 @@ public class XREvents : MonoBehaviour
     {
         if(microphoneClip == null) return;
         float loudness = Util.GetLoudnessFromMicrophone(microphoneClip, 32) * Util.MICROPHONE_LOUDNESS_MULTIPLIER;
-        if(loudness < Util.MICROPHONE_LOUDNESS_THRESHOLD) loudness = 0;
+        if(loudness < Util.MICROPHONE_LOUDNESS_THRESHOLD) return;
         OnTalking(gameObject, gameObject, loudness);
     }
 

@@ -184,6 +184,7 @@ public class QuestManager : MonoBehaviour
     {
         return IsQuestActive() && activeQuest.information.name == questTitle;
     }
+    public void ForceUpdateGoal(Quest.QuestGoal g) => OnUpdateGoalProgress(g);
     private void Print(string s)
     {
         if(!debugging) return;
