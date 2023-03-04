@@ -7,17 +7,17 @@ using TMPro;
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager _Instance;
-    [HeaderAttribute("UI")]
+    [Header("UI")]
     [SerializeField] private TextMeshProUGUI questName;
     [SerializeField] private TextMeshProUGUI questDescription;
     [SerializeField] private GameObject questGoalList;
     [SerializeField] private GameObject questGoalCellPrefab;
-    [HeaderAttribute("Data")]
+    [Header("Data")]
     [SerializeField] static public Quest activeQuest;
-    [HeaderAttribute("Sound")]
+    [Header("Sound")]
     [SerializeField] private AudioClip checkmarkSound;
     [SerializeField] private AudioClip writingSound;
-    [HeaderAttribute("Other")]
+    [Header("Other")]
     [Tooltip("When level is loaded, start this quest immediatly.")]
     public Quest onLoadQuest;
     public GameEventCommand onQuestBegin, onQuestCompleted, onQuestGoalCompleted;
