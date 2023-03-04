@@ -2962,6 +2962,10 @@ MonoBehaviour:
   chestCompressionAmountScale: 0.3
   _TrialDuration: 20
   _CompressionSound: {fileID: 8300000, guid: 5256b7e1a255ec543aaa867a8149bfa0, type: 3}
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 0}
+  _CPRHand: {fileID: 0}
+  handsInRange: 0
 --- !u!114 &8623811625496515002
 MonoBehaviour:
   m_ObjectHideFlags: 0

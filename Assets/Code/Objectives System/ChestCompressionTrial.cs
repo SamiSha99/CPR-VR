@@ -8,7 +8,6 @@ public class ChestCompressionTrial : MonoBehaviour
     public GameObject chest;
     public float rate = 2;
     private bool _CompressionPressed;
-    private GameObject leftHand, rightHand;
     [Range(0, 1)]
     public float compressionSize;
     public float chestCompressionAmountScale = 0.25f;
@@ -16,13 +15,20 @@ public class ChestCompressionTrial : MonoBehaviour
     public const float DEFAULT_TIME_TRIAL = 20.0f;
     private float currentCompressionAmount; 
     [SerializeField] AudioClip _CompressionSound;
+    [Header("Hands")]
+    public GameObject leftHand;
+    public GameObject rightHand;
+    public GameObject _CPRHand;
+    public bool handsInRange;
     public void BeginTrial()
     {
         _GraphScript.gameObject.SetActive(true);
         _GraphScript.rate = rate;
         _GraphScript.StartGraphs(this);
-        leftHand = Util.GetPlayer().GetPlayerHandObject();
-        rightHand = Util.GetPlayer().GetPlayerHandObject(true);
+        GameObject plyr = Util.GetPlayer();
+        leftHand = plyr.GetPlayerHandObject();
+        rightHand = plyr.GetPlayerHandObject(true);
+        ToggleCPRHand(true);
         currentCompressionAmount = 1.0f;
         enabled = true;
     }
@@ -30,7 +36,8 @@ public class ChestCompressionTrial : MonoBehaviour
     public void OnTrialFinish()
     {
         QuestManager qm = QuestManager._Instance;
-        if(qm.IsQuestType("Do Chest Compression")) qm.ForceCompleteQuest();
+        if (qm.IsQuestType("Do Chest Compression")) qm.ForceCompleteQuest();
+        ToggleCPRHand(false);
         enabled = false;
     }
     
@@ -51,7 +58,7 @@ public class ChestCompressionTrial : MonoBehaviour
             _CompressionPressed = true;
             AudioSource.PlayClipAtPoint(_CompressionSound, transform.position, 3.0f);
         }
-        else if(currentCompressionAmount >= 0.8f && _CompressionPressed)
+        else if(currentCompressionAmount >= 0.7f && _CompressionPressed)
         {
             _CompressionPressed = false;
         }
@@ -61,13 +68,17 @@ public class ChestCompressionTrial : MonoBehaviour
     float CalculatePlayerHandPosition()
     {
         // Make sure they are close to each other
-        if(Vector3.Distance(leftHand.transform.position, rightHand.transform.position) * 0.75f > compressionSize)
+        if (Util.Vector3_Distance2D(leftHand.transform.position, rightHand.transform.position) > compressionSize * 0.5f)
         {
+            if(handsInRange) ToggleCPRHand(false);
             return 1.0f;
         }
-        
         // How far is the center?
         Vector3 centerPoint = (leftHand.transform.position + rightHand.transform.position)/2;
+        
+        if (!handsInRange) ToggleCPRHand(true);
+        SetCPRHandPosition(centerPoint);
+        
         if(Vector3.Distance(centerPoint, transform.position) > compressionSize) return 1.0f;
         
         // Get distance between the compressor and the hand
@@ -82,5 +93,14 @@ public class ChestCompressionTrial : MonoBehaviour
     {
         Gizmos.color = new Color(0.1f, 0.1f, 1, 0.35f);
         Gizmos.DrawCube(transform.position, new Vector3(compressionSize, compressionSize, compressionSize));
+    }
+
+    void SetCPRHandPosition(Vector3 pos) => _CPRHand.transform.position = pos;
+    void ToggleCPRHand(bool _enabled)
+    {
+        leftHand.transform.ToggleHidden(_enabled);
+        rightHand.transform.ToggleHidden(_enabled);
+        _CPRHand.transform.ToggleHidden(!_enabled);
+        handsInRange = _enabled;
     }
 }
