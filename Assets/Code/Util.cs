@@ -72,21 +72,17 @@ public static class Util
     // Supports Colliders, Renderers and Rigidbody, will add eventually more when needed.
     // Cons: Will un/hide everything willingly and doesn't consider nor respect pre-hidden or meant to be hidden content
     // The opposite is also true.
-    public static void ToggleHidden(this Transform transform, bool _hidden = true, bool disableCollision = true, bool disableRBs = true)
+    public static void ToggleHidden(this Transform transform, bool _hidden = true)
     {
-        GameObject go = transform.gameObject;
-        if(go.HasComponent<Renderer>()) Array.ForEach(transform.GetComponents<Renderer>(), x => x.enabled = !_hidden);
-        if(go.HasComponent<Collider>()) Array.ForEach(transform.GetComponents<Collider>(), x => x.enabled = !_hidden);
-        if(go.HasComponent<Rigidbody>()) Array.ForEach(transform.GetComponents<Rigidbody>(), x => x.isKinematic = _hidden);
-
-        List<Transform> children = null;
-        children = Util.GetChildren(transform, children, true);
+        if (transform == null) return;
+        List<Transform> objects = null;
+        objects = GetChildren(transform, objects, true);
+        objects.Add(transform);
+        if (objects.Count <= 0) return;
         
-        if(children.Count <= 0) return;
-        
-        foreach(Transform child in children)
+        foreach(Transform obj in objects)
         {
-            go = child.gameObject;
+            GameObject go = obj.gameObject;
             if(go.HasComponent<Renderer>()) Array.ForEach(go.GetComponents<Renderer>(), x => x.enabled = !_hidden);
             if(go.HasComponent<Collider>()) Array.ForEach(go.GetComponents<Collider>(), x => x.enabled = !_hidden);
             if(go.HasComponent<Rigidbody>()) Array.ForEach(go.GetComponents<Rigidbody>(), x => x.isKinematic = _hidden);
@@ -117,35 +113,20 @@ public static class Util
     public static GameObject GetPlayer() => GameObject.FindWithTag("Player");
     public static XREvents GetXREvents(GameObject plyr = null)
     {
-        if(plyr == null) plyr = GetPlayer();
-
-        if((plyr = GetPlayer()) == null)
+        if(plyr == null) plyr = GetPlayer(); // Didn't pass the player? Try looking for one.
+        if(plyr == null)
         {
             Print("Utility Class", "Cannot get XREvents, player does not exists?");
             return null;
         }
         return plyr.GetComponent<XREvents>();
     }
+
     //########//
     // Quests //
     //########//
-    
-    public static bool IsQuestActive()
-    {
-        GameObject o = GameObject.Find("QuestCanvas");
-        if(o == null) return false;
-        QuestManager qm = o.GetComponent<QuestManager>();
-        if(qm == null) return false;
 
-        return QuestManager.activeQuest != null;
-    }
-    public static void ForceCompleteCurrentQuest()
-    {
-        GameObject o = GameObject.Find("QuestCanvas");
-        if(o == null) return;
-        QuestManager qm = o.GetComponent<QuestManager>();
-        if(qm == null) return;
-    }
+    public static bool IsQuestActive() { return QuestManager._Instance != null && QuestManager.activeQuest != null; }
     
     //########//
     // Invoke //
@@ -219,4 +200,14 @@ public static class Util
     }
     // Halts 
     public static void StopListeningToMicrophone(int index = 0) => Microphone.End(Microphone.devices[index]);
+
+    //######//
+    // Math //
+    //######//
+
+    // Calculates disance in 2D without height
+    public static float Vector3_Distance2D(Vector3 a, Vector3 b)
+    {
+        return Vector3.Distance(Vector3.Scale(a, new Vector3(1,0,1)), Vector3.Scale(b, new Vector3(1, 0, 1)));
+    }
 }
