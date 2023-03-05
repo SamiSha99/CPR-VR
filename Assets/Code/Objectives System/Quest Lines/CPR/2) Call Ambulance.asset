@@ -16,7 +16,7 @@ MonoBehaviour:
     name: Call the Ambulance
     description: Call the emergency hotline by dialing 101 on a nearby phone.
   questCommand: Call_the_Ambulance
-  nextQuest: {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
+  nextQuest: {fileID: 0}
   goals:
   - {fileID: 5532060607048704246}
 --- !u!114 &5532060607048704246

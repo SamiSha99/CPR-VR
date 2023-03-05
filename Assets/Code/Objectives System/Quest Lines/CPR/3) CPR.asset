@@ -16,7 +16,7 @@ MonoBehaviour:
     name: Do Chest Compression
     description: Compress with your hands between the nipples.
   questCommand: CPR
-  nextQuest: {fileID: 11400000}
+  nextQuest: {fileID: 0}
   goals:
   - {fileID: 1772342133432286737}
 --- !u!114 &1772342133432286737

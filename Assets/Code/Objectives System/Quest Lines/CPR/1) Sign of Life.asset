@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8010650404572780800
+--- !u!114 &-6303285952187603592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bdab48828f194c48b23e0e9034a37dd, type: 3}
-  m_Name: TouchObject
+  m_Script: {fileID: 11500000, guid: 497f97953eb18294080917d60387b5a1, type: 3}
+  m_Name: TouchAndInteractWithObject
   m_EditorClassIdentifier: 
   description: Tap the patient's left shoulder.
-  requiredAmount: 10
+  requiredAmount: 5
   _GoalUIType: 0
   goalCompletedCommand: Tap_Shoulder_Left
   objectiveNameList:
@@ -22,8 +22,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   index: 0
-  isPlayerTouch: 1
---- !u!114 &-7666319954688979823
+  allowInteracting: 1
+  allowTouching: 1
+--- !u!114 &-5126291304234270880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,11 +33,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bdab48828f194c48b23e0e9034a37dd, type: 3}
-  m_Name: TouchObject
+  m_Script: {fileID: 11500000, guid: 497f97953eb18294080917d60387b5a1, type: 3}
+  m_Name: TouchAndInteractWithObject
   m_EditorClassIdentifier: 
   description: Tap the patient's right shoulder.
-  requiredAmount: 10
+  requiredAmount: 5
   _GoalUIType: 0
   goalCompletedCommand: Tap_Shoulder_Right
   objectiveNameList:
@@ -45,7 +46,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   index: 1
-  isPlayerTouch: 1
+  allowInteracting: 1
+  allowTouching: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,10 +64,10 @@ MonoBehaviour:
     name: Sign of Life
     description: Check if there's any sign of breathing!
   questCommand: Sign_of_Life
-  nextQuest: {fileID: 11400000, guid: d755e33b7ed897d418f38f1880513fcb, type: 2}
+  nextQuest: {fileID: 0}
   goals:
-  - {fileID: -8010650404572780800}
-  - {fileID: -7666319954688979823}
+  - {fileID: -6303285952187603592}
+  - {fileID: -5126291304234270880}
   - {fileID: 5917140178205468419}
 --- !u!114 &5917140178205468419
 MonoBehaviour:
@@ -79,7 +81,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee8aabf0e96702479fb5d1b587811d8, type: 3}
   m_Name: MicGoal
   m_EditorClassIdentifier: 
-  description: 'Ask: "Are you ok?".'
+  description: Ask repeatedly:<br><br><space=2em>"Are you alright?".<br><space=2em>"Can
+    you hear me?".
   requiredAmount: 20
   _GoalUIType: 2
   goalCompletedCommand: Are_You_Alright
@@ -88,5 +91,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   index: 2
-  micDecayAmount: 2.5
-  micSensitivityMultiplier: 1
+  micDecayAmount: 2
+  micSensitivityMultiplier: 1.2
