@@ -19,7 +19,8 @@ public class XRGrabInteractable2 : XRGrabInteractable
     Vector3 originalPosition;
     Quaternion originalRotation;
     public bool snapToOrigin;
-    public float restorationSpeed = 10;
+    public float restorationSpeed = 10, restorationDelay;
+    private float resotrationTimer;
     [Header("XR Shake Event")]
     [Tooltip("Set makes shaking less tedious by giving more points for less shake.")]
     public float shakeMultiplier = 1;
@@ -36,22 +37,23 @@ public class XRGrabInteractable2 : XRGrabInteractable
         lastPosition = transform.position;
         lastRotation = transform.rotation;
         shakeEventDelay = shakeEventDelaySeconds;
+        resotrationTimer = restorationDelay;
+        restorationDelay = 0; // Begins restoring by default
     }
 
     void Update()
     {
         if(interactorsSelecting.Count <= 0)
         {   
-            if(snapToOrigin)
+            if(resotrationTimer > 0) restorationDelay = Mathf.Max(0.0f, restorationDelay - Time.deltaTime);
+            
+            if(resotrationTimer > 0 && restorationDelay <= 0 || resotrationTimer <= 0)
             {
-                if(restoreOriginalPosition) transform.position = originalPosition;
-                if(restoreOriginalRotation) transform.rotation = originalRotation;
-            }
-            else
-            {
-                if(restoreOriginalPosition) transform.position = Vector3.Lerp(transform.position, originalPosition, restorationSpeed * Time.deltaTime);
-                if(restoreOriginalRotation) transform.rotation = Quaternion.Lerp(transform.rotation, originalRotation, Mathf.Clamp(restorationSpeed * Time.deltaTime, 0f, 0.99f));      
-            }
+                if(restoreOriginalPosition) 
+                    transform.position = snapToOrigin ? originalPosition : Vector3.Lerp(transform.position, originalPosition, restorationSpeed * Time.deltaTime);
+               if(restoreOriginalRotation) 
+                    transform.rotation = snapToOrigin ? originalRotation : Quaternion.Lerp(transform.rotation, originalRotation, Mathf.Clamp(restorationSpeed * Time.deltaTime, 0f, 0.99f));
+            } 
         }
         else if(shakeEventDelay > 0)
         { 
@@ -69,8 +71,11 @@ public class XRGrabInteractable2 : XRGrabInteractable
             }
         }
 
-        if(interactorsSelecting.Count > 0) XREvents.OnItemGrabbedNearby(gameObject, _lastInteractorSelect);
-        
+        if(interactorsSelecting.Count > 0)
+        {
+            if(resotrationTimer > 0) restorationDelay = resotrationTimer;
+            XREvents.OnItemGrabbedNearby(gameObject, _lastInteractorSelect);
+        }
         lastPosition = transform.position;
         lastRotation = transform.rotation;
     }

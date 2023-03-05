@@ -29,6 +29,7 @@ public class ChestCompressionTrial : MonoBehaviour
         leftHand = plyr.GetPlayerHandObject();
         rightHand = plyr.GetPlayerHandObject(true);
         ToggleCPRHand(true);
+        SetChestCompression(1);
         currentCompressionAmount = 1.0f;
         enabled = true;
     }
@@ -37,6 +38,7 @@ public class ChestCompressionTrial : MonoBehaviour
     {
         QuestManager qm = QuestManager._Instance;
         if (qm.IsQuestType("Do Chest Compression")) qm.ForceCompleteQuest();
+        SetChestCompression(1);
         ToggleCPRHand(false);
         enabled = false;
     }
@@ -62,13 +64,13 @@ public class ChestCompressionTrial : MonoBehaviour
         {
             _CompressionPressed = false;
         }
-        chest.transform.localScale = new Vector3 (chest.transform.localScale.x, chest.transform.localScale.y, Mathf.Lerp(1 - chestCompressionAmountScale, 1, ccValue));
+        SetChestCompression(ccValue);
     }
 
     float CalculatePlayerHandPosition()
     {
         // Make sure they are close to each other
-        if (Util.Vector3_Distance2D(leftHand.transform.position, rightHand.transform.position) > compressionSize)
+        if (Util.Vector3_Distance2D(leftHand.transform.position, rightHand.transform.position) > compressionSize * 1.334f)
         {
             if(handsInRange) ToggleCPRHand(false);
             return 1.0f;
@@ -96,6 +98,10 @@ public class ChestCompressionTrial : MonoBehaviour
     }
 
     void SetCPRHandPosition(Vector3 pos) => _CPRHand.transform.position = pos;
+    void SetChestCompression(float v)
+    {
+        chest.transform.localScale = new Vector3 (chest.transform.localScale.x, chest.transform.localScale.y, Mathf.Lerp(1 - chestCompressionAmountScale, 1, v));
+    }
     void ToggleCPRHand(bool _enabled)
     {
         leftHand.transform.ToggleHidden(_enabled);

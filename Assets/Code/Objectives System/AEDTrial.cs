@@ -30,6 +30,7 @@ public class AEDTrial : MonoBehaviour
     // Handled in inspector!!!
     void OnAllPatchesApplied()
     {
+        appliedPatches = 0;
         AudioSource.PlayClipAtPoint(analyzingNow, transform.position);
         Util.Invoke(this, () => BeepBeep(), 1.5f);
         Util.Invoke(this, () => BeepBeep(), 4.0f);

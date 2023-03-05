@@ -13,8 +13,8 @@ public class HelpHighlighter : MonoBehaviour
     GameObject leftHand, rightHand;
     void Start()
     {
-        leftHand = GameObject.FindGameObjectWithTag("Left Hand");
-        rightHand = GameObject.FindGameObjectWithTag("Right Hand");
+        leftHand = Util.GetPlayer().GetPlayerHandObject();
+        rightHand = Util.GetPlayer().GetPlayerHandObject(true);
         if(!gameObject.HasComponent<HideObject>()) hiderScript = gameObject.AddComponent<HideObject>();
         if(hiderScript != null) hiderScript.SetHidden(!inRange);
         DoHighlighter();
