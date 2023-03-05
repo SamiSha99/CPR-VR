@@ -68,7 +68,7 @@ public class ChestCompressionTrial : MonoBehaviour
     float CalculatePlayerHandPosition()
     {
         // Make sure they are close to each other
-        if (Util.Vector3_Distance2D(leftHand.transform.position, rightHand.transform.position) > compressionSize * 0.5f)
+        if (Util.Vector3_Distance2D(leftHand.transform.position, rightHand.transform.position) > compressionSize)
         {
             if(handsInRange) ToggleCPRHand(false);
             return 1.0f;

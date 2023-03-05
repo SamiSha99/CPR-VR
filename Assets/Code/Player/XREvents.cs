@@ -8,6 +8,8 @@ public class XREvents : MonoBehaviour
 {
     public bool debugging;
     private AudioClip microphoneClip;
+    private float lastAudioDetectionTime;
+    private bool listenToMic;
 
     public static event Action<GameObject, GameObject, bool> onItemGrabbed, onItemInteracted, onItemTouched, onItemLookedAt;
     public static event Action<GameObject, GameObject, float> onItemShaked; // Grab Innteractable 2
@@ -50,19 +52,30 @@ public class XREvents : MonoBehaviour
 
     public void EnableMicRecording()
     {
-        microphoneClip = Util.MicrophoneToAudioClip();
+        if(microphoneClip == null) microphoneClip = Util.MicrophoneToAudioClip();
+        lastAudioDetectionTime = Time.timeSinceLevelLoad;
+        listenToMic = true;
     }
-    public void DisableMicRecording()
-    {
-        microphoneClip = null;
-        Util.StopListeningToMicrophone(0);
-    }
+    public void DisableMicRecording() => listenToMic = false;
 
     void Update()
     {
         if(microphoneClip == null) return;
+        if(!listenToMic) return;
+
         float loudness = Util.GetLoudnessFromMicrophone(microphoneClip, 32) * Util.MICROPHONE_LOUDNESS_MULTIPLIER;
-        if(loudness < Util.MICROPHONE_LOUDNESS_THRESHOLD) return;
+        // Reinstate it again in 5 seconds
+        if(loudness < Util.MICROPHONE_LOUDNESS_THRESHOLD)
+        {
+            if(lastAudioDetectionTime + 20 < Time.timeSinceLevelLoad)
+            {
+                lastAudioDetectionTime = Time.timeSinceLevelLoad;
+                microphoneClip = Util.MicrophoneToAudioClip();
+                Util.Print<XREvents>("Microphone been silent for too long, reinstate the microphone again");
+            }
+            return;
+        }
+        lastAudioDetectionTime = Time.timeSinceLevelLoad;
         OnTalking(gameObject, gameObject, loudness);
     }
 

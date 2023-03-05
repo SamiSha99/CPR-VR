@@ -31,6 +31,7 @@ public static class Util
 
     public const float MICROPHONE_LOUDNESS_THRESHOLD = 0.075f;
     public const int MICROPHONE_LOUDNESS_MULTIPLIER = 100;
+    public const string MICROPHONE_OCULUS_NAME = "Headset Microphone (Oculus Virtual Audio Device)";
 
     //#######//
     // Debug //
@@ -182,7 +183,7 @@ public static class Util
     {
         return GetLoudnessFromAudioClip(Microphone.GetPosition(Microphone.devices[micDeviceIndex]), microphoneClip, sampleWindow);
     }
-    // Instantiate a Microphone Clip that listens to the microphone.
+    // Instantiate a Microphone Clip that listens to the microphone using the index.
     public static AudioClip MicrophoneToAudioClip(int index = 0 )
     {
         if(Microphone.devices.Length <= 0)
@@ -191,15 +192,25 @@ public static class Util
             return null;
         }
         string microphoneName = Microphone.devices[index];
-        AudioClip microphoneClip = Microphone.Start(microphoneName, true, 20, AudioSettings.outputSampleRate);
+        AudioClip microphoneClip = Microphone.Start(microphoneName, true, 10, AudioSettings.outputSampleRate);
         if(microphoneClip == null)
         {
             Print("Microphone", "Unable to start microphone recording");
         }
         return microphoneClip;
     }
+    public static AudioClip MicrophoneToAudioClipByDeviceName(string deviceName)
+    {
+        int index = GetIndexFromDeviceName(deviceName);
+        Debug.Log("" + index);
+        if(index == -1) return null;
+        return MicrophoneToAudioClip(index);
+    }
     // Halts 
     public static void StopListeningToMicrophone(int index = 0) => Microphone.End(Microphone.devices[index]);
+    // Returns the device's index of the specified name if matched
+    // Returns -1 if index could not be found
+    public static int GetIndexFromDeviceName(string deviceName) { return Array.IndexOf(Microphone.devices, deviceName); }
 
     //######//
     // Math //
