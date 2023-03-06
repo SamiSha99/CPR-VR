@@ -11,6 +11,7 @@ public class ActivateGrabRay : MonoBehaviour
 
     public GameObject leftGrabRay, rightGrabRay;
     public XRDirectInteractor leftDirectGrab, rightDirectGrab;
+    public XRRayInteractor  leftRayInteractor, rightRayInteractor;
     // For now, rays are entirely disabled, only by direct grabbing.
     public bool leftGrabRayEnabled = false, rightGrabRayEnabled = false;
     
@@ -21,9 +22,9 @@ public class ActivateGrabRay : MonoBehaviour
 
     void Update()
     {
-        if(leftGrabRay != null && leftDirectGrab != null)
+        if(leftGrabRay != null && leftDirectGrab != null && leftRayInteractor != null)
             leftGrabRay.SetActive(leftGrabRayEnabled && leftDirectGrab.interactablesSelected.Count == 0);        
-        if(rightGrabRay != null && rightDirectGrab != null)
+        if(rightGrabRay != null && rightDirectGrab != null && rightRayInteractor != null)
             rightGrabRay.SetActive(rightGrabRayEnabled && rightDirectGrab.interactablesSelected.Count == 0);
     }
 

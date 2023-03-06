@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
         default_ExamQuestsLine = new List<Quest>(_ExamQuestsLine);
         _RepeatableAmount = Mathf.Max(1, _RepeatableAmount);
         if(_TutorialQuestsLine.Count > 0) BeginNextQuest();
-        // Use PlayerPrefs!!! and Utils!!
-        //isExam = false;
+        isExam = SettingsUtility.IsChecked("isExam", false);
+        //Util.Print<GameManager>("Is Exam ? => " + isExam);
     }
 
     public void BeginNextQuest()

@@ -2369,6 +2369,8 @@ MonoBehaviour:
   rightGrabRay: {fileID: 5804103084485414024}
   leftDirectGrab: {fileID: 2813000696651412000}
   rightDirectGrab: {fileID: 2813000695440645979}
+  leftRayInteractor: {fileID: 806556685598499755}
+  rightRayInteractor: {fileID: 9168638639862928890}
   leftGrabRayEnabled: 0
   rightGrabRayEnabled: 0
 --- !u!114 &1301566481

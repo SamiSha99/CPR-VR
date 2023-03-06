@@ -8,7 +8,7 @@ public class LiveLineDrawer : MonoBehaviour
     public int samplesPerSecond = 50;
     public UILineRendererList _UILineRendererPlayer, _UILineRendererDemonstration;
     public ProgressBar _CompressionTimerBar;
-    public TextMeshProUGUI _CompressionAverageText, _TimerNumberText;
+    public TextMeshProUGUI _CompressionAverageText, _TimerNumberText, _CompressionDepthText;
     [HideInInspector] public float rate = 2;
     [Range(0.0f, 1.0f)] public float value = 0.5f;
     public AudioClip GuidanceSound;
@@ -18,6 +18,7 @@ public class LiveLineDrawer : MonoBehaviour
     private ChestCompressionTrial _ChestCompressionTrial;
 
     const int PERFECT_CHEST_COMPRESSION_PER_MINUTE = 110;
+    const int PERFECT_CHEST_COMPRESSION_DEPTH_INCHES = 2;
     const string TIMER_FORMAT = "f1";
     
     void Awake()
@@ -94,6 +95,7 @@ public class LiveLineDrawer : MonoBehaviour
         compressionAmount = -1;
         lastCompressionTime = 0;
         _CompressionAverageText.gameObject.SetActive(true);
+        _CompressionDepthText.gameObject.SetActive(true);
         _CompressionTimerBar.gameObject.SetActive(true);
         _CompressionTimerBar.SetProgressBarClampValues(0, cct != null ? cct._TrialDuration : ChestCompressionTrial.DEFAULT_TIME_TRIAL);
         _CompressionTimerBar.FillProgressBar();
@@ -116,7 +118,10 @@ public class LiveLineDrawer : MonoBehaviour
         
         compressionAmount++;
     }
-
+    public void OnCompressionDepthRecived(float amount)
+    {
+        SetCompressionDepthText(amount);
+    }
     public void OnCompressionGraphInfo(float value) => this.value = value;
 
     public void ShutdownGraphs()
@@ -130,6 +135,7 @@ public class LiveLineDrawer : MonoBehaviour
         lastCompressionTime = 0;
         nextClipPlayTime = 0;
         _CompressionAverageText.gameObject.SetActive(false);
+        _CompressionDepthText.gameObject.SetActive(false);
         _CompressionTimerBar.gameObject.SetActive(false);
         _ChestCompressionTrial.OnTrialFinish();
         gameObject.SetActive(false);
@@ -140,7 +146,11 @@ public class LiveLineDrawer : MonoBehaviour
         if(_CompressionAverageText == null) return;
         _CompressionAverageText.text = $"{amount} cc/m";
     }
-
+    void SetCompressionDepthText(float amount)
+    {
+        if(_CompressionDepthText == null) return;
+        _CompressionDepthText.text = $"{amount}" + " inch";
+    }
     // -1 implies that we haven't done our first compression, this happens when _UILineRendererPlayer graph hits bottom as 0 value
     public bool PlayerStartedCompressing() { return compressionAmount != -1; }
 }

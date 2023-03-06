@@ -33,6 +33,9 @@ public static class Util
     public const int MICROPHONE_LOUDNESS_MULTIPLIER = 100;
     public const string MICROPHONE_OCULUS_NAME = "Headset Microphone (Oculus Virtual Audio Device)";
 
+    public const float INCH_TO_CENTIMETER = 2.54f;
+    public const float CENTIMETER_TO_INCH = 0.393701f;
+
     //#######//
     // Debug //
     //#######//
@@ -149,6 +152,9 @@ public static class Util
     public static bool IntToBool(int i) { return i > 0; }
     public static int BoolToInt(bool b) { return b ? 1 : 0; }
 
+    public static float ConvertInchesToCentimeters(float inches) { return inches * INCH_TO_CENTIMETER; }
+    public static float ConvertCentimetersToInches(float centimeters) { return centimeters * CENTIMETER_TO_INCH; }
+    
     //###########//
     // Materials //
     //###########//
