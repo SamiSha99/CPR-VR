@@ -378,7 +378,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 10
     m_Bottom: 10
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 325, y: 100}
@@ -784,7 +784,7 @@ MonoBehaviour:
   _TimerNumberText: {fileID: 919137406092960726}
   _CompressionDepthText: {fileID: 4317970392044560156}
   rate: 2
-  value: 0.5
+  value: 0.589
   GuidanceSound: {fileID: 8300000, guid: bebe2907cf65eae4880b026ecdb78e85, type: 3}
 --- !u!114 &249702940674750009
 MonoBehaviour:

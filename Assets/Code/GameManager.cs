@@ -21,12 +21,10 @@ public class GameManager : MonoBehaviour
     void Awake() => _Instance = this;
     void Start()
     {
-        default_TutotrialQuestsLine = new List<Quest>(_TutorialQuestsLine);
-        default_ExamQuestsLine = new List<Quest>(_ExamQuestsLine);
-        _RepeatableAmount = Mathf.Max(1, _RepeatableAmount);
-        if(_TutorialQuestsLine.Count > 0) BeginNextQuest();
+        BeginTutorial();
+        
         isExam = SettingsUtility.IsChecked("isExam", false);
-        //Util.Print<GameManager>("Is Exam ? => " + isExam);
+        Util.Print<GameManager>("Is Exam ? => " + isExam);
     }
 
     public void BeginNextQuest()
@@ -36,6 +34,9 @@ public class GameManager : MonoBehaviour
             OnGameComplete();
             return;
         }
+
+        if(!Util.IsQuestManagerActive()) return;
+
         QuestManager._Instance.BeginQuest(_TutorialQuestsLine[0]);
         _TutorialQuestsLine.RemoveAt(0);
     }
@@ -45,5 +46,13 @@ public class GameManager : MonoBehaviour
         // Show Score
         // Animation
         // Then leave in 10 seconds?
+    }
+
+    public void BeginTutorial()
+    {
+        default_TutotrialQuestsLine = new List<Quest>(_TutorialQuestsLine);
+        default_ExamQuestsLine = new List<Quest>(_ExamQuestsLine);
+        _RepeatableAmount = Mathf.Max(1, _RepeatableAmount);
+        if(_TutorialQuestsLine.Count > 0) BeginNextQuest();
     }
 }

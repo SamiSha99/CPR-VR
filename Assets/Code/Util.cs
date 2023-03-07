@@ -130,8 +130,8 @@ public static class Util
     // Quests //
     //########//
 
-    public static bool IsQuestActive() { return QuestManager._Instance != null && QuestManager.activeQuest != null; }
-    
+    public static bool IsQuestActive() { return IsQuestManagerActive() && QuestManager.activeQuest != null; }
+    public static bool IsQuestManagerActive() {return QuestManager._Instance != null; }
     //########//
     // Invoke //
     //########//
