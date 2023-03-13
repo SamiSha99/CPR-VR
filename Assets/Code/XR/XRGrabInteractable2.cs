@@ -33,7 +33,7 @@ public class XRGrabInteractable2 : XRGrabInteractable
     {
         if(restoreOriginalPosition) originalPosition = transform.position;
         if(restoreOriginalRotation) originalRotation = transform.rotation;
-        if(restoreOriginalPosition || restoreOriginalRotation) GetComponent<Rigidbody>().isKinematic = true;
+        //if(restoreOriginalPosition || restoreOriginalRotation) GetComponent<Rigidbody>().isKinematic = true;
         lastPosition = transform.position;
         lastRotation = transform.rotation;
         shakeEventDelay = shakeEventDelaySeconds;

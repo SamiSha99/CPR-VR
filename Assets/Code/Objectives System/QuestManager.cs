@@ -101,7 +101,10 @@ public class QuestManager : MonoBehaviour
     {
         CleanUpGoalList();
         //if (q.nextQuest != null) BeginQuest(q.nextQuest);
-        GameManager._Instance.BeginNextQuest();
+        if(GameManager._Instance.isExam)
+            GameManager._Instance.InstigateNextExamObject();
+        else
+            GameManager._Instance.InstigateNextTutorialObject();
     }
     // Updates the cells that is relevant on the goal via index of how it was initialized
     private void OnUpdateGoalProgress(Quest.QuestGoal goal)

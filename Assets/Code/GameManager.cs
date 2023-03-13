@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager _Instance;
-    public List<Quest> _TutorialQuestsLine;
-    private List<Quest> default_TutotrialQuestsLine;
+    public List<Object> _TutorialQuestsLine;
+    private List<Object> default_TutotrialQuestsLine;
     [Header("EXAM MANAGER")]
     // Exam
     public bool isExam;
@@ -21,13 +22,29 @@ public class GameManager : MonoBehaviour
     void Awake() => _Instance = this;
     void Start()
     {
-        BeginTutorial();
-        
         isExam = SettingsUtility.IsChecked("isExam", false);
+        if(isExam)
+            InstigateNextExamObject();
+        else
+            InstigateNextTutorialObject();
+        
         Util.Print<GameManager>("Is Exam ? => " + isExam);
     }
 
-    public void BeginNextQuest()
+    void Update()
+    {
+        
+    }
+
+    public void BeginTutorial()
+    {
+        default_TutotrialQuestsLine = new List<Object>(_TutorialQuestsLine);
+        default_ExamQuestsLine = new List<Quest>(_ExamQuestsLine);
+        _RepeatableAmount = Mathf.Max(1, _RepeatableAmount);
+        //if(_TutorialQuestsLine.Count > 0) BeginNextQuest();
+    }
+
+    public void InstigateNextTutorialObject()
     {
         if(_TutorialQuestsLine.Count <= 0)
         {
@@ -35,24 +52,30 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if(!Util.IsQuestManagerActive()) return;
-
-        QuestManager._Instance.BeginQuest(_TutorialQuestsLine[0]);
+        switch(_TutorialQuestsLine[0])
+        {
+            case Quest q:
+                QuestManager._Instance.BeginQuest(q);
+                break;
+            case AudioClip ac:
+                Util.PlayClipAt(ac, Util.GetPlayer().GetPlayerCameraObject().transform.position, 1.0f, Util.GetPlayer().GetPlayerCameraObject());
+                Util.Invoke(this, () => InstigateNextTutorialObject(), ac.length + 0.25f);
+                break;
+        }
         _TutorialQuestsLine.RemoveAt(0);
     }
+
+    public void InstigateNextExamObject()
+    {
+
+    }
+
     void OnGameComplete()
     {
+        SceneManager.LoadScene("VR CPR Menu");
         // TO-DO
         // Show Score
         // Animation
         // Then leave in 10 seconds?
-    }
-
-    public void BeginTutorial()
-    {
-        default_TutotrialQuestsLine = new List<Quest>(_TutorialQuestsLine);
-        default_ExamQuestsLine = new List<Quest>(_ExamQuestsLine);
-        _RepeatableAmount = Mathf.Max(1, _RepeatableAmount);
-        if(_TutorialQuestsLine.Count > 0) BeginNextQuest();
     }
 }

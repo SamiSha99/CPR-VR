@@ -218,6 +218,21 @@ public static class Util
     // Returns -1 if index could not be found
     public static int GetIndexFromDeviceName(string deviceName) { return Array.IndexOf(Microphone.devices, deviceName); }
 
+    // AudioSource.PlayClipAtPoint but returns a source and can be used to attach to something else
+    // _base = parent we want to attach this AudioSource to.
+    public static AudioSource PlayClipAt(AudioClip ac, Vector3 pos, float volume = 1.0f, GameObject _base = null)
+    {
+        GameObject go = new GameObject("Temporary Audio");
+        go.transform.position = pos;
+        if(_base != null) go.transform.parent = _base.transform;
+
+        AudioSource _as = go.AddComponent<AudioSource>();    
+        _as.clip = ac;
+        _as.Play();
+        GameObject.Destroy(go, ac.length + 0.25f); // fixes clip cutting off 
+        return _as;
+    }
+
     //######//
     // Math //
     //######//

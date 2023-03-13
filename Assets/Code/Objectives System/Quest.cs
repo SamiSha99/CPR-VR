@@ -156,7 +156,7 @@ public class QuestEditor : Editor
 {
     SerializedProperty m_QuestInfoProperty;
     SerializedProperty m_QuestCommandProperty;
-    SerializedProperty m_QuestNextQuestProperty;
+    //SerializedProperty m_QuestNextQuestProperty;
     List<string> m_QuestGoalType;
     SerializedProperty m_QuestGoalListProperty;
 
@@ -174,7 +174,7 @@ public class QuestEditor : Editor
         // commands when beginning and completing the quest
         m_QuestCommandProperty = serializedObject.FindProperty(nameof(Quest.questCommand));
         // next quest if specified
-        m_QuestNextQuestProperty = serializedObject.FindProperty(nameof(Quest.nextQuest));
+        //m_QuestNextQuestProperty = serializedObject.FindProperty(nameof(Quest.nextQuest));
         // goals
         m_QuestGoalListProperty = serializedObject.FindProperty(nameof(Quest.goals));
         var lookup = typeof(Quest.QuestGoal);
@@ -198,8 +198,8 @@ public class QuestEditor : Editor
             child.NextVisible(false);
         }
         // Add quest
-        child = m_QuestNextQuestProperty.Copy();
-        EditorGUILayout.PropertyField(child, true);
+        //child = m_QuestNextQuestProperty.Copy();
+        //EditorGUILayout.PropertyField(child, true);
         // Add quest command to GUI
         child = m_QuestCommandProperty.Copy();
         EditorGUILayout.PropertyField(child, true);

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e20ae815cee5f654d90351d67923a8d2, type: 3}
-  m_Name: 2) Call Ambulance
+  m_Name: CPR
   m_EditorClassIdentifier: 
   information:
-    name: Call the Ambulance
-    description: Call the emergency hotline by dialing 101 on a nearby phone.
-  questCommand: Call_the_Ambulance
+    name: Do Chest Compression
+    description: Compress with your hands between the nipples.
+  questCommand: CPR
   nextQuest: {fileID: 0}
   goals:
-  - {fileID: 5532060607048704246}
---- !u!114 &5532060607048704246
+  - {fileID: 1772342133432286737}
+--- !u!114 &1772342133432286737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28,18 +28,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e623ac503bd9ca24c8ec0b4b6de34b0b, type: 3}
-  m_Name: GrabNearObject
+  m_Script: {fileID: 11500000, guid: 79c55cddbc33fc34dab8816d67622a8e, type: 3}
+  m_Name: CommandGoal
   m_EditorClassIdentifier: 
-  description: Grab a nearby phone close to you.
+  description: Do CPR for 20 seconds.
   requiredAmount: 1
   _GoalUIType: 1
-  goalCompletedCommand: Grab_Phone_Close
-  objectiveNameList:
-  - Smart Phone
+  goalCompletedCommand: CPR
+  objectiveNameList: []
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
   index: 0
-  compareRangeTo: 1
-  _NearbyRange: 0.4
+  GoalCommand: CPR_Complete_Goal
