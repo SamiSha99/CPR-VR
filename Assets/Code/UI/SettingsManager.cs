@@ -19,6 +19,5 @@ public class SettingsManager : MonoBehaviour
     public void ResetToDefault()
     {
         PlayerPrefs.DeleteAll();
-
     }
 }
