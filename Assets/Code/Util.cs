@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 // Utility Class
 public static class Util
 {
@@ -35,6 +37,8 @@ public static class Util
 
     public const float INCH_TO_CENTIMETER = 2.54f;
     public const float CENTIMETER_TO_INCH = 0.393701f;
+
+    public const string MENU_SCENE = "VR CPR Menu";
 
     //#######//
     // Debug //
@@ -242,4 +246,11 @@ public static class Util
     {
         return Vector3.Distance(Vector3.Scale(a, new Vector3(1,0,1)), Vector3.Scale(b, new Vector3(1, 0, 1)));
     }
+
+    //#######//
+    // Scene //
+    //#######//
+    
+    // Loads the main menu
+    public static void LoadMenu() => SceneManager.LoadScene(MENU_SCENE);
 }
