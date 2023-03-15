@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private List<Object> default_TutotrialQuestsLine;
     [Header("EXAM MANAGER")]
     // Exam
-    public bool isExam;
+    public bool isExam, completed;
     [Tooltip("The exam's content step by step, each step is evaulated.")]
     public List<Quest> _ExamQuestsLine; // We do this step by step to examinate how fast/slow and effecient the player is and we add score
     [Tooltip("These tasks are repeated continuously X times, depeding on Repeatable Amount, also evaulated")]
@@ -23,12 +23,18 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isExam = SettingsUtility.IsChecked("isExam", false);
+
+        default_TutotrialQuestsLine = new List<Object>(_TutorialQuestsLine);
+        default_ExamQuestsLine = new List<Quest>(_ExamQuestsLine);
+        _RepeatableAmount = Mathf.Max(1, _RepeatableAmount);
+
         if(isExam)
+        {
+            BuildExam();
             InstigateNextExamObject();
+        }
         else
             InstigateNextTutorialObject();
-        
-        Util.Print<GameManager>("Is Exam ? => " + isExam);
     }
 
     void Update()
@@ -36,22 +42,10 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void BeginTutorial()
-    {
-        default_TutotrialQuestsLine = new List<Object>(_TutorialQuestsLine);
-        default_ExamQuestsLine = new List<Quest>(_ExamQuestsLine);
-        _RepeatableAmount = Mathf.Max(1, _RepeatableAmount);
-        //if(_TutorialQuestsLine.Count > 0) BeginNextQuest();
-    }
-
     public void InstigateNextTutorialObject()
     {
-        if(_TutorialQuestsLine.Count <= 0)
-        {
-            OnGameComplete();
-            return;
-        }
-
+        if(OnGameComplete()) return;
+        
         switch(_TutorialQuestsLine[0])
         {
             case Quest q:
@@ -65,17 +59,36 @@ public class GameManager : MonoBehaviour
         _TutorialQuestsLine.RemoveAt(0);
     }
 
-    public void InstigateNextExamObject()
+    public void BuildExam()
     {
 
     }
 
-    void OnGameComplete()
+    public void InstigateNextExamObject()
     {
-        SceneManager.LoadScene("VR CPR Menu");
+        if(OnGameComplete()) return;
+        
+    }
+
+    public bool IsComplete()
+    {
+        if(isExam && _ExamQuestsLine.Count <= 0) return true;
+        if(!isExam && _TutorialQuestsLine.Count <= 0) return true;
+        return false;
+    }
+
+    bool OnGameComplete()
+    {
+        if(completed) return true;
+        if(isExam && _ExamQuestsLine.Count > 0) return false;
+        if(!isExam && _TutorialQuestsLine.Count > 0) return false;
+        
+        Util.Invoke(this, () => Util.LoadMenu(), 10.0f);
+        
         // TO-DO
         // Show Score
         // Animation
         // Then leave in 10 seconds?
+        return true;
     }
 }
