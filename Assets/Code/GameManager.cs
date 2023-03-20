@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
         if(isExam && _ExamQuestsLine.Count > 0) return false;
         if(!isExam && _TutorialQuestsLine.Count > 0) return false;
         completed = true;
-        Util.Invoke(this, () => Util.LoadMenu(), 10.0f);
+        Util.Invoke(this, () => Util.LoadMenu(), 5.0f);
         
         // TO-DO
         // Show Score
