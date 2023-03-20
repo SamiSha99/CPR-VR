@@ -35,13 +35,4 @@ public class MainMenuManager : MonoBehaviour
     {
 
     }
-
-    public void ToggleMainMenu(bool _enable)
-    {
-        gameObject.SetActive(_enable);
-        XROriginMenu?.SetActive(_enable);
-        XROriginPlayer?.SetActive(!_enable);
-        if(!_enable)
-            GameObject.Find("PlayerStart").GetComponent<PlayerStartingPoint>().SetPlayerToPoint(XROriginPlayer);
-    }
 }

@@ -106,7 +106,7 @@ public class QuestManager : MonoBehaviour
         else
             GameManager._Instance.InstigateNextTutorialObject();
     }
-    // Updates the cells that is relevant on the goal via index of how it was initialized
+    // Updates the cells that is relevant on the goal via passed QuestGoal script using the index
     private void OnUpdateGoalProgress(Quest.QuestGoal goal)
     {
         List<Transform> transformList = new List<Transform>();

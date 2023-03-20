@@ -8,18 +8,8 @@ public class AEDTrial : MonoBehaviour
     private int appliedPatches;
     public AudioClip analyzingNow, shockRequired, noShockRequired, pressButton, beepBeep, aedShockEffect;
     public UnityEvent _ButtonEnabled;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Handled in inspector!!!
     public void OnPatchApplied()
     {
         appliedPatches++;
@@ -27,7 +17,6 @@ public class AEDTrial : MonoBehaviour
         
     }
 
-    // Handled in inspector!!!
     void OnAllPatchesApplied()
     {
         appliedPatches = 0;
@@ -47,7 +36,7 @@ public class AEDTrial : MonoBehaviour
         else
         {
             AudioSource.PlayClipAtPoint(noShockRequired, transform.position);
-            Util.Invoke(this, () => QuestManager._Instance.ForceCompleteQuest(), 2.5f);
+            Util.Invoke(this, () => QuestManager._Instance.ForceCompleteQuest(), noShockRequired.length + 0.25f);
         }
     }
 

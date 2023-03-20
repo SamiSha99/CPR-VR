@@ -136,6 +136,7 @@ public static class Util
 
     public static bool IsQuestActive() { return IsQuestManagerActive() && QuestManager.activeQuest != null; }
     public static bool IsQuestManagerActive() {return QuestManager._Instance != null; }
+
     //########//
     // Invoke //
     //########//
@@ -194,7 +195,7 @@ public static class Util
         return GetLoudnessFromAudioClip(Microphone.GetPosition(Microphone.devices[micDeviceIndex]), microphoneClip, sampleWindow);
     }
     // Instantiate a Microphone Clip that listens to the microphone using the index.
-    public static AudioClip MicrophoneToAudioClip(int index = 0 )
+    public static AudioClip MicrophoneToAudioClip(int index = 0)
     {
         if(Microphone.devices.Length <= 0)
         {
