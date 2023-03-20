@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     private List<Object> default_TutotrialQuestsLine;
     [Header("EXAM MANAGER")]
     // Exam
-    public bool isExam, completed;
+    public bool isExam;
+    public bool completed;
     [Tooltip("The exam's content step by step, each step is evaulated.")]
     public List<Quest> _ExamQuestsLine; // We do this step by step to examinate how fast/slow and effecient the player is and we add score
     [Tooltip("These tasks are repeated continuously X times, depeding on Repeatable Amount, also evaulated")]
@@ -19,6 +20,11 @@ public class GameManager : MonoBehaviour
     public int _RepeatableAmount = 1;
     private List<Quest> default_ExamQuestsLine;
     public float score, maxScore;
+    public GameEventCommand OnModuleProgressed;
+
+    const string TUTORIAL_EVENT = "_Tutorial";
+    const string EXAM_EVENT = "_Exam";
+
     void Awake() => _Instance = this;
     void Start()
     {
@@ -50,10 +56,12 @@ public class GameManager : MonoBehaviour
         {
             case Quest q:
                 QuestManager._Instance.BeginQuest(q);
+                OnModuleProgressed.TriggerEvent(q.questCommand + TUTORIAL_EVENT);
                 break;
             case AudioClip ac:
                 Util.PlayClipAt(ac, Util.GetPlayer().GetPlayerCameraObject().transform.position, 1.0f, Util.GetPlayer().GetPlayerCameraObject());
                 Util.Invoke(this, () => InstigateNextTutorialObject(), ac.length + 0.25f);
+                OnModuleProgressed.TriggerEvent(ac.name + TUTORIAL_EVENT);
                 break;
         }
         _TutorialQuestsLine.RemoveAt(0);
@@ -82,7 +90,7 @@ public class GameManager : MonoBehaviour
         if(completed) return true;
         if(isExam && _ExamQuestsLine.Count > 0) return false;
         if(!isExam && _TutorialQuestsLine.Count > 0) return false;
-        
+        completed = true;
         Util.Invoke(this, () => Util.LoadMenu(), 10.0f);
         
         // TO-DO

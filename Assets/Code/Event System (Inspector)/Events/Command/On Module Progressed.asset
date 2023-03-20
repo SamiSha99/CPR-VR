@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155f3c36734349c4d9cb72f92899e4c8, type: 3}
+  m_Name: On Module Progressed
+  m_EditorClassIdentifier: 
+  commandList:
+  - _Tutorial
+  - _Exam
+  AdditionalNotes: '* Used by GameManager.
+
+
+    * If the object is a Quest, it will
+    pass the Quest Command contained in the quest (remember that the default quest
+    command is "???").
+
+
+    * Anything else passes their object name via "UnityEngine.Object.name".'
