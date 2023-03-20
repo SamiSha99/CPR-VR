@@ -12,3 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155f3c36734349c4d9cb72f92899e4c8, type: 3}
   m_Name: On Quest Goal Completed
   m_EditorClassIdentifier: 
+  commandList:
+  - _Goal_Complete
+  AdditionalNotes: '* Used by Quest Manager
+
+
+    * Instigates when a Goal completion.
+
+
+    *
+    Important that the instgation also happens if the goal can be uncompleted and
+    recompleted afterwards!'

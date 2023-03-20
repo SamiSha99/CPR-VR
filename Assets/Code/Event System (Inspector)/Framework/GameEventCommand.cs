@@ -7,6 +7,15 @@ using UnityEngine;
 public class GameEventCommand : ScriptableObject
 {
     List<GameEventCommandListener> listeners = new List<GameEventCommandListener>();
+
+#if UNITY_EDITOR
+    [SerializeField]
+    [Tooltip("Does nothing, this is only here to document all command types this GameEvent accepts.\n\nThe command is formatted as follows:\ncommand_here + [any command from the list below].\nThis is case sensitive!")]
+    List<string> commandList = new List<string>();
+    [SerializeField] [TextArea(5,10)]
+    string AdditionalNotes;
+#endif
+
     public void TriggerEvent(string command)
     {
         for (int i = listeners.Count - 1; i >= 0; i--) listeners[i].OnEventTriggered(command);
