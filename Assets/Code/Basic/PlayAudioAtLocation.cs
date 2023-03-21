@@ -12,7 +12,8 @@ public class PlayAudioAtLocation : MonoBehaviour
     public void TriggerAudio()
     {
         if(audioClip == null) return;
-        if(atObject == null) return;
-        Util.PlayClipAt(audioClip, atObject.transform.position);
+        Vector3 pos = atObject == null ? gameObject.transform.position : atObject.transform.position;
+        GameObject parent = setObjectAsParent ? atObject : null;
+        Util.PlayClipAt(audioClip, pos, volume, parent);
     }
 }
