@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    bool IsPaused()
+    public bool IsPaused()
     {
         if(GameMenuManager._Instance == null) return false;
         return GameMenuManager._Instance.IsPaused();
