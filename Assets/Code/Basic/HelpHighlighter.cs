@@ -27,13 +27,7 @@ public class HelpHighlighter : MonoBehaviour
         Vector3 pos = transform.position;
         Vector3 leftHandPos = leftHand.transform.position, rightHandPos = rightHand.transform.position;
         bool belowDistance = Vector3.Distance(leftHandPos, pos) <= radiusRange  || Vector3.Distance(rightHandPos, pos) <= radiusRange;
-        if(ShouldHideOnGrab(belowDistance))
-        {
-            ToggleHighlighter(false); // don't show if grabbing
-        }
-        else
-            ToggleHighlighter(belowDistance);
-        //Util.Print<XREvents>($"Left Hand distance: {Vector3.Distance(leftHandPos, pos)}, Right Hand distance: {Vector3.Distance(rightHandPos, pos)} | Required range: {radiusRange}");
+        ToggleHighlighter(ShouldHideOnGrab(belowDistance) ? false : belowDistance);
     }
     
     void ToggleHighlighter(bool b)
