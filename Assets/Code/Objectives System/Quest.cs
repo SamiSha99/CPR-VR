@@ -160,7 +160,7 @@ public class QuestEditor : Editor
     List<string> m_QuestGoalType;
     SerializedProperty m_QuestGoalListProperty;
 
-    [MenuItem("Assets/Create/New Quest", priority = 0)]
+    [MenuItem("Assets/Create/Quest", priority = 0)]
     public static void CreateQuest()
     {
         var newQuest = CreateInstance<Quest>();
