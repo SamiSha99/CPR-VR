@@ -99,4 +99,10 @@ public class GameManager : MonoBehaviour
         // Then leave in 10 seconds?
         return true;
     }
+
+    bool IsPaused()
+    {
+        if(GameMenuManager._Instance == null) return false;
+        return GameMenuManager._Instance.IsPaused();
+    }
 }
