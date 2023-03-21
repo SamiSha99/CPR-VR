@@ -24,6 +24,12 @@ public class ActivateTeleportationRay : MonoBehaviour
         GameObject teleportation;
         InputActionProperty iap_Activate;
 
+        if(GameManager._Instance.IsPaused())
+        {
+            if(rayActive) OnRayActivation(false);
+            return;
+        }
+
         if (useRightRay)
         {
             if (rightTeleportation == null || rightActivate == null) return;
