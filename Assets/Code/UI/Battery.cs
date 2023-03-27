@@ -4,43 +4,32 @@ using UnityEngine;
 using TMPro;
 public class Battery : MonoBehaviour
 {
-    public GameObject batteryUIIcon;
     public TextMeshProUGUI batteryPrecentageText;
+    public ProgressBar batteryBar;
     float lastUpdate = -1;
-    float batteryLevel = SystemInfo.batteryLevel;
-    BatteryStatus batteryStatus = SystemInfo.batteryStatus;
-    const float UPDATE_BATTERY_INTERVALS = 5.0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        lastUpdate = Time.timeSinceLevelLoad;
-        UpdateBattery();
-    }
-
-    // Update is called once per frame
+    float batteryLevel = -1;
+    BatteryStatus batteryStatus;
+    const float UPDATE_BATTERY_INTERVALS = 3.0f;
+    void Start() => UpdateBattery();
     void Update()
     {
         if(lastUpdate + UPDATE_BATTERY_INTERVALS > Time.timeSinceLevelLoad) return;
         UpdateBattery();
     }
-
     void UpdateBattery()
     {        
         batteryLevel = SystemInfo.batteryLevel;
         batteryStatus = SystemInfo.batteryStatus;
         
-        //Util.Print<Battery>("Battery Amount: " + batteryLevel + " | Status: " + batteryStatus);
         lastUpdate = Time.timeSinceLevelLoad;
-        //Util.Print<Battery>("Next update: " + (lastUpdate + UPDATE_BATTERY_INTERVALS));
 
-        if(batteryUIIcon != null)
-        {
+        gameObject.SetActive(batteryLevel != -1);
+        batteryPrecentageText.gameObject.SetActive(batteryLevel != -1);
 
-        }
-        
-        if(batteryPrecentageText != null)
+        if(batteryLevel != -1)
         {
-            
+            if(batteryPrecentageText != null) batteryPrecentageText.text = $"{Mathf.RoundToInt(batteryLevel * 100)}%";
+            batteryBar.SetProgressBar(batteryLevel);
         }
     }
 }
