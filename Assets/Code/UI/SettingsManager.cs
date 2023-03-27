@@ -9,6 +9,11 @@ public class SettingsManager : MonoBehaviour
     public float textToSpeechVolume = 0.8f;
     public int loops = 3;
 
+    public void LoadPrefs()
+    {
+
+    }
+
     public void SaveChanges()
     {
         PlayerPrefs.SetInt(nameof(useCentimeter), Util.BoolToInt(useCentimeter));
