@@ -9,11 +9,19 @@ public class PlayAudioAtLocation : MonoBehaviour
     public bool setObjectAsParent;
     [Range(0.01f, 1.0f)]
     public float volume = 1.0f;
+    public AudioSource activeAudioSource;
     public void TriggerAudio()
     {
         if(audioClip == null) return;
         Vector3 pos = atObject == null ? gameObject.transform.position : atObject.transform.position;
         GameObject parent = setObjectAsParent ? atObject : null;
-        Util.PlayClipAt(audioClip, pos, volume, parent);
+        activeAudioSource = Util.PlayClipAt(audioClip, pos, volume, parent);
+    }
+
+    public void SetVolume(float v) => volume = v;
+
+    public bool IsPlaying()
+    {
+        return activeAudioSource != null && activeAudioSource.isPlaying;
     }
 }

@@ -233,6 +233,7 @@ public static class Util
 
         AudioSource _as = go.AddComponent<AudioSource>();    
         _as.clip = ac;
+        _as.volume = volume;
         _as.Play();
         GameObject.Destroy(go, ac.length + 0.25f); // fixes clip cutting off 
         return _as;
