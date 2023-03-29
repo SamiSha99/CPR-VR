@@ -15,6 +15,11 @@ public class SettingsManager : MonoBehaviour
     const string OPTION_CENTIMETERS = "OPTION_CENTIMETERS";
     const string OPTION_CPR_LOOPS = "OPTION_CPR_LOOPS";
 
+    void Start()
+    {
+        LoadPrefs();
+    }
+
     public void OnSettingAdjusted(GameObject OptionRow)
     {
         string optionaName = OptionRow.name;
@@ -52,12 +57,13 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    public void LoadPrefs(GameObject options)
+    public void LoadPrefs(GameObject options = null)
     {
-        useCentimeter = Util.IntToBool(PlayerPrefs.GetInt(nameof(useCentimeter), Util.BoolToInt(useCentimeter)));
+        useCentimeter = SettingsUtility.IsChecked(nameof(useCentimeter), false);
         textToSpeechVolume = PlayerPrefs.GetFloat(nameof(textToSpeechVolume), textToSpeechVolume);
         loops = PlayerPrefs.GetInt(nameof(loops), loops);
-        UpdateOptionsUI(options);
+        if(options != null)
+            UpdateOptionsUI(options);
     }
 
     void UpdateOptionsUI(GameObject options)

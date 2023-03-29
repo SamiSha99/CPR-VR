@@ -92,7 +92,7 @@ public class LiveLineDrawer : MonoBehaviour
         currentTime = 0;
         _enabled = true;
         nextSample = 1.0f/samplesPerSecond;
-        compressionAmount = -1;
+        compressionAmount = 0;
         lastCompressionTime = 0;
         _CompressionAverageText.gameObject.SetActive(true);
         _CompressionDepthText.gameObject.SetActive(true);
@@ -107,12 +107,11 @@ public class LiveLineDrawer : MonoBehaviour
     {
         int avgChestCompression;
         // Player started
-        if(!PlayerStartedCompressing())
-        {
-            lastCompressionTime = currentTime;
-            compressionAmount = 0;
-        }
-        avgChestCompression = (lastCompressionTime != 0 ? Mathf.RoundToInt(1/(currentTime - lastCompressionTime) * 60) : PERFECT_CHEST_COMPRESSION_PER_MINUTE);
+        //if(!PlayerStartedCompressing())
+        //{
+        //    lastCompressionTime = currentTime;
+        //}
+        avgChestCompression = (PlayerStartedCompressing() ? Mathf.RoundToInt(1/(currentTime - lastCompressionTime) * 60) : PERFECT_CHEST_COMPRESSION_PER_MINUTE);
         lastCompressionTime = currentTime;
         SetCompressionText(avgChestCompression);
         
@@ -131,7 +130,7 @@ public class LiveLineDrawer : MonoBehaviour
         currentTime = 0;
         _enabled = false;
         nextSample = 1.0f/samplesPerSecond;
-        compressionAmount = -1;
+        compressionAmount = 0;
         lastCompressionTime = 0;
         nextClipPlayTime = 0;
         _CompressionAverageText.gameObject.SetActive(false);
@@ -151,6 +150,6 @@ public class LiveLineDrawer : MonoBehaviour
         if(_CompressionDepthText == null) return;
         _CompressionDepthText.text = $"{amount}" + " inch";
     }
-    // -1 implies that we haven't done our first compression, this happens when _UILineRendererPlayer graph hits bottom as 0 value
-    public bool PlayerStartedCompressing() { return compressionAmount != -1; }
+    // 0 implies that we haven't done our first compression, this happens when _UILineRendererPlayer graph hits bottom as 0 value
+    public bool PlayerStartedCompressing() { return compressionAmount != 0; }
 }

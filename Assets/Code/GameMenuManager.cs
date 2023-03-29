@@ -29,7 +29,6 @@ public class GameMenuManager : MonoBehaviour
 
     void TogglePause(bool pause)
     {
-        Util.Print<GameMenuManager>("Paused: " + pause);
         if(pause) Pause();
         else UnPause();
     }

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     void Awake() => _Instance = this;
     void Start()
     {
-        isExam = SettingsUtility.IsChecked("isExam", false);
+        isExam = SettingsUtility.IsChecked(nameof(isExam), false);
 
         default_TutotrialQuestsLine = new List<Object>(_TutorialQuestsLine);
         default_ExamQuestsLine = new List<Quest>(_ExamQuestsLine);
@@ -59,7 +59,8 @@ public class GameManager : MonoBehaviour
                 OnModuleProgressed.TriggerEvent(q.questCommand + TUTORIAL_EVENT);
                 break;
             case AudioClip ac:
-                Util.PlayClipAt(ac, Util.GetPlayer().GetPlayerCameraObject().transform.position, 1.0f, Util.GetPlayer().GetPlayerCameraObject());
+                GameObject head = Util.GetPlayer().GetPlayerCameraObject();
+                Util.PlayClipAt(ac, head.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 1.0f), head);
                 Util.Invoke(this, () => InstigateNextTutorialObject(), ac.length + 0.25f);
                 OnModuleProgressed.TriggerEvent(ac.name + TUTORIAL_EVENT);
                 break;
