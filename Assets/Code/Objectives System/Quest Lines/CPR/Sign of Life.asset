@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TouchAndInteractWithObject
   m_EditorClassIdentifier: 
   description: Tap the patient's left shoulder.
-  requiredAmount: 5
+  requiredAmount: 4
   _GoalUIType: 0
   goalCompletedCommand: Tap_Shoulder_Left
   objectiveNameList:
@@ -37,7 +37,7 @@ MonoBehaviour:
   m_Name: TouchAndInteractWithObject
   m_EditorClassIdentifier: 
   description: Tap the patient's right shoulder.
-  requiredAmount: 5
+  requiredAmount: 4
   _GoalUIType: 0
   goalCompletedCommand: Tap_Shoulder_Right
   objectiveNameList:
@@ -91,5 +91,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   index: 2
-  micDecayAmount: 2
-  micSensitivityMultiplier: 1.2
+  micDecayAmount: 1.5
+  micSensitivityMultiplier: 1.6
