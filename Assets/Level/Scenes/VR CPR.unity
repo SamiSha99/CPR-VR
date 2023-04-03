@@ -2877,6 +2877,7 @@ MonoBehaviour:
   atObject: {fileID: 1546064119}
   setObjectAsParent: 1
   volume: 1
+  activeAudioSource: {fileID: 0}
 --- !u!114 &670365306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11816,7 +11817,7 @@ PrefabInstance:
     - target: {fileID: 48340989407978509, guid: bcc4468054fc9a141a72657dbecd690d,
         type: 3}
       propertyPath: m_Radius
-      value: 0.085
+      value: 0.065
       objectReference: {fileID: 0}
     - target: {fileID: 261011608367936511, guid: bcc4468054fc9a141a72657dbecd690d,
         type: 3}
@@ -11896,7 +11897,7 @@ PrefabInstance:
     - target: {fileID: 2284875224581328417, guid: bcc4468054fc9a141a72657dbecd690d,
         type: 3}
       propertyPath: m_Radius
-      value: 0.085
+      value: 0.065
       objectReference: {fileID: 0}
     - target: {fileID: 2284875224581328418, guid: bcc4468054fc9a141a72657dbecd690d,
         type: 3}

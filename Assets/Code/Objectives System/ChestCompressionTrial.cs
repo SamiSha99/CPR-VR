@@ -13,7 +13,7 @@ public class ChestCompressionTrial : MonoBehaviour
     public float chestCompressionAmountScale = 0.25f;
     public float _TrialDuration = 20.0f;
     public const float DEFAULT_TIME_TRIAL = 20.0f;
-    private float currentCompressionAmount; 
+    private float currentCompressionAmount, timeTillDepthCalc;
     [SerializeField] AudioClip _CompressionSound;
     [Header("Hands")]
     public GameObject leftHand;
@@ -58,12 +58,24 @@ public class ChestCompressionTrial : MonoBehaviour
         {
             _GraphScript.OnCompressionRecieved();
             _CompressionPressed = true;
+            timeTillDepthCalc = 0.175f;
             AudioSource.PlayClipAtPoint(_CompressionSound, transform.position, 3.0f);
         }
         else if(currentCompressionAmount >= 0.7f && _CompressionPressed)
         {
             _CompressionPressed = false;
         }
+
+        timeTillDepthCalc -= Time.deltaTime;
+
+        if(_CompressionPressed && timeTillDepthCalc <= 0)
+        {
+            timeTillDepthCalc = Mathf.Infinity;
+            float d = Mathf.Ceil(Mathf.Lerp(0, 3, 1 - currentCompressionAmount/0.4f));
+            Util.Print<ChestCompressionTrial>(""+d);
+            _GraphScript.OnCompressionDepthRecived(d);
+        }
+
         SetChestCompression(ccValue);
     }
 
