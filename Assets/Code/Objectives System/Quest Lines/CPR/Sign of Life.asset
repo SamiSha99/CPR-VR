@@ -63,6 +63,7 @@ MonoBehaviour:
   information:
     name: Sign of Life
     description: Check if there's any sign of breathing!
+  averageTime: 8
   questCommand: Sign_of_Life
   nextQuest: {fileID: 0}
   goals:
@@ -83,7 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Ask repeatedly:<br><br><space=2em>"Are you alright?".<br><space=2em>"Can
     you hear me?".
-  requiredAmount: 20
+  requiredAmount: 15
   _GoalUIType: 2
   goalCompletedCommand: Are_You_Alright
   objectiveNameList: []
@@ -92,4 +93,4 @@ MonoBehaviour:
       m_Calls: []
   index: 2
   micDecayAmount: 1.5
-  micSensitivityMultiplier: 1.6
+  micSensitivityMultiplier: 2

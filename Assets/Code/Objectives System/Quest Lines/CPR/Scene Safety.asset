@@ -15,6 +15,7 @@ MonoBehaviour:
   information:
     name: Scene Safety
     description: 'Confirm if the patient is safe from their surrounding. '
+  averageTime: 5
   questCommand: scene_safety
   nextQuest: {fileID: 0}
   goals:

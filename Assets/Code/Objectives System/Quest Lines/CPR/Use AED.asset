@@ -61,6 +61,7 @@ MonoBehaviour:
   information:
     name: Use AED
     description: Use the AED to apply a shock on the patient.
+  averageTime: 15
   questCommand: AED_Quest
   nextQuest: {fileID: 0}
   goals:

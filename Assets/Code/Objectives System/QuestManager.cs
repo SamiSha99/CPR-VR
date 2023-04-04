@@ -23,16 +23,26 @@ public class QuestManager : MonoBehaviour
     public GameEventCommand onQuestBegin, onQuestCompleted, onQuestGoalCompleted;
     public bool debugging;
 
+    private float questCurrentTime;
+    private bool isQuestTimePaused;
+
     const string GAMEOBJECT_NAME_GOAL_TITLE = "Goal Text";
     const string GAMEOBJECT_NAME_GOAL_VALUE = "Goal Value";
 
     void Awake() => _Instance = this;
     void Start() => BeginQuest(onLoadQuest);
-    void Update() => activeQuest?.QuestUpdate();
-    
+    void Update() 
+    {
+        activeQuest?.QuestUpdate();
+        if(!isQuestTimePaused)
+            questCurrentTime += Time.deltaTime;
+    }
     public void BeginQuest(Quest q)
     {
         if(q == null) return;
+
+        isQuestTimePaused = false;
+        questCurrentTime = 0;
         
         activeQuest = q.Initialize(OnQuestCompleted, OnUpdateGoalProgress);
         //Print("Begin Quest Command? => " + activeQuest.beginQuestCommand);
@@ -188,6 +198,9 @@ public class QuestManager : MonoBehaviour
         return IsQuestActive() && activeQuest.information.name == questTitle;
     }
     public void ForceUpdateGoal(Quest.QuestGoal g) => OnUpdateGoalProgress(g);
+    
+    public void ToggleTimer(bool _enabled) => isQuestTimePaused = !_enabled;
+    
     private void Print(string s)
     {
         if(!debugging) return;

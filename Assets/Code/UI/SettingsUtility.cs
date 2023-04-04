@@ -9,4 +9,6 @@ public static class SettingsUtility
         int fallbackValue = defaultValue != null ? Util.BoolToInt((bool)defaultValue) : 0;
         return Util.IntToBool(PlayerPrefs.GetInt(key, fallbackValue));
     }
+
+    public static bool ShouldUseCentimeter() { return IsChecked(nameof(SettingsManager.useCentimeter), false); }
 }

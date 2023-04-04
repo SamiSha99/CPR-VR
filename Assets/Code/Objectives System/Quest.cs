@@ -26,6 +26,8 @@ public class Quest : ScriptableObject
     };
 
     public Info information;
+    [Tooltip("The expected time for this quest to be finished, each second missed beyond this time will remove points up to 10 after 20 seconds!")]
+    public float averageTime;
     [Tooltip("Command listeners will recieve this command on different quest states using \"THIS + _CommandName\".\nCommand types:\n_Begin\n_Complete")]
     public string questCommand = "???";
     [Tooltip("On completion, immediatly start the following quest.")]
@@ -156,6 +158,8 @@ public class QuestEditor : Editor
 {
     SerializedProperty m_QuestInfoProperty;
     SerializedProperty m_QuestCommandProperty;
+    SerializedProperty m_QuestAverageTime;
+
     //SerializedProperty m_QuestNextQuestProperty;
     List<string> m_QuestGoalType;
     SerializedProperty m_QuestGoalListProperty;
@@ -173,6 +177,7 @@ public class QuestEditor : Editor
         m_QuestInfoProperty = serializedObject.FindProperty(nameof(Quest.information));
         // commands when beginning and completing the quest
         m_QuestCommandProperty = serializedObject.FindProperty(nameof(Quest.questCommand));
+        m_QuestAverageTime = serializedObject.FindProperty(nameof(Quest.averageTime));
         // next quest if specified
         //m_QuestNextQuestProperty = serializedObject.FindProperty(nameof(Quest.nextQuest));
         // goals
@@ -202,6 +207,10 @@ public class QuestEditor : Editor
         //EditorGUILayout.PropertyField(child, true);
         // Add quest command to GUI
         child = m_QuestCommandProperty.Copy();
+        EditorGUILayout.PropertyField(child, true);
+
+        // Adds average time
+        child = m_QuestAverageTime.Copy();
         EditorGUILayout.PropertyField(child, true);
 
         // Quest Goals + sort

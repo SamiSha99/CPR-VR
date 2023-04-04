@@ -8,19 +8,25 @@ public class AEDTrial : MonoBehaviour
     private int appliedPatches;
     public AudioClip analyzingNow, shockRequired, noShockRequired, pressButton, beepBeep, aedShockEffect;
     public UnityEvent _ButtonEnabled;
+    public bool isAEDEnabled;
+
+    public void OnAEDTurnedOn()
+    {
+        isAEDEnabled = true;
+    }
 
     // Handled in inspector!!!
     public void OnPatchApplied()
     {
         appliedPatches++;
         if(appliedPatches >= 2) OnAllPatchesApplied();
-        
     }
 
     void OnAllPatchesApplied()
     {
         appliedPatches = 0;
         AudioSource.PlayClipAtPoint(analyzingNow, transform.position);
+        QuestManager._Instance.ToggleTimer(false);
         Util.Invoke(this, () => BeepBeep(), 1.5f);
         Util.Invoke(this, () => BeepBeep(), 4.0f);
         Util.Invoke(this, () => OnWaitingForAED(), 5.0f);
@@ -28,16 +34,18 @@ public class AEDTrial : MonoBehaviour
 
     void OnWaitingForAED()
     {
-        if(!GameManager._Instance.isExam || Random.Range(0.0f, 1.0f) > 0.25f)
+        QuestManager._Instance.ToggleTimer(true);
+        // currently the "no shock required" disabled, for now
+        if(true) //(!GameManager._Instance.isExam || Random.Range(0.0f, 1.0f) > 0.25f)
         {
             QuestManager._Instance.CompleteCommandGoal("Wait_for_AED_Goal_Command");
             Util.Invoke(this, () => OnShockIsRequired(), 0.5f);
         }
-        else
-        {
-            AudioSource.PlayClipAtPoint(noShockRequired, transform.position);
-            Util.Invoke(this, () => QuestManager._Instance.ForceCompleteQuest(), noShockRequired.length + 0.25f);
-        }
+        //else
+        //{
+        //    AudioSource.PlayClipAtPoint(noShockRequired, transform.position);
+        //    Util.Invoke(this, () => QuestManager._Instance.ForceCompleteQuest(), noShockRequired.length + 0.25f);
+        //}
     }
 
     void BeepBeep() => AudioSource.PlayClipAtPoint(beepBeep, transform.position);
@@ -58,5 +66,12 @@ public class AEDTrial : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(aedShockEffect, transform.position);
         Util.Invoke(this, () => QuestManager._Instance.CompleteCommandGoal("Press_Shock_Button_Goal_Command"), 3.0f);
+        Reset();
+    }
+
+    public void Reset()
+    {
+        isAEDEnabled = false;
+        appliedPatches = 0;
     }
 }

@@ -33,12 +33,9 @@ public class SettingsManager : MonoBehaviour
                 float volume = s.value;
                 textToSpeechVolume = volume;
                 audioSample.SetVolume(volume);
-                if(audioSample.IsPlaying())
-                {
+                if(audioSample.activeAudioSource != null)
                     audioSample.activeAudioSource.volume = volume;
-                    break;
-                }
-                audioSample.TriggerAudio();
+                if(!audioSample.IsPlaying()) audioSample.TriggerAudio();
                 break;
     
             case OPTION_CENTIMETERS:

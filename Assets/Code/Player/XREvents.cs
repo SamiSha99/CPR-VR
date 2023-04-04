@@ -11,7 +11,8 @@ public class XREvents : MonoBehaviour
     private float lastAudioDetectionTime;
     private bool listenToMic;
 
-    public static event Action<GameObject, GameObject, bool> onItemGrabbed, onItemInteracted, onItemTouched, onItemLookedAt;
+    public static event Action<GameObject, GameObject, bool> onItemGrabbed, onItemInteracted, onItemTouched;
+    public static event Action<GameObject, GameObject, bool, float> onItemLookedAt;
     public static event Action<GameObject, GameObject, float> onItemShaked; // Grab Innteractable 2
     public static event Action<GameObject, GameObject, float> onTalking; // Grab Innteractable 2
     public static event Action<GameObject, GameObject> onItemGrabbedNearby; // Grab Innteractable 2
@@ -80,7 +81,8 @@ public class XREvents : MonoBehaviour
     }
 
     // Events
-    public void ProcessLookAtEvent(GameObject o, GameObject instigator, bool lookingAt) => onItemLookedAt?.Invoke(o, instigator, lookingAt);
+    public void ProcessLookAtEventContinous(GameObject o, GameObject instigator, bool lookingAt, float focusTime) => onItemLookedAt?.Invoke(o, instigator, lookingAt, focusTime);
+    public void ProcessLookAtEvent(GameObject o, GameObject instigator, bool lookingAt) => onItemLookedAt?.Invoke(o, instigator, lookingAt, -1);
     private void OnItemGrabbed(GameObject o, GameObject instigator) => onItemGrabbed?.Invoke(o, instigator, false);
     private void OnItemDropped(GameObject o, GameObject instigator) => onItemGrabbed?.Invoke(o, instigator, true);
     private void OnItemInteracted(GameObject o, GameObject instigator) => onItemInteracted?.Invoke(o, instigator, false);

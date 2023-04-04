@@ -1430,6 +1430,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1301566481, guid: bb5e242ba78d4bb47a1c35edde699f81, type: 3}
+      propertyPath: _Debugging
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301566481, guid: bb5e242ba78d4bb47a1c35edde699f81, type: 3}
+      propertyPath: showHelpLine
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2813000696362214425, guid: bb5e242ba78d4bb47a1c35edde699f81,
         type: 3}
       propertyPath: m_Name
@@ -3075,6 +3083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TutorialQuestsLine:
+  - {fileID: 11400000, guid: 2317dbd9f925dcc4eaaf12720a80995a, type: 2}
   - {fileID: 8300000, guid: eec57c2a67cab4e48ac5241837d7d4fd, type: 3}
   - {fileID: 8300000, guid: 95f74650952fd00438ed93eceb13eec4, type: 3}
   - {fileID: 11400000, guid: bdbb2ef8048e14b4599c44ab927c0993, type: 2}
@@ -3098,10 +3107,14 @@ MonoBehaviour:
   isExam: 0
   completed: 0
   _ExamQuestsLine:
+  - {fileID: 11400000, guid: bdbb2ef8048e14b4599c44ab927c0993, type: 2}
   - {fileID: 11400000, guid: baa483dd6cf61e0409633fbfb487b8d9, type: 2}
   - {fileID: 11400000, guid: d755e33b7ed897d418f38f1880513fcb, type: 2}
   - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
-  _RepeatableQuestLine: []
+  - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
+  _RepeatableQuestLine:
+  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
+  - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
   _RepeatableAmount: 1
   score: 0
   maxScore: 0
@@ -3265,50 +3278,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc29def7fd957db4085fce30f5fcefcc, type: 3}
---- !u!1 &771658929
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 771658931}
-  - component: {fileID: 771658930}
-  m_Layer: 0
-  m_Name: PlayerStart
-  m_TagString: Respawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &771658930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771658929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18082b2c1bd8a604abd967c47ff34380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &771658931
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771658929}
-  m_LocalRotation: {x: -0, y: -0.999884, z: -0, w: -0.015234152}
-  m_LocalPosition: {x: -1.0571598, y: 0.468, z: -1.4952635}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: -181.746, z: 0}
 --- !u!1 &784040860
 GameObject:
   m_ObjectHideFlags: 0
