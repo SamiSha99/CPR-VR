@@ -38,6 +38,7 @@ public class PlayerLookAtObject : MonoBehaviour
         else if(lr != null)        
             Destroy(lr);
         
+        //to-do: hit should be end coordinates!!!
         if(Physics.Raycast(camPos, camDir, out hit, lookRange) && IsHitValid(hit))
         {
             // what we previously were looking at
