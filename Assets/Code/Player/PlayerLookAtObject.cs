@@ -21,22 +21,6 @@ public class PlayerLookAtObject : MonoBehaviour
         Transform camTrans = _camera.transform;
         Vector3 camPos = _camera.transform.position + Vector3.down * 0.075f, camDir = _camera.transform.forward;
         RaycastHit hit;
-        if(showHelpLine)
-        {
-            if(lr == null)
-            {
-                lr = Instantiate(lineRendererGameObject).GetComponent<LineRenderer>();
-                lr.startColor = Color.red;
-                lr.endColor = Color.red;
-                lr.startWidth = 0.01f;
-                lr.endWidth = 0.015f;
-            }
-
-            lr.SetPosition(0, camPos);
-            lr.SetPosition(1, camPos + camDir * lookRange);
-        }
-        else if(lr != null)        
-            Destroy(lr);
         
         //to-do: hit should be end coordinates!!!
         if(Physics.Raycast(camPos, camDir, out hit, lookRange) && IsHitValid(hit))
@@ -54,6 +38,23 @@ public class PlayerLookAtObject : MonoBehaviour
                 xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, true);
             }
         }
+
+        if(showHelpLine)
+        {
+            if(lr == null)
+            {
+                lr = Instantiate(lineRendererGameObject).GetComponent<LineRenderer>();
+                lr.startColor = Color.red;
+                lr.endColor = Color.red;
+                lr.startWidth = 0.01f;
+                lr.endWidth = 0.015f;
+            }
+
+            lr.SetPosition(0, camPos);
+            lr.SetPosition(1, hit.collider == null || hit.collider.gameObject ? (camPos + camDir * lookRange) : hit.point);
+        }
+        else if(lr != null)        
+            Destroy(lr);
     
     }
 

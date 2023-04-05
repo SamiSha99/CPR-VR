@@ -17,7 +17,7 @@ public class LookinAtObject : Quest.QuestGoal
     }
     private void OnLookAtObjectRecieved(GameObject o, GameObject instigator, bool lookingAt, float focusTime)
     {
-        if (objectiveNameList.Count > 0 && !objectiveNameList.Contains(o.GetRoot().name))
+        if (objectiveNameList.Count > 0 && !objectiveNameList.Contains(o.name))
         {
             SetLookColor(Color.red);
             return;

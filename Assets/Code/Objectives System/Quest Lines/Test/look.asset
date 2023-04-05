@@ -42,4 +42,4 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   index: 0
-  lookRange: 1
+  lookRange: 3
