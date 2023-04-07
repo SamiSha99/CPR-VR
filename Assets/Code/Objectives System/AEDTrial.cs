@@ -24,7 +24,6 @@ public class AEDTrial : MonoBehaviour
 
     void OnAllPatchesApplied()
     {
-        appliedPatches = 0;
         AudioSource.PlayClipAtPoint(analyzingNow, transform.position);
         QuestManager._Instance.ToggleTimer(false);
         Util.Invoke(this, () => BeepBeep(), 1.5f);
