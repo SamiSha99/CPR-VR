@@ -6,6 +6,8 @@ public class LookinAtObject : Quest.QuestGoal
 {   
     public float lookRange = 5;
     private PlayerLookAtObject lookScript;
+    [Tooltip("Will uncomplete if stop looking")]
+    public bool shouldMaintainLooking;
     public override void Initialize()
     {
         base.Initialize();
@@ -17,15 +19,16 @@ public class LookinAtObject : Quest.QuestGoal
     }
     private void OnLookAtObjectRecieved(GameObject o, GameObject instigator, bool lookingAt, float focusTime)
     {
-        if (objectiveNameList.Count > 0 && !objectiveNameList.Contains(o.name))
+        if(!IsValidToEvaluate(o.name))
         {
             SetLookColor(Color.red);
             return;
         }
         SetLookColor(Color.green);
-        if(!lookingAt) return;
-        currentAmount = focusTime;
-        Evaluate();
+        if (!lookingAt) currentAmount = 0;
+        else
+            currentAmount = focusTime;
+        Evaluate(!shouldMaintainLooking);
     }
     public override void QuestGoalUpdate()
     {

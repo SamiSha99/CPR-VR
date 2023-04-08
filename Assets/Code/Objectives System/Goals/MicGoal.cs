@@ -19,7 +19,8 @@ public class MicGoal : Quest.QuestGoal
     }
     private void OnTalkingRecieved(GameObject o, GameObject instigator, float talkAmount)
     {
-        if (objectiveNameList.Count > 0 && !objectiveNameList.Contains(o.name)) return;
+        if (!IsValidToEvaluate(o.name)) return;
+        
         talkAmount *= micSensitivityMultiplier;
         currentAmount += talkAmount;
         Evaluate();

@@ -58,7 +58,7 @@ public class ChestCompressionTrial : MonoBehaviour
         {
             _GraphScript.OnCompressionRecieved();
             _CompressionPressed = true;
-            timeTillDepthCalc = 0.2f;
+            timeTillDepthCalc = 0.15f;
             AudioSource.PlayClipAtPoint(_CompressionSound, transform.position, 3.0f);
         }
         else if(currentCompressionAmount >= 0.7f && _CompressionPressed)
@@ -71,12 +71,8 @@ public class ChestCompressionTrial : MonoBehaviour
         if(_CompressionPressed && timeTillDepthCalc <= 0)
         {
             timeTillDepthCalc = Mathf.Infinity;
-            float inches = Mathf.Lerp(1.0f, 3.0f, 1 - currentCompressionAmount/0.4f);
-            if(SettingsUtility.ShouldUseCentimeter())
-                inches *= Util.INCH_TO_CENTIMETER;
-            float rounded = Mathf.Round(inches);
-            Util.Print<ChestCompressionTrial>(""+rounded);
-            _GraphScript.OnCompressionDepthRecived(rounded);
+            float inches = Mathf.Lerp(1.0f, 2.5f, 1 - currentCompressionAmount/0.3f);
+            _GraphScript.OnCompressionDepthRecived(inches);
         }
 
         SetChestCompression(ccValue);

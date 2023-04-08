@@ -50,7 +50,7 @@ public class Quest : ScriptableObject
         public float currentAmount { get; protected set; }
         [Tooltip("The amount of times required to finish this goal to be \"Completed\".")]
         public float requiredAmount = 1;
-        public List<Quest.QuestGoal> requiredGoals;
+        public List<QuestGoal> requiredGoals;
         [Tooltip("Quest Canvas will showcase based on what we've selected for the UI type.\n\nGUIT_Default = \"1/10\"\nGUIT_Checkbox = Empty box with a checkmark on completion\nGUIT_ProgressBar = A fill in progress bar")]
         public GoalUIType _GoalUIType;
         [Tooltip("On Goal Completetion run this command, where \"THIS + _Goal_Complete\"")]
@@ -59,6 +59,8 @@ public class Quest : ScriptableObject
         [Tooltip("Contains list of \"names\" for allowed GameObjects.")]
         [SerializeField] [NonReorderable]
         public List<string> objectiveNameList;
+        [Tooltip("Don't play checkmark on completion")]
+        public bool silent;
         [HideInInspector] public UnityEvent goalCompleted;
         // Quest related to this goal
         private Quest quest;
@@ -101,17 +103,13 @@ public class Quest : ScriptableObject
         public virtual void QuestGoalUpdate() {}
         public bool IsValidToEvaluate(string objectname)
         {
-            if(!RequiresQuestGoalsCompleted()) return false;
+            if(RequiresQuestGoalsCompleted()) return false;
             if(objectiveNameList.Count > 0 && !objectiveNameList.Contains(objectname)) return false;
             return true;
         }
         public bool RequiresQuestGoalsCompleted()
         {
-            if(requiredGoals.Count == 0) return true;
-            
-            
-
-            return false;
+            return requiredGoals.Count > 0 & !requiredGoals.All(x => x.completed);
         }
 
     }
@@ -160,7 +158,7 @@ public class Quest : ScriptableObject
     }
     public void QuestUpdate() 
     {
-        if(goals.Count > 0) foreach (Quest.QuestGoal g in goals) g.QuestGoalUpdate();
+        if(goals.Count > 0) foreach (QuestGoal g in goals) g.QuestGoalUpdate();
     }
 }
 

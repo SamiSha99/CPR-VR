@@ -148,7 +148,9 @@ public class LiveLineDrawer : MonoBehaviour
     void SetCompressionDepthText(float amount)
     {
         if(_CompressionDepthText == null) return;
-        _CompressionDepthText.text = $"{amount}" + " inch";
+        bool useCentimeter = SettingsUtility.ShouldUseCentimeter();
+        if (useCentimeter) amount *= Util.INCH_TO_CENTIMETER;
+        _CompressionDepthText.text = $"{Mathf.Round(amount)}" + (useCentimeter ? "cm" : " inch");
     }
     // 0 implies that we haven't done our first compression, this happens when _UILineRendererPlayer graph hits bottom as 0 value
     public bool PlayerStartedCompressing() { return compressionAmount != 0; }

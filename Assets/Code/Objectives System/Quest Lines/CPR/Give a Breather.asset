@@ -20,6 +20,7 @@ MonoBehaviour:
   nextQuest: {fileID: 0}
   goals:
   - {fileID: 4364619845936578827}
+  - {fileID: 5407467553397990167}
 --- !u!114 &4364619845936578827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,15 +33,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b958567f610054fbb5d23d214915d1, type: 3}
   m_Name: LookinAtObject
   m_EditorClassIdentifier: 
-  description: 
-  requiredAmount: 1
+  description: Face the patient mouth
+  requiredAmount: 0.25
   requiredGoals: []
   _GoalUIType: 1
   goalCompletedCommand: ???
   objectiveNameList:
-  - 
+  - Mouth Collider
+  silent: 1
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
   index: 0
-  lookRange: 5
+  lookRange: 0.65
+  shouldMaintainLooking: 1
+--- !u!114 &5407467553397990167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee8aabf0e96702479fb5d1b587811d8, type: 3}
+  m_Name: MicGoal
+  m_EditorClassIdentifier: 
+  description: Give a breather
+  requiredAmount: 10
+  requiredGoals:
+  - {fileID: 4364619845936578827}
+  _GoalUIType: 2
+  goalCompletedCommand: ???
+  objectiveNameList: []
+  silent: 0
+  goalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  index: 1
+  micDecayAmount: 0
+  micSensitivityMultiplier: 1.5
