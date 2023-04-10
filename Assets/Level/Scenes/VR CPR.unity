@@ -2136,6 +2136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f510bc826003d34fa9871c537353352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chest: {fileID: 1435813228}
+  chestRiseAmount: 0
   facingMouth: 0
   lastTalk: 0
   incorrectSecondBreathInterval: 0
@@ -5803,6 +5805,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1439316496882051138, guid: 9d9f0464e931ebd48bf01c0ef3c09ba2,
     type: 3}
   m_PrefabInstance: {fileID: 514521045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1435813228 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5434710591100203659, guid: 02ae6fd292718d34a8991eaff0fc4cd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2805325292611377522}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1459385156
 PrefabInstance:
