@@ -11,6 +11,7 @@ public class PlayerLookAtObject : MonoBehaviour
     public bool showHelpLine;
     private LineRenderer lr;
     public float focusTime = 0, lookRange = DEFAULT_LOOK_RANGE;
+    private bool isLookingAtObject;
     [SerializeField] private LineRenderer lineRendererGameObject;
 
     public const float DEFAULT_LOOK_RANGE = 50;
@@ -20,23 +21,29 @@ public class PlayerLookAtObject : MonoBehaviour
     {
         Transform camTrans = _camera.transform;
         Vector3 camPos = _camera.transform.position + Vector3.down * 0.075f, camDir = _camera.transform.forward;
-        RaycastHit hit;
-        
-        //to-do: hit should be end coordinates!!!
-        if(Physics.Raycast(camPos, camDir, out hit, lookRange) && IsHitValid(hit))
+        RaycastHit[] hits = Physics.RaycastAll(camPos, camDir, lookRange, ~LayerMask.GetMask("Player", "Controller"));
+
+        if(hits.Length <= 0)
         {
+            if(isLookingAtObject)
+            {
+                Util.Print<PlayerLookAtObject>("Looking: " + isLookingAtObject + " | object: " + lookingAtObject);
+                xrEvents.ProcessLookAtEvent(null, transform.gameObject, false);
+                lookingAtObject = null;
+                isLookingAtObject = false;
+            }
+        }
+        else foreach(RaycastHit h in hits)
+        {
+            if(!IsHitValid(h)) continue;
             // what we previously were looking at
             // avoid first unlook as "null" 
-            if(lookingAtObject != null)
-            {
-                xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, false);
-            }
-            lookingAtObject = hit.collider.gameObject;
+            if(lookingAtObject != null) xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, false);
+            lookingAtObject = h.collider.gameObject;
             // what we are looking at
-            if(lookingAtObject != null)
-            {
-                xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, true);
-            }
+            if(lookingAtObject != null) xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, true);
+            isLookingAtObject = true;
+            break;
         }
 
         if(showHelpLine)
@@ -46,12 +53,13 @@ public class PlayerLookAtObject : MonoBehaviour
                 lr = Instantiate(lineRendererGameObject).GetComponent<LineRenderer>();
                 lr.startColor = Color.red;
                 lr.endColor = Color.red;
-                lr.startWidth = 0.01f;
+                lr.startWidth = 0.015f;
                 lr.endWidth = 0.015f;
+                lr.alignment = LineAlignment.View;
             }
 
             lr.SetPosition(0, camPos);
-            lr.SetPosition(1, hit.collider == null || hit.collider.gameObject ? (camPos + camDir * lookRange) : hit.point);
+            lr.SetPosition(1, camPos + camDir * lookRange);
         }
         else if(lr != null)        
             Destroy(lr);
@@ -62,9 +70,11 @@ public class PlayerLookAtObject : MonoBehaviour
     {
         if(hit.collider == null) return false;
         if(hit.collider.gameObject == null) return false;
-        
+        // looking at yourself?
+        if(hit.transform.root == transform.root) return false;
+
         GameObject go = hit.collider.gameObject;
-        
+
         // We are already looking at it, no need to consider it again.
         // Assume focus
         if(go == lookingAtObject)
