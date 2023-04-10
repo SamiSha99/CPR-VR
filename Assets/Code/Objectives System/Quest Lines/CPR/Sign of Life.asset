@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Tap the patient's left shoulder.
   requiredAmount: 4
+  requiredGoals: []
   _GoalUIType: 0
   goalCompletedCommand: Tap_Shoulder_Left
   objectiveNameList:
   - LeftArm
+  silent: 0
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
@@ -38,10 +40,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Tap the patient's right shoulder.
   requiredAmount: 4
+  requiredGoals: []
   _GoalUIType: 0
   goalCompletedCommand: Tap_Shoulder_Right
   objectiveNameList:
   - RightArm
+  silent: 0
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
@@ -85,12 +89,14 @@ MonoBehaviour:
   description: Ask repeatedly:<br><br><space=2em>"Are you alright?".<br><space=2em>"Can
     you hear me?".
   requiredAmount: 15
+  requiredGoals: []
   _GoalUIType: 2
   goalCompletedCommand: Are_You_Alright
   objectiveNameList: []
+  silent: 0
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
   index: 2
   micDecayAmount: 1.5
-  micSensitivityMultiplier: 2
+  micSensitivityMultiplier: 1.5
