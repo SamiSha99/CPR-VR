@@ -31,7 +31,7 @@ public static class Util
     // Consts //
     //########//
 
-    public const float MICROPHONE_LOUDNESS_THRESHOLD = 0.075f;
+    public const float MICROPHONE_LOUDNESS_THRESHOLD = 0.04f;
     public const int MICROPHONE_LOUDNESS_MULTIPLIER = 100;
     public const string MICROPHONE_OCULUS_NAME = "Headset Microphone (Oculus Virtual Audio Device)";
 
