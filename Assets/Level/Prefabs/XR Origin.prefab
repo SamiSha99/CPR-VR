@@ -2353,6 +2353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugging: 0
+  isTalking: 0
 --- !u!114 &2813000695804507361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2387,7 +2388,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 2813000696016401094}
   xrEvents: {fileID: 6204075408982551716}
-  _Debugging: 0
+  showHelpLine: 0
+  focusTime: 0
+  lookRange: 50
   lineRendererGameObject: {fileID: 7388031509279900289, guid: 9e1a4940e3902b947a457154c029a216,
     type: 3}
 --- !u!1 &2813000696651412028

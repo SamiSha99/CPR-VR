@@ -2058,7 +2058,9 @@ GameObject:
   m_Component:
   - component: {fileID: 491520487}
   - component: {fileID: 491520486}
-  m_Layer: 0
+  - component: {fileID: 491520489}
+  - component: {fileID: 491520488}
+  m_Layer: 9
   m_Name: Mouth Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2086,13 +2088,60 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491520485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6999, y: 0.6226, z: -1.9497}
-  m_LocalScale: {x: 0.050745603, y: 0.023953741, z: 0.04176273}
+  m_LocalPosition: {x: -1.6998, y: 0.6111, z: -1.9442}
+  m_LocalScale: {x: 0.067523085, y: 0.05216204, z: 0.06531388}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &491520488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491520485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec89aa3c376c0f45a010082fa6b35f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2f2823b2633d1bc44b04d51728707996, type: 2}
+  command: Face_Mouth_Goal_Complete
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 491520489}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &491520489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491520485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f510bc826003d34fa9871c537353352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingMouth: 0
+  lastTalk: 0
+  incorrectSecondBreathInterval: 0
+  talkDuration: 0
+  notalkDuration: 0
+  breathesGive: 0
 --- !u!1 &493250389 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3586630497097109387, guid: 4fedbc191226c1146a147611e5fc67ac,
