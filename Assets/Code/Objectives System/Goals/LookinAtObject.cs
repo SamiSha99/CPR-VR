@@ -19,8 +19,9 @@ public class LookinAtObject : Quest.QuestGoal
     }
     private void OnLookAtObjectRecieved(GameObject o, GameObject instigator, bool lookingAt, float focusTime)
     {
-        if(!IsValidToEvaluate(o.name))
+        if(o == null || !IsValidToEvaluate(o.name))
         {
+            currentAmount = 0;
             SetLookColor(Color.red);
             return;
         }
