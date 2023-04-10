@@ -194,12 +194,23 @@ public class QuestManager : MonoBehaviour
     {
         return QuestManager.activeQuest != null;
     }
+
+    public bool IsQuestGoalCompleted(string goal_complete_command)
+    {
+        foreach(Quest.QuestGoal g in activeQuest.goals)
+        {
+            if(g.goalCompletedCommand != goal_complete_command) continue;
+            return g.completed;
+        }
+        return false;
+    }
+
     public bool IsQuestType(string questTitle)
     {
         return IsQuestActive() && activeQuest.information.name == questTitle;
     }
     public void ForceUpdateGoal(Quest.QuestGoal g) => OnUpdateGoalProgress(g);
-    
+
     public void ToggleTimer(bool _enabled) => isQuestTimePaused = !_enabled;
     
     private void Print(string s)
