@@ -13,12 +13,12 @@ public class GameManager : MonoBehaviour
     public bool isExam;
     public bool completed;
     [Tooltip("The exam's content step by step, each step is evaulated.")]
-    public List<Quest> _ExamQuestsLine; // We do this step by step to examinate how fast/slow and effecient the player is and we add score
+    public List<Object> _ExamQuestsLine; // We do this step by step to examinate how fast/slow and effecient the player is and we add score
     [Tooltip("These tasks are repeated continuously X times, depeding on Repeatable Amount, also evaulated")]
-    public List<Quest> _RepeatableQuestLine;
+    public List<Object> _RepeatableQuestLine;
     [Min(1)]
     public int _RepeatableAmount = 1;
-    private List<Quest> default_ExamQuestsLine;
+    private List<Object> default_ExamQuestsLine;
     public float score, maxScore;
     public GameEventCommand OnModuleProgressed;
 
@@ -31,11 +31,12 @@ public class GameManager : MonoBehaviour
         isExam = SettingsUtility.IsChecked(nameof(isExam), false);
 
         default_TutotrialQuestsLine = new List<Object>(_TutorialQuestsLine);
-        default_ExamQuestsLine = new List<Quest>(_ExamQuestsLine);
+        default_ExamQuestsLine = new List<Object>(_ExamQuestsLine);
         _RepeatableAmount = Mathf.Max(1, _RepeatableAmount);
 
         if(isExam)
         {
+            score = maxScore;
             BuildExam();
             InstigateNextExamObject();
         }
@@ -76,7 +77,20 @@ public class GameManager : MonoBehaviour
     public void InstigateNextExamObject()
     {
         if(OnGameComplete()) return;
-        
+        switch(_ExamQuestsLine[0])
+        {
+            case Quest q:
+                QuestManager._Instance.BeginQuest(q);
+                OnModuleProgressed.TriggerEvent(q.questCommand + TUTORIAL_EVENT);
+                break;
+            case AudioClip ac:
+                GameObject head = Util.GetPlayer().GetPlayerCameraObject();
+                Util.PlayClipAt(ac, head.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 1.0f), head);
+                Util.Invoke(this, () => InstigateNextTutorialObject(), ac.length + 0.25f);
+                OnModuleProgressed.TriggerEvent(ac.name + TUTORIAL_EVENT);
+                break;
+        }
+        _ExamQuestsLine.RemoveAt(0);
     }
 
     public bool IsComplete()
@@ -99,6 +113,26 @@ public class GameManager : MonoBehaviour
         // Animation
         // Then leave in 10 seconds?
         return true;
+    }
+
+    const int REDUCE_AFTER_SECONDS = 3;
+
+    public void AdjustScore(float timeTaken, float averageTime, float accumulatedPenalties = 0)
+    {
+        if(timeTaken > averageTime)
+            accumulatedPenalties += GetTimePenalty(timeTaken, averageTime);
+        
+        score = Mathf.Clamp(score - accumulatedPenalties, 0, maxScore);
+        Util.Print("CURRENT SCORE: " + score + " | Lost:" + accumulatedPenalties);
+    }
+
+    private int GetTimePenalty(float timeTaken, float averageTime)
+    {
+        timeTaken -= timeTaken % REDUCE_AFTER_SECONDS; // remove leftovers
+        timeTaken -= averageTime;
+        timeTaken /= REDUCE_AFTER_SECONDS;
+        timeTaken = Mathf.Clamp(timeTaken, 0, 10); // After 30 seconds, lose 10 points only
+        return (int)timeTaken;
     }
 
     public bool IsPaused()
