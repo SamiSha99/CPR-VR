@@ -40,7 +40,7 @@ MonoBehaviour:
   information:
     name: Give a Breather
     description: Face the Patient's Mouth
-  averageTime: 8
+  averageTime: 5
   questCommand: ???
   nextQuest: {fileID: 0}
   goals:
@@ -70,5 +70,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   index: 0
-  lookRange: 0.5
+  lookRange: 0.75
   shouldMaintainLooking: 1
