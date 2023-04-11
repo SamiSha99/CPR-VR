@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -45,10 +46,11 @@ public static class Util
     //#######//
     
     // Print function with "typeof" being passed, helps with debug reasons in which a specified class name will pin point where this was called
-    public static void Print<T>(this T _class, string msg) => Debug.Log("[" + _class.ToString().ToUpper() +"] | " + msg);
+    public static void Print<T>(this T _class,  string msg) => Debug.Log("[" + _class.ToString().ToUpper() +"] | " + msg);
+    public static void Print(string msg, [CallerMemberName] string _class = null) => Debug.Log("[" + _class.ToUpper() +"] | " + msg);
     public static void Print<T>(string msg) where T : UnityEngine.Object => Debug.Log("[" + typeof(T).ToString().ToUpper() +"] | " + msg);
     // Print with tagging
-    public static void Print(string tag, string msg) => Debug.Log("[" + tag + "] " + msg);
+    //public static void Print(string tag, string msg) => Debug.Log("[" + tag + "] " + msg);
 
     //############//
     // Extensions //
@@ -199,15 +201,15 @@ public static class Util
     {
         if(Microphone.devices.Length <= 0)
         {
-            Print("Microphone", "No microphone devices located, add a microphone device!");
+            //Print("Microphone", "No microphone devices located, add a microphone device!");
             return null;
         }
         string microphoneName = Microphone.devices[index];
         AudioClip microphoneClip = Microphone.Start(microphoneName, true, 10, AudioSettings.outputSampleRate);
-        if(microphoneClip == null)
-        {
-            Print("Microphone", "Unable to start microphone recording");
-        }
+        //if(microphoneClip == null)
+        //{
+        //    //Print("Microphone", "Unable to start microphone recording");
+        //}
         return microphoneClip;
     }
     public static AudioClip MicrophoneToAudioClipByDeviceName(string deviceName)
