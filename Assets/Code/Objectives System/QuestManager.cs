@@ -111,7 +111,7 @@ public class QuestManager : MonoBehaviour
         gm.AdjustScore(questCurrentTime, q.averageTime, accumulatedScorePenalty);
         accumulatedScorePenalty = 0;
 
-        Util.Invoke(this, () => OnPostQuestComplete(q), GameManager._Instance.isExam ? 1.25f : 3.0f);
+        Util.Invoke(this, () => OnPostQuestComplete(q), GameManager._Instance.isExam ? 0.5f : 3.0f);
     }
     private void OnPostQuestComplete(Quest q)
     {
