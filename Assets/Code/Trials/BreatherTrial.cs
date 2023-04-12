@@ -18,7 +18,7 @@ public class BreatherTrial : MonoBehaviour
 
     void OnEnable()
     {
-        Util.GetXREvents().EnableMicRecording();
+        //Util.GetXREvents().EnableMicRecording();
     }
 
     void Start()
@@ -32,9 +32,14 @@ public class BreatherTrial : MonoBehaviour
         QuestManager qm = QuestManager._Instance;
         facingMouth = qm.IsQuestGoalCompleted("Face_Mouth");
         XREvents xrEvent = Util.GetXREvents();
+        
+        if(facingMouth && !complete)
+        {
+            xrEvent.EnableMicRecording();
+        }
 
         Vector3 scale = chest.transform.localScale;
-        scale.z = Mathf.Clamp(scale.z + (xrEvent.isTalking ? Time.deltaTime : -Time.deltaTime), 1.0f, 1.0f + chestRiseAmount);
+        scale.z = Mathf.Clamp(scale.z + (!complete && xrEvent.isTalking ? Time.deltaTime : -Time.deltaTime), 1.0f, 1.0f + chestRiseAmount);
         chest.transform.localScale = scale;
 
         if(complete) return;
@@ -55,6 +60,7 @@ public class BreatherTrial : MonoBehaviour
                 if(breathesGive >= 2)
                 {
                     complete = true;
+                    Util.GetXREvents().DisableMicRecording();
                     qm.CompleteCommandGoal("Give_Two_Breaths_Goal_Command");
                     Util.Invoke(this, () => CleanUp(), 1.0f);
                 }

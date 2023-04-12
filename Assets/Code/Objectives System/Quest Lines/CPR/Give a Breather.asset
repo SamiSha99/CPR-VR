@@ -41,7 +41,7 @@ MonoBehaviour:
     name: Give a Breather
     description: Face the Patient's Mouth
   averageTime: 5
-  questCommand: ???
+  questCommand: Give_2_Airflows
   nextQuest: {fileID: 0}
   goals:
   - {fileID: 4364619845936578827}

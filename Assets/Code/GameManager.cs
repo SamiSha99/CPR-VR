@@ -76,20 +76,23 @@ public class GameManager : MonoBehaviour
 
     public void InstigateNextExamObject()
     {
+        string command = "";
         if(OnGameComplete()) return;
         switch(_ExamQuestsLine[0])
         {
             case Quest q:
                 QuestManager._Instance.BeginQuest(q);
-                OnModuleProgressed.TriggerEvent(q.questCommand + TUTORIAL_EVENT);
+                command = q.questCommand;
                 break;
             case AudioClip ac:
                 GameObject head = Util.GetPlayer().GetPlayerCameraObject();
                 Util.PlayClipAt(ac, head.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 1.0f), head);
                 Util.Invoke(this, () => InstigateNextTutorialObject(), ac.length + 0.25f);
-                OnModuleProgressed.TriggerEvent(ac.name + TUTORIAL_EVENT);
+                command = ac.name;
                 break;
         }
+        OnModuleProgressed.TriggerEvent(command + EXAM_EVENT);
+        OnModuleProgressed.TriggerEvent(command);
         _ExamQuestsLine.RemoveAt(0);
     }
 
@@ -106,13 +109,19 @@ public class GameManager : MonoBehaviour
         if(isExam && _ExamQuestsLine.Count > 0) return false;
         if(!isExam && _TutorialQuestsLine.Count > 0) return false;
         completed = true;
-        Util.Invoke(this, () => Util.LoadMenu(), 5.0f);
-        
-        // TO-DO
-        // Show Score
-        // Animation
-        // Then leave in 10 seconds?
+
+        if(isExam)
+        {
+            ShowFinalScore();
+        }
+
+        Util.Invoke(this, () => Util.LoadMenu(), 10.0f);
         return true;
+    }
+
+    private void ShowFinalScore()
+    {
+        
     }
 
     const int REDUCE_AFTER_SECONDS = 3;

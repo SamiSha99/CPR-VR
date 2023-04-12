@@ -26,7 +26,7 @@ public class Quest : ScriptableObject
     };
 
     public Info information;
-    [Tooltip("The expected time for this quest to be finished, each second missed beyond this time will remove points up to 10 after 20 seconds!")]
+    [Tooltip("The expected time for this quest to be finished, each second missed beyond this time will remove points up to 10 after 30 seconds!")]
     public float averageTime;
     [Tooltip("Command listeners will recieve this command on different quest states using \"THIS + _CommandName\".\nCommand types:\n_Begin\n_Complete")]
     public string questCommand = "???";
@@ -50,7 +50,6 @@ public class Quest : ScriptableObject
         public float currentAmount { get; protected set; }
         [Tooltip("The amount of times required to finish this goal to be \"Completed\".")]
         public float requiredAmount = 1;
-        public List<QuestGoal> requiredGoals;
         [Tooltip("Quest Canvas will showcase based on what we've selected for the UI type.\n\nGUIT_Default = \"1/10\"\nGUIT_Checkbox = Empty box with a checkmark on completion\nGUIT_ProgressBar = A fill in progress bar")]
         public GoalUIType _GoalUIType;
         [Tooltip("On Goal Completetion run this command, where \"THIS + _Goal_Complete\"")]
@@ -59,6 +58,9 @@ public class Quest : ScriptableObject
         [Tooltip("Contains list of \"names\" for allowed GameObjects.")]
         [SerializeField] [NonReorderable]
         public List<string> objectiveNameList;
+        [Tooltip("A reference to goals found in this quest, this quest goal will NOT progress at all unless these QuestGoal(s) are completed.")]
+        [NonReorderable]
+        public List<QuestGoal> requiredGoals;
         [Tooltip("Don't play checkmark on completion")]
         public bool silent;
         [HideInInspector] public UnityEvent goalCompleted;

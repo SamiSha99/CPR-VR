@@ -245,7 +245,7 @@ public static class Util
     // Math //
     //######//
 
-    // Calculates disance in 2D without height
+    // Calculates distance in 2D without height (Y value)
     public static float Vector3_Distance2D(Vector3 a, Vector3 b)
     {
         return Vector3.Distance(Vector3.Scale(a, new Vector3(1,0,1)), Vector3.Scale(b, new Vector3(1, 0, 1)));

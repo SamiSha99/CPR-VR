@@ -104,13 +104,14 @@ public class QuestManager : MonoBehaviour
     {
         Print("[QUEST COMPLETED] => \"" + q.information.name + "\"");
         onQuestCompleted?.TriggerEvent(q.questCommand + Quest.QUEST_COMPLETE_COMMAND);
-        AudioSource.PlayClipAtPoint(writingSound, transform.position);
+        if(!GameManager._Instance.isExam)
+            AudioSource.PlayClipAtPoint(writingSound, transform.position);
         
         GameManager gm = GameManager._Instance;
         gm.AdjustScore(questCurrentTime, q.averageTime, accumulatedScorePenalty);
         accumulatedScorePenalty = 0;
 
-        Util.Invoke(this, () => OnPostQuestComplete(q), 3.0f);
+        Util.Invoke(this, () => OnPostQuestComplete(q), GameManager._Instance.isExam ? 1.25f : 3.0f);
     }
     private void OnPostQuestComplete(Quest q)
     {
@@ -207,6 +208,7 @@ public class QuestManager : MonoBehaviour
 
         foreach(Quest.QuestGoal g in activeQuest.goals)
         {
+            if(g.goalCompletedCommand == "???") continue; // not even set!!!!
             if(g.goalCompletedCommand != goal_complete_command) continue;
             return g.completed;
         }

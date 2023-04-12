@@ -346,6 +346,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e12f80178b8d6e47a7b602b9e2f58fb, type: 3}
+--- !u!1 &85320937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 85320938}
+  - component: {fileID: 85320939}
+  m_Layer: 0
+  m_Name: Components
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &85320938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85320937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 670365304}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &85320939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85320937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470c564e5924778439756c57bf009179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 0}
+  atObject: {fileID: 1546064119}
+  setObjectAsParent: 1
+  volume: 1
+  activeAudioSource: {fileID: 0}
 --- !u!1001 &128133825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2761,7 +2810,8 @@ GameObject:
   - component: {fileID: 670365304}
   - component: {fileID: 670365307}
   - component: {fileID: 670365306}
-  - component: {fileID: 670365305}
+  - component: {fileID: 670365308}
+  - component: {fileID: 670365309}
   m_Layer: 0
   m_Name: Game Event Listeners
   m_TagString: Untagged
@@ -2780,27 +2830,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 85320938}
   m_Father: {fileID: 707897301}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &670365305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 670365303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 470c564e5924778439756c57bf009179, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 17f6018a40a9ab94aaf142013f01c25f, type: 3}
-  atObject: {fileID: 1546064119}
-  setObjectAsParent: 1
-  volume: 1
-  activeAudioSource: {fileID: 0}
 --- !u!114 &670365306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2814,17 +2848,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
-  command: CPR_Tutorial
+  command: CPR
   onEventTriggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 670365305}
+      - m_Target: {fileID: 85320939}
         m_TargetAssemblyTypeName: PlayAudioAtLocation, Assembly-CSharp
         m_MethodName: TriggerAudio
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8300000, guid: 17f6018a40a9ab94aaf142013f01c25f,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2843,7 +2878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
-  command: scene_safety_Tutorial
+  command: scene_safety
   onEventTriggered:
     m_PersistentCalls:
       m_Calls:
@@ -2858,6 +2893,66 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &670365308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670365303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec89aa3c376c0f45a010082fa6b35f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
+  command: Give_2_Airflows
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 85320939}
+        m_TargetAssemblyTypeName: PlayAudioAtLocation, Assembly-CSharp
+        m_MethodName: TriggerAudio
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 288cabcd7f5c16d439f066df9703459d,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &670365309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670365303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec89aa3c376c0f45a010082fa6b35f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
+  command: AED_Quest
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 85320939}
+        m_TargetAssemblyTypeName: PlayAudioAtLocation, Assembly-CSharp
+        m_MethodName: TriggerAudio
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: f465c51e4835e114f82bb6d82c66fc8d,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1001 &693707951
 PrefabInstance:
@@ -9111,6 +9206,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1232567376938140626, guid: a1ae4dea341e9154981d9ee275f542ac,
+        type: 3}
+      propertyPath: _hidden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1524854973362611219, guid: a1ae4dea341e9154981d9ee275f542ac,
         type: 3}
       propertyPath: m_Name
@@ -9640,6 +9740,11 @@ PrefabInstance:
       propertyPath: chest
       value: 
       objectReference: {fileID: 1435813228}
+    - target: {fileID: 7073100671148494688, guid: 02ae6fd292718d34a8991eaff0fc4cd3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7073100671148494688, guid: 02ae6fd292718d34a8991eaff0fc4cd3,
         type: 3}
       propertyPath: chestRiseAmount
