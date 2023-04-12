@@ -51,21 +51,24 @@ public class GameManager : MonoBehaviour
 
     public void InstigateNextTutorialObject()
     {
+        string command = "";
         if(OnGameComplete()) return;
         
         switch(_TutorialQuestsLine[0])
         {
             case Quest q:
                 QuestManager._Instance.BeginQuest(q);
-                OnModuleProgressed.TriggerEvent(q.questCommand + TUTORIAL_EVENT);
+                command = q.questCommand;
                 break;
             case AudioClip ac:
                 GameObject head = Util.GetPlayer().GetPlayerCameraObject();
                 Util.PlayClipAt(ac, head.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 1.0f), head);
                 Util.Invoke(this, () => InstigateNextTutorialObject(), ac.length + 0.25f);
-                OnModuleProgressed.TriggerEvent(ac.name + TUTORIAL_EVENT);
+                command = ac.name;
                 break;
         }
+        OnModuleProgressed.TriggerEvent(command + TUTORIAL_EVENT);
+        OnModuleProgressed.TriggerEvent(command);
         _TutorialQuestsLine.RemoveAt(0);
     }
 
