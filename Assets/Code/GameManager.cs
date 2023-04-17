@@ -36,12 +36,16 @@ public class GameManager : MonoBehaviour
 
         if(isExam)
         {
+            if(default_ExamQuestsLine.Count <= 0) return;
             score = maxScore;
             BuildExam();
             InstigateNextExamObject();
         }
         else
+        {
+            if(default_TutotrialQuestsLine.Count <= 0) return;
             InstigateNextTutorialObject();
+        }
     }
 
     void Update()
@@ -135,7 +139,7 @@ public class GameManager : MonoBehaviour
             accumulatedPenalties += GetTimePenalty(timeTaken, averageTime);
         
         score = Mathf.Clamp(score - accumulatedPenalties, 0, maxScore);
-        Util.Print("CURRENT SCORE: " + score + " | Lost:" + accumulatedPenalties);
+        //Util.Print("CURRENT SCORE: " + score + " | Lost:" + accumulatedPenalties);
     }
 
     private int GetTimePenalty(float timeTaken, float averageTime)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.InputSystem;
 
 public class VideoManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class VideoManager : MonoBehaviour
     {
         videoPlayer = GetComponent<VideoPlayer>();
         videoPlayer.loopPointReached += VideoPlayer_LoopPointReached;
+        GameMenuManager.OnMenuButtonPressed += GameMenuManager_OnMenuButtonPressed;
     }
     public void Play() => videoPlayer.Play(); 
     public void Stop() => videoPlayer.Stop();
@@ -29,5 +31,13 @@ public class VideoManager : MonoBehaviour
     {
 
     }
-    
+    private void GameMenuManager_OnMenuButtonPressed(bool pause)
+    {
+        if(pause) Pause();
+        else Play();
+    }
+    void OnDestroy()
+    {
+        GameMenuManager.OnMenuButtonPressed -= GameMenuManager_OnMenuButtonPressed;
+    }
 }

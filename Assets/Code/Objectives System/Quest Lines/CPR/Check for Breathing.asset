@@ -13,17 +13,18 @@ MonoBehaviour:
   m_Name: LookinAtObject
   m_EditorClassIdentifier: 
   description: Look at the chest is it rising?<br>If no breathing, start CPR.
-  requiredAmount: 5
-  _GoalUIType: 1
+  requiredAmount: 10
+  _GoalUIType: 2
   goalCompletedCommand: ???
-  objectiveNameList: []
+  objectiveNameList:
+  - Chest Collider
   requiredGoals: []
   silent: 0
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
   index: 0
-  lookRange: 5
+  lookRange: 1.5
   shouldMaintainLooking: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -39,9 +40,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   information:
     name: Check for Breathing
-    description: 
-  averageTime: 10
-  questCommand: ???
+    description: Are they breathing?
+  averageTime: 15
+  questCommand: Check_for_breathing
   nextQuest: {fileID: 0}
   goals:
   - {fileID: -6208098437899804135}

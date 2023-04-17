@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class GameMenuManager : MonoBehaviour
 {
     public static GameMenuManager _Instance;
+    public static event Action<bool> OnMenuButtonPressed;
     public GameObject pauseMenuPrefab, pauseMenuObject;
     public InputActionProperty pauseButton;
-    public bool isPaused { get; set; }
+    public bool isPaused;
     public float previousTimeScale = -1;
 
     void Awake() => _Instance = this;    
@@ -24,6 +26,7 @@ public class GameMenuManager : MonoBehaviour
         if(pauseButton.action.WasPerformedThisFrame())
         {
             TogglePause(!isPaused);
+            OnMenuButtonPressed.Invoke(isPaused); // post toggle
         }
     }
 

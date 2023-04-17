@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class LookinAtObject : Quest.QuestGoal
 {   
+    [Tooltip("The look range needed, the line will be as tall as the specfied range.")]
     public float lookRange = 5;
     private PlayerLookAtObject lookScript;
-    [Tooltip("Will uncomplete if stop looking")]
+    [Tooltip("Set currentAmount to 0 on unfocus, will uncomplete if completed.")]
     public bool shouldMaintainLooking;
     public override void Initialize()
     {
@@ -17,18 +18,23 @@ public class LookinAtObject : Quest.QuestGoal
         lookScript.lookRange = lookRange;
         lookScript.showHelpLine = true;
     }
+    // focusTime is the continous focus!!!
     private void OnLookAtObjectRecieved(GameObject o, GameObject instigator, bool lookingAt, float focusTime)
     {
         if(o == null || !IsValidToEvaluate(o.name))
         {
-            currentAmount = 0;
+            if(shouldMaintainLooking) currentAmount = 0;
             SetLookColor(Color.red);
             return;
         }
-        SetLookColor(Color.green);
-        if (!lookingAt) currentAmount = 0;
+
+        SetLookColor(Color.green); // Target
+    
+        if(shouldMaintainLooking && !lookingAt) 
+            currentAmount = 0;
         else
-            currentAmount = focusTime;
+            currentAmount += Time.deltaTime;
+    
         Evaluate(!shouldMaintainLooking);
     }
     public override void QuestGoalUpdate()

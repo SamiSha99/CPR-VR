@@ -21,13 +21,12 @@ public class PlayerLookAtObject : MonoBehaviour
     {
         Transform camTrans = _camera.transform;
         Vector3 camPos = _camera.transform.position + Vector3.down * 0.075f, camDir = _camera.transform.forward;
-        RaycastHit[] hits = Physics.RaycastAll(camPos, camDir, lookRange, ~LayerMask.GetMask("Player", "Controller"));
+        RaycastHit[] hits = Physics.RaycastAll(camPos + camDir*lookRange, camDir*-1, lookRange, ~LayerMask.GetMask("Player", "Controller"));
 
         if(hits.Length <= 0)
         {
             if(isLookingAtObject)
             {
-                Util.Print<PlayerLookAtObject>("Looking: " + isLookingAtObject + " | object: " + lookingAtObject);
                 xrEvents.ProcessLookAtEvent(null, transform.gameObject, false);
                 lookingAtObject = null;
                 isLookingAtObject = false;
@@ -36,6 +35,15 @@ public class PlayerLookAtObject : MonoBehaviour
         else foreach(RaycastHit h in hits)
         {
             if(!IsHitValid(h)) continue;
+            
+            GameObject go = h.collider.gameObject;
+            if(go == lookingAtObject)
+            {
+                focusTime += Time.deltaTime;
+                xrEvents.ProcessLookAtEventContinous(go, transform.gameObject, true, focusTime);
+                break;
+            }
+            focusTime = 0;
             // what we previously were looking at
             // avoid first unlook as "null" 
             if(lookingAtObject != null) xrEvents.ProcessLookAtEvent(lookingAtObject, transform.gameObject, false);
@@ -72,20 +80,6 @@ public class PlayerLookAtObject : MonoBehaviour
         if(hit.collider.gameObject == null) return false;
         // looking at yourself?
         if(hit.transform.root == transform.root) return false;
-
-        GameObject go = hit.collider.gameObject;
-
-        // We are already looking at it, no need to consider it again.
-        // Assume focus
-        if(go == lookingAtObject)
-        {
-            focusTime += Time.deltaTime;
-            xrEvents.ProcessLookAtEventContinous(go, transform.gameObject, true, focusTime);
-            return false;
-        }
-
-        // New looking at target
-        focusTime = 0;
         return true;
     }
 

@@ -923,6 +923,7 @@ Transform:
   m_Children:
   - {fileID: 8220217402662198476}
   - {fileID: 2805325292957663273}
+  - {fileID: 366322191172215890}
   - {fileID: 463562831446994265}
   - {fileID: 1570879833271725640}
   - {fileID: 6356321228965464217}
@@ -1208,7 +1209,7 @@ GameObject:
   - component: {fileID: 2805325292957663279}
   - component: {fileID: 2805325292957663278}
   m_Layer: 0
-  m_Name: Chess Compression Box
+  m_Name: Chest Compression Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2043,19 +2044,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3742475076603968447}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f510bc826003d34fa9871c537353352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chest: {fileID: 0}
-  chestRiseAmount: 0
-  facingMouth: 0
-  lastTalk: 0
+  chest: {fileID: 5434710591100203659}
+  chestRiseAmount: 0.15
   incorrectSecondBreathInterval: 0
-  talkDuration: 0
-  notalkDuration: 0
-  breathesGive: 0
 --- !u!114 &7093968786680772296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2340,7 +2336,7 @@ Transform:
   m_Children:
   - {fileID: 4820654390737545307}
   m_Father: {fileID: 5352170872429387604}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4791708351526166293
 GameObject:
@@ -2660,7 +2656,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5352170872429387604}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5661539381050352131
 GameObject:
@@ -2890,7 +2886,7 @@ Transform:
   m_Children:
   - {fileID: 3925657481744992355}
   m_Father: {fileID: 5352170872429387604}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6398680364692102848
 GameObject:
@@ -3184,7 +3180,7 @@ Transform:
   m_Children:
   - {fileID: 1835498883611261831}
   m_Father: {fileID: 5352170872429387604}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6738120356948393719
 GameObject:
@@ -3574,6 +3570,51 @@ Transform:
   m_Father: {fileID: 3445695942519606648}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8065989687987260824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 366322191172215890}
+  - component: {fileID: 4357546427659305656}
+  m_Layer: 0
+  m_Name: Chest Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &366322191172215890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8065989687987260824}
+  m_LocalRotation: {x: -0.000000037252853, y: -3.521287e-12, z: 5.6169985e-11, w: 1}
+  m_LocalPosition: {x: 0, y: -0.006, z: 0.053}
+  m_LocalScale: {x: 0.2952255, y: 0.6209166, z: 0.25098807}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5352170872429387604}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4357546427659305656
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8065989687987260824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8592900205273585121
 GameObject:
   m_ObjectHideFlags: 0
