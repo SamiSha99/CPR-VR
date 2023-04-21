@@ -44,10 +44,26 @@ public static class Util
     //#######//
     // Debug //
     //#######//
+
+    public enum PrintType
+    {
+        Normal,
+        Warn,
+        Error
+    };
     
     // Print function with "typeof" being passed, helps with debug reasons in which a specified class name will pin point where this was called
     public static void Print<T>(this T _class,  string msg) => Debug.Log("[" + _class.ToString().ToUpper() +"] | " + msg);
-    public static void Print(string msg, [CallerMemberName] string _class = null) => Debug.Log("[" + _class.ToUpper() +"] | " + msg);
+    public static void Print(string msg, [CallerMemberName] string _class = null, PrintType _type = PrintType.Normal)
+    {
+        msg = "[" + _class.ToUpper() +"] | " + msg;
+        switch(_type)
+        {
+            case PrintType.Normal: Debug.Log(msg);          break;
+            case PrintType.Warn:   Debug.LogWarning(msg);   break;
+            case PrintType.Error:  Debug.LogError(msg);     break;
+        }
+    }
     public static void Print<T>(string msg) where T : UnityEngine.Object => Debug.Log("[" + typeof(T).ToString().ToUpper() +"] | " + msg);
     // Print with tagging
     //public static void Print(string tag, string msg) => Debug.Log("[" + tag + "] " + msg);
@@ -245,10 +261,20 @@ public static class Util
     // Math //
     //######//
 
-    // Calculates distance in 2D without height (Y value)
+    ///<summary>Calculates distance in 2D without height (Y value).</summary>
+    ///<returns>Distance between two vectors.</returns>
     public static float Vector3_Distance2D(Vector3 a, Vector3 b)
     {
         return Vector3.Distance(Vector3.Scale(a, new Vector3(1,0,1)), Vector3.Scale(b, new Vector3(1, 0, 1)));
+    }
+
+    //#########//
+    // Finders //
+    //#########//
+
+    public static T[] FindAllInScene<T>() where T : UnityEngine.Object
+    {
+        return Resources.FindObjectsOfTypeAll<T>();
     }
 
     //#######//

@@ -19,6 +19,10 @@ EditorBuildSettings:
       type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 955eecc51d0b79c4a81ef950ae7b5571,
       type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: d52fd66a87d2a95438b3c657e3c9b4ae,
+      type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 07b4716da1c87d34183b6474160c214d,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 96b09967cbadd49488e96faea9ea1da7,
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: f4c5b796322f92e46ad9555a49af8790,

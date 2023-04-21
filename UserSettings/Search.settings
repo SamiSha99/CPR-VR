@@ -7,6 +7,12 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.B655095F" = ""
+	"OpenInspectorPreview.B655095F" = "0"
+	"currentGroup.B655095F" = "all"
+	"last_search.B655092D" = ""
+	"OpenInspectorPreview.B655092D" = "0"
+	"currentGroup.B655092D" = "all"
 }
 providers = {
 	adb = {
@@ -47,6 +53,16 @@ providers = {
 	scene = {
 		active = true
 		priority = 50
+		defaultAction = null
+	}
+	at = {
+		active = true
+		priority = 100
+		defaultAction = null
+	}
+	st = {
+		active = true
+		priority = 100
 		defaultAction = null
 	}
 }

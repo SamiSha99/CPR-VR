@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Arabic (ar)
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Arabic (ar)
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 419e524ec4e07e440a58659ca83dff18
+  m_SerializeEntries:
+  - m_GUID: 07bcc9116fe9b804c965190e1f0cd333
+    m_Address: AED_reminder
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 458af66e6cd2ff74eae68ca0e9597f49, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c384f9be5e19e144881828ad409b257f, type: 2}
+    - {fileID: 11400000, guid: c75df876112bf8e43b8a9b84bc52faa6, type: 2}

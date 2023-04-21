@@ -30,7 +30,11 @@ public class QuestManager : MonoBehaviour
     const string GAMEOBJECT_NAME_GOAL_VALUE = "Goal Value";
 
     void Awake() => _Instance = this;
-    void Start() => BeginQuest(onLoadQuest);
+    void Start()
+    {
+        SetTextToDefault();
+        BeginQuest(onLoadQuest);
+    }
     void Update() 
     {
         activeQuest?.QuestUpdate();
@@ -173,8 +177,13 @@ public class QuestManager : MonoBehaviour
     private void CleanUpGoalList()
     {
         while(questGoalList.transform.childCount > 0) DestroyImmediate(questGoalList.transform.GetChild(0).gameObject);
-        questName.text = "No Objectives";
-        questDescription.text = "You are all caught up! Good job!";
+        SetTextToDefault();
+    }
+    private void SetTextToDefault()
+    {
+        LocalizationManager.SetLanguageByCode("ar");
+        questName.text = LocalizationManager.GetText("QuestHUDTable", "QuestTitleNothing");
+        questDescription.text = LocalizationManager.GetText("QuestHUDTable", "QuestDescriptionNothing");
     }
     public void ForceCompleteGoal(int index)
     {
