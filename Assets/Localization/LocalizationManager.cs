@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using ArabicSupport;
 using TMPro;
 
 public static class LocalizationManager
@@ -27,7 +28,7 @@ public static class LocalizationManager
         {
             if(locale.Identifier.Code != code) continue;
             LocalizationSettings.SelectedLocale = locale;
-            FixArabicInTMPro(UsingLanguage("ar"));
+            FixArabicFormat(UsingLanguage("ar"));
             return true;
         }
         Util.Print("The code " + code + " is not found in the AvailableLocales");
@@ -44,7 +45,8 @@ public static class LocalizationManager
     // key = the localized key
     static public string GetText(string table, string key)
     {
-        return LocalizationSettings.StringDatabase.GetLocalizedString(table, key, null);
+        string text = LocalizationSettings.StringDatabase.GetLocalizedString(table, key, null);
+        return text;
     }
 
     static public T GetAsset<T>(string table, string key) where T : UnityEngine.Object
@@ -52,14 +54,9 @@ public static class LocalizationManager
         return LocalizationSettings.AssetDatabase.GetLocalizedAsset<T>(table, key);
     }
 
-    static public void FixArabicInTMPro(bool _enable)
+    static public void FixArabicFormat(bool _enable)
     {
-        foreach (ArabicFixerTMPRO fixers in Util.FindAllInScene<ArabicFixerTMPRO>())
-            UnityEngine.Object.DestroyImmediate(fixers);
-        foreach (TextMeshProUGUI meshpros in Util.FindAllInScene<TextMeshProUGUI>())
-        {
-            Util.Print("Adding to" + meshpros.gameObject.name);
-            //meshpros.gameObject.AddComponent<ArabicFixerTMPRO>();
-        }
+        //Array.ForEach(Util.FindAllInScene<TMPro.TextMeshProUGUI>(), x => x.font = null);
+        Array.ForEach(Util.FindAllInScene<ArabicFixerTMPRO>(), x => x.enabled = _enable);
     }
 }

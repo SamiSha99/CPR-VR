@@ -15,14 +15,6 @@ MonoBehaviour:
   m_TableCollectionName: QuestHUDTable
   m_TableCollectionNameGuidString: f2b60f6bc9b26c440b48512390e60c76
   m_Entries:
-  - m_Id: 230946193408
-    m_Key: QuestTitle
-    m_Metadata:
-      m_Items: []
-  - m_Id: 263577878528
-    m_Key: QuestDescription
-    m_Metadata:
-      m_Items: []
   - m_Id: 457421832192
     m_Key: QuestTitleNothing
     m_Metadata:

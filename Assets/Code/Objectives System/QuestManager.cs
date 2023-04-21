@@ -181,7 +181,7 @@ public class QuestManager : MonoBehaviour
     }
     private void SetTextToDefault()
     {
-        LocalizationManager.SetLanguageByCode("ar");
+        //LocalizationManager.SetLanguageByCode("ar");
         questName.text = LocalizationManager.GetText("QuestHUDTable", "QuestTitleNothing");
         questDescription.text = LocalizationManager.GetText("QuestHUDTable", "QuestDescriptionNothing");
     }

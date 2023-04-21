@@ -9,21 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: QuestHUDTable_en
+  m_Script: {fileID: 11500000, guid: 97269afb30aa84742ae3f3342603618a, type: 3}
+  m_Name: FontTable_ar
   m_EditorClassIdentifier: 
   m_LocaleId:
-    m_Code: en
-  m_SharedData: {fileID: 11400000, guid: f2b60f6bc9b26c440b48512390e60c76, type: 2}
+    m_Code: ar
+  m_SharedData: {fileID: 11400000, guid: 9bbae3663e745514b8e527a95c1b14f0, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 493522206720
-    m_Localized: You are all caught up! Good job!
-    m_Metadata:
-      m_Items: []
-  - m_Id: 457421832192
-    m_Localized: No Quest Right Now
+  - m_Id: 6659981312
+    m_Localized: e2bcf0a3e1c74fe4885d00275a1217e4
     m_Metadata:
       m_Items: []
   references:

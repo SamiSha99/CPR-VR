@@ -37,6 +37,18 @@ public class ArabicFixerTMPRO : MonoBehaviour
         isInitilized = true;
     }
 
+    public void OnEnable()
+    {
+        fixedText = tmpTextComponent.text;
+        isInitilized = true;
+    }
+
+    public void OnDisable()
+    {
+        fixedText = "";
+        isInitilized = false;
+    }
+
     private void GetRectTransformParents(List<RectTransform> rectTransforms)
     {
         rectTransforms.Clear();
@@ -63,7 +75,6 @@ public class ArabicFixerTMPRO : MonoBehaviour
     {
         if (!isInitilized)
             return;
-
 
         // if No Need to Refresh
         if (OldText == fixedText &&
