@@ -35,7 +35,7 @@ public class SettingsManager : MonoBehaviour
                 audioSample.SetVolume(volume);
                 if(audioSample.activeAudioSource != null)
                     audioSample.activeAudioSource.volume = volume;
-                if(!audioSample.IsPlaying()) audioSample.TriggerAudio();
+                if(!audioSample.IsPlaying()) audioSample.TriggerAudio(LocalizationManager.GetAsset<AudioClip>("AudioTable", "AudioVolumeTest"));
                 break;
     
             case OPTION_CENTIMETERS:
@@ -76,7 +76,8 @@ public class SettingsManager : MonoBehaviour
             {
                 case OPTION_TTS_VOLUME:
                     Slider s = optionRow.transform.FindComponent<Slider>("OptionConfig/Slider");
-                    s.SetValueWithoutNotify(textToSpeechVolume);
+                    s.value = textToSpeechVolume;
+                    //s.SetValueWithoutNotify(textToSpeechVolume);
                     break;
     
                 case OPTION_CENTIMETERS:

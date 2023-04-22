@@ -16,12 +16,12 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 3b2c1ad730cde55409fe0eacb6a1afde
   m_Entries:
   - m_Id: 9791354650624
-    m_Key: AudioTest
+    m_Key: AudioVolumeTest
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items:
-    - rid: 2195982490314997787
+    - rid: 2195982511959703555
   m_KeyGenerator:
     rid: 2195982490314997785
   references:
@@ -32,7 +32,7 @@ MonoBehaviour:
         asm: Unity.Localization}
       data:
         m_CustomEpoch: 1682067139128
-    - rid: 2195982490314997787
+    - rid: 2195982511959703555
       type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
         m_Entries:

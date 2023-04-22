@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
-using ArabicSupport;
-using TMPro;
 
 public static class LocalizationManager
 {
@@ -56,7 +54,6 @@ public static class LocalizationManager
 
     static public void FixArabicFormat(bool _enable)
     {
-        //Array.ForEach(Util.FindAllInScene<TMPro.TextMeshProUGUI>(), x => x.font = null);
         Array.ForEach(Util.FindAllInScene<ArabicFixerTMPRO>(), x => x.enabled = _enable);
     }
 }

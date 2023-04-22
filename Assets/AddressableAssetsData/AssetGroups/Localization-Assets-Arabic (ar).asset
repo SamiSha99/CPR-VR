@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 419e524ec4e07e440a58659ca83dff18
   m_SerializeEntries:
-  - m_GUID: 07bcc9116fe9b804c965190e1f0cd333
-    m_Address: AED_reminder
+  - m_GUID: 526e92bf71e278148b1be4b66520ffc9
+    m_Address: apple_a_day_AR
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ar
