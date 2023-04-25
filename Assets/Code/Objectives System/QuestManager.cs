@@ -51,8 +51,8 @@ public class QuestManager : MonoBehaviour
         activeQuest = q.Initialize(OnQuestCompleted, OnUpdateGoalProgress);
         onQuestBegin?.TriggerEvent(activeQuest.questCommand + Quest.QUEST_BEGIN_COMMAND);
 
-        LocalizationHelper.LocalizeTMP(q.information.name, ref questName);
-        LocalizationHelper.LocalizeTMP(q.information.description, ref questDescription);
+        LocalizationHelper.LocalizeTMP(q.information.name, questName);
+        LocalizationHelper.LocalizeTMP(q.information.description, questDescription);
         
         if(questGoalList == null || questGoalCellPrefab == null) return;
 
@@ -64,15 +64,14 @@ public class QuestManager : MonoBehaviour
             p.name = "Quest Goal " + (i + 1);
 
             TextMeshProUGUI tmp = p.transform.FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE);            
-            //if(LocalizationHelper.UsingLanguage("ar") && tmp.gameObject.HasComponent<RectTransform>(out RectTransform rt))
                 
-            LocalizationHelper.LocalizeTMP(q.goals[i].GetDescription(), ref tmp);
+            LocalizationHelper.LocalizeTMP(q.goals[i].GetDescription(), tmp);
 
             // Values
             GameObject valueObject = p.transform.Find(GAMEOBJECT_NAME_GOAL_VALUE).gameObject;
             // Numbers
             TextMeshProUGUI textMesh = valueObject.transform.FindComponent<TextMeshProUGUI>("Amount Value");
-            LocalizationHelper.LocalizeTMP(q.goals[i].currentAmount + "/" + q.goals[i].requiredAmount, ref textMesh);
+            LocalizationHelper.LocalizeTMP(q.goals[i].currentAmount + "/" + q.goals[i].requiredAmount, textMesh);
             // Checkbox
             GameObject checkboxObject = valueObject.transform.Find("Checkbox").gameObject;
             // Progress
@@ -179,8 +178,8 @@ public class QuestManager : MonoBehaviour
     private void SetTextToDefault()
     {
         LocalizationHelper.SetLanguage("ar");
-        LocalizationHelper.LocalizeTMP("QuestUI.TitleEmpty", ref questName);
-        LocalizationHelper.LocalizeTMP("QuestUI.DescriptionEmpty", ref questDescription);
+        LocalizationHelper.LocalizeTMP("QuestUI.TitleEmpty", questName);
+        LocalizationHelper.LocalizeTMP("QuestUI.DescriptionEmpty", questDescription);
     }
     public void ForceCompleteGoal(int index)
     {

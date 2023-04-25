@@ -116,7 +116,7 @@ public static class LocalizationHelper
         return GetAsset<TMP_FontAsset>("FontTable.FontAsset");
     }
     ///<summary>Localize the command, applies to the TextMeshPro component, updates the font asset and returns the text result.</summary> 
-    static public string LocalizeTMP(string localizationCommand, ref TextMeshProUGUI textMeshPro)
+    static public string LocalizeTMP(string localizationCommand, TextMeshProUGUI textMeshPro)
     {
         string text = GetText(localizationCommand);
         if(textMeshPro == null) return text;
