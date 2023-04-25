@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Scene Safety
   m_EditorClassIdentifier: 
   information:
-    name: Scene Safety
-    description: 'Confirm if the patient is safe from their surrounding. '
+    name: Quest.SceneSafetyTitle
+    description: Quest.SceneSafetyDesc
   averageTime: 8
   questCommand: scene_safety
   nextQuest: {fileID: 0}
@@ -32,9 +32,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3117f3952dc5d439a4dcfcb03391ba, type: 3}
   m_Name: GrabObject
   m_EditorClassIdentifier: 
-  description: Remove all nearby objects.
+  description: Quest.SceneSafetyGoal1
   requiredAmount: 4
-  requiredGoals: []
   _GoalUIType: 0
   goalCompletedCommand: ???
   objectiveNameList:
@@ -42,6 +41,7 @@ MonoBehaviour:
   - Ping Pong Paddle Red
   - Ping Pong Ball
   - Ping Pong Paddle Blue
+  requiredGoals: []
   silent: 0
   goalCompleted:
     m_PersistentCalls:
