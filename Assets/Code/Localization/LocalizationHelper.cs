@@ -1,0 +1,174 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using TMPro;
+using System.Text.RegularExpressions;
+
+public static class LocalizationHelper
+{
+    /// <summary>Set the language using the locale ID. 0 = English, 1 = Arabic.</summary>
+    static public bool SetLanguage(int locale_ID)
+    {
+        if(LocalizationSettings.AvailableLocales.Locales.Count - 1 < locale_ID)
+        {
+            Util.Print("Could not find a language locale ID of [" + locale_ID + "], wrong index!");
+            return false;
+        }
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[locale_ID];
+        return true;
+    }
+    /// <summary>Set the language using locale culture code. en = English, ar = Arabic.</summary>
+    static public bool SetLanguage(string code)
+    {
+        if(code == "") return false;
+
+        foreach(Locale locale in LocalizationSettings.AvailableLocales.Locales)
+        {
+            if(locale.Identifier.Code != code) continue;
+            LocalizationSettings.SelectedLocale = locale;
+            FixArabicFormat(UsingLanguage("ar"));
+            return true;
+        }
+        Util.Print("The code " + code + " is not found in the AvailableLocales");
+        return false;
+    }
+    /// <summary>Returns true if we are using this langauge by index</summary>
+    static public bool UsingLanguage(int id) 
+    { 
+        List<Locale> locales = GetAvailableLanguages();
+        if(locales.Count -1 < id) return false;
+        return locales[id] == LocalizationSettings.SelectedLocale; 
+    }
+    /// <summary>Returns true if the selected language matches the culture code</summary>
+    static public bool UsingLanguage(string langCode) 
+    { 
+        return LocalizationSettings.SelectedLocale.Identifier.Code == langCode; 
+    }
+
+    /// <summary>Returns true if the langauge we are using is considered "Right to Left".</summary>
+    static public bool UsingRightToLeftLanguage()
+    {
+        if(UsingLanguage("ar")) return true;
+        return false;
+    }
+    /// <summary>Returns all languages as a list of Locale(s).</summary>
+    static public List<Locale> GetAvailableLanguages() 
+    { 
+        return LocalizationSettings.AvailableLocales.Locales;
+    }
+    /// <summary>Returns all langagues as a list of names.</summary>
+    static public List<string> GetAvailableLanguagesAsNames() 
+    { 
+        return GetAvailableLanguages().Select(l => l.name).ToList();
+    }
+    /// <summary>Returns the currently selected language. Literally LocalizationSettings.SelectedLocale.</summary>
+    static public Locale GetSelectedLanguage() 
+    { 
+        return LocalizationSettings.SelectedLocale;
+    }
+    /// <summary>Returns the index of the currently selected language.</summary>
+    static public int GetSelectedLanguageIndex()
+    {
+        List<Locale> languages = GetAvailableLanguages();
+        for(int i = 0; i < languages.Count; i++)
+        {
+            if(languages[i] != LocalizationSettings.SelectedLocale) continue;
+            return i;
+        }
+        return 0;
+    }
+    /// <summary>Returns a localized string of the passed localization command. Command format: "TableName.KeyName".</summary>
+    static public string GetText(string localizationCommand)
+    {
+        if(localizationCommand.Contains(" ") || localizationCommand.Count(f => f == '.') != 1) return localizationCommand;
+        string[] text = localizationCommand.Split(".");
+        if(text.Length != 2) return localizationCommand;
+        
+        return GetText(text[0], text[1]);
+    }
+    /// <summary>Returns a localized string of the inputted table and key.</summary>
+    static public string GetText(string table, string key)
+    {
+        string text = LocalizationSettings.StringDatabase.GetLocalizedString(table, key, null);
+        return text;
+    }
+    /// <summary>Returns a localized asset of the passed localization command. Command format: "TableName.KeyName".</summary>
+    static public T GetAsset<T>(string localizationCommand) where T : UnityEngine.Object
+    {
+        if(localizationCommand.Contains(" ") || localizationCommand.Count(f => f == '.') != 1) return null;
+        string[] text = localizationCommand.Split(".");
+        if(text.Length != 2) return null;
+        return GetAsset<T>(text[0], text[1]);
+    }
+    /// <summary>Returns a localized asset of the inputted table and key.</summary>
+    static public T GetAsset<T>(string table, string key) where T : UnityEngine.Object
+    {
+        return LocalizationSettings.AssetDatabase.GetLocalizedAsset<T>(table, key);
+    }
+    /// <summary>Returns the font asset for the language.</summary>
+    static public TMP_FontAsset GetFontAsset()
+    {
+        return GetAsset<TMP_FontAsset>("FontTable.FontAsset");
+    }
+    ///<summary>Localize the command, applies to the TextMeshPro component, updates the font asset and returns the text result.</summary> 
+    static public string LocalizeTMP(string localizationCommand, ref TextMeshProUGUI textMeshPro)
+    {
+        string text = GetText(localizationCommand);
+        if(textMeshPro == null) return text;
+        textMeshPro.font = GetFontAsset();
+        textMeshPro.text = text;
+
+        RectTransform rt = textMeshPro.gameObject.GetComponent<RectTransform>();
+        bool rtl = UsingRightToLeftLanguage();
+
+        if(rtl && rt != null && rt.localScale.x > 0 || !rtl && rt != null && rt.localScale.x < 0)
+            rt.localScale = Vector3.Scale(rt.localScale, new Vector3(-1,1,1));
+
+        if(textMeshPro.horizontalAlignment != HorizontalAlignmentOptions.Center)
+            if(textMeshPro.horizontalAlignment != HorizontalAlignmentOptions.Right)
+                textMeshPro.horizontalAlignment = HorizontalAlignmentOptions.Right;
+            else
+                textMeshPro.horizontalAlignment = HorizontalAlignmentOptions.Left; 
+        
+        if(!UsingLanguage("ar")) return text;
+        
+        if(textMeshPro.gameObject.HasComponent<ArabicFixerTMPRO>(out ArabicFixerTMPRO af)) af.Rebuild();
+        else textMeshPro.gameObject.AddComponent<ArabicFixerTMPRO>().Rebuild();
+
+        return text;
+    }
+
+    /// <summary>Fixes formatting for all TMP_Text used in the current active scene, runs on language swapping.</summary>
+    static public void FixArabicFormat(bool _enable)
+    {
+        foreach (TMP_Text TMPtext in Util.FindAllInScene<TMP_Text>(true))
+        {
+            if(TMPtext.gameObject.HasComponent<ArabicFixerTMPRO>(out ArabicFixerTMPRO af))
+            {
+                af.enabled = _enable;
+                continue;
+            }
+            if(!_enable) continue;
+            TMPtext.gameObject.AddComponent<ArabicFixerTMPRO>();
+        }
+    }
+    
+    // Behaves like a toggle!
+    /// <summary>Flips the Canvas's X scale, this is done to support languages that are written from Right to Left.</summary>
+    static public void FlipCanvas()
+    {
+        // Flips all canvases!
+        // making everything "Right to Left"
+        foreach (Canvas c in Util.FindAllInScene<Canvas>(true))
+        {
+            if(!c.gameObject.HasComponent<RectTransform>(out RectTransform canvasTransform)) continue;
+            canvasTransform.localScale = Vector3.Scale(canvasTransform.localScale, new Vector3(-1, 1, 1));
+        }
+    }
+}
+
