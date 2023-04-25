@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
     void Awake() => _Instance = this;
     void Start()
     {
+           
+        if(Util.IsInMainMenu()) return;
+        
         isExam = SettingsUtility.IsChecked(nameof(isExam), false);
 
         default_TutotrialQuestsLine = new List<Object>(_TutorialQuestsLine);
