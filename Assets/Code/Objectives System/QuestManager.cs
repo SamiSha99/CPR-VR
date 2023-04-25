@@ -49,18 +49,11 @@ public class QuestManager : MonoBehaviour
         questCurrentTime = 0;
         
         activeQuest = q.Initialize(OnQuestCompleted, OnUpdateGoalProgress);
-        //Print("Begin Quest Command? => " + activeQuest.beginQuestCommand);
         onQuestBegin?.TriggerEvent(activeQuest.questCommand + Quest.QUEST_BEGIN_COMMAND);
-        if (debugging)
-        {
-            Print("[BEGIN QUEST] => \"" + q.information.name + "\"Description: " + q.information.description);
-            for (int i = 0; i < q.goals.Count; i++)
-                Print("[QUEST GOAL " + (i + 1) + "] => \"" + q.goals[i].GetDescription() + " | [REQUIRED AMOUNT] => " + q.goals[i].requiredAmount);
-        }
 
-        questName.text = q.information.name;
-        questDescription.text = q.information.description;
-
+        LocalizationHelper.LocalizeTMP(q.information.name, ref questName);
+        LocalizationHelper.LocalizeTMP(q.information.description, ref questDescription);
+        
         if(questGoalList == null || questGoalCellPrefab == null) return;
 
         for(int i = 0; i < q.goals.Count; i++)
@@ -69,13 +62,17 @@ public class QuestManager : MonoBehaviour
 
             GameObject p = Instantiate(questGoalCellPrefab, questGoalList.transform);
             p.name = "Quest Goal " + (i + 1);
-            p.transform.FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE).text = $"{i + 1}) " + q.goals[i].GetDescription();
+
+            TextMeshProUGUI tmp = p.transform.FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE);            
+            //if(LocalizationHelper.UsingLanguage("ar") && tmp.gameObject.HasComponent<RectTransform>(out RectTransform rt))
+                
+            LocalizationHelper.LocalizeTMP(q.goals[i].GetDescription(), ref tmp);
 
             // Values
             GameObject valueObject = p.transform.Find(GAMEOBJECT_NAME_GOAL_VALUE).gameObject;
             // Numbers
             TextMeshProUGUI textMesh = valueObject.transform.FindComponent<TextMeshProUGUI>("Amount Value");
-            textMesh.text = (q.goals[i].currentAmount + "/" + q.goals[i].requiredAmount);
+            LocalizationHelper.LocalizeTMP(q.goals[i].currentAmount + "/" + q.goals[i].requiredAmount, ref textMesh);
             // Checkbox
             GameObject checkboxObject = valueObject.transform.Find("Checkbox").gameObject;
             // Progress
@@ -181,9 +178,9 @@ public class QuestManager : MonoBehaviour
     }
     private void SetTextToDefault()
     {
-        //LocalizationManager.SetLanguageByCode("ar");
-        questName.text = LocalizationManager.GetText("QuestHUDTable", "QuestTitleNothing");
-        questDescription.text = LocalizationManager.GetText("QuestHUDTable", "QuestDescriptionNothing");
+        LocalizationHelper.SetLanguage("ar");
+        LocalizationHelper.LocalizeTMP("QuestUI.TitleEmpty", ref questName);
+        LocalizationHelper.LocalizeTMP("QuestUI.DescriptionEmpty", ref questDescription);
     }
     public void ForceCompleteGoal(int index)
     {
