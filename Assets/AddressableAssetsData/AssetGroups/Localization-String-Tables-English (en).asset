@@ -25,11 +25,23 @@ MonoBehaviour:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0e45204b492e4874b8ca33faa903bcd2
-    m_Address: QuestHUDTable_en
+    m_Address: QuestUI_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2a2ef996e8151f4a831a35e9c793d8d
+    m_Address: MainMenu_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 719c3b35821d11248a1404d020b99115
+    m_Address: Quest_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 458af66e6cd2ff74eae68ca0e9597f49, type: 2}
