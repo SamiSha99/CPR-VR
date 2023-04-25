@@ -10,20 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: QuestHUDTable_en
+  m_Name: MainMenu_en
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: en
-  m_SharedData: {fileID: 11400000, guid: f2b60f6bc9b26c440b48512390e60c76, type: 2}
+  m_SharedData: {fileID: 11400000, guid: f0426a1a9e1f8444388932073e6830c7, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 493522206720
-    m_Localized: You are all caught up! Good job!
+  - m_Id: 5850480640
+    m_Localized: Practice
     m_Metadata:
       m_Items: []
-  - m_Id: 457421832192
-    m_Localized: No Quest Right Now
+  - m_Id: 189405806592
+    m_Localized: Exam
+    m_Metadata:
+      m_Items: []
+  - m_Id: 339717079040
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44306546507776
+    m_Localized: CPR VR
     m_Metadata:
       m_Items: []
   references:

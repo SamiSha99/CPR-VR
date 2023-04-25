@@ -10,22 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: QuestHUDTable_ar
+  m_Name: MainMenu_ar
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: ar
-  m_SharedData: {fileID: 11400000, guid: f2b60f6bc9b26c440b48512390e60c76, type: 2}
+  m_SharedData: {fileID: 11400000, guid: f0426a1a9e1f8444388932073e6830c7, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 457421832192
-    m_Localized: "\u0644\u0627 \u062A\u0648\u062C\u062F \u0645\u0647\u0645\u0629
-      \u0627\u0644\u0622\u0646"
+  - m_Id: 5850480640
+    m_Localized: "\u062A\u062F\u0631\u064A\u0628"
     m_Metadata:
       m_Items: []
-  - m_Id: 493522206720
-    m_Localized: "\u0644\u0642\u062F \u0623\u0646\u0647\u064A\u062A \u0643\u0644
-      \u0634\u064A\u0621. \u0631\u0627\u0626\u0639!"
+  - m_Id: 189405806592
+    m_Localized: "\u0627\u0645\u062A\u062D\u0627\u0646"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 339717079040
+    m_Localized: "\u063A\u0627\u062F\u0631"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44306546507776
+    m_Localized: "\u0627\u0644\u062A\u0646\u0641\u0633 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A
+      VR"
     m_Metadata:
       m_Items: []
   references:

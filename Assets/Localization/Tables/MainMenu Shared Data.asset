@@ -10,28 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: QuestHUDTable Shared Data
+  m_Name: MainMenu Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: QuestHUDTable
-  m_TableCollectionNameGuidString: f2b60f6bc9b26c440b48512390e60c76
+  m_TableCollectionName: MainMenu
+  m_TableCollectionNameGuidString: f0426a1a9e1f8444388932073e6830c7
   m_Entries:
-  - m_Id: 457421832192
-    m_Key: QuestTitleNothing
+  - m_Id: 5850480640
+    m_Key: PracticeButton
     m_Metadata:
       m_Items: []
-  - m_Id: 493522206720
-    m_Key: QuestDescriptionNothing
+  - m_Id: 189405806592
+    m_Key: ExamButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 339717079040
+    m_Key: QuitButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44306546507776
+    m_Key: Title
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 2195982490314997794
+    rid: 2195982559147458570
   references:
     version: 2
     RefIds:
-    - rid: 2195982490314997794
+    - rid: 2195982559147458570
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
         asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1682079669552
+        m_CustomEpoch: 1682338486079
