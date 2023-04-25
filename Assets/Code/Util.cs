@@ -72,11 +72,18 @@ public static class Util
     // Extensions //
     //############//
 
-    // Search for a component and return true if said component exists
+    ///<summary>Returns true if the GameObject contains that component.</summary>
     public static bool HasComponent<T>(this GameObject obj) where T : Component
     {
-        return obj.GetComponent<T>() != null;
+        return obj.GetComponent<T>();
     }
+    ///<summary>Returns true if the GameObject contains that component and an out result of that component.</summary>
+    public static bool HasComponent<T>(this GameObject obj, out T componentResult) where T : Component
+    {
+        componentResult = obj.GetComponent<T>();
+        return componentResult != null;
+    }
+
     // Find a component and return the component using a path similar to Transform.Find(); return null if couldn't find it.
     public static T FindComponent<T>(this Transform trans, string path) where T : Component
     {
@@ -272,15 +279,18 @@ public static class Util
     // Finders //
     //#########//
 
-    public static T[] FindAllInScene<T>() where T : UnityEngine.Object
+    ///<summary>Literally UnityEngine.Object.FindObjectsOfType() but cooler 😎.</summary>
+    public static T[] FindAllInScene<T>(bool includeInactive = false) where T : UnityEngine.Object
     {
-        return Resources.FindObjectsOfTypeAll<T>();
+        return UnityEngine.Object.FindObjectsOfType<T>(includeInactive);
     }
 
     //#######//
     // Scene //
     //#######//
     
+    public static bool IsInMainMenu() => SceneManager.GetActiveScene().name == MENU_SCENE;
+
     // Loads the main menu
     public static void LoadMenu() => SceneManager.LoadScene(MENU_SCENE);
 }
