@@ -49,6 +49,12 @@ public class ArabicFixerTMPRO : MonoBehaviour
         isInitilized = false;
     }
 
+    public void Rebuild()
+    {
+        fixedText = tmpTextComponent.text;
+        isInitilized = true;
+    }
+
     private void GetRectTransformParents(List<RectTransform> rectTransforms)
     {
         rectTransforms.Clear();
