@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization;
 
 public class QuestManager : MonoBehaviour
 {
@@ -29,9 +31,14 @@ public class QuestManager : MonoBehaviour
     const string GAMEOBJECT_NAME_GOAL_TITLE = "Goal Text";
     const string GAMEOBJECT_NAME_GOAL_VALUE = "Goal Value";
 
-    void Awake() => _Instance = this;
+    void Awake() 
+    {
+        _Instance = this;
+
+    }
     void Start()
     {
+        LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
         SetTextToDefault();
         BeginQuest(onLoadQuest);
     }
@@ -140,6 +147,7 @@ public class QuestManager : MonoBehaviour
         }
         
         TextMeshProUGUI goalTextCell = transformArr[index].FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE);
+        LocalizationHelper.LocalizeTMP(goal.GetDescription(), goalTextCell);
         GameObject goalValueCell = transformArr[index].Find(GAMEOBJECT_NAME_GOAL_VALUE).gameObject;
 
         switch(goal._GoalUIType)
@@ -147,7 +155,7 @@ public class QuestManager : MonoBehaviour
             case Quest.QuestGoal.GoalUIType.GUIT_Default:
             default:
                 TextMeshProUGUI goalAmountCell = goalValueCell.transform.FindComponent<TextMeshProUGUI>("Amount Value");
-                goalAmountCell.text = goal.currentAmount + "/" + goal.requiredAmount;
+                LocalizationHelper.LocalizeTMP(goal.currentAmount + "/" + goal.requiredAmount, goalAmountCell);
                 goalAmountCell.color = goal.completed ? Color.green : Color.white;
                 break;
             case Quest.QuestGoal.GoalUIType.GUIT_Checkbox:
@@ -177,7 +185,6 @@ public class QuestManager : MonoBehaviour
     }
     private void SetTextToDefault()
     {
-        LocalizationHelper.SetLanguage("ar");
         LocalizationHelper.LocalizeTMP("QuestUI.TitleEmpty", questName);
         LocalizationHelper.LocalizeTMP("QuestUI.DescriptionEmpty", questDescription);
     }
@@ -233,6 +240,19 @@ public class QuestManager : MonoBehaviour
 
     public void ToggleTimer(bool _enabled) => isQuestTimePaused = !_enabled;
     
+    void OnLanguageChanged(Locale selectedLanguage)
+    {
+        
+        if(activeQuest != null)
+        {
+            Debug.Log(LocalizationHelper.LocalizeTMP(activeQuest.information.name, questName));
+            Debug.Log(LocalizationHelper.LocalizeTMP(activeQuest.information.description, questDescription));
+            foreach(Quest.QuestGoal g in activeQuest.goals)
+                ForceUpdateGoal(g);
+        }
+        else
+            SetTextToDefault();
+    }
     private void Print(string s)
     {
         if(!debugging) return;

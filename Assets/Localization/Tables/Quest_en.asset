@@ -30,6 +30,50 @@ MonoBehaviour:
     m_Localized: Remove all nearby objects.
     m_Metadata:
       m_Items: []
+  - m_Id: 308408514723840
+    m_Localized: Sign of Life
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308485270487040
+    m_Localized: Check if there's any sign of life!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308681651994624
+    m_Localized: Tap the patient's left shoulder.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308703693062144
+    m_Localized: Tap the patient's right shoulder.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308726946283520
+    m_Localized: 'Ask: "Are you alright?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333747840303104
+    m_Localized: Grab a nearby phone close to you and call.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333691007483904
+    m_Localized: Call the emergency hotline by dialing 101 on a nearby phone.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333660485533696
+    m_Localized: Call an Ambulance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 369548733136896
+    m_Localized: Check for Breathing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 369622276063232
+    m_Localized: Are they breathing?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 369640550645760
+    m_Localized: Look at the chest is it rising?<br>If no breathing, start CPR.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

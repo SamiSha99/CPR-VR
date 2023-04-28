@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497f97953eb18294080917d60387b5a1, type: 3}
   m_Name: TouchAndInteractWithObject
   m_EditorClassIdentifier: 
-  description: Tap the patient's left shoulder.
+  description: Quest.SignOfLifeGoal1
   requiredAmount: 4
-  requiredGoals: []
   _GoalUIType: 0
   goalCompletedCommand: Tap_Shoulder_Left
   objectiveNameList:
   - LeftArm
+  requiredGoals: []
   silent: 0
   goalCompleted:
     m_PersistentCalls:
@@ -38,13 +38,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497f97953eb18294080917d60387b5a1, type: 3}
   m_Name: TouchAndInteractWithObject
   m_EditorClassIdentifier: 
-  description: Tap the patient's right shoulder.
+  description: Quest.SignOfLifeGoal2
   requiredAmount: 4
-  requiredGoals: []
   _GoalUIType: 0
   goalCompletedCommand: Tap_Shoulder_Right
   objectiveNameList:
   - RightArm
+  requiredGoals: []
   silent: 0
   goalCompleted:
     m_PersistentCalls:
@@ -65,8 +65,8 @@ MonoBehaviour:
   m_Name: Sign of Life
   m_EditorClassIdentifier: 
   information:
-    name: Sign of Life
-    description: Check if there's any sign of breathing!
+    name: Quest.SignOfLifeTitle
+    description: Quest.SignOfLifeDesc
   averageTime: 8
   questCommand: Sign_of_Life
   nextQuest: {fileID: 0}
@@ -86,13 +86,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee8aabf0e96702479fb5d1b587811d8, type: 3}
   m_Name: MicGoal
   m_EditorClassIdentifier: 
-  description: Ask repeatedly:<br><br><space=2em>"Are you alright?".<br><space=2em>"Can
-    you hear me?".
+  description: Quest.SignOfLifeGoal3
   requiredAmount: 15
-  requiredGoals: []
   _GoalUIType: 2
   goalCompletedCommand: Are_You_Alright
   objectiveNameList: []
+  requiredGoals: []
   silent: 0
   goalCompleted:
     m_PersistentCalls:

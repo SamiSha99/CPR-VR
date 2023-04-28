@@ -31,7 +31,7 @@ public static class LocalizationHelper
         {
             if(locale.Identifier.Code != code) continue;
             LocalizationSettings.SelectedLocale = locale;
-            FixArabicFormat(UsingLanguage("ar"));
+            //FixArabicFormat(UsingLanguage("ar"));
             return true;
         }
         Util.Print("The code " + code + " is not found in the AvailableLocales");
@@ -125,14 +125,14 @@ public static class LocalizationHelper
 
         RectTransform rt = textMeshPro.gameObject.GetComponent<RectTransform>();
         bool rtl = UsingRightToLeftLanguage();
-
-        if(rtl && rt != null && rt.localScale.x > 0 || !rtl && rt != null && rt.localScale.x < 0)
+        
+        if(rtl && rt?.localScale.x > 0 || !rtl && rt?.localScale.x < 0)
             rt.localScale = Vector3.Scale(rt.localScale, new Vector3(-1,1,1));
 
         if(textMeshPro.horizontalAlignment != HorizontalAlignmentOptions.Center)
-            if(textMeshPro.horizontalAlignment != HorizontalAlignmentOptions.Right)
+            if(textMeshPro.horizontalAlignment != HorizontalAlignmentOptions.Right && rtl)
                 textMeshPro.horizontalAlignment = HorizontalAlignmentOptions.Right;
-            else
+            else if(textMeshPro.horizontalAlignment != HorizontalAlignmentOptions.Left && !rtl)
                 textMeshPro.horizontalAlignment = HorizontalAlignmentOptions.Left; 
         
         if(!UsingLanguage("ar")) return text;
@@ -162,13 +162,13 @@ public static class LocalizationHelper
     /// <summary>Flips the Canvas's X scale, this is done to support languages that are written from Right to Left.</summary>
     static public void FlipCanvas()
     {
-        // Flips all canvases!
         // making everything "Right to Left"
         foreach (Canvas c in Util.FindAllInScene<Canvas>(true))
         {
             if(!c.gameObject.HasComponent<RectTransform>(out RectTransform canvasTransform)) continue;
             canvasTransform.localScale = Vector3.Scale(canvasTransform.localScale, new Vector3(-1, 1, 1));
         }
+        FixArabicFormat(UsingLanguage("ar"));
     }
 }
 

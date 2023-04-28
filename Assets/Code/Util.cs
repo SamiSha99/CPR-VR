@@ -12,13 +12,14 @@ public static class Util
     // Paths //
     //#######//
 
-    const string PATH_ART = "Assets/Art/";
-    const string PATH_ICONS = "Assets/Art/Icons/";
-    const string PATH_TEXTURES = "Assets/Art/Textures/";
-    const string PATH_MATERIALS = "Assets/Art/Materials/";
-    const string PATH_SHADERS = "Assets/Art/Shaders/";
-    const string PATH_PARTICLES = "Assets/Art/Particles/";
-    const string PATH_OBJECTS = "Assets/Art/Objects/";
+    const string PATH_MEDIA = "Assets/Media/";
+    const string PATH_ART = "Assets/Media/Art/";
+    const string PATH_ICONS = "Assets/Media/Art/Icons/";
+    const string PATH_TEXTURES = "Assets/Media/Art/Textures/";
+    const string PATH_MATERIALS = "Assets/Media/Art/Materials/";
+    const string PATH_SHADERS = "Assets/Media/Art/Shaders/";
+    const string PATH_PARTICLES = "Assets/Media/Art/Particles/";
+    const string PATH_OBJECTS = "Assets/Media/Art/Objects/";
     const string PATH_AUDIO_CLIPS = "Assets/Audio";
     // Path way search to specific items, just look up the name of the file + extension
     public static string GetIcon(string name) { return PATH_ICONS + name; }
@@ -84,7 +85,7 @@ public static class Util
         return componentResult != null;
     }
 
-    // Find a component and return the component using a path similar to Transform.Find(); return null if couldn't find it.
+    ///<summary>Find a component and return the component using a path similar to Transform.Find(); return null if couldn't find it.</summary>
     public static T FindComponent<T>(this Transform trans, string path) where T : Component
     {
         GameObject o = trans.Find(path).gameObject;
@@ -101,10 +102,7 @@ public static class Util
         }
         return comp;
     }
-    // Hides the component from being visible, the component is still active, its just their components are completely none interactive.
-    // Supports Colliders, Renderers and Rigidbody, will add eventually more when needed.
-    // Cons: Will un/hide everything willingly and doesn't consider nor respect pre-hidden or meant to be hidden content
-    // The opposite is also true.
+    /// <summary>Hides and deactivates Renderer, Collider and Rigidbody components, but the gameobject itself remains active</summary>
     public static void ToggleHidden(this Transform transform, bool _hidden = true)
     {
         if (transform == null) return;
@@ -222,17 +220,10 @@ public static class Util
     // Instantiate a Microphone Clip that listens to the microphone using the index.
     public static AudioClip MicrophoneToAudioClip(int index = 0)
     {
-        if(Microphone.devices.Length <= 0)
-        {
-            //Print("Microphone", "No microphone devices located, add a microphone device!");
-            return null;
-        }
+        if(Microphone.devices.Length <= 0) return null;
+        
         string microphoneName = Microphone.devices[index];
         AudioClip microphoneClip = Microphone.Start(microphoneName, true, 10, AudioSettings.outputSampleRate);
-        //if(microphoneClip == null)
-        //{
-        //    //Print("Microphone", "Unable to start microphone recording");
-        //}
         return microphoneClip;
     }
     public static AudioClip MicrophoneToAudioClipByDeviceName(string deviceName)
@@ -252,7 +243,7 @@ public static class Util
     // _base = parent we want to attach this AudioSource to.
     public static AudioSource PlayClipAt(AudioClip ac, Vector3 pos, float volume = 1.0f, GameObject _base = null)
     {
-        GameObject go = new GameObject("Temporary Audio");
+        GameObject go = new GameObject("PlayClipAt() Audio");
         go.transform.position = pos;
         if(_base != null) go.transform.parent = _base.transform;
 

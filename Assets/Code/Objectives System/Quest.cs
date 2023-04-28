@@ -218,9 +218,7 @@ public class QuestEditor : Editor
             EditorGUILayout.PropertyField(child, true);
             child.NextVisible(false);
         }
-        // Add quest
-        //child = m_QuestNextQuestProperty.Copy();
-        //EditorGUILayout.PropertyField(child, true);
+        
         // Add quest command to GUI
         child = m_QuestCommandProperty.Copy();
         EditorGUILayout.PropertyField(child, true);

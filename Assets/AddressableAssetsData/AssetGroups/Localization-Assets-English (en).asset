@@ -17,14 +17,104 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: c3a339a0224e6a84bb29c89386722706
   m_SerializeEntries:
-  - m_GUID: 4129af602735f6d47842c5ba39cbf6e1
-    m_Address: an_apple_a_day
+  - m_GUID: eec57c2a67cab4e48ac5241837d7d4fd
+    m_Address: introduction
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8f586378b4e144a9851e7b34d9b748ee
     m_Address: LiberationSans SDF
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95f74650952fd00438ed93eceb13eec4
+    m_Address: is_scene_safe
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1499e9821e363548950ce5383f60c0e
+    m_Address: sign_of_life
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fee859137b35ea14c91a8e2827c9ca83
+    m_Address: is_scene_safe_complete
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf28965371609b342b12d90c8fe1db87
+    m_Address: call_ambulance
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4263f6cf8bcc95448a2434409f18cf99
+    m_Address: call_ambulance_complete
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 407aaa10c7c65d64caef650aadb269b6
+    m_Address: do_CPR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a833788d4e51a9469ad6645dc4b3329
+    m_Address: CPR_limitation_delete_this_later
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba9ca6b6e40296e4da143ac09d57195d
+    m_Address: give_breather_intro
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c520c9474a5bc344807678741a92d20
+    m_Address: do_CPR_again
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2d1a276bfc6d5142bf1d6779aa46293
+    m_Address: give_breather_again
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0667c2f3ce7ac443b042a4230b5f0bd
+    m_Address: AED_intro
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 07bcc9116fe9b804c965190e1f0cd333
+    m_Address: AED_reminder
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f258083b11fb684e9ba41c1badc5b20
+    m_Address: CPR_reminder
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3140874db2df43842b4e1f8d809763b2
+    m_Address: continue_doing_all_of_this
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6ee7654ae517594b97e1d461c6998fe
+    m_Address: tutorial end
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b958567f610054fbb5d23d214915d1, type: 3}
   m_Name: LookinAtObject
   m_EditorClassIdentifier: 
-  description: Look at the chest is it rising?<br>If no breathing, start CPR.
+  description: Quest.CheckBreathingGoal1
   requiredAmount: 10
   _GoalUIType: 2
   goalCompletedCommand: ???
@@ -39,8 +39,8 @@ MonoBehaviour:
   m_Name: Check for Breathing
   m_EditorClassIdentifier: 
   information:
-    name: Check for Breathing
-    description: Are they breathing?
+    name: Quest.CheckBreathingTitle
+    description: Quest.CheckBreathingDesc
   averageTime: 15
   questCommand: Check_for_breathing
   nextQuest: {fileID: 0}

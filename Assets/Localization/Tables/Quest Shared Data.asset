@@ -27,6 +27,50 @@ MonoBehaviour:
     m_Key: SceneSafetyGoal1
     m_Metadata:
       m_Items: []
+  - m_Id: 308408514723840
+    m_Key: SignOfLifeTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308485270487040
+    m_Key: SignOfLifeDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308681651994624
+    m_Key: SignOfLifeGoal1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308703693062144
+    m_Key: SignOfLifeGoal2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308726946283520
+    m_Key: SignOfLifeGoal3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333660485533696
+    m_Key: CallAmbulanceTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333691007483904
+    m_Key: CallAmbulanceDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333747840303104
+    m_Key: CallAmbulanceGoal1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 369548733136896
+    m_Key: CheckBreathingTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 369622276063232
+    m_Key: CheckBreathingDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 369640550645760
+    m_Key: CheckBreathingGoal1
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

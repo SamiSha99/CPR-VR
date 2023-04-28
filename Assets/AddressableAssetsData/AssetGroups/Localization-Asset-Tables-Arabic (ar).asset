@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: fcd45bc51a5d5d840bd918f5b77373c5
   m_SerializeEntries:
   - m_GUID: 7d0e437cd0d35c74c8547867536cd3a8
-    m_Address: AudioTable_ar
+    m_Address: TutorialAudio_ar
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ar

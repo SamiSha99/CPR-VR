@@ -41,18 +41,22 @@ public class ArabicFixerTMPRO : MonoBehaviour
     {
         fixedText = tmpTextComponent.text;
         isInitilized = true;
+        OldText = "";
     }
 
     public void OnDisable()
     {
         fixedText = "";
+        OldText = "";
         isInitilized = false;
     }
 
     public void Rebuild()
     {
         fixedText = tmpTextComponent.text;
+        OldText = "";
         isInitilized = true;
+        //FixTextForUI();
     }
 
     private void GetRectTransformParents(List<RectTransform> rectTransforms)
@@ -92,12 +96,6 @@ public class ArabicFixerTMPRO : MonoBehaviour
             return;
 
         FixTextForUI();
-        OldText = fixedText;
-        OldFontSize = (int)tmpTextComponent.fontSize;
-        OldDeltaSize = rectTransform.sizeDelta;
-        OldEnabled = tmpTextComponent.enabled;
-        OldScreenRect.x = Screen.width;
-        OldScreenRect.y = Screen.height;
     }
 
     public void FixTextForUI()
@@ -130,5 +128,11 @@ public class ArabicFixerTMPRO : MonoBehaviour
             }
             tmpTextComponent.text = finalText.TrimEnd('\n');
         }
+        OldText = fixedText;
+        OldFontSize = (int)tmpTextComponent.fontSize;
+        OldDeltaSize = rectTransform.sizeDelta;
+        OldEnabled = tmpTextComponent.enabled;
+        OldScreenRect.x = Screen.width;
+        OldScreenRect.y = Screen.height;
     }
 }

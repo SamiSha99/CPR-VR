@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour
     void Awake() => _Instance = this;
     void Start()
     {
-           
+        LocalizationHelper.SetLanguage("ar");
         if(Util.IsInMainMenu()) return;
         
         isExam = SettingsUtility.IsChecked(nameof(isExam), false);
@@ -70,8 +73,10 @@ public class GameManager : MonoBehaviour
                 break;
             case AudioClip ac:
                 GameObject head = Util.GetPlayer().GetPlayerCameraObject();
-                Util.PlayClipAt(ac, head.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 1.0f), head);
-                Util.Invoke(this, () => InstigateNextTutorialObject(), ac.length + 0.25f);
+                AudioClip localizedAudio = LocalizationHelper.GetAsset<AudioClip>("TutorialAudio." + ac.name);
+                if(localizedAudio == null) localizedAudio = ac; // cannot be found, use the english one
+                Util.PlayClipAt(localizedAudio, head.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 1.0f), head);
+                Util.Invoke(this, () => InstigateNextTutorialObject(), localizedAudio.length + 0.25f);
                 command = ac.name;
                 break;
         }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Call Ambulance
   m_EditorClassIdentifier: 
   information:
-    name: Call the Ambulance
-    description: Call the emergency hotline by dialing 101 on a nearby phone.
+    name: Quest.CallAmbulanceTitle
+    description: Quest.CallAmbulanceDesc
   averageTime: 5
   questCommand: Call_the_Ambulance
   nextQuest: {fileID: 0}
@@ -32,15 +32,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e623ac503bd9ca24c8ec0b4b6de34b0b, type: 3}
   m_Name: GrabNearObject
   m_EditorClassIdentifier: 
-  description: Grab a nearby phone close to you.
+  description: Quest.CallAmbulanceGoal1
   requiredAmount: 1
   _GoalUIType: 1
   goalCompletedCommand: Grab_Phone_Close
   objectiveNameList:
   - Smart Phone
+  requiredGoals: []
+  silent: 0
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
   index: 0
   compareRangeTo: 1
-  _NearbyRange: 0.4
+  _NearbyRange: 0.425

@@ -14,7 +14,6 @@ public class LocalizationManager : MonoBehaviour
     void Start()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
-        //LocalizationHelper.SetLanguage(PlayerPrefs.GetInt(nameof(SettingsManager.languageIndex), 1));
     }
     void OnDestroy() => LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
     void OnEnable() => LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
@@ -24,6 +23,7 @@ public class LocalizationManager : MonoBehaviour
     {
         if(UIFlipped == LocalizationHelper.UsingRightToLeftLanguage()) return;
         UIFlipped = !UIFlipped;
+        Debug.Log("Flipping: " + UIFlipped);
         LocalizationHelper.FlipCanvas();
     }
 }
