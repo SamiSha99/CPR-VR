@@ -3077,9 +3077,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be616ee11fefe534ab94029225051a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test:
-  - LocalizedAudio: 
-    quest: {fileID: 0}
   _TutorialQuestsLine:
   - {fileID: 8300000, guid: eec57c2a67cab4e48ac5241837d7d4fd, type: 3}
   - {fileID: 8300000, guid: 95f74650952fd00438ed93eceb13eec4, type: 3}
@@ -9752,6 +9749,11 @@ PrefabInstance:
       propertyPath: _GraphScript
       value: 
       objectReference: {fileID: 1755146597}
+    - target: {fileID: 2805325292957663279, guid: 02ae6fd292718d34a8991eaff0fc4cd3,
+        type: 3}
+      propertyPath: _TrialDuration
+      value: 17.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3039909597357052097, guid: 02ae6fd292718d34a8991eaff0fc4cd3,
         type: 3}
       propertyPath: m_Name
