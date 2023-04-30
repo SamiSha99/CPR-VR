@@ -1,12 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
     public GameObject XROriginMenu;
     public GameObject XROriginPlayer;
+    public TextMeshProUGUI title, practiceButton, examButton, quitButton;
+    void Start()
+    {
+
+        LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
+        LocalizeButtons();
+        
+    }
+    void OnEnable() => LocalizeButtons();
+    
     public void OnPracticeButtonPressed()
     {
         PlayerPrefs.SetInt("isExam", 0);
@@ -35,4 +48,14 @@ public class MainMenuManager : MonoBehaviour
     {
 
     }
+
+    void LocalizeButtons()
+    {
+        LocalizationHelper.LocalizeTMP("MainMenu.Title", title);
+        LocalizationHelper.LocalizeTMP("MainMenu.Practice", practiceButton);
+        LocalizationHelper.LocalizeTMP("MainMenu.Exam", examButton);
+        LocalizationHelper.LocalizeTMP("MainMenu.Quit", quitButton);
+    }
+
+    void OnLanguageChanged(Locale selectedLocale) => LocalizeButtons();
 }
