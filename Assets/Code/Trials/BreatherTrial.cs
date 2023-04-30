@@ -82,6 +82,7 @@ public class BreatherTrial : MonoBehaviour
     {
         talkDuration = 0;
         notalkDuration = 0;
+        breathesGive = 0;
         lastTalk = false;
         incorrectSecondBreathInterval = false;
         complete = false;
