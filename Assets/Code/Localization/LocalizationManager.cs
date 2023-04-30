@@ -14,6 +14,7 @@ public class LocalizationManager : MonoBehaviour
     void Start()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
+        //LocalizationHelper.SetLanguage("ar");
     }
     void OnDestroy() => LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
     void OnEnable() => LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;

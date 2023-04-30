@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     void Awake() => _Instance = this;
     void Start()
     {
-        LocalizationHelper.SetLanguage("ar");
+        //LocalizationHelper.SetLanguage("ar");
         if(Util.IsInMainMenu()) return;
         
         isExam = SettingsUtility.IsChecked(nameof(isExam), false);
