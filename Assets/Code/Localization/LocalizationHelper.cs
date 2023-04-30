@@ -9,6 +9,12 @@ using UnityEngine.Localization.Settings;
 using TMPro;
 using System.Text.RegularExpressions;
 
+/*
+* Hello, coders who's reading this file. 👋
+* Made by Sami Shakkour (Alias: SamiSha), please note that this is a very basic setup and also has another extension (ArabicFixer)
+* meaning that the content is psuedo hard coded for some, unless i come up with a different solution... some day.
+* This file simplify a lot of the Localization stuff for me at least, you are free to use anything for whatever reason.
+*/
 public static class LocalizationHelper
 {
     /// <summary>Set the language using the locale ID. 0 = English, 1 = Arabic.</summary>
@@ -116,7 +122,7 @@ public static class LocalizationHelper
         return GetAsset<TMP_FontAsset>("FontTable.FontAsset");
     }
     ///<summary>Localize the command, applies to the TextMeshPro component, updates the font asset and returns the text result.</summary> 
-    static public string LocalizeTMP(string localizationCommand, TextMeshProUGUI textMeshPro)
+    static public string LocalizeTMP(string localizationCommand, TextMeshProUGUI textMeshPro = null)
     {
         string text = GetText(localizationCommand);
         if(textMeshPro == null) return text;
