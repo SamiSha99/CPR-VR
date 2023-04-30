@@ -34,6 +34,26 @@ MonoBehaviour:
     m_Localized: CPR VR
     m_Metadata:
       m_Items: []
+  - m_Id: 2110329980821504
+    m_Localized: Speech Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2108443991056384
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2110538387398656
+    m_Localized: CPR Loops
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2110601738166272
+    m_Localized: Centimeters instead of Inches
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2175305764413440
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -16,19 +16,39 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: f0426a1a9e1f8444388932073e6830c7
   m_Entries:
   - m_Id: 5850480640
-    m_Key: PracticeButton
+    m_Key: Practice
     m_Metadata:
       m_Items: []
   - m_Id: 189405806592
-    m_Key: ExamButton
+    m_Key: Exam
     m_Metadata:
       m_Items: []
   - m_Id: 339717079040
-    m_Key: QuitButton
+    m_Key: Quit
     m_Metadata:
       m_Items: []
   - m_Id: 44306546507776
     m_Key: Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2108443991056384
+    m_Key: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2110329980821504
+    m_Key: SpeechVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2110538387398656
+    m_Key: CPRLoops
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2110601738166272
+    m_Key: SwapInches
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2175305764413440
+    m_Key: Language
     m_Metadata:
       m_Items: []
   m_Metadata:
