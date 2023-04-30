@@ -53,7 +53,8 @@ public class ArabicFixerTMPRO : MonoBehaviour
 
     public void Rebuild()
     {
-        fixedText = tmpTextComponent.text;
+        if(tmpTextComponent != null)
+            fixedText = tmpTextComponent.text;
         OldText = "";
         isInitilized = true;
         //FixTextForUI();
