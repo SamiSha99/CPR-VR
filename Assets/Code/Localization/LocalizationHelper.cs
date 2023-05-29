@@ -70,13 +70,11 @@ public static class LocalizationHelper
     /// <summary>Returns all langagues as a list of names.</summary>
     static public List<string> GetAvailableLanguagesAsNames() 
     { 
-        return GetAvailableLanguages().Select(l => l.name).ToList();
+        return GetAvailableLanguages().Select(l => l.Identifier.CultureInfo.DisplayName).ToList();
     }
     /// <summary>Returns the currently selected language. Literally LocalizationSettings.SelectedLocale.</summary>
-    static public Locale GetSelectedLanguage() 
-    { 
-        return LocalizationSettings.SelectedLocale;
-    }
+    static public Locale GetSelectedLanguage() => LocalizationSettings.SelectedLocale;
+    
     /// <summary>Returns the index of the currently selected language.</summary>
     static public int GetSelectedLanguageIndex()
     {
@@ -142,7 +140,8 @@ public static class LocalizationHelper
                 textMeshPro.horizontalAlignment = HorizontalAlignmentOptions.Left; 
         
         if(!UsingLanguage("ar")) return text;
-        
+        if(textMeshPro.gameObject.HasComponent<UIScript>(out UIScript s) && s.dontFixArabic) return text;
+
         if(textMeshPro.gameObject.HasComponent<ArabicFixerTMPRO>(out ArabicFixerTMPRO af)) af.Rebuild();
         else textMeshPro.gameObject.AddComponent<ArabicFixerTMPRO>().Rebuild();
 
@@ -154,6 +153,7 @@ public static class LocalizationHelper
     {
         foreach (TMP_Text TMPtext in Util.FindAllInScene<TMP_Text>(true))
         {
+            if(TMPtext.gameObject.HasComponent<UIScript>(out UIScript s) && s.dontFixArabic) continue;
             if(TMPtext.gameObject.HasComponent<ArabicFixerTMPRO>(out ArabicFixerTMPRO af))
             {
                 af.enabled = _enable;
@@ -172,9 +172,23 @@ public static class LocalizationHelper
         foreach (Canvas c in Util.FindAllInScene<Canvas>(true))
         {
             if(!c.gameObject.HasComponent<RectTransform>(out RectTransform canvasTransform)) continue;
-            canvasTransform.localScale = Vector3.Scale(canvasTransform.localScale, new Vector3(-1, 1, 1));
+            FlipComponent(canvasTransform);
         }
+        
+        foreach (UIScript s in Util.FindAllInScene<UIScript>(true))
+        {
+            if(!s.supportsRightToLeftUI) continue;
+            if(!s.gameObject.HasComponent<RectTransform>(out RectTransform canvasTransform)) continue;
+            //Util.Print("Flipping UI of " + s.gameObject.name);
+            FlipComponent(canvasTransform);
+        }
+
         FixArabicFormat(UsingLanguage("ar"));
+    }
+
+    static public void FlipComponent(RectTransform rect)
+    {
+        rect.localScale = Vector3.Scale(rect.localScale, new Vector3(-1, 1, 1));
     }
 }
 

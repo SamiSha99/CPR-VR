@@ -230,7 +230,7 @@ public class QuestEditor : Editor
         // Quest Goals + sort
         int choice = EditorGUILayout.Popup("Add new Quest Goal", -1, m_QuestGoalType.ToArray());
         
-        // Extremely buggy
+        // Extremely buggy, will make array NonReorderable
         //child = m_QuestGoalListProperty.Copy();
         //EditorGUILayout.PropertyField(child, true);
 
@@ -266,18 +266,17 @@ public class QuestEditor : Editor
             GUI.backgroundColor = new Color(2f, 0.2f, 0.2f, 1);
             EditorGUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
-            if (GUILayout.Button("Delete", GUILayout.Height(28), GUILayout.Width(48)))
-            {
-                toDelete = i;
-            }
+            GUILayoutOption widthGUI = GUILayout.Width(48), heightGUI = GUILayout.Height(28);
 
+            if (GUILayout.Button("Delete", heightGUI, widthGUI)) toDelete = i;
+            
             // Swappers
             if (m_QuestGoalListProperty.arraySize > 1)
             {
                 GUI.backgroundColor = new Color(0.8f, 1.25f, 2.5f, 1);
                 if (i != 0)
                 {
-                    if (GUILayout.Button(arrowUp, GUILayout.Height(28), GUILayout.Width(48)))
+                    if (GUILayout.Button(arrowUp, heightGUI, widthGUI))
                     {
                         m_QuestGoalListProperty.MoveArrayElement(i, i-1);
                         break;
@@ -285,7 +284,7 @@ public class QuestEditor : Editor
                 }
                 if (i != m_QuestGoalListProperty.arraySize - 1)
                 {
-                    if (GUILayout.Button(arrowDown, GUILayout.Height(28), GUILayout.Width(48)))
+                    if (GUILayout.Button(arrowDown, heightGUI, widthGUI))
                     {
                         m_QuestGoalListProperty.MoveArrayElement(i, i + 1);
                         break;

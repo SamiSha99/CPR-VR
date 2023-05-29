@@ -14,6 +14,7 @@ public class SettingsManager : MonoBehaviour
     public int loops = 3;
     public int languageIndex;
     public GameObject optionsGameObject;
+    public TextMeshProUGUI SettingsTitle;
     const string OPTION_TTS_VOLUME = "OPTION_TTS_VOLUME";
     const string OPTION_CENTIMETERS = "OPTION_CENTIMETERS";
     const string OPTION_CPR_LOOPS = "OPTION_CPR_LOOPS";
@@ -21,7 +22,9 @@ public class SettingsManager : MonoBehaviour
     void Start()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
-        LoadPrefs();
+        if(SettingsTitle != null)
+            LocalizationHelper.LocalizeTMP("MainMenu.Settings", SettingsTitle);
+        LoadPrefs(optionsGameObject);
     }
 
     public void OnSettingAdjusted(GameObject OptionRow)
@@ -142,6 +145,8 @@ public class SettingsManager : MonoBehaviour
 
     void OnLanguageChanged(Locale selectedLocale)
     {
+        if(SettingsTitle != null)
+            LocalizationHelper.LocalizeTMP("MainMenu.Settings", SettingsTitle);
         LoadPrefs(optionsGameObject);
     }
 }

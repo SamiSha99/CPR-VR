@@ -22,9 +22,10 @@ public class LocalizationManager : MonoBehaviour
     void OnLanguageChanged(Locale selectedLanguage) => FlipUI();
     void FlipUI()
     {
-        if(UIFlipped == LocalizationHelper.UsingRightToLeftLanguage()) return;
-        UIFlipped = !UIFlipped;
-        Debug.Log("Flipping: " + UIFlipped);
+        bool result = LocalizationHelper.UsingRightToLeftLanguage();
+        if(UIFlipped == result) return;
+        UIFlipped = result;
+        //Debug.Log("Flipping =? " + UIFlipped);
         LocalizationHelper.FlipCanvas();
     }
 }

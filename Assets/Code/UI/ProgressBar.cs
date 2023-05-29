@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ProgressBar : MonoBehaviour
+public class ProgressBar : UIScript
 {
     public Slider _slider;
     public void SetProgressBar(float value) => Mathf.Clamp(_slider.value = value, _slider.minValue, _slider.maxValue);

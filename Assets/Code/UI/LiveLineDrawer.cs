@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 using TMPro;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization;
+
 public class LiveLineDrawer : MonoBehaviour
 {
     public int samplesPerSecond = 50;
@@ -26,6 +29,10 @@ public class LiveLineDrawer : MonoBehaviour
         gameObject.SetActive(false);
         enabled = false;
         //StartGraphs(null);
+    }
+    void Start()
+    {
+        LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
     }
     void Update()
     {
@@ -143,15 +150,24 @@ public class LiveLineDrawer : MonoBehaviour
     void SetCompressionText(int amount)
     {
         if(_CompressionAverageText == null) return;
-        _CompressionAverageText.text = $"{amount} cc/m";
+        LocalizationHelper.LocalizeTMP($"{amount} cc/m", _CompressionAverageText);
     }
     void SetCompressionDepthText(float amount)
     {
         if(_CompressionDepthText == null) return;
         bool useCentimeter = SettingsUtility.ShouldUseCentimeter();
         if (useCentimeter) amount *= Util.INCH_TO_CENTIMETER;
-        _CompressionDepthText.text = $"{Mathf.Round(amount)}" + (useCentimeter ? "cm" : " inch");
+        LocalizationHelper.LocalizeTMP($"{Mathf.Round(amount)}" + (useCentimeter ? "cm" : " inch"), _CompressionDepthText);
     }
     // 0 implies that we haven't done our first compression, this happens when _UILineRendererPlayer graph hits bottom as 0 value
     public bool PlayerStartedCompressing() { return compressionAmount != 0; }
+
+    void OnLanguageChanged(Locale selectedLanguage)
+    {
+        LocalizationHelper.LocalizeTMP(_CompressionDepthText.text, _CompressionDepthText);
+        LocalizationHelper.LocalizeTMP(_CompressionAverageText.text, _CompressionAverageText);
+        
+        if(!LocalizationHelper.UsingRightToLeftLanguage()) return;
+        _UILineRendererPlayer.gameObject.GetComponent<RectTransform>();
+    }
 }

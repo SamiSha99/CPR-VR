@@ -74,6 +74,54 @@ MonoBehaviour:
     m_Localized: Look at the chest is it rising?<br>If no breathing, start CPR.
     m_Metadata:
       m_Items: []
+  - m_Id: 12314337678409728
+    m_Localized: Do Chest Compression
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12314458310787072
+    m_Localized: Compress with your hands between the nipples.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12314481618534400
+    m_Localized: Do CPR for 20 seconds.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12323266726674432
+    m_Localized: Give a Breather
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12323299396108288
+    m_Localized: After CPR, give 2 breathers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12323329230192640
+    m_Localized: Face the patient mouth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12323356849684480
+    m_Localized: Give 2 Breathers with 1 second delay between
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12328882690015232
+    m_Localized: Use AED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12328902453575680
+    m_Localized: Use the AED to apply a shock on the patient.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12328919247568896
+    m_Localized: Apply both patches
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12328989741236224
+    m_Localized: Wait for the AED for results.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12329012767965184
+    m_Localized: Press the Red Button.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

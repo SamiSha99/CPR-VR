@@ -3078,6 +3078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TutorialQuestsLine:
+  - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
   - {fileID: 8300000, guid: eec57c2a67cab4e48ac5241837d7d4fd, type: 3}
   - {fileID: 8300000, guid: 95f74650952fd00438ed93eceb13eec4, type: 3}
   - {fileID: 11400000, guid: bdbb2ef8048e14b4599c44ab927c0993, type: 2}
@@ -8402,6 +8403,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 249702939217201632, guid: 0e0648f7dbfaba0459105f73beefc9a4,
+        type: 3}
+      propertyPath: supportsRightToLeftUI
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 249702939217201633, guid: 0e0648f7dbfaba0459105f73beefc9a4,
         type: 3}
       propertyPath: m_AnchorMax.y

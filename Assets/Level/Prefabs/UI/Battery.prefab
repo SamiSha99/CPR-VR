@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb4426cdff5e4e43ab3f8ffabcbecf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  supportsRightToLeftUI: 0
   batteryPrecentageText: {fileID: 5040716499532365117}
   batteryBar: {fileID: 5040716499415656098}
 --- !u!114 &5040716499415656098
@@ -76,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1752145ac5377143b7fb17234b5f581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  supportsRightToLeftUI: 1
   _slider: {fileID: 5040716499725725064}
 --- !u!1 &5040716499532365115
 GameObject:

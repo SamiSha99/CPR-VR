@@ -135,8 +135,6 @@ public class QuestManager : MonoBehaviour
         List<Transform> transformList = new List<Transform>();
         Transform[] transformArr;
 
-        if(goal._GoalUIType == Quest.QuestGoal.GoalUIType.GUIT_None) return; // Don't update
-
         transformArr = Util.GetChildren(questGoalList.transform, transformList, false).ToArray();
         int index = goal.index;
 
@@ -146,6 +144,9 @@ public class QuestManager : MonoBehaviour
             return;
         }
         
+        // ?
+        if(goal._GoalUIType == Quest.QuestGoal.GoalUIType.GUIT_None) return; // Don't update
+
         TextMeshProUGUI goalTextCell = transformArr[index].FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE);
         LocalizationHelper.LocalizeTMP(goal.GetDescription(), goalTextCell);
         GameObject goalValueCell = transformArr[index].Find(GAMEOBJECT_NAME_GOAL_VALUE).gameObject;
@@ -245,10 +246,9 @@ public class QuestManager : MonoBehaviour
         
         if(activeQuest != null)
         {
-            Debug.Log(LocalizationHelper.LocalizeTMP(activeQuest.information.name, questName));
-            Debug.Log(LocalizationHelper.LocalizeTMP(activeQuest.information.description, questDescription));
-            foreach(Quest.QuestGoal g in activeQuest.goals)
-                ForceUpdateGoal(g);
+            LocalizationHelper.LocalizeTMP(activeQuest.information.name, questName);
+            LocalizationHelper.LocalizeTMP(activeQuest.information.description, questDescription);
+            foreach(Quest.QuestGoal g in activeQuest.goals) ForceUpdateGoal(g);
         }
         else
             SetTextToDefault();

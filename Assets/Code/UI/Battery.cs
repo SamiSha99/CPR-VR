@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class Battery : MonoBehaviour
+public class Battery : UIScript
 {
     public TextMeshProUGUI batteryPrecentageText;
     public ProgressBar batteryBar;
@@ -23,8 +23,8 @@ public class Battery : MonoBehaviour
         
         lastUpdate = Time.timeSinceLevelLoad;
 
-        gameObject.SetActive(batteryLevel != -1);
-        batteryPrecentageText.gameObject.SetActive(batteryLevel != -1);
+        //gameObject.SetActive(batteryLevel != -1);
+        //batteryPrecentageText.gameObject.SetActive(batteryLevel != -1);
 
         if(batteryLevel != -1)
         {
