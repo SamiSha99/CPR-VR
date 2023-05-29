@@ -510,6 +510,7 @@ GameObject:
   - component: {fileID: 72005456}
   - component: {fileID: 72005455}
   - component: {fileID: 72005454}
+  - component: {fileID: 72005457}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -654,6 +655,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72005452}
   m_CullTransparentMesh: 1
+--- !u!114 &72005457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72005452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f93f1da1ed075a4e83eaeccf2429377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  supportsRightToLeftUI: 1
+  dontFixArabic: 0
 --- !u!1001 &108660287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2846,6 +2861,7 @@ MonoBehaviour:
   loops: 3
   languageIndex: 0
   optionsGameObject: {fileID: 1917239119}
+  SettingsTitle: {fileID: 1876617461}
 --- !u!114 &438132288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7595,6 +7611,7 @@ GameObject:
   - component: {fileID: 1271286194}
   - component: {fileID: 1271286195}
   - component: {fileID: 1271286196}
+  - component: {fileID: 1271286197}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -7705,6 +7722,20 @@ MonoBehaviour:
   setObjectAsParent: 1
   volume: 1
   activeAudioSource: {fileID: 0}
+--- !u!114 &1271286197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271286193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f93f1da1ed075a4e83eaeccf2429377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  supportsRightToLeftUI: 1
+  dontFixArabic: 0
 --- !u!4 &1297091941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8632090301300553980, guid: 7b3726eaddf29ab41b207a350a3905cb,
@@ -8285,6 +8316,7 @@ GameObject:
   - component: {fileID: 1389598224}
   - component: {fileID: 1389598223}
   - component: {fileID: 1389598222}
+  - component: {fileID: 1389598225}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -8419,6 +8451,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389598220}
   m_CullTransparentMesh: 1
+--- !u!114 &1389598225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389598220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f93f1da1ed075a4e83eaeccf2429377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  supportsRightToLeftUI: 1
+  dontFixArabic: 1
 --- !u!1001 &1401000478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9394,7 +9440,6 @@ GameObject:
   - component: {fileID: 1530900706}
   - component: {fileID: 1530900708}
   - component: {fileID: 1530900707}
-  - component: {fileID: 1530900709}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -9519,46 +9564,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530900705}
   m_CullTransparentMesh: 1
---- !u!114 &1530900709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1530900705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_StringReference:
-    m_TableReference:
-      m_TableCollectionName: GUID:f0426a1a9e1f8444388932073e6830c7
-    m_TableEntryReference:
-      m_KeyId: 5850480640
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  m_FormatArguments: []
-  m_UpdateString:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1530900707}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  references:
-    version: 2
-    RefIds: []
 --- !u!1001 &1533946789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11341,6 +11346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1793683031}
   - component: {fileID: 1793683032}
+  - component: {fileID: 1793683033}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -11429,6 +11435,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &1793683033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793683030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f93f1da1ed075a4e83eaeccf2429377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  supportsRightToLeftUI: 1
+  dontFixArabic: 0
 --- !u!1 &1853179375 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4692404513828099453, guid: deb9c7803f41d864c8272ceb6ff2d290,
@@ -11751,6 +11771,7 @@ GameObject:
   - component: {fileID: 1913793579}
   - component: {fileID: 1913793581}
   - component: {fileID: 1913793580}
+  - component: {fileID: 1913793582}
   m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
@@ -11875,6 +11896,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913793578}
   m_CullTransparentMesh: 1
+--- !u!114 &1913793582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913793578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f93f1da1ed075a4e83eaeccf2429377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  supportsRightToLeftUI: 0
+  dontFixArabic: 0
 --- !u!1 &1917239119
 GameObject:
   m_ObjectHideFlags: 0
