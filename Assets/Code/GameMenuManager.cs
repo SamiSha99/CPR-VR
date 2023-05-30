@@ -8,6 +8,7 @@ public class GameMenuManager : MonoBehaviour
 {
     public static GameMenuManager _Instance;
     public static event Action<bool> OnMenuButtonPressed;
+    public GameEventCommand OnPause;
     public GameObject pauseMenuPrefab, pauseMenuObject;
     public InputActionProperty pauseButton;
     public bool isPaused;
@@ -43,6 +44,7 @@ public class GameMenuManager : MonoBehaviour
         AudioListener.pause = true;
         isPaused = true;
         InstantiatePauseMenu();
+        OnPause.TriggerEvent();
     }
 
     void UnPause()
@@ -51,6 +53,7 @@ public class GameMenuManager : MonoBehaviour
         Time.timeScale = previousTimeScale;
         AudioListener.pause = false;
         isPaused = false;
+        OnPause.TriggerEvent("unpause");
     }
 
     void InstantiatePauseMenu()

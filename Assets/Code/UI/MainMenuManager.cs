@@ -10,7 +10,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public GameObject XROriginMenu;
     public GameObject XROriginPlayer;
-    public TextMeshProUGUI title, practiceButton, examButton, quitButton;
+    public TextMeshProUGUI title, practiceButton, examButton, videoButton, quitButton;
     void Start()
     {
 
@@ -34,6 +34,11 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene("VR CPR");
     }
 
+    public void OnVideoButtonPressed()
+    {
+        SceneManager.LoadScene("VR 360 Video");
+    }
+
     public void OnQuitButtonPressed()
     {
 #if UNITY_EDITOR
@@ -54,6 +59,7 @@ public class MainMenuManager : MonoBehaviour
         LocalizationHelper.LocalizeTMP("MainMenu.Title", title);
         LocalizationHelper.LocalizeTMP("MainMenu.Practice", practiceButton);
         LocalizationHelper.LocalizeTMP("MainMenu.Exam", examButton);
+        LocalizationHelper.LocalizeTMP("MainMenu.Video", videoButton);
         LocalizationHelper.LocalizeTMP("MainMenu.Quit", quitButton);
     }
 

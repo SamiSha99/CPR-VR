@@ -37,19 +37,19 @@ public class ArabicFixerTMPRO : MonoBehaviour
         isInitilized = true;
     }
 
-    public void OnEnable()
-    {
-        fixedText = tmpTextComponent.text;
-        isInitilized = true;
-        OldText = "";
-    }
+   //public void OnEnable()
+   //{
+   //    fixedText = tmpTextComponent.text;
+   //    isInitilized = true;
+   //    OldText = "";
+   //}
 
-    public void OnDisable()
-    {
-        fixedText = "";
-        OldText = "";
-        isInitilized = false;
-    }
+   //public void OnDisable()
+   //{
+   //    fixedText = "";
+   //    OldText = "";
+   //    isInitilized = false;
+   //}
 
     public void Rebuild()
     {

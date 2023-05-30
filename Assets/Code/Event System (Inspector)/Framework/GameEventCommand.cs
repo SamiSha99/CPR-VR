@@ -16,7 +16,7 @@ public class GameEventCommand : ScriptableObject
     string AdditionalNotes;
 #endif
 
-    public void TriggerEvent(string command)
+    public void TriggerEvent(string command = "")
     {
         for (int i = listeners.Count - 1; i >= 0; i--) listeners[i].OnEventTriggered(command);
     }

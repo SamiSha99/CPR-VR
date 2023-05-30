@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class VideoManager : MonoBehaviour
 {
-    private VideoPlayer videoPlayer;
+    public VideoPlayer videoPlayer;
     void Start()
     {
         videoPlayer = GetComponent<VideoPlayer>();
         videoPlayer.loopPointReached += VideoPlayer_LoopPointReached;
+        videoPlayer.prepareCompleted += VideoPlayer_PrepareCompleted;
         GameMenuManager.OnMenuButtonPressed += GameMenuManager_OnMenuButtonPressed;
     }
     public void Play() => videoPlayer.Play(); 
@@ -23,13 +25,21 @@ public class VideoManager : MonoBehaviour
         videoPlayer.Prepare();
         videoPlayer.prepareCompleted += VideoPlayer_PrepareCompleted;
     }
+
+    // Insert normalized value between 0 - 1
+    public void SetTime(Slider slider)
+    {
+        float value = Mathf.Clamp01(slider.value);
+        videoPlayer.frame = (long)(value * videoPlayer.frameCount);
+    }
+
     private void VideoPlayer_PrepareCompleted(VideoPlayer source)
     {
         Play();
     }
     private void VideoPlayer_LoopPointReached(VideoPlayer source)
     {
-
+        Stop();
     }
     private void GameMenuManager_OnMenuButtonPressed(bool pause)
     {

@@ -18,18 +18,26 @@ public class Battery : UIScript
     }
     void UpdateBattery()
     {        
+
+        lastUpdate = Time.timeSinceLevelLoad;
+        
+#if UNITY_EDITOR
+
+        batteryLevel = Random.value;
+        if(batteryPrecentageText != null) batteryPrecentageText.text = $"{Mathf.RoundToInt(batteryLevel * 100)}%";
+        batteryBar.SetProgressBar(batteryLevel);
+
+#else
+
         batteryLevel = SystemInfo.batteryLevel;
         batteryStatus = SystemInfo.batteryStatus;
-        
-        lastUpdate = Time.timeSinceLevelLoad;
-
-        //gameObject.SetActive(batteryLevel != -1);
-        //batteryPrecentageText.gameObject.SetActive(batteryLevel != -1);
 
         if(batteryLevel != -1)
         {
             if(batteryPrecentageText != null) batteryPrecentageText.text = $"{Mathf.RoundToInt(batteryLevel * 100)}%";
             batteryBar.SetProgressBar(batteryLevel);
         }
+
+#endif
     }
 }
