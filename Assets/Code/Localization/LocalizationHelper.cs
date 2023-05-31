@@ -91,7 +91,7 @@ public static class LocalizationHelper
     {
         if(localizationCommand.Contains(" ") || localizationCommand.Count(f => f == '.') != 1) return localizationCommand;
         string[] text = localizationCommand.Split(".");
-        if(text.Length != 2) return localizationCommand;
+        if(text.Length != 2 || text.Contains(" ")) return localizationCommand;
         
         return GetText(text[0], text[1]);
     }

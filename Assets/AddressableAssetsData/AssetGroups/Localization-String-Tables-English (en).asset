@@ -36,18 +36,35 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 719c3b35821d11248a1404d020b99115
     m_Address: Quest_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2991f0c42ec5824418c1d64a77700ba7
     m_Address: Tooltip_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23dd3ba907796c24f82b838649d467a7
+    m_Address: Exam_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17552ab0729c2df468884cf64c4a8cc2
+    m_Address: ExamResults_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 458af66e6cd2ff74eae68ca0e9597f49, type: 2}

@@ -37,7 +37,7 @@ public class ChestCompressionTrial : MonoBehaviour
     public void OnTrialFinish()
     {
         QuestManager qm = QuestManager._Instance;
-        if (qm.IsQuestType("Do Chest Compression")) qm.ForceCompleteQuest();
+        if (qm.IsQuestType("CPR")) qm.ForceCompleteQuest();
         SetChestCompression(1);
         ToggleCPRHand(false);
         enabled = false;

@@ -150,6 +150,20 @@ public class LiveLineDrawer : MonoBehaviour
     void SetCompressionText(int amount)
     {
         if(_CompressionAverageText == null) return;
+        GameManager gm = GameManager._Instance;
+        QuestManager q = QuestManager._Instance;
+        if(amount < 100)
+        {
+            q.OnPenalty(1);
+            gm.AddExamPenalty("Exam.CPRPenaltySlow");
+            
+        }
+        else if(amount >= 130)
+        {
+            q.OnPenalty(1);
+            gm.AddExamPenalty("Exam.CPRPenaltyFast");
+        }
+
         LocalizationHelper.LocalizeTMP($"{amount} cc/m", _CompressionAverageText);
     }
     void SetCompressionDepthText(float amount)

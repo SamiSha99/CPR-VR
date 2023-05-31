@@ -115,6 +115,7 @@ public class QuestManager : MonoBehaviour
             AudioSource.PlayClipAtPoint(writingSound, transform.position);
         
         GameManager gm = GameManager._Instance;
+
         gm.AdjustScore(questCurrentTime, q.averageTime, accumulatedScorePenalty);
         accumulatedScorePenalty = 0;
 
@@ -230,7 +231,7 @@ public class QuestManager : MonoBehaviour
 
     public bool IsQuestType(string questTitle)
     {
-        return IsQuestActive() && activeQuest.information.name == questTitle;
+        return IsQuestActive() && activeQuest.name == questTitle;
     }
     public void ForceUpdateGoal(Quest.QuestGoal g) => OnUpdateGoalProgress(g);
 

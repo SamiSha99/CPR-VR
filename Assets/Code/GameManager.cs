@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public bool completed;
     [Tooltip("The exam's content step by step, each step is evaulated.")]
     public List<Object> _ExamQuestsLine; // We do this step by step to examinate how fast/slow and effecient the player is and we add score
+    public List<string> _ExamPenalty;
+    public ExamResults resultCanvas;
     [Tooltip("These tasks are repeated continuously X times, depeding on Repeatable Amount, also evaulated")]
     public List<Object> _RepeatableQuestLine;
     [Min(1)]
@@ -129,15 +131,33 @@ public class GameManager : MonoBehaviour
         if(isExam)
         {
             ShowFinalScore();
+            Util.Invoke(this, () => Util.LoadMenu(), 20.0f);
         }
-
-        Util.Invoke(this, () => Util.LoadMenu(), 10.0f);
+        else
+            Util.Invoke(this, () => Util.LoadMenu(), 5.0f);
         return true;
     }
 
     private void ShowFinalScore()
     {
-        
+        if(resultCanvas != null)
+        {
+            resultCanvas.ShowFinalScore(score, maxScore, _ExamPenalty);
+        }
+    }
+
+    public void AddExamPenalty(string mistakeLocalization)
+    {
+        if(_ExamPenalty.Contains(mistakeLocalization)) return;
+        _ExamPenalty.Add(mistakeLocalization);    
+    }
+    public void AddExamPenalty(List<string> mistakeLocalizations)
+    {
+        foreach(string m in mistakeLocalizations)
+        {
+            if(_ExamPenalty.Contains(m)) continue;
+            _ExamPenalty.Add(m);
+        }
     }
 
     const int REDUCE_AFTER_SECONDS = 3;
@@ -145,10 +165,12 @@ public class GameManager : MonoBehaviour
     public void AdjustScore(float timeTaken, float averageTime, float accumulatedPenalties = 0)
     {
         if(timeTaken > averageTime)
+        {
             accumulatedPenalties += GetTimePenalty(timeTaken, averageTime);
-        
+            AddExamPenalty("Exam.TimePenalty");
+        }
         score = Mathf.Clamp(score - accumulatedPenalties, 0, maxScore);
-        //Util.Print("CURRENT SCORE: " + score + " | Lost:" + accumulatedPenalties);
+        Util.Print("CURRENT SCORE: " + score + " | Lost: " + accumulatedPenalties);
     }
 
     private int GetTimePenalty(float timeTaken, float averageTime)
