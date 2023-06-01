@@ -53,7 +53,7 @@ MonoBehaviour:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f45c4645c18c1f84db54c926a1c82069
-    m_Address: Exam_ar
+    m_Address: ExamPenalty_ar
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ar

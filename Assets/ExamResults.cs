@@ -9,27 +9,26 @@ using UnityEngine.Localization;
 public class ExamResults : MonoBehaviour
 {
     public TextMeshProUGUI Title, MistakeTitle, Mistakes, FinalScoreText, ScoreValue, LeaveButton;
-    public List<string> MistakesLocalization;
+    public List<GameManager.ExamPenalty> MistakesLocalization;
     private string localizedMistakes;
-    private float score, maxScore;
+    private float score;
     void Awake() => LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
     void OnDestroy() => LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
-    public void ShowFinalScore(float score, float maxScore, List<string> mistakeLocalizations)
+    public void ShowFinalScore(float score, List<GameManager.ExamPenalty> mistakeLocalizations)
     {
         MistakesLocalization = mistakeLocalizations;
         this.score = score;
-        this.maxScore = maxScore;
         LocalizeContent();
         gameObject.SetActive(true);
     }
 
-    void LocalizeMistakes(List<string> mistakeLocalizations)
+    void LocalizeMistakes(List<GameManager.ExamPenalty> mistakeLocalizations)
     {
         MistakesLocalization = mistakeLocalizations;
         localizedMistakes = "";
         for(int i = 0; i < MistakesLocalization.Count; i++)
         {
-            localizedMistakes += $"{i + 1}) " + LocalizationHelper.GetText(MistakesLocalization[i]);
+            localizedMistakes += $"{i + 1}) " + LocalizationHelper.GetText(MistakesLocalization[i].penaltyName) + " | -" + MistakesLocalization[i].penaltyAmount;
             localizedMistakes += "<br>";
         }
     }
@@ -51,12 +50,12 @@ public class ExamResults : MonoBehaviour
         {
             for(int i = 0; i < MistakesLocalization.Count; i++)
             {
-                localizedMistakes += $"{i + 1}) " + LocalizationHelper.GetText(MistakesLocalization[i]);
+                localizedMistakes += $"{i + 1}) " + LocalizationHelper.GetText(MistakesLocalization[i].penaltyName) + " | -" + MistakesLocalization[i].penaltyAmount;
                 localizedMistakes += "<br>";
             }
             LocalizationHelper.LocalizeTMP(localizedMistakes, Mistakes);
         }
-        LocalizationHelper.LocalizeTMP($"{score}%", ScoreValue);
+        LocalizationHelper.LocalizeTMP($"{score}%", ScoreValue); // to-do combine all penalties!!
         Util.Print("FINAL SCORE: " + ScoreValue.text + " | Score: " + score);
     }
 

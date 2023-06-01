@@ -7,7 +7,7 @@ public class BreatherTrial : MonoBehaviour
     public GameObject chest;
     public float chestRiseAmount = 0.15f;
     private bool facingMouth, lastTalk, complete;
-    public bool incorrectSecondBreathInterval;
+    public bool incorrectSecondBreathInterval, tooFast, tooSlow;
     private float talkDuration, notalkDuration;
     private int breathesGive;
 
@@ -62,6 +62,7 @@ public class BreatherTrial : MonoBehaviour
                     complete = true;
                     Util.GetXREvents().DisableMicRecording();
                     qm.CompleteCommandGoal("Give_Two_Breaths_Goal_Command");
+                    DoPenalty();
                     Util.Invoke(this, () => CleanUp(), 1.0f);
                 }
                 talkDuration += Time.deltaTime;
@@ -75,7 +76,19 @@ public class BreatherTrial : MonoBehaviour
         if(!lastTalk)
             notalkDuration += Time.deltaTime;
         else if(breathesGive == 1 && (notalkDuration <= 0.75f || notalkDuration >= 1.25f))
+        {
             incorrectSecondBreathInterval = true;
+            tooFast = notalkDuration <= 0.75f;
+            tooSlow = notalkDuration >= 1.25f;
+        }
+    }
+
+    void DoPenalty()
+    {
+        if(!incorrectSecondBreathInterval) return;
+        GameManager gm = GameManager._Instance;
+        if(tooFast) gm.AddExamPenalty("ExamPenatly.BreatherFast", 2);
+        if(tooSlow) gm.AddExamPenalty("ExamPenatly.BreatherSlow", 2);
     }
 
     void CleanUp()
@@ -85,6 +98,8 @@ public class BreatherTrial : MonoBehaviour
         breathesGive = 0;
         lastTalk = false;
         incorrectSecondBreathInterval = false;
+        tooSlow = false;
+        tooFast = false;
         complete = false;
         enabled = false;
     }

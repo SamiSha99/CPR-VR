@@ -25,7 +25,7 @@ public class QuestManager : MonoBehaviour
     public GameEventCommand onQuestBegin, onQuestCompleted, onQuestGoalCompleted;
     public bool debugging;
 
-    private float questCurrentTime, accumulatedScorePenalty;
+    private float questCurrentTime;
     private bool isQuestTimePaused;
 
     const string GAMEOBJECT_NAME_GOAL_TITLE = "Goal Text";
@@ -115,11 +115,9 @@ public class QuestManager : MonoBehaviour
             AudioSource.PlayClipAtPoint(writingSound, transform.position);
         
         GameManager gm = GameManager._Instance;
+        gm.AdjustScore(questCurrentTime, q.averageTime);
 
-        gm.AdjustScore(questCurrentTime, q.averageTime, accumulatedScorePenalty);
-        accumulatedScorePenalty = 0;
-
-        Util.Invoke(this, () => OnPostQuestComplete(q), GameManager._Instance.isExam ? 0.5f : 3.0f);
+        Util.Invoke(this, () => OnPostQuestComplete(q), GameManager._Instance.isExam ? 0.75f : 3.0f);
     }
     private void OnPostQuestComplete(Quest q)
     {
@@ -234,11 +232,6 @@ public class QuestManager : MonoBehaviour
         return IsQuestActive() && activeQuest.name == questTitle;
     }
     public void ForceUpdateGoal(Quest.QuestGoal g) => OnUpdateGoalProgress(g);
-
-    public void OnPenalty(float amount)
-    {
-        accumulatedScorePenalty += amount;
-    }
 
     public void ToggleTimer(bool _enabled) => isQuestTimePaused = !_enabled;
     

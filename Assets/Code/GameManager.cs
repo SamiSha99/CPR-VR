@@ -18,7 +18,17 @@ public class GameManager : MonoBehaviour
     public bool completed;
     [Tooltip("The exam's content step by step, each step is evaulated.")]
     public List<Object> _ExamQuestsLine; // We do this step by step to examinate how fast/slow and effecient the player is and we add score
-    public List<string> _ExamPenalty;
+    public struct ExamPenalty {
+        public string penaltyName;
+        public float penaltyAmount;
+        public ExamPenalty(string penaltyName, float penaltyAmount)
+        {
+            this.penaltyName = penaltyName;
+            this.penaltyAmount = penaltyAmount;
+        }
+    }
+    public List<ExamPenalty> _ExamPenalty;
+    public int accumulatedPenalties;
     public ExamResults resultCanvas;
     [Tooltip("These tasks are repeated continuously X times, depeding on Repeatable Amount, also evaulated")]
     public List<Object> _RepeatableQuestLine;
@@ -142,35 +152,34 @@ public class GameManager : MonoBehaviour
     {
         if(resultCanvas != null)
         {
-            resultCanvas.ShowFinalScore(score, maxScore, _ExamPenalty);
+            resultCanvas.ShowFinalScore(score, _ExamPenalty);
         }
     }
 
-    public void AddExamPenalty(string mistakeLocalization)
+    public void AddExamPenalty(string mistakeLocalization, float scorePenalty)
     {
-        if(_ExamPenalty.Contains(mistakeLocalization)) return;
-        _ExamPenalty.Add(mistakeLocalization);    
-    }
-    public void AddExamPenalty(List<string> mistakeLocalizations)
-    {
-        foreach(string m in mistakeLocalizations)
+        for(int i = 0; i < _ExamPenalty.Count; i++)
         {
-            if(_ExamPenalty.Contains(m)) continue;
-            _ExamPenalty.Add(m);
+            if(_ExamPenalty[i].penaltyName == mistakeLocalization)
+            {
+                _ExamPenalty[i] = new ExamPenalty(_ExamPenalty[i].penaltyName, _ExamPenalty[i].penaltyAmount + scorePenalty);
+                return;
+            }
+            _ExamPenalty.Add(new ExamPenalty(mistakeLocalization, scorePenalty));    
         }
     }
-
+    // after avg, every 3 seconds reduces this score by 1, up to 10.
     const int REDUCE_AFTER_SECONDS = 3;
 
-    public void AdjustScore(float timeTaken, float averageTime, float accumulatedPenalties = 0)
+    public void AdjustScore(float timeTaken, float averageTime)
     {
         if(timeTaken > averageTime)
         {
             accumulatedPenalties += GetTimePenalty(timeTaken, averageTime);
-            AddExamPenalty("Exam.TimePenalty");
+            AddExamPenalty("ExamPenalty.Time", 0);
         }
         score = Mathf.Clamp(score - accumulatedPenalties, 0, maxScore);
-        Util.Print("CURRENT SCORE: " + score + " | Lost: " + accumulatedPenalties);
+        //Util.Print("CURRENT SCORE: " + score + " | Lost: " + accumulatedPenalties);
     }
 
     private int GetTimePenalty(float timeTaken, float averageTime)
