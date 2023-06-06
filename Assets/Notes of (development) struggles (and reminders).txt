@@ -1,0 +1,2 @@
+1) UI interactions with XR in worldspace requires the XRCamera as a reference!
+2) I think that's really it I'm just reminding myself this specifically because I keep forgetting :pensive: :sob: :sad:

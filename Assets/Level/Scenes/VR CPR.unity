@@ -2809,6 +2809,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 635352325}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &690565187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2253102733995751296, guid: 5fe6746fcf5216649b9a2185772a7682,
+    type: 3}
+  m_PrefabInstance: {fileID: 1154143195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &693707951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4454,6 +4460,11 @@ PrefabInstance:
       propertyPath: ScoreValue
       value: 
       objectReference: {fileID: 2030060777}
+    - target: {fileID: 2253102733995751308, guid: 5fe6746fcf5216649b9a2185772a7682,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1546064120}
     - target: {fileID: 2253102733995751309, guid: 5fe6746fcf5216649b9a2185772a7682,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4567,12 +4578,31 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1154143195}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 690565187}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7f16cbd94aa86e46bb2413c7ec63a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1154143198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690565187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &1156852760
 GameObject:
   m_ObjectHideFlags: 0
@@ -6293,6 +6323,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 352341739}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &1546064120 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2813000696016401094, guid: bb5e242ba78d4bb47a1c35edde699f81,
+    type: 3}
+  m_PrefabInstance: {fileID: 352341739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1573746780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 913180281619474791, guid: d5bb5377bb2f0bd45a41101a27ddecee,
@@ -7471,7 +7507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TutorialQuestsLine:
-  - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
   - {fileID: 8300000, guid: eec57c2a67cab4e48ac5241837d7d4fd, type: 3}
   - {fileID: 8300000, guid: 95f74650952fd00438ed93eceb13eec4, type: 3}
   - {fileID: 11400000, guid: bdbb2ef8048e14b4599c44ab927c0993, type: 2}
@@ -7519,7 +7554,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
   - {fileID: 11400000, guid: bc8e5f38bc0d98e4db0cee9bd7f7e973, type: 2}
   - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
-  _ExamPenalty: []
+  accumulatedPenalties: 0
   resultCanvas: {fileID: 1154143197}
   _RepeatableQuestLine: []
   _RepeatableAmount: 1

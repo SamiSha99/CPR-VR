@@ -14,13 +14,13 @@ GameObject:
   - component: {fileID: 5804812163986677559}
   - component: {fileID: 7981342543689013065}
   - component: {fileID: 958270965576872868}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Left Grab Ray
   m_TagString: Left Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6491583091156926378
 Transform:
   m_ObjectHideFlags: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_AllowHoverHapticsWhileSelecting: 1
   m_LineType: 0
   m_BlendVisualLinePoints: 1
-  m_MaxRaycastDistance: 4
+  m_MaxRaycastDistance: 10
   m_RayOriginTransform: {fileID: 0}
   m_ReferenceFrame: {fileID: 0}
   m_Velocity: 16
@@ -384,11 +384,11 @@ MonoBehaviour:
   m_HoverTimeToSelect: 0.5
   m_EnableUIInteraction: 1
   m_AllowAnchorControl: 1
-  m_UseForceGrab: 1
+  m_UseForceGrab: 0
   m_RotateSpeed: 180
   m_TranslateSpeed: 1
   m_AnchorRotateReferenceFrame: {fileID: 0}
-  m_AnchorRotationMode: 0
+  m_AnchorRotationMode: 1
 --- !u!120 &5804812163986677559
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LineWidth: 0.02
-  m_OverrideInteractorLineLength: 1
+  m_OverrideInteractorLineLength: 0
   m_LineLength: 10
   m_WidthCurve:
     serializedVersion: 2
@@ -2372,8 +2372,8 @@ MonoBehaviour:
   rightDirectGrab: {fileID: 2813000695440645979}
   leftRayInteractor: {fileID: 806556685598499755}
   rightRayInteractor: {fileID: 9168638639862928890}
-  leftGrabRayEnabled: 0
-  rightGrabRayEnabled: 0
+  leftGrabRayEnabled: 1
+  rightGrabRayEnabled: 1
 --- !u!114 &1301566481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3457,13 +3457,13 @@ GameObject:
   - component: {fileID: 9178950890807457713}
   - component: {fileID: 7645321391434983280}
   - component: {fileID: 7843260305368072548}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Right Grab Ray
   m_TagString: Right Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7048893558453558619
 Transform:
   m_ObjectHideFlags: 0
@@ -3804,7 +3804,7 @@ MonoBehaviour:
   m_AllowHoverHapticsWhileSelecting: 1
   m_LineType: 0
   m_BlendVisualLinePoints: 1
-  m_MaxRaycastDistance: 4
+  m_MaxRaycastDistance: 10
   m_RayOriginTransform: {fileID: 0}
   m_ReferenceFrame: {fileID: 0}
   m_Velocity: 16
@@ -3827,11 +3827,11 @@ MonoBehaviour:
   m_HoverTimeToSelect: 0.5
   m_EnableUIInteraction: 1
   m_AllowAnchorControl: 1
-  m_UseForceGrab: 1
+  m_UseForceGrab: 0
   m_RotateSpeed: 180
   m_TranslateSpeed: 1
   m_AnchorRotateReferenceFrame: {fileID: 0}
-  m_AnchorRotationMode: 0
+  m_AnchorRotationMode: 1
 --- !u!120 &9178950890807457713
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3953,7 +3953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LineWidth: 0.02
-  m_OverrideInteractorLineLength: 1
+  m_OverrideInteractorLineLength: 0
   m_LineLength: 10
   m_WidthCurve:
     serializedVersion: 2

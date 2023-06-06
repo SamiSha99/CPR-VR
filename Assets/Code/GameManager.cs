@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
         if(isExam)
         {
             ShowFinalScore();
-            Util.Invoke(this, () => Util.LoadMenu(), 20.0f);
+            //Util.Invoke(this, () => Util.LoadMenu(), 20.0f);
         }
         else
             Util.Invoke(this, () => Util.LoadMenu(), 5.0f);
