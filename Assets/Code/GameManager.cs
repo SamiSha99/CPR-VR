@@ -21,13 +21,18 @@ public class GameManager : MonoBehaviour
     public struct ExamPenalty {
         public string penaltyName;
         public float penaltyAmount;
+        public ExamPenalty(string penaltyName)
+        {
+            this.penaltyName = penaltyName;
+            penaltyAmount = 0;
+        }
         public ExamPenalty(string penaltyName, float penaltyAmount)
         {
             this.penaltyName = penaltyName;
             this.penaltyAmount = penaltyAmount;
         }
     }
-    public List<ExamPenalty> _ExamPenalty;
+    public List<ExamPenalty> _ExamPenalty = new List<ExamPenalty>();
     public int accumulatedPenalties;
     public ExamResults resultCanvas;
     [Tooltip("These tasks are repeated continuously X times, depeding on Repeatable Amount, also evaulated")]
@@ -150,23 +155,31 @@ public class GameManager : MonoBehaviour
 
     private void ShowFinalScore()
     {
-        if(resultCanvas != null)
-        {
-            resultCanvas.ShowFinalScore(score, _ExamPenalty);
-        }
+        if(resultCanvas == null) return;
+        resultCanvas.ShowFinalScore(score, _ExamPenalty);
     }
 
     public void AddExamPenalty(string mistakeLocalization, float scorePenalty)
     {
+        if(!isExam) return;
+        if(_ExamPenalty == null) return;
+        
+        if(_ExamPenalty.Count <= 0)
+        {
+            _ExamPenalty.Add(new ExamPenalty(mistakeLocalization, scorePenalty));
+            return; 
+        }
+        
         for(int i = 0; i < _ExamPenalty.Count; i++)
         {
             if(_ExamPenalty[i].penaltyName == mistakeLocalization)
             {
                 _ExamPenalty[i] = new ExamPenalty(_ExamPenalty[i].penaltyName, _ExamPenalty[i].penaltyAmount + scorePenalty);
+                Util.Print($"Setting index {i} of ExamPenalty: {_ExamPenalty[i].penaltyName} with scorePenalty: {_ExamPenalty[i].penaltyAmount}");
                 return;
             }
-            _ExamPenalty.Add(new ExamPenalty(mistakeLocalization, scorePenalty));    
         }
+        _ExamPenalty.Add(new ExamPenalty(mistakeLocalization, scorePenalty));
     }
     // after avg, every 3 seconds reduces this score by 1, up to 10.
     const int REDUCE_AFTER_SECONDS = 3;
@@ -176,7 +189,7 @@ public class GameManager : MonoBehaviour
         if(timeTaken > averageTime)
         {
             accumulatedPenalties += GetTimePenalty(timeTaken, averageTime);
-            AddExamPenalty("ExamPenalty.Time", 0);
+            AddExamPenalty("ExamPenalty.Time", GetTimePenalty(timeTaken, averageTime));
         }
         score = Mathf.Clamp(score - accumulatedPenalties, 0, maxScore);
         //Util.Print("CURRENT SCORE: " + score + " | Lost: " + accumulatedPenalties);

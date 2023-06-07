@@ -22,12 +22,12 @@ public static class Util
     const string PATH_OBJECTS = "Assets/Media/Art/Objects/";
     const string PATH_AUDIO_CLIPS = "Assets/Audio";
     // Path way search to specific items, just look up the name of the file + extension
-    public static string GetIcon(string name) { return PATH_ICONS + name; }
-    public static string GetTexture(string name) { return PATH_TEXTURES + name; }
-    public static string GetMaterial(string name) { return PATH_MATERIALS + name; }
-    public static string GetShader(string name) { return PATH_SHADERS + name; }
-    public static string GetParticle(string name) { return PATH_PARTICLES + name; }
-    public static string GeObject(string name) { return PATH_OBJECTS + name; }
+    public static string GetIcon(string name)       => PATH_ICONS + name;
+    public static string GetTexture(string name)    => PATH_TEXTURES + name;
+    public static string GetMaterial(string name)   => PATH_MATERIALS + name;
+    public static string GetShader(string name)     => PATH_SHADERS + name;
+    public static string GetParticle(string name)   => PATH_PARTICLES + name;
+    public static string GeObject(string name)      => PATH_OBJECTS + name;
     
     //########//
     // Consts //
@@ -35,7 +35,7 @@ public static class Util
 
     public const float MICROPHONE_LOUDNESS_THRESHOLD = 0.04f;
     public const int MICROPHONE_LOUDNESS_MULTIPLIER = 100;
-    public const string MICROPHONE_OCULUS_NAME = "Headset Microphone (Oculus Virtual Audio Device)";
+    public const string MICROPHONE_OCULUS_NAME = "Headset Microphone (Oculus Virtual Audio Device)"; // to-do: simplified name identifier?
 
     public const float INCH_TO_CENTIMETER = 2.54f;
     public const float CENTIMETER_TO_INCH = 0.393701f;
@@ -74,17 +74,9 @@ public static class Util
     //############//
 
     ///<summary>Returns true if the GameObject contains that component.</summary>
-    public static bool HasComponent<T>(this GameObject obj) where T : Component
-    {
-        return obj.GetComponent<T>();
-    }
+    public static bool HasComponent<T>(this GameObject obj) where T : Component => obj.GetComponent<T>();
     ///<summary>Returns true if the GameObject contains that component and an out result of that component.</summary>
-    public static bool HasComponent<T>(this GameObject obj, out T componentResult) where T : Component
-    {
-        componentResult = obj.GetComponent<T>();
-        return componentResult != null;
-    }
-
+    public static bool HasComponent<T>(this GameObject obj, out T componentResult) where T : Component => (componentResult = obj.GetComponent<T>()) != null;
     ///<summary>Find a component and return the component using a path similar to Transform.Find(); return null if couldn't find it.</summary>
     public static T FindComponent<T>(this Transform trans, string path) where T : Component
     {
@@ -157,8 +149,8 @@ public static class Util
     // Quests //
     //########//
 
-    public static bool IsQuestActive() { return IsQuestManagerActive() && QuestManager.activeQuest != null; }
-    public static bool IsQuestManagerActive() {return QuestManager._Instance != null; }
+    public static bool IsQuestActive() => IsQuestManagerActive() && QuestManager.activeQuest != null;
+    public static bool IsQuestManagerActive() => QuestManager._Instance != null;
 
     //########//
     // Invoke //
@@ -177,11 +169,11 @@ public static class Util
     // Conversions //
     //#############//
 
-    public static bool IntToBool(int i) { return i > 0; }
-    public static int BoolToInt(bool b) { return b ? 1 : 0; }
+    public static bool IntToBool(int i) => i > 0;
+    public static int BoolToInt(bool b) => b ? 1 : 0; 
 
-    public static float ConvertInchesToCentimeters(float inches) { return inches * INCH_TO_CENTIMETER; }
-    public static float ConvertCentimetersToInches(float centimeters) { return centimeters * CENTIMETER_TO_INCH; }
+    public static float ConvertInchesToCentimeters(float inches) => inches * INCH_TO_CENTIMETER; 
+    public static float ConvertCentimetersToInches(float centimeters) => centimeters * CENTIMETER_TO_INCH; 
     
     //###########//
     // Materials //
@@ -237,7 +229,7 @@ public static class Util
     public static void StopListeningToMicrophone(int index = 0) => Microphone.End(Microphone.devices[index]);
     // Returns the device's index of the specified name if matched
     // Returns -1 if index could not be found
-    public static int GetIndexFromDeviceName(string deviceName) { return Array.IndexOf(Microphone.devices, deviceName); }
+    public static int GetIndexFromDeviceName(string deviceName) => Array.IndexOf(Microphone.devices, deviceName);
 
     // AudioSource.PlayClipAtPoint but returns a source and can be used to attach to something else
     // _base = parent we want to attach this AudioSource to.

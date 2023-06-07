@@ -11,16 +11,8 @@ public class VideoManagerUI : MonoBehaviour
     public VideoManager videoManager;
     public Slider timePosition;
     public TextMeshProUGUI currentTimeText;
-    void Start()
-    {
-        
-    }
 
-    void Update()
-    {
-        UpdateTime();
-    }
-
+    void Update() => UpdateTime();
     void UpdateTime()
     {
         if(videoManager == null) return;

@@ -10,6 +10,7 @@ public class ExamResults : MonoBehaviour
 {
     public TextMeshProUGUI Title, MistakeTitle, Mistakes, FinalScoreText, ScoreValue, LeaveButton;
     public List<GameManager.ExamPenalty> MistakesLocalization;
+    public GameObject MistakeChildTemplate, MistakesList;
     private string localizedMistakes;
     private float score;
     void Awake() => LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
@@ -21,17 +22,6 @@ public class ExamResults : MonoBehaviour
         LocalizeContent();
         gameObject.SetActive(true);
     }
-
-    void LocalizeMistakes(List<GameManager.ExamPenalty> mistakeLocalizations)
-    {
-        MistakesLocalization = mistakeLocalizations;
-        localizedMistakes = "";
-        for(int i = 0; i < MistakesLocalization.Count; i++)
-        {
-            localizedMistakes += $"{i + 1}) " + LocalizationHelper.GetText(MistakesLocalization[i].penaltyName) + " | -" + MistakesLocalization[i].penaltyAmount;
-            localizedMistakes += "<br>";
-        }
-    }
     
     void LocalizeContent()
     {
@@ -40,24 +30,30 @@ public class ExamResults : MonoBehaviour
         LocalizationHelper.LocalizeTMP("ExamResults.FinalScore", FinalScoreText);
         LocalizationHelper.LocalizeTMP("ExamResults.Leave", LeaveButton);
         
-        localizedMistakes = "";
+        
+        while(MistakesList.transform.childCount > 0) DestroyImmediate(MistakesList.transform.GetChild(0).gameObject);
         if(MistakesLocalization.Count <= 0)
-        {
-            LocalizationHelper.LocalizeTMP("ExamResults.Perfect", Mistakes);
-            ScoreValue.color = Color.green;
-        }
+            AddMistakeChild(new GameManager.ExamPenalty("ExamResults.Perfect"));
         else
-        {
-            for(int i = 0; i < MistakesLocalization.Count; i++)
-            {
-                localizedMistakes += $"{i + 1}) " + LocalizationHelper.GetText(MistakesLocalization[i].penaltyName) + " | -" + MistakesLocalization[i].penaltyAmount;
-                localizedMistakes += "<br>";
-            }
-            LocalizationHelper.LocalizeTMP(localizedMistakes, Mistakes);
-        }
+            for(int i = 0; i < MistakesLocalization.Count; i++) AddMistakeChild(MistakesLocalization[i]);
+
         LocalizationHelper.LocalizeTMP($"{score}%", ScoreValue); // to-do combine all penalties!!
+        if(ScoreValue != null && score >= 100) ScoreValue.color = Color.green;
         Util.Print("FINAL SCORE: " + ScoreValue.text + " | Score: " + score);
     }
+
+    void AddMistakeChild(GameManager.ExamPenalty penalty)
+    {
+        GameObject go = Instantiate(MistakeChildTemplate, MistakesList.transform);
+        go.name = penalty.penaltyName;
+        TextMeshProUGUI info = go.transform.FindComponent<TextMeshProUGUI>("MistakeInfo");
+        TextMeshProUGUI times = go.transform.FindComponent<TextMeshProUGUI>("MistakeTimes");
+        LocalizationHelper.LocalizeTMP(penalty.penaltyName, info);
+        if(penalty.penaltyAmount > 0)
+            LocalizationHelper.LocalizeTMP($"-{penalty.penaltyAmount}", times);
+        else
+            times.text = "";       
+    }    
 
     void OnLanguageChanged(Locale selectedLanguage)
     {
