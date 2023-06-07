@@ -36,9 +36,9 @@ public class GameManager : MonoBehaviour
     public int accumulatedPenalties;
     public ExamResults resultCanvas;
     [Tooltip("These tasks are repeated continuously X times, depeding on Repeatable Amount, also evaulated")]
-    public List<Object> _RepeatableQuestLine;
+    //public List<Object> _RepeatableQuestLine;
     [Min(1)]
-    public int _RepeatableAmount = 1;
+    //public int _RepeatableAmount = 1;
     private List<Object> default_ExamQuestsLine;
     public float score, maxScore;
     public GameEventCommand OnModuleProgressed;
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         default_TutotrialQuestsLine = new List<Object>(_TutorialQuestsLine);
         default_ExamQuestsLine = new List<Object>(_ExamQuestsLine);
-        _RepeatableAmount = Mathf.Max(1, _RepeatableAmount);
+        //_RepeatableAmount = Mathf.Max(1, _RepeatableAmount);
 
         if(isExam)
         {
