@@ -11,10 +11,12 @@ public class HelpHighlighter : MonoBehaviour
     public bool hideIfGrabbingInteractable;
     public XRGrabInteractable relevantInteractable;
     GameObject leftHand, rightHand;
+    GameObject player;
     void Start()
     {
-        leftHand = Util.GetPlayer().GetPlayerHandObject();
-        rightHand = Util.GetPlayer().GetPlayerHandObject(true);
+        player = Util.GetPlayer();
+        leftHand = player.GetPlayerHandObject();
+        rightHand = player.GetPlayerHandObject(true);
         if(!gameObject.HasComponent<HideObject>()) hiderScript = gameObject.AddComponent<HideObject>();
         if(hiderScript != null) hiderScript.SetHidden(!inRange);
         DoHighlighter();
@@ -24,7 +26,18 @@ public class HelpHighlighter : MonoBehaviour
 
     void DoHighlighter()
     {
+        leftHand = Util.GetPlayer().GetPlayerHandObject();
+        rightHand = Util.GetPlayer().GetPlayerHandObject(true);
         Vector3 pos = transform.position;
+        
+        Util.Print("Left Hand: " + leftHand + "| Right Hand: " + rightHand);
+
+        if(leftHand == null && rightHand == null)
+        {
+            ToggleHighlighter(false);
+            return;
+        }
+
         Vector3 leftHandPos = leftHand.transform.position, rightHandPos = rightHand.transform.position;
         bool belowDistance = Vector3.Distance(leftHandPos, pos) <= radiusRange  || Vector3.Distance(rightHandPos, pos) <= radiusRange;
         ToggleHighlighter(ShouldHideOnGrab(belowDistance) ? false : belowDistance);

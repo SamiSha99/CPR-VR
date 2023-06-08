@@ -27,7 +27,8 @@ public class GameMenuManager : MonoBehaviour
         if(pauseButton.action.WasPerformedThisFrame())
         {
             TogglePause(!isPaused);
-            OnMenuButtonPressed.Invoke(isPaused); // post toggle
+            // sometimes null?
+            OnMenuButtonPressed?.Invoke(isPaused); // post toggle
         }
     }
 

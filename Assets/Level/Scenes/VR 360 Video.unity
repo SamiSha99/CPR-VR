@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 962719111}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.22771832, g: 0.19189972, b: 0.15972859, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1265,7 +1265,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 6454631476877030272, guid: c348712bda248c246b8c49b3db54643f,
+    m_Reference: {fileID: -4704546126011481828, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   isPaused: 0
   previousTimeScale: -1
@@ -1802,6 +1802,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5548396111691642697, guid: 3ce128b8e97f12841bd7cec1008c77c9,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1655344364}
     - target: {fileID: 5548396111691642698, guid: 3ce128b8e97f12841bd7cec1008c77c9,
         type: 3}
       propertyPath: m_Name
@@ -2577,8 +2582,8 @@ MonoBehaviour:
   isExam: 0
   completed: 0
   _ExamQuestsLine: []
-  _RepeatableQuestLine: []
-  _RepeatableAmount: 1
+  accumulatedPenalties: 0
+  resultCanvas: {fileID: 0}
   score: 0
   maxScore: 100
   OnModuleProgressed: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
