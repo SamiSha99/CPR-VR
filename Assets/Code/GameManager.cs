@@ -172,12 +172,9 @@ public class GameManager : MonoBehaviour
         
         for(int i = 0; i < _ExamPenalty.Count; i++)
         {
-            if(_ExamPenalty[i].penaltyName == mistakeLocalization)
-            {
-                _ExamPenalty[i] = new ExamPenalty(_ExamPenalty[i].penaltyName, _ExamPenalty[i].penaltyAmount + scorePenalty);
-                Util.Print($"Setting index {i} of ExamPenalty: {_ExamPenalty[i].penaltyName} with scorePenalty: {_ExamPenalty[i].penaltyAmount}");
-                return;
-            }
+            if(_ExamPenalty[i].penaltyName != mistakeLocalization) continue;
+            _ExamPenalty[i] = new ExamPenalty(_ExamPenalty[i].penaltyName, _ExamPenalty[i].penaltyAmount + scorePenalty);
+            return;
         }
         _ExamPenalty.Add(new ExamPenalty(mistakeLocalization, scorePenalty));
     }
@@ -186,13 +183,8 @@ public class GameManager : MonoBehaviour
 
     public void AdjustScore(float timeTaken, float averageTime)
     {
-        if(timeTaken > averageTime)
-        {
-            accumulatedPenalties += GetTimePenalty(timeTaken, averageTime);
-            AddExamPenalty("ExamPenalty.Time", GetTimePenalty(timeTaken, averageTime));
-        }
-        score = Mathf.Clamp(score - accumulatedPenalties, 0, maxScore);
-        //Util.Print("CURRENT SCORE: " + score + " | Lost: " + accumulatedPenalties);
+        if(timeTaken <= averageTime) return;
+        AddExamPenalty("ExamPenalty.Time", GetTimePenalty(timeTaken, averageTime));
     }
 
     private int GetTimePenalty(float timeTaken, float averageTime)

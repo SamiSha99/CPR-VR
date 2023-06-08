@@ -73,6 +73,7 @@ public class SettingsManager : MonoBehaviour
         useCentimeter = SettingsUtility.IsChecked(nameof(useCentimeter), false);
         textToSpeechVolume = PlayerPrefs.GetFloat(nameof(textToSpeechVolume), textToSpeechVolume);
         loops = PlayerPrefs.GetInt(nameof(loops), loops);
+        //languageIndex = PlayerPrefs.SetLanguage();
         if(options != null)
             UpdateOptionsUI(options);
     }

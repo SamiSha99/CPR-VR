@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization;
+using System.Linq;
 
 public class ExamResults : MonoBehaviour
 {
@@ -30,15 +31,18 @@ public class ExamResults : MonoBehaviour
         LocalizationHelper.LocalizeTMP("ExamResults.FinalScore", FinalScoreText);
         LocalizationHelper.LocalizeTMP("ExamResults.Leave", LeaveButton);
         
-        
         while(MistakesList.transform.childCount > 0) DestroyImmediate(MistakesList.transform.GetChild(0).gameObject);
         if(MistakesLocalization.Count <= 0)
             AddMistakeChild(new GameManager.ExamPenalty("ExamResults.Perfect"));
         else
+        {    
             for(int i = 0; i < MistakesLocalization.Count; i++) AddMistakeChild(MistakesLocalization[i]);
-
-        LocalizationHelper.LocalizeTMP($"{score}%", ScoreValue); // to-do combine all penalties!!
-        if(ScoreValue != null && score >= 100) ScoreValue.color = Color.green;
+            float mistakesScore = MistakesLocalization.Sum(x => x.penaltyAmount);
+             // We don't want to recalcualte the score, its already defined!
+            if(score >= 100) score -= mistakesScore;
+        }
+        LocalizationHelper.LocalizeTMP($"{(int)score}%", ScoreValue);
+        if(ScoreValue != null && score >= 100) ScoreValue.color = Color.green; // Wow! awesome!
         Util.Print("FINAL SCORE: " + ScoreValue.text + " | Score: " + score);
     }
 
@@ -50,7 +54,7 @@ public class ExamResults : MonoBehaviour
         TextMeshProUGUI times = go.transform.FindComponent<TextMeshProUGUI>("MistakeTimes");
         LocalizationHelper.LocalizeTMP(penalty.penaltyName, info);
         if(penalty.penaltyAmount > 0)
-            LocalizationHelper.LocalizeTMP($"-{penalty.penaltyAmount}", times);
+            LocalizationHelper.LocalizeTMP($"-{Mathf.RoundToInt(penalty.penaltyAmount)}", times);
         else
             times.text = "";       
     }    

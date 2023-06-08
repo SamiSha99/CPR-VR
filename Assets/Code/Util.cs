@@ -132,7 +132,14 @@ public static class Util
     public static GameObject GetPlayerCameraObject(this GameObject o) => o.GetRoot().transform.Find("Camera Offset/XR Camera").gameObject;
     // Returns the Left Hand of this Owned player object (works with root too)
     // param right - Returns the Right Hand instead
-    public static GameObject GetPlayerHandObject(this GameObject o, bool right = false) => o.GetRoot().transform.Find("Camera Offset/" + (right ? "Right" : "Left") + " Hand").gameObject;
+    public static GameObject GetPlayerHandObject(this GameObject o, bool right = false)
+    {
+        GameObject hand = o.GetRoot().transform.Find("Camera Offset/" + (right ? "Right" : "Left") + " Hand/Direct Interactor").gameObject;
+        if(hand != null && hand.activeInHierarchy) return hand;
+        GameObject controller = o.GetRoot().transform.Find("Camera Offset/" + (right ? "Right" : "Left") + " Controller").gameObject;
+        if(controller != null && controller.activeInHierarchy) return controller;
+        return null;
+    }
     public static GameObject GetPlayer() => GameObject.FindWithTag("Player");
     public static XREvents GetXREvents(GameObject plyr = null)
     {

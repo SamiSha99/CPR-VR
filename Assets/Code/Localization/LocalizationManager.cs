@@ -14,6 +14,14 @@ public class LocalizationManager : MonoBehaviour
     void Start()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
+        if(LocalizationHelper.UsingLanguage(0)) return;
+        
+        if(LocalizationHelper.UsingRightToLeftLanguage())
+        {
+            FlipUI();
+        }
+
+        //Util.Invoke(this, ()=>LocalizationHelper.SetLanguage(PlayerPrefs.GetInt()), 0.1f);
         //LocalizationHelper.SetLanguage("ar");
     }
     void OnDestroy() => LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
