@@ -9,26 +9,24 @@ using TMPro;
 public class LocalizationManager : MonoBehaviour
 {
     public bool UIFlipped;
-    public LocalizationManager _Instance;
-    void Awake() => _Instance = this;
+    public static LocalizationManager _Instance;
+    void Awake() 
+    {
+        _Instance = this;
+    }
     void Start()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
-        if(LocalizationHelper.UsingLanguage(0)) return;
-        
-        if(LocalizationHelper.UsingRightToLeftLanguage())
-        {
-            FlipUI();
-        }
-
-        //Util.Invoke(this, ()=>LocalizationHelper.SetLanguage(PlayerPrefs.GetInt()), 0.1f);
-        //LocalizationHelper.SetLanguage("ar");
+        int index = PlayerPrefs.GetInt(nameof(SettingsManager.languageIndex), 0);
+        Util.Print("WE GOT => " + index);
+        LocalizationHelper.SetLanguage(index);
+        FlipUI();
     }
     void OnDestroy() => LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
     void OnEnable() => LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
     void OnDisable() => LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
     void OnLanguageChanged(Locale selectedLanguage) => FlipUI();
-    void FlipUI()
+    public void FlipUI()
     {
         bool result = LocalizationHelper.UsingRightToLeftLanguage();
         if(UIFlipped == result) return;

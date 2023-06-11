@@ -12,7 +12,7 @@ public class SettingsManager : MonoBehaviour
     [Range(0,1)]
     public float textToSpeechVolume = 0.8f;
     public int loops = 3;
-    public int languageIndex;
+    public int languageIndex = 0;
     public GameObject optionsGameObject;
     public TextMeshProUGUI SettingsTitle;
     const string OPTION_TTS_VOLUME = "OPTION_TTS_VOLUME";
@@ -61,6 +61,13 @@ public class SettingsManager : MonoBehaviour
             case OPTION_LANGUAGE:
                 languageIndex = FindOptionConfig<TMP_Dropdown>(OptionRow, "Dropdown").value;
                 LocalizationHelper.SetLanguage(languageIndex);
+                // I don't fucking understand lol
+                languageIndex = LocalizationHelper.GetSelectedLanguageIndex();
+                LocalizationManager lm = LocalizationManager._Instance;
+                LocalizationHelper.SetLanguage(languageIndex);
+                lm.FlipUI();
+                PlayerPrefs.SetInt(nameof(languageIndex), languageIndex);
+
                 break;
             default:
                 Debug.LogWarning("This option is not defined, what is this? Ignoring: " + optionaName);
@@ -73,7 +80,7 @@ public class SettingsManager : MonoBehaviour
         useCentimeter = SettingsUtility.IsChecked(nameof(useCentimeter), false);
         textToSpeechVolume = PlayerPrefs.GetFloat(nameof(textToSpeechVolume), textToSpeechVolume);
         loops = PlayerPrefs.GetInt(nameof(loops), loops);
-        //languageIndex = PlayerPrefs.SetLanguage();
+        languageIndex = PlayerPrefs.GetInt(nameof(languageIndex), 0);
         if(options != null)
             UpdateOptionsUI(options);
     }
@@ -106,7 +113,9 @@ public class SettingsManager : MonoBehaviour
                 case OPTION_CPR_LOOPS:
                     localizationCommand = "MainMenu.CPRLoops";
                     TMP_Dropdown d = FindOptionConfig<TMP_Dropdown>(optionRow, "Dropdown");
-                    d.value = loops;
+                    //d.value = loops;
+                    d.SetValueWithoutNotify(loops);
+                    d.RefreshShownValue();
                     break;
                 
                 case OPTION_LANGUAGE:
@@ -114,7 +123,9 @@ public class SettingsManager : MonoBehaviour
                     TMP_Dropdown dropDownLang = FindOptionConfig<TMP_Dropdown>(optionRow, "Dropdown");
                     dropDownLang.ClearOptions();
                     dropDownLang.AddOptions(LocalizationHelper.GetAvailableLanguagesAsNames());
-                    dropDownLang.value = LocalizationHelper.GetSelectedLanguageIndex();
+                    //dropDownLang.value = LocalizationHelper.GetSelectedLanguageIndex();
+                    dropDownLang.SetValueWithoutNotify(LocalizationHelper.GetSelectedLanguageIndex());
+                    dropDownLang.RefreshShownValue();
                     break;
                 
                 default:
@@ -127,10 +138,12 @@ public class SettingsManager : MonoBehaviour
 
     public void SaveChanges()
     {
+        PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt(nameof(useCentimeter), Util.BoolToInt(useCentimeter));
         PlayerPrefs.SetFloat(nameof(textToSpeechVolume), textToSpeechVolume);
         PlayerPrefs.SetInt(nameof(loops), loops);
         PlayerPrefs.SetInt(nameof(languageIndex), languageIndex);
+        //Util.Print("SAVING LANGUAGE INDEX VALUE = " + languageIndex);
         PlayerPrefs.Save();
     }
     public void ResetToDefault()
