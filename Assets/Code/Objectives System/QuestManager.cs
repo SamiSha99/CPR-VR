@@ -237,12 +237,14 @@ public class QuestManager : MonoBehaviour
     
     void OnLanguageChanged(Locale selectedLanguage)
     {
+        if(QuestManager._Instance == null) return;
         
         if(activeQuest != null)
         {
             LocalizationHelper.LocalizeTMP(activeQuest.information.name, questName);
             LocalizationHelper.LocalizeTMP(activeQuest.information.description, questDescription);
-            foreach(Quest.QuestGoal g in activeQuest.goals) ForceUpdateGoal(g);
+            if(activeQuest.goals.Count > 0)
+                foreach(Quest.QuestGoal g in activeQuest.goals) ForceUpdateGoal(g);
         }
         else
             SetTextToDefault();
