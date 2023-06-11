@@ -38,6 +38,12 @@ public class GameMenuManager : MonoBehaviour
         else UnPause();
     }
 
+    public void TogglePause()
+    {
+        if(!isPaused) Pause();
+        else UnPause();
+    }
+
     void Pause()
     {
         previousTimeScale = Time.timeScale;
