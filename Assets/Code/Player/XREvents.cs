@@ -74,7 +74,7 @@ public class XREvents : MonoBehaviour
             {
                 lastAudioDetectionTime = Time.timeSinceLevelLoad;
                 microphoneClip = Util.MicrophoneToAudioClip();
-                Util.Print<XREvents>("Microphone been silent for too long, reinstate the microphone again");
+                Util.Print<XREvents>("Microphone been silent for too long, reinstate the microphone again..");
             }
             return;
         }

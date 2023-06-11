@@ -43,7 +43,7 @@ public class ExamResults : MonoBehaviour
         }
         LocalizationHelper.LocalizeTMP($"{(int)score}%", ScoreValue);
         if(ScoreValue != null && score >= 100) ScoreValue.color = Color.green; // Wow! awesome!
-        Util.Print("FINAL SCORE: " + ScoreValue.text + " | Score: " + score);
+        //Util.Print("FINAL SCORE: " + ScoreValue.text + " | Score: " + score);
     }
 
     void AddMistakeChild(GameManager.ExamPenalty penalty)

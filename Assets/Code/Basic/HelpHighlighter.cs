@@ -30,7 +30,7 @@ public class HelpHighlighter : MonoBehaviour
         rightHand = Util.GetPlayer().GetPlayerHandObject(true);
         Vector3 pos = transform.position;
         
-        Util.Print("Left Hand: " + leftHand + "| Right Hand: " + rightHand);
+        //Util.Print("Left Hand: " + leftHand + "| Right Hand: " + rightHand);
 
         if(leftHand == null && rightHand == null)
         {
