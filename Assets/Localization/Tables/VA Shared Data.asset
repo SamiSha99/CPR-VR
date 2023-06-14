@@ -1,0 +1,232 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: VA Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: VA
+  m_TableCollectionNameGuidString: f503b1fa900bb384fa6be96acf047e3b
+  m_Entries:
+  - m_Id: 4561149952
+    m_Key: add_breathing_mask
+    m_Metadata:
+      m_Items: []
+  - m_Id: 214142132224
+    m_Key: add_paper_sheet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252561956864
+    m_Key: AED_after
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280579907584
+    m_Key: AED_appear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 300645457920
+    m_Key: AED_clear_reminder_chest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 405641469952
+    m_Key: AED_intro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 408694923264
+    m_Key: AED_is_automatic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 411513495552
+    m_Key: AED_reminder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 413254131712
+    m_Key: call_emergency
+    m_Metadata:
+      m_Items: []
+  - m_Id: 415305146368
+    m_Key: call_emergency_reminder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 542472249344
+    m_Key: CPR_again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 545160798208
+    m_Key: CPR_begin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 548277166080
+    m_Key: CPR_intro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 603478401024
+    m_Key: CPR_reminder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 623913050112
+    m_Key: emergency_breath
+    m_Metadata:
+      m_Items: []
+  - m_Id: 628342235136
+    m_Key: emergency_breath_chest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 689780400128
+    m_Key: emergency_breath_intro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702598193152
+    m_Key: emergency_breath_tool
+    m_Metadata:
+      m_Items: []
+  - m_Id: 704846340096
+    m_Key: practice_end
+    m_Metadata:
+      m_Items: []
+  - m_Id: 706792497152
+    m_Key: repeat_everything
+    m_Metadata:
+      m_Items: []
+  - m_Id: 708637990912
+    m_Key: response
+    m_Metadata:
+      m_Items: []
+  - m_Id: 710550593536
+    m_Key: scene_safety
+    m_Metadata:
+      m_Items: []
+  - m_Id: 820839817216
+    m_Key: scene_safety_begin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 822756614144
+    m_Key: scene_safety_complete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 824870543360
+    m_Key: welcome
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items:
+    - rid: 3478341621756723204
+  m_KeyGenerator:
+    rid: 3478341621756723203
+  references:
+    version: 2
+    RefIds:
+    - rid: 3478341621756723203
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1686656203399
+    - rid: 3478341621756723204
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 4561149952
+          m_TableCodes:
+          - ar
+        - m_KeyId: 824870543360
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 822756614144
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 820839817216
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 710550593536
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 708637990912
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 706792497152
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 704846340096
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 702598193152
+          m_TableCodes:
+          - ar
+        - m_KeyId: 689780400128
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 628342235136
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 623913050112
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 603478401024
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 548277166080
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 545160798208
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 542472249344
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 415305146368
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 413254131712
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 411513495552
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 408694923264
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 405641469952
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 300645457920
+          m_TableCodes:
+          - ar
+        - m_KeyId: 280579907584
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 252561956864
+          m_TableCodes:
+          - ar
+        - m_KeyId: 214142132224
+          m_TableCodes:
+          - ar
+          - en
+        m_TypeString: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null

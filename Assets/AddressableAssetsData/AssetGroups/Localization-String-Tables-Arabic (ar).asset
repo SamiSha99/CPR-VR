@@ -17,13 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9b1ef62fcb8901b40913d7091b608ff6
   m_SerializeEntries:
-  - m_GUID: f307ba3db08d6334d9aca1a7c5c0a738
-    m_Address: TextTable_ar
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-ar
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5a1a27c50454d7043a158089c232c86b
     m_Address: QuestUI_ar
     m_ReadOnly: 1
@@ -40,13 +33,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 86ef3590c23d08040be216eece39bdc2
     m_Address: Quest_ar
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-ar
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a88e007cfb882a148a32bb8dfe1a7480
-    m_Address: Tooltip_ar
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ar

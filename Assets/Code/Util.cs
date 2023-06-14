@@ -129,14 +129,14 @@ public static class Util
     // Returns the top most gameobject parent of this child
     public static GameObject GetRoot(this GameObject o) => o.transform.root.gameObject;
     // Returns the camera of this Owned player object (works with root too)
-    public static GameObject GetPlayerCameraObject(this GameObject o) => o.GetRoot().transform.Find("Camera Offset/XR Camera").gameObject;
+    public static GameObject GetPlayerCameraObject(this GameObject o) => o.GetRoot().transform.Find("CameraOffset/XR Camera").gameObject;
     // Returns the Left Hand of this Owned player object (works with root too)
     // param right - Returns the Right Hand instead
     public static GameObject GetPlayerHandObject(this GameObject o, bool right = false)
     {
-        GameObject hand = o.GetRoot().transform.Find("Camera Offset/" + (right ? "Right" : "Left") + " Hand/Direct Interactor").gameObject;
+        GameObject hand = o.GetRoot().transform.Find("CameraOffset/" + (right ? "Right" : "Left") + " Hand/Direct Interactor").gameObject;
         if(hand != null && hand.activeInHierarchy) return hand;
-        GameObject controller = o.GetRoot().transform.Find("Camera Offset/" + (right ? "Right" : "Left") + " Controller").gameObject;
+        GameObject controller = o.GetRoot().transform.Find("CameraOffset/" + (right ? "Right" : "Left") + " Controller").gameObject;
         if(controller != null && controller.activeInHierarchy) return controller;
         return null;
     }
@@ -149,7 +149,7 @@ public static class Util
             Print("Utility Class", "Cannot get XREvents, player does not exists?");
             return null;
         }
-        return plyr.GetComponent<XREvents>();
+        return plyr.transform.FindComponent<XREvents>("XREvents");
     }
 
     //########//

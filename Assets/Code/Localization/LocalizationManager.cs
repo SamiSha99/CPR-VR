@@ -16,11 +16,12 @@ public class LocalizationManager : MonoBehaviour
     }
     void Start()
     {
-        LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
-        int index = PlayerPrefs.GetInt(nameof(SettingsManager.languageIndex), 0);
-        Util.Print("WE GOT => " + index);
-        LocalizationHelper.SetLanguage(index);
-        FlipUI();
+        Util.Invoke(this, () => {
+            LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
+            int index = PlayerPrefs.GetInt(nameof(SettingsManager.languageIndex), 0);
+            LocalizationHelper.SetLanguage(index);
+            FlipUI();
+        }, 0.01f);
     }
     void OnDestroy() => LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
     void OnEnable() => LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;

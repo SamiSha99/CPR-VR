@@ -17,15 +17,15 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: fcd45bc51a5d5d840bd918f5b77373c5
   m_SerializeEntries:
-  - m_GUID: 7d0e437cd0d35c74c8547867536cd3a8
-    m_Address: TutorialAudio_ar
+  - m_GUID: f1133a26f1ab65d498e070d00050b39d
+    m_Address: FontTable_ar
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ar
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f1133a26f1ab65d498e070d00050b39d
-    m_Address: FontTable_ar
+  - m_GUID: a4522c82ceb582248bf590c28114a48a
+    m_Address: VA_ar
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ar

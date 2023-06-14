@@ -17,16 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9abbc5500c2659c428c0c1e351faa740
   m_SerializeEntries:
-  - m_GUID: 89b2566157f5aec4b8fdc0b5c4b871d9
-    m_Address: Assets/Localization/Tables/TextTable Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3b2c1ad730cde55409fe0eacb6a1afde
-    m_Address: Assets/Localization/Tables/AudioTable Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f2b60f6bc9b26c440b48512390e60c76
     m_Address: Assets/Localization/Tables/QuestHUDTable Shared Data.asset
     m_ReadOnly: 1
@@ -47,11 +37,6 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4aaf3cf7825e1a14ead0bfd0c9c4f940
-    m_Address: Assets/Localization/Tables/Tooltip Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9547c633247253e43be1b480c177e9da
     m_Address: Assets/Localization/Tables/ExamPenalty Shared Data.asset
     m_ReadOnly: 1
@@ -59,6 +44,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca39753d2f0a7bf47b4d9b04aa8642bb
     m_Address: Assets/Localization/Tables/ExamResults Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f503b1fa900bb384fa6be96acf047e3b
+    m_Address: Assets/Localization/Tables/VA Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

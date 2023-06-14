@@ -13,7 +13,7 @@ public class LookinAtObject : Quest.QuestGoal
     {
         base.Initialize();
         XREvents.onItemLookedAt += OnLookAtObjectRecieved;
-        lookScript = Util.GetPlayer().GetComponent<PlayerLookAtObject>();
+        lookScript = Util.GetPlayer().transform.FindComponent<PlayerLookAtObject>("XREvents");
         if(lookScript == null) return;
         lookScript.lookRange = lookRange;
         lookScript.showHelpLine = true;

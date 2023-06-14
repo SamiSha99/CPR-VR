@@ -70,5 +70,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   index: 0
-  lookRange: 0.6667
+  lookRange: 0.5
   shouldMaintainLooking: 1

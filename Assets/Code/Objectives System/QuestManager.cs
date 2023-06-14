@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization;
+using Bhaptics.SDK2;
 
 public class QuestManager : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
-        SetTextToDefault();
+        //Util.Invoke(this, () => SetTextToDefault(), 0.01f);
         BeginQuest(onLoadQuest);
     }
     void Update() 
@@ -51,6 +52,8 @@ public class QuestManager : MonoBehaviour
     public void BeginQuest(Quest q)
     {
         if(q == null) return;
+
+        BhapticsLibrary.Play(BhapticsEvent.GLOVES);
 
         isQuestTimePaused = false;
         questCurrentTime = 0;

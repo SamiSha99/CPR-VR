@@ -1,11 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.Localization;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -49,14 +44,16 @@ public class GameManager : MonoBehaviour
     void Awake() => _Instance = this;
     void Start()
     {
-        //LocalizationHelper.SetLanguage("ar");
         if(Util.IsInMainMenu()) return;
-        
+        Util.Invoke(this, () => Init(), 0.15f);        
+    }
+
+    void Init()
+    {
         isExam = SettingsUtility.IsChecked(nameof(isExam), false);
 
         default_TutotrialQuestsLine = new List<Object>(_TutorialQuestsLine);
         default_ExamQuestsLine = new List<Object>(_ExamQuestsLine);
-        //_RepeatableAmount = Mathf.Max(1, _RepeatableAmount);
 
         if(isExam)
         {
@@ -90,7 +87,7 @@ public class GameManager : MonoBehaviour
                 break;
             case AudioClip ac:
                 GameObject head = Util.GetPlayer().GetPlayerCameraObject();
-                AudioClip localizedAudio = LocalizationHelper.GetAsset<AudioClip>("TutorialAudio." + ac.name);
+                AudioClip localizedAudio = LocalizationHelper.GetAsset<AudioClip>("VA." + ac.name);
                 if(localizedAudio == null) localizedAudio = ac; // cannot be found, use the english one
                 Util.PlayClipAt(localizedAudio, head.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 1.0f), head);
                 Util.Invoke(this, () => InstigateNextTutorialObject(), localizedAudio.length + 0.25f);

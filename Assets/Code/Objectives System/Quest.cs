@@ -61,7 +61,7 @@ public class Quest : ScriptableObject
         [Tooltip("A reference to goals found in this quest, this quest goal will NOT progress at all unless these QuestGoal(s) are completed.")]
         [NonReorderable]
         public List<QuestGoal> requiredGoals;
-        [Tooltip("Don't play checkmark on completion")]
+        [Tooltip("Don't play checkmark on completion, because the person who made this and writing this comment is not in the mood to fix the bug where it spams it.")]
         public bool silent;
         [HideInInspector] public UnityEvent goalCompleted;
         // Quest related to this goal

@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: MicGoal
   m_EditorClassIdentifier: 
   description: Quest.SignOfLifeGoal3
-  requiredAmount: 15
+  requiredAmount: 10
   _GoalUIType: 2
   goalCompletedCommand: Are_You_Alright
   objectiveNameList: []
@@ -97,5 +97,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   index: 2
-  micDecayAmount: 1.5
+  micDecayAmount: 1.2
   micSensitivityMultiplier: 1.5

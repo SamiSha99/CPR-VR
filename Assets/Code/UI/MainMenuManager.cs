@@ -8,17 +8,14 @@ using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public GameObject XROriginMenu;
-    public GameObject XROriginPlayer;
     public TextMeshProUGUI title, practiceButton, examButton, videoButton, quitButton;
     void Start()
     {
 
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
-        LocalizeButtons();
-        
+        //Util.Invoke(this, () => LocalizeButtons(), 0.01f);
     }
-    void OnEnable() => LocalizeButtons();
+    //void OnEnable() => LocalizeButtons();
     
     public void OnPracticeButtonPressed()
     {

@@ -29,12 +29,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 95f74650952fd00438ed93eceb13eec4
-    m_Address: is_scene_safe
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f1499e9821e363548950ce5383f60c0e
     m_Address: sign_of_life
     m_ReadOnly: 1
@@ -65,18 +59,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4a833788d4e51a9469ad6645dc4b3329
-    m_Address: CPR_limitation_delete_this_later
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ba9ca6b6e40296e4da143ac09d57195d
-    m_Address: give_breather_intro
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2c520c9474a5bc344807678741a92d20
     m_Address: do_CPR_again
     m_ReadOnly: 1
@@ -85,12 +67,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b2d1a276bfc6d5142bf1d6779aa46293
     m_Address: give_breather_again
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e0667c2f3ce7ac443b042a4230b5f0bd
-    m_Address: AED_intro
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
@@ -115,6 +91,60 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b6ee7654ae517594b97e1d461c6998fe
     m_Address: tutorial end
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 665a40052a7b3b54dae5b68684124c0d
+    m_Address: scene_safety
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3b319bdb94afea4692af2dc52f78534
+    m_Address: scene_safety_begin
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17f6018a40a9ab94aaf142013f01c25f
+    m_Address: CPR_begin
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8b4f832ce48fea4490a3d64fafec5c4
+    m_Address: emergency_breath_intro
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 706f22233a377df41820da2db9cff61c
+    m_Address: emergency_breath_chest
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb4563fb47ae3a846aa943b52329eac0
+    m_Address: AED_is_automatic
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18f9cc77d4f94754681489d7716d0a1c
+    m_Address: AED_intro
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36e17aa422904b84db0248219b47714a
+    m_Address: AED_appear
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e108ab1a31526b14d85a7cd8f495a875
+    m_Address: apply_patches
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

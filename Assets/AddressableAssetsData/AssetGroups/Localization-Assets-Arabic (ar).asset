@@ -17,14 +17,158 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 419e524ec4e07e440a58659ca83dff18
   m_SerializeEntries:
-  - m_GUID: 526e92bf71e278148b1be4b66520ffc9
-    m_Address: apple_a_day_AR
+  - m_GUID: e2bcf0a3e1c74fe4885d00275a1217e4
+    m_Address: NotoSansArabic-Regular SDF
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ar
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e2bcf0a3e1c74fe4885d00275a1217e4
-    m_Address: NotoSansArabic-Regular SDF
+  - m_GUID: fc8567e7252e1354f99e2df1e49939df
+    m_Address: add_breathing_mask_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: adc7dd8ea505a584a99a1c621642c207
+    m_Address: welcome_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f7f7548fffe4264298f157f0be689a8
+    m_Address: scene_safety_complete_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce25bdfb607bb7f469af583efdb2e5f9
+    m_Address: scene_safety_begin_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ef4bba7013cebe4daa0b89f9daf137f
+    m_Address: scene_safety_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 304ed15e37fd95141af324180587da28
+    m_Address: response_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8528d457407a10a499b39149a928fbef
+    m_Address: repeat_everything_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b468909938508684092e647810043277
+    m_Address: practice_end_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1544f1aeda3c2c442a902ee17b2bc226
+    m_Address: emergency_breath_tool_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5ea74201aac7904aa943909153758af
+    m_Address: emergency_breath_intro_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f4ad0179f419f547a05cae90d61231f
+    m_Address: emergency_breath_chest_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 01398af5f8a55064280215e11ffaeca4
+    m_Address: emergency_breath_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 022b86dad396e6c42ba013da61f89a53
+    m_Address: CPR_reminder_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb6c1dafd57de804da4348173678599e
+    m_Address: CPR_intro_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e9e658862bfc3649afca051c67141a2
+    m_Address: CPR_begin_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88bbd059320ace7428679809b2352021
+    m_Address: CPR_again_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b77408d74617d5f47ace4f8723673222
+    m_Address: call_emergency_reminder_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ade5b9321e153e4d8530cda20950897
+    m_Address: call_emergency_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3b0fc946f00b7747a77177a10630d64
+    m_Address: AED_reminder_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6266a213fb463a14893d1559e1c6fe50
+    m_Address: AED_is_automatic_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a49ad57b8c49eb947a4a57e1c7421485
+    m_Address: AED_intro_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f9928132751ec44ab8d3921a5c36f63
+    m_Address: AED_clear_reminder_chest_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 901b0f02d977a7c4493627b0b86c1a66
+    m_Address: AED_appear_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6383c4a450ff9ae4fa5c5b2ede29a501
+    m_Address: AED_after_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a906343f056a0c4896080add4a3eb6a
+    m_Address: add_paper_sheet_AR
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ar
