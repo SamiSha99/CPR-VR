@@ -16,12 +16,13 @@ public class LocalizationManager : MonoBehaviour
     }
     void Start()
     {
-        Util.Invoke(this, () => {
+        //Util.Invoke(this, () => {
             LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
             int index = PlayerPrefs.GetInt(nameof(SettingsManager.languageIndex), 0);
             LocalizationHelper.SetLanguage(index);
+            Util.Print("Setting the language (locale index): " + index);
             FlipUI();
-        }, 0.01f);
+        //}, 0.01f);
     }
     void OnDestroy() => LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
     void OnEnable() => LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using TMPro;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 /*
 * Hello, coders who's reading this file. 👋
@@ -96,6 +97,7 @@ public static class LocalizationHelper
     /// <summary>Returns a localized string of the inputted table and key.</summary>
     static public string GetText(string table, string key)
     {
+        //string text = LocalizationSettings.StringDatabase.GetLocalizedStringAsync(table, key, null).Result;
         string text = LocalizationSettings.StringDatabase.GetLocalizedString(table, key, null);
         return text;
     }
