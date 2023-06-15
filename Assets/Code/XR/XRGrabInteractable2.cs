@@ -4,7 +4,9 @@ using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-// Additional variables meant to remember who interacted when it comes to the player
+// XR Interaction Manager breaks this really heavily if there's... two of them?
+// Oh well, at least we aren't making a mutliplayer game here, right? It's not like I will do something like this... right?
+// Oh who am I kidding.
 public class XRGrabInteractable2 : XRGrabInteractable
 {
     //public static event Action<GameObject, GameObject, bool> onItemShake;
