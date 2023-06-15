@@ -13,7 +13,7 @@ public class MainMenuManager : MonoBehaviour
     {
 
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
-        //Util.Invoke(this, () => LocalizeButtons(), 0.01f);
+        Util.Invoke(this, () => LocalizeButtons(), 0.01f);
     }
     //void OnEnable() => LocalizeButtons();
     
