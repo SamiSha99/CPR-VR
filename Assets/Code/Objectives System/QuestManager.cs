@@ -35,12 +35,10 @@ public class QuestManager : MonoBehaviour
     void Awake() 
     {
         _Instance = this;
-
     }
     void Start()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
-        //Util.Invoke(this, () => SetTextToDefault(), 0.01f);
         BeginQuest(onLoadQuest);
     }
     void Update() 
