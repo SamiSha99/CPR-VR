@@ -40,7 +40,7 @@ MonoBehaviour:
   information:
     name: Quest.GiveBreatherTitle
     description: Quest.GiveBreatherDesc
-  averageTime: 5
+  averageTime: 3
   questCommand: Give_2_Airflows
   nextQuest: {fileID: 0}
   goals:
