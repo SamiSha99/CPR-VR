@@ -34,7 +34,7 @@ public static class Util
     //########//
 
     public const float MICROPHONE_LOUDNESS_THRESHOLD = 0.04f;
-    public const int MICROPHONE_LOUDNESS_MULTIPLIER = 100;
+    public const int MICROPHONE_LOUDNESS_MULTIPLIER = 135;
     public const string MICROPHONE_OCULUS_NAME = "Headset Microphone (Oculus Virtual Audio Device)"; // to-do: simplified name identifier?
 
     public const float INCH_TO_CENTIMETER = 2.54f;
@@ -283,4 +283,6 @@ public static class Util
 
     // Loads the main menu
     public static void LoadMenu() => SceneManager.LoadScene(MENU_SCENE);
+
+    public static void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 }
