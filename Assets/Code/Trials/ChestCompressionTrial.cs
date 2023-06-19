@@ -71,7 +71,7 @@ public class ChestCompressionTrial : MonoBehaviour
         if(_CompressionPressed && timeTillDepthCalc <= 0)
         {
             timeTillDepthCalc = Mathf.Infinity;
-            float inches = Mathf.Lerp(1.0f, 2.75f, 1 - currentCompressionAmount/0.3f);
+            float inches = Mathf.Lerp(1.0f, 2.4f, 1 - currentCompressionAmount/0.3f);
             _GraphScript.OnCompressionDepthRecived(inches);
         }
 
