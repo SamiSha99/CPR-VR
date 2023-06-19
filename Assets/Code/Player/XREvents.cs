@@ -11,6 +11,7 @@ public class XREvents : MonoBehaviour
     private float lastAudioDetectionTime;
     private bool listenToMic;
     public bool isTalking;
+    public float micModifier = 1;
 
     public static event Action<GameObject, GameObject, bool> onItemGrabbed, onItemInteracted, onItemTouched;
     public static event Action<GameObject, GameObject, bool, float> onItemLookedAt;
@@ -65,8 +66,9 @@ public class XREvents : MonoBehaviour
         if(microphoneClip == null) return;
         if(!listenToMic) return;
 
-        float loudness = Util.GetLoudnessFromMicrophone(microphoneClip, 32) * Util.MICROPHONE_LOUDNESS_MULTIPLIER;
+        float loudness = Util.GetLoudnessFromMicrophone(microphoneClip, 32) * Util.MICROPHONE_LOUDNESS_MULTIPLIER * micModifier;
         isTalking = loudness >= Util.MICROPHONE_LOUDNESS_THRESHOLD;
+        
         // Reinstate it again in 5 seconds
         if(loudness < Util.MICROPHONE_LOUDNESS_THRESHOLD)
         {
