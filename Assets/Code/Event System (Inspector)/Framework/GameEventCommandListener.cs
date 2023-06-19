@@ -8,17 +8,17 @@ public class GameEventCommandListener : MonoBehaviour
     public GameEventCommand gameEvent;
     public string command;
     public UnityEvent<string> onEventTriggered;
-    void OnEnable()
+    protected virtual void OnEnable()
     {
         if(!IsValidListener()) return;
         gameEvent.AddListener(this);
     }
-    void OnDisable() 
+    protected virtual void OnDisable() 
     { 
         if(!IsValidListener()) return;
         gameEvent.RemoveListener(this); 
     }
-    public void OnEventTriggered(string command)
+    public virtual void OnEventTriggered(string command)
     {
         if(!IsValidListener()) return;
         if(this.command != command) return;

@@ -17,7 +17,7 @@ public class GameEventListener : MonoBehaviour
         if(!IsValidListener()) return;
         gameEvent.RemoveListener(this); 
     }
-    public void OnEventTriggered()
+    public virtual void OnEventTriggered()
     {
         if(!IsValidListener()) return;
         onEventTriggered?.Invoke();
