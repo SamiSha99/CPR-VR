@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LookinAtObject
   m_EditorClassIdentifier: 
   description: Quest.CheckBreathingGoal1
-  requiredAmount: 10
+  requiredAmount: 7.5
   _GoalUIType: 2
   goalCompletedCommand: ???
   objectiveNameList:
@@ -41,7 +41,7 @@ MonoBehaviour:
   information:
     name: Quest.CheckBreathingTitle
     description: Quest.CheckBreathingDesc
-  averageTime: 15
+  averageTime: 10
   questCommand: Check_for_breathing
   nextQuest: {fileID: 0}
   goals:
