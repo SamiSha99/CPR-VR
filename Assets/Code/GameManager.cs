@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class GameManager : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         if(Util.IsInMainMenu()) return;
-        Util.Invoke(this, () => Init(), 0.15f);        
+        Init();
     }
 
     void Init()
@@ -67,11 +68,6 @@ public class GameManager : MonoBehaviour
             if(default_TutotrialQuestsLine.Count <= 0) return;
             InstigateNextTutorialObject();
         }
-    }
-
-    void Update()
-    {
-        
     }
 
     public void InstigateNextTutorialObject()

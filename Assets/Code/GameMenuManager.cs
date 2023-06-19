@@ -25,42 +25,33 @@ public class GameMenuManager : MonoBehaviour
         if(pauseButton == null) return;
 
         if(pauseButton.action.WasPerformedThisFrame())
-        {
-            TogglePause(!isPaused);
-            // sometimes null?
-            OnMenuButtonPressed?.Invoke(isPaused); // post toggle
-        }
-    }
-
-    void TogglePause(bool pause)
-    {
-        if(pause) Pause();
-        else UnPause();
+            TogglePause();
     }
 
     public void TogglePause()
     {
-        if(!isPaused) Pause();
-        else UnPause();
+        if(isPaused) UnPause();
+        else Pause();
+        OnMenuButtonPressed?.Invoke(isPaused);
     }
 
-    void Pause()
+    public void Pause()
     {
         previousTimeScale = Time.timeScale;
         Time.timeScale = 0;
         AudioListener.pause = true;
         isPaused = true;
         InstantiatePauseMenu();
-        OnPause.TriggerEvent();
+        OnPause?.TriggerEvent();
     }
 
-    void UnPause()
+    public void UnPause()
     {
         if(pauseMenuObject != null) Destroy(pauseMenuObject);
         Time.timeScale = previousTimeScale;
         AudioListener.pause = false;
         isPaused = false;
-        OnPause.TriggerEvent("unpause");
+        OnPause?.TriggerEvent("unpause");
     }
 
     void InstantiatePauseMenu()

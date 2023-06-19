@@ -16,6 +16,7 @@ public class LocalizationManager : MonoBehaviour
     }
     void Start()
     {
+        //yield return LocalizationSettings.InitializationOperation;
         //Util.Invoke(this, () => {
             LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
             int index = PlayerPrefs.GetInt(nameof(SettingsManager.languageIndex), 0);
