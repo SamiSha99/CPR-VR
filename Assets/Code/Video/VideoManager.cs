@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
+using UnityEngine.Events;
 public class VideoManager : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
+    public UnityEvent onVideoEnding;
     void Start()
     {
         videoPlayer = GetComponent<VideoPlayer>();
@@ -40,6 +41,7 @@ public class VideoManager : MonoBehaviour
     private void VideoPlayer_LoopPointReached(VideoPlayer source)
     {
         Stop();
+        onVideoEnding?.Invoke();
     }
     private void GameMenuManager_OnMenuButtonPressed(bool pause)
     {
