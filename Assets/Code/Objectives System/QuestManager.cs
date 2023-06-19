@@ -148,7 +148,8 @@ public class QuestManager : MonoBehaviour
         if(goal._GoalUIType == Quest.QuestGoal.GoalUIType.GUIT_None) return; // Don't update
 
         TextMeshProUGUI goalTextCell = transformArr[index].FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE);
-        LocalizationHelper.LocalizeTMP(goal.GetDescription(), goalTextCell);
+        if(goal != null && goalTextCell != null)
+            LocalizationHelper.LocalizeTMP(goal.GetDescription(), goalTextCell);
         GameObject goalValueCell = transformArr[index].Find(GAMEOBJECT_NAME_GOAL_VALUE).gameObject;
 
         switch(goal._GoalUIType)
