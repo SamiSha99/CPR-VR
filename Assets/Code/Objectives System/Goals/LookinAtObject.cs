@@ -7,6 +7,7 @@ public class LookinAtObject : Quest.QuestGoal
     [Tooltip("The look range needed, the line will be as tall as the specfied range.")]
     public float lookRange = 5;
     private PlayerLookAtObject lookScript;
+    private bool lookingAtTarget;
     [Tooltip("Set currentAmount to 0 on unfocus, will uncomplete if completed.")]
     public bool shouldMaintainLooking;
     public override void Initialize()
@@ -24,22 +25,22 @@ public class LookinAtObject : Quest.QuestGoal
         if(o == null || !IsValidToEvaluate(o.name))
         {
             if(shouldMaintainLooking) currentAmount = 0;
+            lookingAtTarget = false;
             SetLookColor(Color.red);
             return;
         }
 
-        SetLookColor(Color.green); // Target
-    
-        if(shouldMaintainLooking && !lookingAt) 
-            currentAmount = 0;
-        else
-            currentAmount += Time.deltaTime;
+        SetLookColor(Color.green);
+        lookingAtTarget = true;
+
+        currentAmount = (shouldMaintainLooking && !lookingAt ? 0 : (currentAmount + Time.deltaTime));
     
         Evaluate(!shouldMaintainLooking);
     }
     public override void QuestGoalUpdate()
     {
         if(completed) return;
+        if(!lookingAtTarget) return;
         QuestManager._Instance.ForceUpdateGoal(this);
     }
     public override void CleanUp()
