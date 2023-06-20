@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -53,11 +54,10 @@ public static class Util
         Error
     };
     
-    // Print function with "typeof" being passed, helps with debug reasons in which a specified class name will pin point where this was called
-    public static void Print<T>(this T _class,  string msg) => Debug.Log("[" + _class.ToString().ToUpper() +"] | " + msg);
-    public static void Print(string msg, [CallerMemberName] string _class = null, PrintType _type = PrintType.Normal)
+    ///<summary>Prints a message with "FileName_FunctionName():LineNumber" attached for reference, with Log type of Normal/Warning/Error.</summary>
+    public static void Print(string msg, PrintType _type = PrintType.Normal, [CallerMemberName] string functionName = null, [CallerFilePath] string file = "", [CallerLineNumber] int line = 0)
     {
-        msg = "[" + _class.ToUpper() +"] | " + msg;
+        msg = Path.GetFileNameWithoutExtension(file) + "_" + functionName + "():" + line + " | " + msg;
         switch(_type)
         {
             case PrintType.Normal: Debug.Log(msg);          break;
@@ -65,9 +65,6 @@ public static class Util
             case PrintType.Error:  Debug.LogError(msg);     break;
         }
     }
-    public static void Print<T>(string msg) where T : UnityEngine.Object => Debug.Log("[" + typeof(T).ToString().ToUpper() +"] | " + msg);
-    // Print with tagging
-    //public static void Print(string tag, string msg) => Debug.Log("[" + tag + "] " + msg);
 
     //############//
     // Extensions //
@@ -146,7 +143,7 @@ public static class Util
         if(plyr == null) plyr = GetPlayer(); // Didn't pass the player? Try looking for one.
         if(plyr == null)
         {
-            Print("Utility Class", "Cannot get XREvents, player does not exists?");
+            Print("Cannot get XREvents, player does not exists?", PrintType.Warn);
             return null;
         }
         return plyr.transform.FindComponent<XREvents>("XREvents");
