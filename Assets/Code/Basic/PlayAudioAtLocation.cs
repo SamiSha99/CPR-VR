@@ -13,7 +13,12 @@ public class PlayAudioAtLocation : MonoBehaviour
     public AudioSource activeAudioSource;
     public void TriggerAudio()
     {
-        if(audioClip == null) return;
+        if(audioClip == null)
+        {
+            Util.Print("Audio Clip is set to null or wasn't defined!!!", Util.PrintType.Warn);
+            return;
+        }
+
         Vector3 pos = atObject == null ? gameObject.transform.position : atObject.transform.position;
         GameObject parent = setObjectAsParent ? atObject : null;
         activeAudioSource = Util.PlayClipAt(audioClip, pos, volume, parent);
@@ -21,6 +26,12 @@ public class PlayAudioAtLocation : MonoBehaviour
     public void TriggerAudio(AudioClip customClip)
     {
         audioClip = customClip;
+        TriggerAudio();
+    }
+
+    public void TriggerAudio(string localizationString)
+    {
+        audioClip = LocalizationHelper.GetAsset<AudioClip>(localizationString);
         TriggerAudio();
     }
 
