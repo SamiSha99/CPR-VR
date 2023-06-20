@@ -23,13 +23,14 @@ public class GameMenuManager : MonoBehaviour
     void Update()
     {
         if(pauseButton == null) return;
-
-        if(pauseButton.action.WasPerformedThisFrame())
-            TogglePause();
+        if(Util.IsInMainMenu()) return;
+        if(pauseButton.action.WasPerformedThisFrame()) TogglePause();
     }
 
     public void TogglePause()
     {
+        if(Util.IsInMainMenu()) return;
+
         if(isPaused) UnPause();
         else Pause();
         OnMenuButtonPressed?.Invoke(isPaused);
@@ -37,6 +38,8 @@ public class GameMenuManager : MonoBehaviour
 
     public void Pause()
     {
+        if(Util.IsInMainMenu()) return;
+
         previousTimeScale = Time.timeScale;
         Time.timeScale = 0;
         AudioListener.pause = true;
