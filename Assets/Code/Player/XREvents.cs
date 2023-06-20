@@ -6,7 +6,6 @@ using System;
 // To-do: Make this an event class instead?
 public class XREvents : MonoBehaviour
 {
-    public bool debugging;
     private AudioClip microphoneClip;
     private float lastAudioDetectionTime;
     private bool listenToMic;
@@ -76,7 +75,7 @@ public class XREvents : MonoBehaviour
             {
                 lastAudioDetectionTime = Time.timeSinceLevelLoad;
                 microphoneClip = Util.MicrophoneToAudioClip();
-                Util.Print<XREvents>("Microphone been silent for too long, reinstate the microphone again..");
+                Util.Print("Microphone been silent for too long, reinstate the microphone again..");
             }
             return;
         }
@@ -96,10 +95,4 @@ public class XREvents : MonoBehaviour
     private void OnTalking(GameObject o, GameObject instigator, float talkAmount = 0) => onTalking?.Invoke(gameObject, gameObject, talkAmount);
     public static void OnItemShake(GameObject o, GameObject instigator, float shakeAmount = 0) => onItemShaked?.Invoke(o, instigator, shakeAmount);
     public static void OnItemGrabbedNearby(GameObject o, GameObject instigator) => onItemGrabbedNearby?.Invoke(o, instigator);
-
-    private void Print(string s)
-    {
-        if (!debugging) return;
-        Util.Print(this, s);
-    }
 }
