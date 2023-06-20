@@ -34,6 +34,10 @@ public class LiveLineDrawer : MonoBehaviour
     {
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
     }
+    void OnDestroy()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
+    }
     void Update()
     {
         if(!_enabled) return;
