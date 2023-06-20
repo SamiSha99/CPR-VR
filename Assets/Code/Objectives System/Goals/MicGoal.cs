@@ -29,7 +29,9 @@ public class MicGoal : Quest.QuestGoal
     {
         if(micDecayAmount <= 0) return;
         if(completed) return;
-        currentAmount = Mathf.Max(currentAmount - Time.deltaTime * micDecayAmount, 0.0f);
+        
+        if(!Util.GetXREvents().isTalking)
+            currentAmount = Mathf.Max(currentAmount - Time.deltaTime * micDecayAmount, 0.0f);
         QuestManager._Instance.ForceUpdateGoal(this);
     }
     public override void CleanUp()
