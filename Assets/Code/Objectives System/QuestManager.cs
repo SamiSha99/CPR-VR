@@ -24,7 +24,6 @@ public class QuestManager : MonoBehaviour
     [Tooltip("When level is loaded, start this quest immediatly.")]
     public Quest onLoadQuest;
     public GameEventCommand onQuestBegin, onQuestCompleted, onQuestGoalCompleted;
-    public bool debugging;
 
     private float questCurrentTime;
     private bool isQuestTimePaused;
@@ -110,7 +109,7 @@ public class QuestManager : MonoBehaviour
     }
     private void OnQuestCompleted(Quest q)
     {
-        Print("[QUEST COMPLETED] => \"" + q.information.name + "\"");
+        Util.Print(q.information.name);
         onQuestCompleted?.TriggerEvent(q.questCommand + Quest.QUEST_COMPLETE_COMMAND);
         if(!GameManager._Instance.isExam)
             AudioSource.PlayClipAtPoint(writingSound, transform.position);
@@ -140,7 +139,7 @@ public class QuestManager : MonoBehaviour
 
         if(index >= transformArr.Length)
         {
-            Print("Cannot update \"Goal Progress\" index out of bounds! Did you set the ID correctly?");
+            Util.Print("Cannot update \"Goal Progress\" index out of bounds! Did you set the ID correctly?");
             return;
         }
         
@@ -250,10 +249,5 @@ public class QuestManager : MonoBehaviour
         }
         else
             SetTextToDefault();
-    }
-    private void Print(string s)
-    {
-        if(!debugging) return;
-        Util.Print<QuestManager>(s);
     }
 }
