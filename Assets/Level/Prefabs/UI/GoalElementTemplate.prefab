@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   supportsRightToLeftUI: 0
+  dontFixArabic: 0
   _slider: {fileID: 7271454059229502096}
 --- !u!1 &4154596022881458692
 GameObject:
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   supportsRightToLeftUI: 1
+  dontFixArabic: 0
   checkmark: {fileID: 4211862893087420508}
 --- !u!1 &4211862893087420508
 GameObject:
