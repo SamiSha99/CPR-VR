@@ -51,11 +51,6 @@ public class PauseMenu : MonoBehaviour
         LocalizationHelper.LocalizeTMP("Pause.Title", title);
         LocalizationHelper.LocalizeTMP("Pause.menuButton", menuButton);
         LocalizationHelper.LocalizeTMP("Pause.backButton", backButton);
-        if(LocalizationHelper.UsingRightToLeftLanguage())
-        {
-            gameObject.GetComponent<RectTransform>().localScale = Vector3.Scale(gameObject.GetComponent<RectTransform>().localScale, new Vector3(-1,1,1));
-            Util.Print("Flipping CANVAS");
-        }
     }
 
     void OnPauseButtonsPressed(bool pause)
