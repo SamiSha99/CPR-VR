@@ -1,7 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UI.Extensions;
+using UnityEngine.XR.Hands;
+using static Unity.VisualScripting.IndexMetadata;
+
 public class ChestCompressionTrial : MonoBehaviour
 {
     public LiveLineDrawer _GraphScript;
@@ -20,14 +26,23 @@ public class ChestCompressionTrial : MonoBehaviour
     public GameObject rightHand;
     public GameObject _CPRHand;
     public bool handsInRange;
+    
+    void Start()
+    {
+        //InputSystem.onDeviceChange += OnDeviceChange;
+    }
+
+    void OnDestroy()
+    {
+        //InputSystem.onDeviceChange -= OnDeviceChange;
+    }
+
     public void BeginTrial()
     {
         _GraphScript.gameObject.SetActive(true);
         _GraphScript.rate = rate;
         _GraphScript.StartGraphs(this);
         GameObject plyr = Util.GetPlayer();
-        leftHand = plyr.GetPlayerHandObject();
-        rightHand = plyr.GetPlayerHandObject(true);
         ToggleCPRHand(true);
         SetChestCompression(1);
         currentCompressionAmount = 1.0f;
@@ -46,9 +61,10 @@ public class ChestCompressionTrial : MonoBehaviour
     void Update()
     {
         if(!_GraphScript.enabled) return;
-        if(leftHand == null || rightHand == null) 
+        if(leftHand == null || rightHand == null || !leftHand.activeInHierarchy || !rightHand.activeInHierarchy) 
         {
-            Debug.LogWarning("Hands are undefined or missing, this is bad!!!");
+            leftHand = Util.GetPlayer().GetPlayerHandObject();
+            rightHand = Util.GetPlayer().GetPlayerHandObject(true);
             return;
         }
         float ccValue = CalculatePlayerHandPosition();
@@ -115,9 +131,24 @@ public class ChestCompressionTrial : MonoBehaviour
     }
     void ToggleCPRHand(bool _enabled)
     {
-        leftHand.transform.ToggleHidden(_enabled);
-        rightHand.transform.ToggleHidden(_enabled);
+        if(leftHand == null || rightHand == null)
+        {
+            _CPRHand.transform.ToggleHidden(true);
+            return;
+        }
+        if(enabled && leftHand.name != "Left Controller" && rightHand.name != "Right Controller")
+        {
+            _CPRHand.transform.ToggleHidden(true);
+            return;
+        }
+        leftHand?.transform.ToggleHidden(_enabled);
+        rightHand?.transform.ToggleHidden(_enabled);
         _CPRHand.transform.ToggleHidden(!_enabled);
         handsInRange = _enabled;
+    }
+
+    void OnDeviceChange(InputDevice device, InputDeviceChange change)
+    {
+
     }
 }
