@@ -130,12 +130,12 @@ public static class LocalizationHelper
         RectTransform rt = textMeshPro.gameObject.GetComponent<RectTransform>();
         bool rtl = UsingRightToLeftLanguage();
         
-        //Canvas parentCanvas = textMeshPro.gameObject.GetComponentInParent<Canvas>()?.rootCanvas;
-        //if(parentCanvas != null)
-        //{
-        //    RectTransform rtParent = parentCanvas.gameObject.GetComponent<RectTransform>();
-        //    if(rtParent?.localScale.x > 0 && rtl || rtParent?.localScale.x < 0 && !rtl) FlipComponent(rtParent);
-        //}
+        Canvas parentCanvas = textMeshPro?.gameObject.GetComponentInParent<Canvas>()?.rootCanvas;
+        if(parentCanvas != null)
+        {
+            RectTransform rtParent = parentCanvas.gameObject.GetComponent<RectTransform>();
+            if(rtParent?.localScale.x > 0 && rtl || rtParent?.localScale.x < 0 && !rtl) FlipComponent(rtParent);
+        }
         if(rtl && rt?.localScale.x > 0 || !rtl && rt?.localScale.x < 0)
             rt.localScale = Vector3.Scale(rt.localScale, new Vector3(-1,1,1));
 
@@ -185,7 +185,6 @@ public static class LocalizationHelper
         {
             if(!s.supportsRightToLeftUI) continue;
             if(!s.gameObject.HasComponent<RectTransform>(out RectTransform canvasTransform)) continue;
-            //Util.Print("Flipping UI of " + s.gameObject.name);
             FlipComponent(canvasTransform);
         }
 
