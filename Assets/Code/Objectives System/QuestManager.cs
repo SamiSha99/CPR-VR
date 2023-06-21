@@ -40,6 +40,10 @@ public class QuestManager : MonoBehaviour
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
         BeginQuest(onLoadQuest);
     }
+    void OnDestroy()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
+    }
     void Update() 
     {
         activeQuest?.QuestUpdate();
@@ -49,8 +53,6 @@ public class QuestManager : MonoBehaviour
     public void BeginQuest(Quest q)
     {
         if(q == null) return;
-
-        BhapticsLibrary.Play(BhapticsEvent.GLOVES);
 
         isQuestTimePaused = false;
         questCurrentTime = 0;
@@ -208,7 +210,12 @@ public class QuestManager : MonoBehaviour
     public void ForceCompleteQuest()
     {
         if(!IsQuestActive()) return;
-        foreach (Quest.QuestGoal goal in activeQuest.goals) goal.Skip();
+        foreach (Quest.QuestGoal goal in activeQuest.goals)
+        {
+            if(goal.completed) continue;
+            goal.silent = true; // we don't need to play that checkmark stuff
+            goal.Skip();
+        }
     }
     public bool IsQuestActive()
     {

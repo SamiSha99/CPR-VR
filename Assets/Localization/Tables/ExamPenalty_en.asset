@@ -54,6 +54,10 @@ MonoBehaviour:
     m_Localized: Touching the patient while a charge applying.
     m_Metadata:
       m_Items: []
+  - m_Id: 7674563913424896
+    m_Localized: Less than 30 compressions!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

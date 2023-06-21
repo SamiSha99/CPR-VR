@@ -7,8 +7,8 @@ namespace Bhaptics.SDK2
 {
     public class PlayParamSample : MonoBehaviour
     {
-        private readonly string SampleAppID = "p4fZNOU6ShHYBxos8Zmr";
-        private readonly string SampleApiKey = "BJ4Sacbew0qVfqONoMSM";
+        //private readonly string SampleAppID = "p4fZNOU6ShHYBxos8Zmr";
+        //private readonly string SampleApiKey = "BJ4Sacbew0qVfqONoMSM";
 
 
         [Header("Canvas")]

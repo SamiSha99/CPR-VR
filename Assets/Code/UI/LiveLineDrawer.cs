@@ -141,13 +141,13 @@ public class LiveLineDrawer : MonoBehaviour
         currentTime = 0;
         _enabled = false;
         nextSample = 1.0f/samplesPerSecond;
-        compressionAmount = 0;
         lastCompressionTime = 0;
         nextClipPlayTime = 0;
         _CompressionAverageText.gameObject.SetActive(false);
         _CompressionDepthText.gameObject.SetActive(false);
         _CompressionTimerBar.gameObject.SetActive(false);
-        _ChestCompressionTrial.OnTrialFinish();
+        _ChestCompressionTrial.OnTrialFinish(compressionAmount);
+        compressionAmount = 0;
         gameObject.SetActive(false);
     }
 
@@ -158,11 +158,11 @@ public class LiveLineDrawer : MonoBehaviour
         QuestManager q = QuestManager._Instance;
         if(amount < 100)
         {
-            gm.AddExamPenalty("ExamPenalty.CPRSlow", 0.75f);
+            gm.AddExamPenalty("ExamPenalty.CPRSlow", 0.5f);
         }
         else if(amount >= 130)
         {
-            gm.AddExamPenalty("ExamPenalty.CPRFast", 0.75f);
+            gm.AddExamPenalty("ExamPenalty.CPRFast", 0.5f);
         }
 
         LocalizationHelper.LocalizeTMP($"{amount} cc/m", _CompressionAverageText);

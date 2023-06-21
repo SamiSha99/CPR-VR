@@ -54,10 +54,10 @@ public static class Util
         Error
     };
     
-    ///<summary>Prints a message with "FileName_FunctionName():LineNumber" attached for reference, with Log type of Normal/Warning/Error.</summary>
+    ///<summary>Prints a message with "FileName->FunctionName():LineNumber" attached for reference, with Log type of Normal/Warning/Error.</summary>
     public static void Print(string msg, PrintType _type = PrintType.Normal, [CallerMemberName] string functionName = null, [CallerFilePath] string file = "", [CallerLineNumber] int line = 0)
     {
-        msg = Path.GetFileNameWithoutExtension(file) + "_" + functionName + "():" + line + " | " + msg;
+        msg = Path.GetFileNameWithoutExtension(file) + "->" + functionName + "():" + line + " | " + msg;
         switch(_type)
         {
             case PrintType.Normal: Debug.Log(msg);          break;

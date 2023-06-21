@@ -3,10 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Utilities;
-using UnityEngine.UI.Extensions;
-using UnityEngine.XR.Hands;
-using static Unity.VisualScripting.IndexMetadata;
 
 public class ChestCompressionTrial : MonoBehaviour
 {
@@ -26,16 +22,6 @@ public class ChestCompressionTrial : MonoBehaviour
     public GameObject rightHand;
     public GameObject _CPRHand;
     public bool handsInRange;
-    
-    void Start()
-    {
-        //InputSystem.onDeviceChange += OnDeviceChange;
-    }
-
-    void OnDestroy()
-    {
-        //InputSystem.onDeviceChange -= OnDeviceChange;
-    }
 
     public void BeginTrial()
     {
@@ -49,9 +35,11 @@ public class ChestCompressionTrial : MonoBehaviour
         enabled = true;
     }
 
-    public void OnTrialFinish()
+    public void OnTrialFinish(int finalCompressionAmount = 0)
     {
         QuestManager qm = QuestManager._Instance;
+        GameManager gm = GameManager._Instance;
+        gm.AddExamPenalty("ExamPenalty.InsufficentCompressions", 5.0f);
         if (qm.IsQuestType("CPR")) qm.ForceCompleteQuest();
         SetChestCompression(1);
         ToggleCPRHand(false);
@@ -145,10 +133,5 @@ public class ChestCompressionTrial : MonoBehaviour
         rightHand?.transform.ToggleHidden(_enabled);
         _CPRHand.transform.ToggleHidden(!_enabled);
         handsInRange = _enabled;
-    }
-
-    void OnDeviceChange(InputDevice device, InputDeviceChange change)
-    {
-
     }
 }

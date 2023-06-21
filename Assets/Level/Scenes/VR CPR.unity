@@ -8522,7 +8522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TutorialQuestsLine:
-  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
+  - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
   - {fileID: 8300000, guid: eec57c2a67cab4e48ac5241837d7d4fd, type: 3}
   - {fileID: 8300000, guid: 665a40052a7b3b54dae5b68684124c0d, type: 3}
   - {fileID: 8300000, guid: f3b319bdb94afea4692af2dc52f78534, type: 3}
@@ -8543,6 +8543,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b2d1a276bfc6d5142bf1d6779aa46293, type: 3}
   - {fileID: 11400000, guid: bc8e5f38bc0d98e4db0cee9bd7f7e973, type: 2}
   - {fileID: 8300000, guid: 18f9cc77d4f94754681489d7716d0a1c, type: 3}
+  - {fileID: 8300000, guid: 7f9928132751ec44ab8d3921a5c36f63, type: 3}
   - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
   - {fileID: 8300000, guid: 07bcc9116fe9b804c965190e1f0cd333, type: 3}
   - {fileID: 8300000, guid: 2c520c9474a5bc344807678741a92d20, type: 3}
@@ -8563,6 +8564,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc8e5f38bc0d98e4db0cee9bd7f7e973, type: 2}
   - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
   - {fileID: 11400000, guid: bc8e5f38bc0d98e4db0cee9bd7f7e973, type: 2}
+  - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
+  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
+  - {fileID: 11400000, guid: bc8e5f38bc0d98e4db0cee9bd7f7e973, type: 2}
+  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
+  - {fileID: 11400000, guid: bc8e5f38bc0d98e4db0cee9bd7f7e973, type: 2}
+  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
+  - {fileID: 11400000, guid: bc8e5f38bc0d98e4db0cee9bd7f7e973, type: 2}
+  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
+  - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
+  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
+  - {fileID: 11400000, guid: bc8e5f38bc0d98e4db0cee9bd7f7e973, type: 2}
+  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
   accumulatedPenalties: 0
   resultCanvas: {fileID: 1154143197}
   score: 0
@@ -10392,7 +10405,7 @@ PrefabInstance:
     - target: {fileID: 2805325292957663279, guid: 02ae6fd292718d34a8991eaff0fc4cd3,
         type: 3}
       propertyPath: _TrialDuration
-      value: 17.5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3039909597357052097, guid: 02ae6fd292718d34a8991eaff0fc4cd3,
         type: 3}
@@ -10612,6 +10625,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1156852761}
     m_Modifications:
+    - target: {fileID: 1749984229, guid: 3ce128b8e97f12841bd7cec1008c77c9, type: 3}
+      propertyPath: m_CellSize.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 10240191414408438, guid: 3ce128b8e97f12841bd7cec1008c77c9,
         type: 3}
       propertyPath: m_AnchorMax.y

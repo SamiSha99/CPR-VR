@@ -51,6 +51,10 @@ MonoBehaviour:
     m_Key: AEDStandClearFromPatient
     m_Metadata:
       m_Items: []
+  - m_Id: 7674563913424896
+    m_Key: InsufficentCompressions
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

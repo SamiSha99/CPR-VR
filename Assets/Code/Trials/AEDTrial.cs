@@ -64,7 +64,18 @@ public class AEDTrial : MonoBehaviour
     public void OnButtonPressed()
     {
         AudioSource.PlayClipAtPoint(aedShockEffect, transform.position);
-        Util.Invoke(this, () => QuestManager._Instance.CompleteCommandGoal("Press_Shock_Button_Goal_Command"), 3.0f);
+        //Util.Invoke(this, () => QuestManager._Instance.CompleteCommandGoal("Press_Shock_Button_Goal_Command"), 3.0f);
+        Util.Invoke(this, () => { 
+            if(!QuestManager._Instance.IsQuestGoalCompleted("Said_Clear"))
+            {
+                GameManager._Instance.AddExamPenalty("ExamPenalty.NotSayingClear", 5.0f);
+                Util.Print("DIDN'T SAY CLEAR!!!");
+            }
+            // to-do: getting zapped -20 points or straight up fail?
+            QuestManager._Instance.CompleteCommandGoal("Press_Shock_Button_Goal_Command");
+            QuestManager._Instance.ForceCompleteQuest();
+        }, 3.0f);
+        
         Reset();
     }
 

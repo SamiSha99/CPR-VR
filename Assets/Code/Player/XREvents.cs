@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using System;
+using Bhaptics.SDK2;
 // To-do: Make this an event class instead?
 public class XREvents : MonoBehaviour
 {
@@ -39,6 +40,9 @@ public class XREvents : MonoBehaviour
             else OnItemInteracted(o, interactor);
         }
 
+        string handName = args.interactorObject.transform.parent.name;
+        if(handName == "Left Hand") BhapticsLibrary.Play(BhapticsEvent.LEFT_GLOVE_PINCH);
+        if(handName == "Right Hand") BhapticsLibrary.Play(BhapticsEvent.RIGHT_GLOVE_PINCH);
     }
     public void ProcessHoverEvent(BaseInteractionEventArgs args, bool exited)
     {
@@ -59,6 +63,9 @@ public class XREvents : MonoBehaviour
         listenToMic = true;
     }
     public void DisableMicRecording() => listenToMic = false;
+
+    public void OnPauseMenuPinch() => BhapticsLibrary.Play(BhapticsEvent.LEFT_GLOVE_PINCH);
+    
 
     void Update()
     {

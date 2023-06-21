@@ -119,6 +119,10 @@ MonoBehaviour:
     m_Key: AEDGoal3
     m_Metadata:
       m_Items: []
+  - m_Id: 20683316673748992
+    m_Key: AEDGoal4
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

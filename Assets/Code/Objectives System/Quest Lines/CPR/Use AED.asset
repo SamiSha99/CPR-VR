@@ -22,7 +22,7 @@ MonoBehaviour:
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
-  index: 2
+  index: 3
   GoalCommand: Press_Shock_Button_Goal_Command
 --- !u!114 &-1021966818343964752
 MonoBehaviour:
@@ -50,6 +50,33 @@ MonoBehaviour:
       m_Calls: []
   index: 0
   isPlayerTouch: 0
+--- !u!114 &-786543335879309778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee8aabf0e96702479fb5d1b587811d8, type: 3}
+  m_Name: MicGoal
+  m_EditorClassIdentifier: 
+  description: Quest.AEDGoal4
+  requiredAmount: 10
+  _GoalUIType: 2
+  goalCompletedCommand: Said_Clear
+  objectiveNameList: []
+  requiredGoals:
+  - {fileID: -1021966818343964752}
+  - {fileID: 7791550903679297307}
+  silent: 1
+  goalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  index: 2
+  micDecayAmount: 1.2
+  micSensitivityMultiplier: 1.5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +99,7 @@ MonoBehaviour:
   - {fileID: -1021966818343964752}
   - {fileID: 7791550903679297307}
   - {fileID: -3953176978329743426}
+  - {fileID: -786543335879309778}
 --- !u!114 &7791550903679297307
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,48 +17,16 @@ namespace Bhaptics.SDK2
     public class BhapticsEvent
     {
         
-        public const string GLOVES = "gloves";
-        
-        public const string HEARTBEAT_FAST = "heartbeat_fast";
-        
-        public const string HEAD_RIGHT = "head_right";
-        
-        public const string HEALING = "healing";
-        
-        public const string CHEST_RIGHT = "chest_right";
-        
-        public const string FLAMEBURNING = "flameburning";
+        public const string RIGHT_GLOVE_PINCH = "right_glove_pinch";
         
         public const string GAME_START = "game_start";
         
-        public const string HEARTBEAT = "heartbeat";
+        public const string LEFT_CPR_PRESS = "left_cpr_press";
         
-        public const string FOREARM_RIGHT = "forearm_right";
+        public const string RIGHT_CPR_PRESS = "right_cpr_press";
         
-        public const string HEAD_LEFT = "head_left";
+        public const string AED_GETTING_SHOCKED = "aed_getting_shocked";
         
-        public const string SHOULDER_LEFT = "shoulder_left";
-        
-        public const string CHEST_LEFT = "chest_left";
-        
-        public const string WAIST_LEFT = "waist_left";
-        
-        public const string HEAD_ALL = "head_all";
-        
-        public const string DRINKPOTION = "drinkpotion";
-        
-        public const string ELECTRICSHOCK = "electricshock";
-        
-        public const string FRONTBODY_CENTER = "frontbody_center";
-        
-        public const string FOREARM_LEFT = "forearm_left";
-        
-        public const string EXPLOSION = "explosion";
-        
-        public const string SHOULDER_RIGHT = "shoulder_right";
-        
-        public const string EATFOOD = "eatfood";
-        
-        public const string WAIST_RIGHT = "waist_right";
+        public const string LEFT_GLOVE_PINCH = "left_glove_pinch";
     }
 }

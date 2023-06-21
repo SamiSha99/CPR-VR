@@ -122,6 +122,10 @@ MonoBehaviour:
     m_Localized: Press the Red Button.
     m_Metadata:
       m_Items: []
+  - m_Id: 20683316673748992
+    m_Localized: Say "Clear!" before applying a shock.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
