@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Hands.Samples.VisualizerSample;
 
 // Utility Class
 public static class Util
@@ -127,14 +128,22 @@ public static class Util
     public static GameObject GetRoot(this GameObject o) => o.transform.root.gameObject;
     // Returns the camera of this Owned player object (works with root too)
     public static GameObject GetPlayerCameraObject(this GameObject o) => o.GetRoot().transform.Find("CameraOffset/XR Camera").gameObject;
+
+    public enum HandType
+    {
+        HT_Auto,
+        HT_Controller,
+        HT_Hand
+    };
     // Returns the Left Hand of this Owned player object (works with root too)
-    // param right - Returns the Right Hand instead
-    public static GameObject GetPlayerHandObject(this GameObject o, bool right = false)
+    // param right - Returns the Right Hand instea
+    // param type - force get a specific object regardless of state
+    public static GameObject GetPlayerHandObject(this GameObject o, bool right = false, HandType type = 0)
     {
         GameObject hand = o.GetRoot().transform.Find("CameraOffset/" + (right ? "Right" : "Left") + " Hand/Direct Interactor").gameObject;
-        if(hand != null && hand.activeInHierarchy) return hand;
+        if(hand != null && hand.activeInHierarchy || type == HandType.HT_Hand) return hand;
         GameObject controller = o.GetRoot().transform.Find("CameraOffset/" + (right ? "Right" : "Left") + " Controller").gameObject;
-        if(controller != null && controller.activeInHierarchy) return controller;
+        if(controller != null && controller.activeInHierarchy || type == HandType.HT_Controller) return controller;
         return null;
     }
     public static GameObject GetPlayer() => GameObject.FindWithTag("Player");
@@ -143,10 +152,39 @@ public static class Util
         if(plyr == null) plyr = GetPlayer(); // Didn't pass the player? Try looking for one.
         if(plyr == null)
         {
-            Print("Cannot get XREvents, player does not exists?", PrintType.Warn);
+            Print("Cannot get XREvents, player does not exist?", PrintType.Warn);
             return null;
         }
         return plyr.transform.FindComponent<XREvents>("XREvents");
+    }
+
+    public static HandVisualizer GetHandVisualizer(GameObject plyr = null)
+    {
+        if(plyr == null) plyr = GetPlayer();
+        if(plyr == null)
+        {
+            Print("Cannot get HandVisualizer, player does not exist?", PrintType.Warn);
+            return null;
+        }
+        return plyr.transform.FindComponent<HandVisualizer>("CameraOffset/Hand Visualizer");
+    }
+
+    //####//
+    // XR //
+    //####//
+
+    ///<summary>Returns if XR Hands is active.</summary>
+    public static bool IsUsingHandTracking()
+    {
+        GameObject player = GetPlayer();
+        GameObject leftHand = player.GetPlayerHandObject();
+        GameObject rightHand = player.GetPlayerHandObject(true);
+
+        if(leftHand == null || rightHand == null) return false;
+        if(leftHand.name != "Direct Interactor" || rightHand.name != "Direct Interactor") return false;
+        if(leftHand.transform.parent.gameObject == null || rightHand.transform.parent.gameObject == null) return false;
+
+        return leftHand.transform.parent.gameObject.name == "Left Hand" || rightHand.transform.parent.gameObject.name == "Right Hand"; 
     }
 
     //########//

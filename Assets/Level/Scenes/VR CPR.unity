@@ -4411,6 +4411,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 600808221065548367, guid: a16d4f5b80ef2fa48a9c15fe19fdf497,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5331753492123485441, guid: a16d4f5b80ef2fa48a9c15fe19fdf497,
         type: 3}
       propertyPath: m_Name
@@ -8522,7 +8527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TutorialQuestsLine:
-  - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
+  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
   - {fileID: 8300000, guid: eec57c2a67cab4e48ac5241837d7d4fd, type: 3}
   - {fileID: 8300000, guid: 665a40052a7b3b54dae5b68684124c0d, type: 3}
   - {fileID: 8300000, guid: f3b319bdb94afea4692af2dc52f78534, type: 3}

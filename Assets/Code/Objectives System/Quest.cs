@@ -263,12 +263,11 @@ public class QuestEditor : Editor
             CreateCachedEditor(item.objectReferenceValue, null, ref ed);
             ed.OnInspectorGUI();
             var oldcolor = GUI.backgroundColor;
-            GUI.backgroundColor = new Color(2f, 0.2f, 0.2f, 1);
+            
+            EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
-            GUILayoutOption widthGUI = GUILayout.Width(48), heightGUI = GUILayout.Height(28);
-
-            if (GUILayout.Button("Delete", heightGUI, widthGUI)) toDelete = i;
+            GUILayoutOption widthGUI = GUILayout.Width(25), heightGUI = GUILayout.Height(15);
             
             // Swappers
             if (m_QuestGoalListProperty.arraySize > 1)
@@ -278,7 +277,7 @@ public class QuestEditor : Editor
                 {
                     if (GUILayout.Button(arrowUp, heightGUI, widthGUI))
                     {
-                        m_QuestGoalListProperty.MoveArrayElement(i, i-1);
+                        m_QuestGoalListProperty.MoveArrayElement(i, i - 1);
                         break;
                     }
                 }
@@ -291,10 +290,15 @@ public class QuestEditor : Editor
                     }
                 }
             }
+            
+            GUI.backgroundColor = new Color(2f, 0.2f, 0.2f, 1);
+            if (GUILayout.Button("X", heightGUI, widthGUI)) toDelete = i;
 
             EditorGUILayout.EndHorizontal();
             GUI.backgroundColor = oldcolor;
-            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+            
+            if(i < m_QuestGoalListProperty.arraySize - 1)
+                EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndHorizontal();
         }

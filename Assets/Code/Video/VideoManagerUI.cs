@@ -5,17 +5,19 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using UnityEngine.Video;
+using UnityEngine.EventSystems;
 
-public class VideoManagerUI : MonoBehaviour
+public class VideoManagerUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
     public VideoManager videoManager;
     public Slider timePosition;
     public TextMeshProUGUI currentTimeText;
-
+    public bool dragging;
     void Update() => UpdateTime();
     void UpdateTime()
     {
         if(videoManager == null) return;
+        if(dragging) return;
         VideoPlayer vp = videoManager.videoPlayer;
         float currentTime = (float)videoManager.videoPlayer.frame/videoManager.videoPlayer.frameRate;
         float maxDuration = (float)videoManager.videoPlayer.frameCount/videoManager.videoPlayer.frameRate;
@@ -29,5 +31,18 @@ public class VideoManagerUI : MonoBehaviour
         TimeSpan span = TimeSpan.FromSeconds(Mathf.RoundToInt(seconds));
         String timeStr = string.Format("{0}:{1:00}", (int)span.TotalMinutes, span.Seconds);
         return timeStr;
+    }
+
+    //to-do: need to figure out graphic raycasing, wtf is this crap??
+    void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
+    {
+        dragging = true;
+        Util.Print("dragging");
+    }
+
+    void IEndDragHandler.OnEndDrag(PointerEventData eventData)
+    {
+        dragging = false;
+        Util.Print("dragging no");
     }
 }
