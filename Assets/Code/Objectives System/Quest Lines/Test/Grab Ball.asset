@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d3117f3952dc5d439a4dcfcb03391ba, type: 3}
-  m_Name: 
+  m_Name: A Quest Goal
   m_EditorClassIdentifier: 
+  editorQuestGoalName: A Quest Goal
   description: Hold the Green ball!
   requiredAmount: 1
+  _GoalUIType: 0
   goalCompletedCommand: ???
-  objectList: []
+  objectiveNameList: []
+  requiredGoals: []
+  silent: 0
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
@@ -31,12 +35,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d3117f3952dc5d439a4dcfcb03391ba, type: 3}
-  m_Name: 
+  m_Name: A Quest Goal
   m_EditorClassIdentifier: 
+  editorQuestGoalName: A Quest Goal
   description: Grab the Blue Ball
   requiredAmount: 1
+  _GoalUIType: 0
   goalCompletedCommand: ???
-  objectList: []
+  objectiveNameList: []
+  requiredGoals: []
+  silent: 0
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
@@ -52,12 +60,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bdab48828f194c48b23e0e9034a37dd, type: 3}
-  m_Name: 
+  m_Name: A Quest Goal
   m_EditorClassIdentifier: 
+  editorQuestGoalName: A Quest Goal
   description: Touch the Red Ball
   requiredAmount: 10
+  _GoalUIType: 0
   goalCompletedCommand: ???
-  objectList: []
+  objectiveNameList: []
+  requiredGoals: []
+  silent: 0
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
@@ -78,6 +90,7 @@ MonoBehaviour:
   information:
     name: Grab Ball
     description: 
+  averageTime: 0
   questCommand: ???
   nextQuest: {fileID: 0}
   goals:

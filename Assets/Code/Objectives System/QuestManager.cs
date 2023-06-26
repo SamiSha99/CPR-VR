@@ -111,7 +111,7 @@ public class QuestManager : MonoBehaviour
     }
     private void OnQuestCompleted(Quest q)
     {
-        Util.Print(q.information.name);
+        Util.Print(q.name);
         onQuestCompleted?.TriggerEvent(q.questCommand + Quest.QUEST_COMPLETE_COMMAND);
         if(!GameManager._Instance.isExam)
             AudioSource.PlayClipAtPoint(writingSound, transform.position);

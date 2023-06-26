@@ -44,6 +44,7 @@ public class Quest : ScriptableObject
             GUIT_ProgressBar, // 2
             GUIT_None // 3 (Empty)
         };
+        public string editorQuestGoalName = "A Quest Goal";
         public const string QUEST_GOAL_COMPLETE_COMMAND = "_Goal_Complete";
         [TextArea(1,3)]
         public string description;
@@ -260,6 +261,7 @@ public class QuestEditor : Editor
             SerializedProperty item = m_QuestGoalListProperty.GetArrayElementAtIndex(i);
             SerializedObject obj = new SerializedObject(item.objectReferenceValue);
             obj.Update();
+            obj.targetObject.name = ((Quest.QuestGoal)obj.targetObject).editorQuestGoalName;
             CreateCachedEditor(item.objectReferenceValue, null, ref ed);
             ed.OnInspectorGUI();
             var oldcolor = GUI.backgroundColor;
@@ -311,7 +313,6 @@ public class QuestEditor : Editor
         }
 
         serializedObject.ApplyModifiedProperties();
-       
     }
 }
 #endif

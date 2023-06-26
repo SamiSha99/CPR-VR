@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Bhaptics.SDK2;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Hands;
 using UnityEngine.XR.Hands.Samples.VisualizerSample;
 
 public class ChestCompressionTrial : MonoBehaviour
@@ -76,6 +78,8 @@ public class ChestCompressionTrial : MonoBehaviour
             _CompressionPressed = true;
             timeTillDepthCalc = 0.15f;
             AudioSource.PlayClipAtPoint(_CompressionSound, transform.position, 3.0f);
+            BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.4f, 0.5f, 20.0f, 3.0f);
+            BhapticsLibrary.PlayParam(BhapticsEvent.RIGHT_CPR_PRESS, 0.4f, 0.5f, 20.0f, 3.0f);
         }
         else if(currentCompressionAmount >= 0.7f && _CompressionPressed)
         {

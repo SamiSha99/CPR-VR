@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 497f97953eb18294080917d60387b5a1, type: 3}
-  m_Name: TouchAndInteractWithObject
+  m_Name: Tap Left Shoulder
   m_EditorClassIdentifier: 
+  editorQuestGoalName: Tap Left Shoulder
   description: Quest.SignOfLifeGoal1
   requiredAmount: 4
   _GoalUIType: 0
@@ -36,8 +37,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 497f97953eb18294080917d60387b5a1, type: 3}
-  m_Name: TouchAndInteractWithObject
+  m_Name: Tap Right Shoulder
   m_EditorClassIdentifier: 
+  editorQuestGoalName: Tap Right Shoulder
   description: Quest.SignOfLifeGoal2
   requiredAmount: 4
   _GoalUIType: 0
@@ -84,8 +86,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ee8aabf0e96702479fb5d1b587811d8, type: 3}
-  m_Name: MicGoal
+  m_Name: Ask if they are ok
   m_EditorClassIdentifier: 
+  editorQuestGoalName: Ask if they are ok
   description: Quest.SignOfLifeGoal3
   requiredAmount: 10
   _GoalUIType: 2
