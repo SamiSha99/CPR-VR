@@ -146,6 +146,26 @@ public static class Util
         if(controller != null && controller.activeInHierarchy || type == HandType.HT_Controller) return controller;
         return null;
     }
+    public static GameObject GetPlayerXRHands(this GameObject o, bool right)
+    {
+        GameObject hand = o.GetRoot().transform.Find("CameraOffset/" + (right ? "Right" : "Left") + " Hand/Direct Interactor").gameObject;
+        return hand;
+    }
+    public static HandVisualizer GetPlayerXRHandsVisualizer(this GameObject o)
+    {
+        HandVisualizer hv = o.GetRoot().transform.FindComponent<HandVisualizer>("CameraOffset/Hand Visualizer");
+        return hv;
+    }
+    public static Vector3 GetPlayerXRHandsPosition(this GameObject o, bool right, string jointName = "")
+    {
+        HandVisualizer hv = o.GetPlayerXRHandsVisualizer();
+        string path = (right ? "RightHand(Clone)/R_Wrist" : "LeftHand(Clone)/L_Wrist");
+        if(jointName != "")
+            path += "/" + (right ? "R_" : "L_") + jointName;
+
+        Transform t = hv.transform.Find(path);
+        return t != null ? t.position : Vector3.zero;
+    }
     public static GameObject GetPlayer() => GameObject.FindWithTag("Player");
     public static XREvents GetXREvents(GameObject plyr = null)
     {
