@@ -293,7 +293,7 @@ public class QuestEditor : Editor
                 }
             }
             
-            GUI.backgroundColor = new Color(2f, 0.2f, 0.2f, 1);
+            GUI.backgroundColor = new Color(2.25f, 0.25f, 0.25f, 1);
             if (GUILayout.Button("X", heightGUI, widthGUI)) toDelete = i;
 
             EditorGUILayout.EndHorizontal();
