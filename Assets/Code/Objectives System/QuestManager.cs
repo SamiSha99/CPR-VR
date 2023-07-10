@@ -241,6 +241,7 @@ public class QuestManager : MonoBehaviour
     }
     public void ForceUpdateGoal(Quest.QuestGoal g) => OnUpdateGoalProgress(g);
 
+    // AED requires time to wait, that is unspecified based on how long for the AED to wait, to not punish, we pause it until the button gets enabled.
     public void ToggleTimer(bool _enabled) => isQuestTimePaused = !_enabled;
     
     void OnLanguageChanged(Locale selectedLanguage)

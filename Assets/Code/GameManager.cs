@@ -171,8 +171,8 @@ public class GameManager : MonoBehaviour
         }
         _ExamPenalty.Add(new ExamPenalty(mistakeLocalization, scorePenalty));
     }
-    // after avg, every 3 seconds reduces this score by 1, up to 10.
-    const int REDUCE_AFTER_SECONDS = 3;
+    // after avg, every 2 seconds reduces this score by 1, up to 5.
+    const int REDUCE_AFTER_SECONDS = 2;
 
     public void AdjustScore(float timeTaken, float averageTime)
     {
@@ -185,7 +185,7 @@ public class GameManager : MonoBehaviour
         timeTaken -= timeTaken % REDUCE_AFTER_SECONDS; // remove leftovers
         timeTaken -= averageTime;
         timeTaken /= REDUCE_AFTER_SECONDS;
-        timeTaken = Mathf.Clamp(timeTaken, 0, 10); // After 30 seconds, lose 10 points only
+        timeTaken = Mathf.Clamp(timeTaken, 0, 5); // After 30 seconds, lose 5 points only
         return (int)timeTaken;
     }
 

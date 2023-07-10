@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class AEDTrial : MonoBehaviour
 {
     private int appliedPatches;
-    public AudioClip analyzingNow, shockRequired, noShockRequired, pressButton, beepBeep, aedShockEffect;
+    public AudioClip beepBeep, aedShockEffect;
+    public PlayAudioAtLocation localizedAudioPlayer;
     public UnityEvent _ButtonEnabled;
     public bool isAEDEnabled;
 
@@ -24,7 +25,8 @@ public class AEDTrial : MonoBehaviour
 
     void OnAllPatchesApplied()
     {
-        AudioSource.PlayClipAtPoint(analyzingNow, transform.position);
+        //AudioSource.PlayClipAtPoint(analyzingNow, transform.position);
+        localizedAudioPlayer?.TriggerAudio("VA.analyzing_now");
         QuestManager._Instance.ToggleTimer(false);
         Util.Invoke(this, () => BeepBeep(), 1.5f);
         Util.Invoke(this, () => BeepBeep(), 4.0f);
@@ -33,31 +35,20 @@ public class AEDTrial : MonoBehaviour
 
     void OnWaitingForAED()
     {
-        QuestManager._Instance.ToggleTimer(true);
-        // currently the "no shock required" disabled, for now
-        if(true) //(!GameManager._Instance.isExam || Random.Range(0.0f, 1.0f) > 0.25f)
-        {
-            QuestManager._Instance.CompleteCommandGoal("Wait_for_AED_Goal_Command");
-            Util.Invoke(this, () => OnShockIsRequired(), 0.5f);
-        }
-        //else
-        //{
-        //    AudioSource.PlayClipAtPoint(noShockRequired, transform.position);
-        //    Util.Invoke(this, () => QuestManager._Instance.ForceCompleteQuest(), noShockRequired.length + 0.25f);
-        //}
+        QuestManager._Instance.CompleteCommandGoal("Wait_for_AED_Goal_Command");
+        Util.Invoke(this, () => OnShockIsRequired(), 0.5f);
     }
 
     void BeepBeep() => AudioSource.PlayClipAtPoint(beepBeep, transform.position);
     void OnShockIsRequired()
     {
-        AudioSource.PlayClipAtPoint(shockRequired, transform.position);
-        Util.Invoke(this, () => OnButtonEnabled(), 3.25f);
+        localizedAudioPlayer?.TriggerAudio("VA.shock_required");
+        Util.Invoke(this, () => OnButtonEnabled(), LocalizationHelper.UsingLanguage("ar") ? 4.35f : 3.25f);
     }
 
     void OnButtonEnabled()
     {
-        AudioSource.PlayClipAtPoint(pressButton, transform.position);
-        
+        QuestManager._Instance.ToggleTimer(true);
         _ButtonEnabled?.Invoke();
     }
     // Interacted with the button -> apply shock
@@ -68,7 +59,7 @@ public class AEDTrial : MonoBehaviour
         Util.Invoke(this, () => { 
             if(!QuestManager._Instance.IsQuestGoalCompleted("Said_Clear"))
             {
-                GameManager._Instance.AddExamPenalty("ExamPenalty.NotSayingClear", 5.0f);
+                GameManager._Instance.AddExamPenalty("ExamPenalty.NotSayingClear", 3.0f);
                 Util.Print("DIDN'T SAY CLEAR!!!");
             }
             // to-do: getting zapped -20 points or straight up fail?

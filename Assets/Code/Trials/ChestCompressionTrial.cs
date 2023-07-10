@@ -49,7 +49,7 @@ public class ChestCompressionTrial : MonoBehaviour
     {
         QuestManager qm = QuestManager._Instance;
         GameManager gm = GameManager._Instance;
-        gm.AddExamPenalty("ExamPenalty.InsufficentCompressions", 5.0f);
+        gm.AddExamPenalty("ExamPenalty.InsufficentCompressions", 4.0f);
         if (qm.IsQuestType("CPR")) qm.ForceCompleteQuest();
         SetChestCompression(1);
         ToggleCPRHand(false);

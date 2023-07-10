@@ -32,6 +32,7 @@ public class PlayAudioAtLocation : MonoBehaviour
     public void TriggerAudio(string localizationString)
     {
         audioClip = LocalizationHelper.GetAsset<AudioClip>(localizationString);
+        SetVolume(PlayerPrefs.GetFloat("textToSpeechVolume", 0.8f));
         TriggerAudio();
     }
 

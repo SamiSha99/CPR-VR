@@ -83,12 +83,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ar
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6f4ad0179f419f547a05cae90d61231f
-    m_Address: emergency_breath_chest_AR
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-ar
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 01398af5f8a55064280215e11ffaeca4
     m_Address: emergency_breath_AR
     m_ReadOnly: 1
@@ -169,6 +163,60 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8a906343f056a0c4896080add4a3eb6a
     m_Address: add_paper_sheet_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6d6ea48367b32e4dafb05205844394d
+    m_Address: press_button_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af786eccf66cb2d418d8ef96ca375ce0
+    m_Address: shock_required_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98ca784000edbf143b6b1faf7e4fd59b
+    m_Address: shock_applied_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 363afe9b0637a204aada1a62f6290851
+    m_Address: emergency_breath_begin_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12edba83df7f5d14bab5894de8635e55
+    m_Address: AED_begin_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a39ec7e46d675d4f888b536f23e1335
+    m_Address: analyzing_now_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2fb5acacd1bbba341954af00569de8ae
+    m_Address: check_for_breathing_begin_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da73c09a8310c5047a07252f9e11ab9c
+    m_Address: check_for_breathing_end_AR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12608ff1f3472dc409e9e2d0ea27e71d
+    m_Address: check_for_breathing_intro_AR
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ar

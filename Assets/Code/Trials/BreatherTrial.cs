@@ -103,8 +103,8 @@ public class BreatherTrial : MonoBehaviour
     {
         if(!incorrectSecondBreathInterval) return;
         GameManager gm = GameManager._Instance;
-        if(tooFast) gm.AddExamPenalty("ExamPenalty.BreatherFast", 2);
-        if(tooSlow) gm.AddExamPenalty("ExamPenalty.BreatherSlow", 2);
+        if(tooFast) gm.AddExamPenalty("ExamPenalty.BreatherFast", 1);
+        if(tooSlow) gm.AddExamPenalty("ExamPenalty.BreatherSlow", 1);
     }
 
     void CleanUp()

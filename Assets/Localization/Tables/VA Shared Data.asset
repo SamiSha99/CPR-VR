@@ -115,6 +115,42 @@ MonoBehaviour:
     m_Key: welcome
     m_Metadata:
       m_Items: []
+  - m_Id: 9753163693137920
+    m_Key: press_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9772637376847872
+    m_Key: emergency_breath_begin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9775536513327104
+    m_Key: shock_required
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9776731625725952
+    m_Key: shock_applied
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9780306917564416
+    m_Key: AED_begin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9780312084946944
+    m_Key: analyzing_now
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9784668758843392
+    m_Key: check_for_breathing_begin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9784838946922496
+    m_Key: check_for_breathing_reminder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9784939509555200
+    m_Key: check_for_breathing_intro
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 3478341621756723204
@@ -228,5 +264,41 @@ MonoBehaviour:
           m_TableCodes:
           - ar
           - en
+        - m_KeyId: 9753163693137920
+          m_TableCodes:
+          - en
+          - ar
+        - m_KeyId: 9772637376847872
+          m_TableCodes:
+          - en
+          - ar
+        - m_KeyId: 9775536513327104
+          m_TableCodes:
+          - en
+          - ar
+        - m_KeyId: 9776731625725952
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 9780306917564416
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 9780312084946944
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 9784668758843392
+          m_TableCodes:
+          - ar
+          - en
+        - m_KeyId: 9784838946922496
+          m_TableCodes:
+          - en
+          - ar
+        - m_KeyId: 9784939509555200
+          m_TableCodes:
+          - en
+          - ar
         m_TypeString: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
