@@ -29,11 +29,13 @@ public class PlayAudioAtLocation : MonoBehaviour
         TriggerAudio();
     }
 
+    // Localized VA Audio should follow the same rules as the settings and takes into the player's camera as the center position
     public void TriggerAudio(string localizationString)
     {
         audioClip = LocalizationHelper.GetAsset<AudioClip>(localizationString);
-        SetVolume(PlayerPrefs.GetFloat("textToSpeechVolume", 0.8f));
-        TriggerAudio();
+        SetVolume(PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 0.8f)/2);
+        atObject = Util.GetPlayer().GetPlayerCameraObject();
+        Util.PlayClipAt(audioClip, atObject.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 0.8f)/2, atObject);
     }
 
     public void SetVolume(float v) => volume = v;

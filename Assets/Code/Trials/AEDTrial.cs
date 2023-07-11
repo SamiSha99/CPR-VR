@@ -49,6 +49,7 @@ public class AEDTrial : MonoBehaviour
     void OnButtonEnabled()
     {
         QuestManager._Instance.ToggleTimer(true);
+        localizedAudioPlayer?.TriggerAudio("VA.press_button");
         _ButtonEnabled?.Invoke();
     }
     // Interacted with the button -> apply shock
