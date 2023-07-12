@@ -123,6 +123,18 @@ MonoBehaviour:
     m_Key: AEDGoal4
     m_Metadata:
       m_Items: []
+  - m_Id: 28189769798098944
+    m_Key: PocketMaskTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28190006054854656
+    m_Key: PocketMaskDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28192190179942400
+    m_Key: PocketMaskGoal1
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

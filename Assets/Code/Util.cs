@@ -340,4 +340,16 @@ public static class Util
     public static void LoadMenu() => SceneManager.LoadScene(MENU_SCENE);
 
     public static void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    //######//
+    // Path //
+    //######//
+    /// <summary>Returns the path from Unity's "Asset" folder till where this was called. folderPath returns without the file this was called in the path.</summary>
+    public static string GetPathTillAssetFolder(this UnityEngine.Object o, bool folderPath = false, [CallerFilePath]string fileName = null)
+    {
+        string fullPath = folderPath ? System.IO.Path.GetDirectoryName(fileName) : fileName;
+        int beginIndex = fullPath.IndexOf("Assets");
+        string path = beginIndex >= 0 ? fullPath.Substring(beginIndex) : "";
+        return path;
+    }
 }

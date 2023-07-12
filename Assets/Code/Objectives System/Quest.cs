@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEditor;
+using System.Runtime.CompilerServices;
 
 // Reference from https://www.youtube.com/watch?v=-65u991cdtw, the system itself isn't the same like in the video anymore as we need more features added.
 // Quests represents objectives handled by the Quest Manager, all they do is store data and run accordingly to their designed function as a scriptable object.
@@ -181,6 +182,7 @@ public class QuestEditor : Editor
     List<string> m_QuestGoalType;
     SerializedProperty m_QuestGoalListProperty;
 
+    string folderPath; //= this.GetPathTillAssetFolder(true);
     [MenuItem("Assets/Create/Quest", priority = 0)]
     public static void CreateQuest()
     {
@@ -205,6 +207,8 @@ public class QuestEditor : Editor
         .Where(x => x.IsClass && !x.IsAbstract && x.IsSubclassOf(lookup))
         .Select(type => type.Name)
         .ToList();
+        
+        folderPath = this.GetPathTillAssetFolder(true);
     }
 
     public override void OnInspectorGUI()
@@ -249,8 +253,10 @@ public class QuestEditor : Editor
         
         Editor ed = null;
         int toDelete = -1;
-        Texture2D arrowUp = EditorGUIUtility.Load(Util.GetIcon("upArrow.png")) as Texture2D;
-        Texture2D arrowDown = EditorGUIUtility.Load(Util.GetIcon("downArrow.png")) as Texture2D;
+        
+        // For icons
+        Texture2D arrowUp = EditorGUIUtility.Load(folderPath + "/Icons/upArrow.png") as Texture2D;
+        Texture2D arrowDown = EditorGUIUtility.Load(folderPath + "/Icons/downArrow.png") as Texture2D;
 
         // List cannot be modified if its exactly 1
         // Soft fix: Make it [NonReorderable] for now
@@ -314,5 +320,7 @@ public class QuestEditor : Editor
 
         serializedObject.ApplyModifiedProperties();
     }
+
+    string GetPath([CallerFilePath]string fileName = null) => fileName;
 }
 #endif

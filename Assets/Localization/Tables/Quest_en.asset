@@ -126,6 +126,18 @@ MonoBehaviour:
     m_Localized: Say "Clear!" before applying a shock.
     m_Metadata:
       m_Items: []
+  - m_Id: 28189769798098944
+    m_Localized: Using a Pocket Mask
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28190006054854656
+    m_Localized: To avoid spreading diseases to the patient.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28192190179942400
+    m_Localized: Place the pocket mask on the patient's mouth.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
