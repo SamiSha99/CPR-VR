@@ -82,12 +82,14 @@ public class XREvents : MonoBehaviour
         // Reinstate it again in 5 seconds
         if(loudness < Util.MICROPHONE_LOUDNESS_THRESHOLD)
         {
+#if UNITY_EDITOR
             if(lastAudioDetectionTime + 20 < Time.timeSinceLevelLoad)
             {
                 lastAudioDetectionTime = Time.timeSinceLevelLoad;
                 microphoneClip = Util.MicrophoneToAudioClip();
                 Util.Print("Microphone been silent for too long, reinstate the microphone again..");
             }
+#endif
             return;
         }
         lastAudioDetectionTime = Time.timeSinceLevelLoad;

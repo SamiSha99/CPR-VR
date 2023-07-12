@@ -36,7 +36,6 @@ public static class LocalizationHelper
         {
             if(locale.Identifier.Code != code) continue;
             LocalizationSettings.SelectedLocale = locale;
-            //FixArabicFormat(UsingLanguage("ar"));
             return true;
         }
         Util.Print("The code " + code + " is not found in the AvailableLocales");

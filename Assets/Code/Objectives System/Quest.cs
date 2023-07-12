@@ -181,8 +181,8 @@ public class QuestEditor : Editor
     //SerializedProperty m_QuestNextQuestProperty;
     List<string> m_QuestGoalType;
     SerializedProperty m_QuestGoalListProperty;
+    string folderPath;
 
-    string folderPath; //= this.GetPathTillAssetFolder(true);
     [MenuItem("Assets/Create/Quest", priority = 0)]
     public static void CreateQuest()
     {
@@ -207,7 +207,7 @@ public class QuestEditor : Editor
         .Where(x => x.IsClass && !x.IsAbstract && x.IsSubclassOf(lookup))
         .Select(type => type.Name)
         .ToList();
-        
+
         folderPath = this.GetPathTillAssetFolder(true);
     }
 

@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe8ac254035b6d40a6d8f3777140b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  supportsRightToLeftUI: 1
+  supportsRightToLeftUI: 0
   dontFixArabic: 0
   checkmark: {fileID: 4211862893087420508}
 --- !u!1 &4211862893087420508
