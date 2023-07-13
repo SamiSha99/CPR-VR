@@ -45,7 +45,7 @@ public class MainMenuManager : MonoBehaviour
 #endif 
     }
 
-    // to-do: make it do something?
+    // to-do: make it do something? // to-do i haven't make it do something :(
     public void OnSettingsButtonPressed()
     {
 
