@@ -19,7 +19,6 @@ public class LocalizationManager : MonoBehaviour
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
         int index = PlayerPrefs.GetInt(nameof(SettingsManager.languageIndex), 0);
         LocalizationHelper.SetLanguage(index);
-        Util.Print("Setting the language (locale index): " + index);
         FlipUI();
     }
     void OnDestroy() => LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
