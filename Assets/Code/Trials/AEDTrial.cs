@@ -61,7 +61,7 @@ public class AEDTrial : MonoBehaviour
             if(!QuestManager._Instance.IsQuestGoalCompleted("Said_Clear"))
             {
                 GameManager._Instance.AddExamPenalty("ExamPenalty.NotSayingClear", 3.0f);
-                Util.Print("DIDN'T SAY CLEAR!!!");
+                //Util.Print("DIDN'T SAY CLEAR!!!");
             }
             // to-do: getting zapped -20 points or straight up fail?
             QuestManager._Instance.CompleteCommandGoal("Press_Shock_Button_Goal_Command");

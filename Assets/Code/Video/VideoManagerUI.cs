@@ -37,12 +37,10 @@ public class VideoManagerUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
         dragging = true;
-        Util.Print("dragging");
     }
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
         dragging = false;
-        Util.Print("dragging no");
     }
 }
