@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameEventCommand", menuName = "Event/Command Event", order = 1)]
 public class GameEventCommand : ScriptableObject
 {
-    List<GameEventCommandListener> listeners = new List<GameEventCommandListener>();
+    List<GameEventListenerInfo> listeners = new List<GameEventListenerInfo>();
 
 #if UNITY_EDITOR
     [SerializeField]
@@ -20,6 +20,6 @@ public class GameEventCommand : ScriptableObject
     {
         for (int i = listeners.Count - 1; i >= 0; i--) listeners[i].OnEventTriggered(command);
     }
-    public void AddListener(GameEventCommandListener listener) => listeners.Add(listener);
-    public void RemoveListener(GameEventCommandListener listener) => listeners.Remove(listener);
+    public void AddListener(GameEventListenerInfo listener) => listeners.Add(listener);
+    public void RemoveListener(GameEventListenerInfo listener) => listeners.Remove(listener);
 }

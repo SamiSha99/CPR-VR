@@ -5,27 +5,9 @@ using UnityEngine.Events;
 
 public class GameEventCommandListener : MonoBehaviour
 {
-    public GameEventCommand gameEvent;
-    public string command;
-    public UnityEvent<string> onEventTriggered;
-    protected virtual void OnEnable()
-    {
-        if(!IsValidListener()) return;
-        gameEvent.AddListener(this);
-    }
-    protected virtual void OnDisable() 
-    { 
-        if(!IsValidListener()) return;
-        gameEvent.RemoveListener(this); 
-    }
-    public virtual void OnEventTriggered(string command)
-    {
-        if(!IsValidListener()) return;
-        if(this.command != command) return;
-        onEventTriggered?.Invoke(command);
-    }
-    private bool IsValidListener()
-    {
-        return gameEvent != null && onEventTriggered != null;
-    }
+    [SerializeField] public List<GameEventListenerInfo> listenersInfo;
+    protected void OnEnable() => listenersInfo?.ForEach(l => l.gameEvent?.AddListener(l));
+    protected void OnDisable() => listenersInfo?.ForEach(l => l.gameEvent?.RemoveListener(l));
+    public void OnEventTriggered(string command) => listenersInfo?.ForEach(l => l.OnEventTriggered(command));        
+    public void OnValidate() => listenersInfo?.ForEach(l => l.Validate());
 }

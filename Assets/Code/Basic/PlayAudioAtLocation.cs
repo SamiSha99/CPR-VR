@@ -33,9 +33,9 @@ public class PlayAudioAtLocation : MonoBehaviour
     public void TriggerAudio(string localizationString)
     {
         audioClip = LocalizationHelper.GetAsset<AudioClip>(localizationString);
-        SetVolume(PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 0.8f)/2);
+        SetVolume(PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 0.8f));
         atObject = Util.GetPlayer().GetPlayerCameraObject();
-        Util.PlayClipAt(audioClip, atObject.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 0.8f)/2, atObject);
+        TriggerAudio();
     }
 
     public void SetVolume(float v) => volume = v;
