@@ -58,7 +58,7 @@ public class QuestManager : MonoBehaviour
         questCurrentTime = 0;
         
         activeQuest = q.Initialize(OnQuestCompleted, OnUpdateGoalProgress);
-        onQuestBegin?.TriggerEvent(activeQuest.questCommand + Quest.QUEST_BEGIN_COMMAND);
+        onQuestBegin?.TriggerEvent(activeQuest.questCommand);
 
         LocalizationHelper.LocalizeTMP(q.information.name, questName);
         LocalizationHelper.LocalizeTMP(q.information.description, questDescription);
@@ -112,7 +112,7 @@ public class QuestManager : MonoBehaviour
     private void OnQuestCompleted(Quest q)
     {
         Util.Print(q.name);
-        onQuestCompleted?.TriggerEvent(q.questCommand + Quest.QUEST_COMPLETE_COMMAND);
+        onQuestCompleted?.TriggerEvent(q.questCommand);
         if(!GameManager._Instance.isExam)
             AudioSource.PlayClipAtPoint(writingSound, transform.position);
         
@@ -141,7 +141,7 @@ public class QuestManager : MonoBehaviour
 
         if(index >= transformArr.Length)
         {
-            Util.Print("Cannot update \"Goal Progress\" index out of bounds! Did you set the ID correctly?");
+            Util.Print("Cannot update \"Goal Progress\" index out of bounds! Did you set the ID correctly?", Util.PrintType.Warn);
             return;
         }
         
@@ -174,7 +174,7 @@ public class QuestManager : MonoBehaviour
         if(goal.completed) 
         {
             goalTextCell.color = Color.green;
-            onQuestGoalCompleted?.TriggerEvent(goal.goalCompletedCommand + Quest.QuestGoal.QUEST_GOAL_COMPLETE_COMMAND);
+            onQuestGoalCompleted?.TriggerEvent(goal.goalCompletedCommand);
             if(!goal.silent)
                 AudioSource.PlayClipAtPoint(checkmarkSound, transform.position);
         }
