@@ -38,7 +38,7 @@ public static class LocalizationHelper
             LocalizationSettings.SelectedLocale = locale;
             return true;
         }
-        Util.Print("The code " + code + " is not found in the AvailableLocales");
+        Util.Print("The code " + code + " is not found in the AvailableLocales", Util.PrintType.Warn);
         return false;
     }
     /// <summary>Returns true if we are using this langauge by index</summary>
