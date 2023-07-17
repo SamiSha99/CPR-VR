@@ -52,7 +52,8 @@ public static class Util
     {
         Normal,
         Warn,
-        Error
+        Error,
+        Save
     };
     
     ///<summary>Prints a message with "FileName->FunctionName():LineNumber" attached for reference, with Log type of Normal/Warning/Error.</summary>
@@ -61,9 +62,10 @@ public static class Util
         msg = Path.GetFileNameWithoutExtension(file) + "->" + functionName + "():" + line + " | " + msg;
         switch(_type)
         {
-            case PrintType.Normal: Debug.Log(msg);          break;
-            case PrintType.Warn:   Debug.LogWarning(msg);   break;
-            case PrintType.Error:  Debug.LogError(msg);     break;
+            case PrintType.Normal: Debug.Log(msg);                              break;
+            case PrintType.Save:   Debug.Log("<color='cyan'>"+msg+"</color>");   break;
+            case PrintType.Warn:   Debug.LogWarning(msg);                       break;
+            case PrintType.Error:  Debug.LogError(msg);                         break;
         }
     }
 

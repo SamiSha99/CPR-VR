@@ -55,7 +55,9 @@ public class GameManager : MonoBehaviour
 
         default_TutotrialQuestsLine = new List<Object>(_TutorialQuestsLine);
         default_ExamQuestsLine = new List<Object>(_ExamQuestsLine);
-
+        
+        //CSVSaver.DEBUG_GenerateDataTesT();
+        
         if(isExam)
         {
             if(default_ExamQuestsLine.Count <= 0) return;
@@ -139,7 +141,7 @@ public class GameManager : MonoBehaviour
         if(isExam)
         {
             ShowFinalScore();
-            //Util.Invoke(this, () => Util.LoadMenu(), 20.0f);
+            CSVSaver.SaveData(score, _ExamPenalty, Time.timeSinceLevelLoadAsDouble);
         }
         else
             Util.Invoke(this, () => Util.LoadMenu(), 5.0f);

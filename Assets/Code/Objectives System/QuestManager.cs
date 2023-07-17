@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization;
-using Bhaptics.SDK2;
 
 public class QuestManager : MonoBehaviour
 {
