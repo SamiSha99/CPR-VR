@@ -62,10 +62,10 @@ public static class Util
         msg = Path.GetFileNameWithoutExtension(file) + "->" + functionName + "():" + line + " | " + msg;
         switch(_type)
         {
-            case PrintType.Normal: Debug.Log(msg);                              break;
-            case PrintType.Save:   Debug.Log($"<color='cyan'>{msg}</color>");   break;
-            case PrintType.Warn:   Debug.LogWarning(msg);                       break;
-            case PrintType.Error:  Debug.LogError(msg);                         break;
+            case PrintType.Normal: default: Debug.Log($"<color='#F8F8FF'>{msg}</color>");   break;
+            case PrintType.Save:   Debug.Log($"<color='cyan'>{msg}</color>");               break;
+            case PrintType.Warn:   Debug.LogWarning($"<color='#FFC107'>{msg}</color>");     break;
+            case PrintType.Error:  Debug.LogError($"<color='#FF534A'>{msg}</color>");       break;
         }
     }
 

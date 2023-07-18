@@ -56,8 +56,6 @@ public class GameManager : MonoBehaviour
         default_TutotrialQuestsLine = new List<Object>(_TutorialQuestsLine);
         default_ExamQuestsLine = new List<Object>(_ExamQuestsLine);
         
-        //CSVSaver.DEBUG_GenerateDataTesT();
-        
         if(isExam)
         {
             if(default_ExamQuestsLine.Count <= 0) return;
