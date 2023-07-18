@@ -56,14 +56,14 @@ public static class Util
         Save
     };
     
-    ///<summary>Prints a message with "FileName->FunctionName():LineNumber" attached for reference, with Log type of Normal/Warning/Error.</summary>
+    ///<summary>Prints a message with "FileName->FunctionName():LineNumber" attached for reference, with Log type of Normal/Warning/Error/Save.</summary>
     public static void Print(string msg, PrintType _type = PrintType.Normal, [CallerMemberName] string functionName = null, [CallerFilePath] string file = "", [CallerLineNumber] int line = 0)
     {
         msg = Path.GetFileNameWithoutExtension(file) + "->" + functionName + "():" + line + " | " + msg;
         switch(_type)
         {
             case PrintType.Normal: Debug.Log(msg);                              break;
-            case PrintType.Save:   Debug.Log("<color='cyan'>"+msg+"</color>");   break;
+            case PrintType.Save:   Debug.Log($"<color='cyan'>{msg}</color>");   break;
             case PrintType.Warn:   Debug.LogWarning(msg);                       break;
             case PrintType.Error:  Debug.LogError(msg);                         break;
         }
@@ -83,13 +83,13 @@ public static class Util
         GameObject o = trans.Find(path).gameObject;
         if(o == null)
         {
-            Debug.LogWarning("Could not find the game object in FindComponent returned null");
+            Print("Could not find the game object in FindComponent returned null", PrintType.Warn);
             return null;
         }
         T comp = o.GetComponent<T>();
         if(comp == null)
         {
-            Debug.LogWarning("GameObject lacks the component " + typeof(T) + " returned null");
+            Print($"GameObject lacks the component {typeof(T)} returned null", PrintType.Warn);
             return null;
         }
         return comp;
