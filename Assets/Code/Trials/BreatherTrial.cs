@@ -7,9 +7,17 @@ public class BreatherTrial : MonoBehaviour
     public GameObject chest;
     public float chestRiseAmount = 0.15f;
     private bool facingMouth, lastTalk, complete;
-    public bool incorrectSecondBreathInterval, tooFast, tooSlow;
+    public bool incorrectSecondBreathInterval;
     private float talkDuration, notalkDuration, notalkforgiveness;
     private int breathesGive;
+
+    public enum BreathResult
+    {
+        Normal,
+        Slow,
+        Fast
+    }
+    public BreathResult breathResult;
 
     void OnDisable()
     {
@@ -86,8 +94,7 @@ public class BreatherTrial : MonoBehaviour
         else if(breathesGive == 1 && (notalkDuration <= 0.7f || notalkDuration >= 1.3f))
         {
             incorrectSecondBreathInterval = true;
-            tooFast = notalkDuration <= 0.75f;
-            tooSlow = notalkDuration >= 1.25f;
+            breathResult = (BreathResult)(notalkDuration <= 0.75f ? 2 : (notalkDuration >= 1.25f ? 1 : 0));
         }
     }
     
@@ -103,8 +110,12 @@ public class BreatherTrial : MonoBehaviour
     {
         if(!incorrectSecondBreathInterval) return;
         GameManager gm = GameManager._Instance;
-        if(tooFast) gm.AddExamPenalty("ExamPenalty.BreatherFast", 2);
-        if(tooSlow) gm.AddExamPenalty("ExamPenalty.BreatherSlow", 2);
+        switch(breathResult)
+        {
+            case BreathResult.Slow: gm.AddExamPenalty("ExamPenalty.BreatherSlow", 2); break;
+            case BreathResult.Fast: gm.AddExamPenalty("ExamPenalty.BreatherFast", 2); break;
+            default: break;
+        };
     }
 
     void CleanUp()
@@ -116,8 +127,7 @@ public class BreatherTrial : MonoBehaviour
         Util.GetXREvents().micModifier = 1;
         lastTalk = false;
         incorrectSecondBreathInterval = false;
-        tooSlow = false;
-        tooFast = false;
+        breathResult = BreathResult.Normal;
         complete = false;
         enabled = false;
     }
