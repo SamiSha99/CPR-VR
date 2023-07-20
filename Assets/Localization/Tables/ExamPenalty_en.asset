@@ -58,6 +58,10 @@ MonoBehaviour:
     m_Localized: Less than 30 compressions!
     m_Metadata:
       m_Items: []
+  - m_Id: 18168044821782528
+    m_Localized: Not saying clear before applying a shock.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

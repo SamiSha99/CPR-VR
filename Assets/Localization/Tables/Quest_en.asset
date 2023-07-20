@@ -71,7 +71,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 369640550645760
-    m_Localized: Look at the chest is it rising?<br>If no breathing, start CPR.
+    m_Localized: Look at the chest is it rising? If no breathing, start CPR.
     m_Metadata:
       m_Items: []
   - m_Id: 12314337678409728

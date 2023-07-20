@@ -158,11 +158,11 @@ public class LiveLineDrawer : MonoBehaviour
         QuestManager q = QuestManager._Instance;
         if(amount < 100)
         {
-            gm.AddExamPenalty("ExamPenalty.CPRSlow", 0.25f);
+            gm.AddExamPenalty("ExamPenalty.CPRSlow", 0.1f);
         }
         else if(amount >= 130)
         {
-            gm.AddExamPenalty("ExamPenalty.CPRFast", 0.25f);
+            gm.AddExamPenalty("ExamPenalty.CPRFast", 0.1f);
         }
 
         LocalizationHelper.LocalizeTMP($"{amount} cc/m", _CompressionAverageText);
@@ -171,10 +171,10 @@ public class LiveLineDrawer : MonoBehaviour
     {
         if(_CompressionDepthText == null) return;
         bool useCentimeter = SettingsUtility.ShouldUseCentimeter();
-        if(amount >= 2.5f || amount <= 1.5f)
+        if(amount >= 2.375f || amount <= 1.5f)
         {
             GameManager gm = GameManager._Instance;
-            gm.AddExamPenalty(amount >= 2.5f ? "ExamPenalty.CPRPressHigh" : "ExamPenalty.CPRPressLow", 0.2f);   
+            gm.AddExamPenalty(amount >= 2.375f ? "ExamPenalty.CPRPressHigh" : "ExamPenalty.CPRPressLow", 0.1f);   
         }
         if (useCentimeter) amount *= Util.INCH_TO_CENTIMETER;
         LocalizationHelper.LocalizeTMP($"{Mathf.Round(amount)}" + (useCentimeter ? "cm" : " inch"), _CompressionDepthText);

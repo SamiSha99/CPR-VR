@@ -50,6 +50,7 @@ public class AEDTrial : MonoBehaviour
     {
         QuestManager._Instance.ToggleTimer(true);
         localizedAudioPlayer?.TriggerAudio("VA.press_button");
+        Util.GetXREvents().EnableMicRecording();
         _ButtonEnabled?.Invoke();
     }
     // Interacted with the button -> apply shock
@@ -60,7 +61,7 @@ public class AEDTrial : MonoBehaviour
         Util.Invoke(this, () => { 
             if(!QuestManager._Instance.IsQuestGoalCompleted("Said_Clear"))
             {
-                GameManager._Instance.AddExamPenalty("ExamPenalty.NotSayingClear", 3.0f);
+                GameManager._Instance.AddExamPenalty("ExamPenalty.NotSayingClear", 10.0f);
                 //Util.Print("DIDN'T SAY CLEAR!!!");
             }
             // to-do: getting zapped -20 points or straight up fail?
