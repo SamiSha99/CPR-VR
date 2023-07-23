@@ -27,9 +27,10 @@ public class AEDTrial : MonoBehaviour
     {
         //AudioSource.PlayClipAtPoint(analyzingNow, transform.position);
         localizedAudioPlayer?.TriggerAudio("VA.analyzing_now");
-        QuestManager._Instance.ToggleTimer(false);
+        //QuestManager._Instance.ToggleTimer(false);
         Util.Invoke(this, () => BeepBeep(), 1.5f);
-        Util.Invoke(this, () => BeepBeep(), 4.0f);
+        Util.Invoke(this, () => BeepBeep(), 3.0f);
+        Util.Invoke(this, () => BeepBeep(), 4.5f);
         Util.Invoke(this, () => OnWaitingForAED(), 5.0f);
     }
 
@@ -43,30 +44,28 @@ public class AEDTrial : MonoBehaviour
     void OnShockIsRequired()
     {
         localizedAudioPlayer?.TriggerAudio("VA.shock_required");
+        Util.GetXREvents().EnableMicRecording();
         Util.Invoke(this, () => OnButtonEnabled(), LocalizationHelper.UsingLanguage("ar") ? 4.35f : 3.25f);
     }
 
     void OnButtonEnabled()
     {
-        QuestManager._Instance.ToggleTimer(true);
+        //QuestManager._Instance.ToggleTimer(true);
         localizedAudioPlayer?.TriggerAudio("VA.press_button");
-        Util.GetXREvents().EnableMicRecording();
         _ButtonEnabled?.Invoke();
     }
     // Interacted with the button -> apply shock
     public void OnButtonPressed()
     {
+
         AudioSource.PlayClipAtPoint(aedShockEffect, transform.position);
         //Util.Invoke(this, () => QuestManager._Instance.CompleteCommandGoal("Press_Shock_Button_Goal_Command"), 3.0f);
         Util.Invoke(this, () => { 
-            if(!QuestManager._Instance.IsQuestGoalCompleted("Said_Clear"))
-            {
+            QuestManager qm = QuestManager._Instance;
+            if(!qm.IsQuestGoalCompleted("Said_Clear"))
                 GameManager._Instance.AddExamPenalty("ExamPenalty.NotSayingClear", 10.0f);
-                //Util.Print("DIDN'T SAY CLEAR!!!");
-            }
-            // to-do: getting zapped -20 points or straight up fail?
-            QuestManager._Instance.CompleteCommandGoal("Press_Shock_Button_Goal_Command");
-            QuestManager._Instance.ForceCompleteQuest();
+            qm.CompleteCommandGoal("Press_Shock_Button_Goal_Command");
+            qm.ForceCompleteQuest();
         }, 3.0f);
         
         Reset();
