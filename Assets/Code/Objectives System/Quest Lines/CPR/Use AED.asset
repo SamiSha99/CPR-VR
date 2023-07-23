@@ -95,7 +95,7 @@ MonoBehaviour:
   information:
     name: Quest.AEDTitle
     description: Quest.AEDDesc
-  averageTime: 15
+  averageTime: 20
   questCommand: AED_Quest
   nextQuest: {fileID: 0}
   goals:

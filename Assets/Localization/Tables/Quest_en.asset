@@ -83,7 +83,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 12314481618534400
-    m_Localized: Do CPR for 20 seconds.
+    m_Localized: Do 30 Chest Compressions in 20 seconds.
     m_Metadata:
       m_Items: []
   - m_Id: 12323266726674432

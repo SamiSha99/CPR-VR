@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   editorQuestGoalName: Look at chest
   description: Quest.CheckBreathingGoal1
-  requiredAmount: 6
+  requiredAmount: 7.5
   _GoalUIType: 2
   goalCompletedCommand: ???
   objectiveNameList:
@@ -42,7 +42,7 @@ MonoBehaviour:
   information:
     name: Quest.CheckBreathingTitle
     description: Quest.CheckBreathingDesc
-  averageTime: 9
+  averageTime: 10
   questCommand: Check_for_breathing
   nextQuest: {fileID: 0}
   goals:

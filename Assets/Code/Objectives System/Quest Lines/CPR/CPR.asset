@@ -15,7 +15,7 @@ MonoBehaviour:
   information:
     name: Quest.CPRTitle
     description: Quest.CPRDesc
-  averageTime: 30
+  averageTime: 25
   questCommand: CPR
   nextQuest: {fileID: 0}
   goals:
@@ -39,7 +39,7 @@ MonoBehaviour:
   goalCompletedCommand: CPR
   objectiveNameList: []
   requiredGoals: []
-  silent: 0
+  silent: 1
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []

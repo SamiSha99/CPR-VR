@@ -15,7 +15,7 @@ MonoBehaviour:
   information:
     name: Quest.PocketMaskTitle
     description: Quest.PocketMaskDesc
-  averageTime: 7.5
+  averageTime: 5
   questCommand: PocketMask
   nextQuest: {fileID: 0}
   goals:
