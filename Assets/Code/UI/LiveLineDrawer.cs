@@ -127,6 +127,7 @@ public class LiveLineDrawer : MonoBehaviour
         SetCompressionText(avgChestCompression);
         
         compressionAmount++;
+        if(compressionAmount >= 30) ShutdownGraphs();
     }
     public void OnCompressionDepthRecived(float amount)
     {
@@ -146,6 +147,7 @@ public class LiveLineDrawer : MonoBehaviour
         _CompressionAverageText.gameObject.SetActive(false);
         _CompressionDepthText.gameObject.SetActive(false);
         _CompressionTimerBar.gameObject.SetActive(false);
+        Util.Print("Compressions done: " + compressionAmount);
         _ChestCompressionTrial.OnTrialFinish(compressionAmount);
         compressionAmount = 0;
         gameObject.SetActive(false);
@@ -171,10 +173,10 @@ public class LiveLineDrawer : MonoBehaviour
     {
         if(_CompressionDepthText == null) return;
         bool useCentimeter = SettingsUtility.ShouldUseCentimeter();
-        if(amount >= 2.375f || amount <= 1.5f)
+        if(amount >= 2.5f || amount <= 1.5f)
         {
             GameManager gm = GameManager._Instance;
-            gm.AddExamPenalty(amount >= 2.375f ? "ExamPenalty.CPRPressHigh" : "ExamPenalty.CPRPressLow", 0.1f);   
+            gm.AddExamPenalty(amount >= 2.5f ? "ExamPenalty.CPRPressHigh" : "ExamPenalty.CPRPressLow", 0.1f);   
         }
         if (useCentimeter) amount *= Util.INCH_TO_CENTIMETER;
         LocalizationHelper.LocalizeTMP($"{Mathf.Round(amount)}" + (useCentimeter ? "cm" : " inch"), _CompressionDepthText);

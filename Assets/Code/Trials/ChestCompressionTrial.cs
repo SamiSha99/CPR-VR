@@ -50,7 +50,10 @@ public class ChestCompressionTrial : MonoBehaviour
         QuestManager qm = QuestManager._Instance;
         GameManager gm = GameManager._Instance;
         if(finalCompressionAmount < 30)
+        {
+            Util.Print("NOT ENOUGH COMPRESSIONS!");
             gm.AddExamPenalty("ExamPenalty.InsufficentCompressions", 3.0f);
+        }
         if (qm.IsQuestType("CPR")) qm.ForceCompleteQuest();
         SetChestCompression(1);
         ToggleCPRHand(false);
@@ -92,7 +95,7 @@ public class ChestCompressionTrial : MonoBehaviour
         if(_CompressionPressed && timeTillDepthCalc <= 0)
         {
             timeTillDepthCalc = Mathf.Infinity;
-            float inches = Mathf.Lerp(1.0f, 2.4f, 1 - currentCompressionAmount/0.3f);
+            float inches = Mathf.Lerp(1.0f, 2.55f, 1 - currentCompressionAmount/0.3f);
             Util.Print($"{inches}");
             _GraphScript.OnCompressionDepthRecived(inches);
         }
