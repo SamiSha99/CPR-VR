@@ -41,9 +41,9 @@ public class ExamResults : MonoBehaviour
              // We don't want to recalcualte the score, its already defined!
             if(score >= 100) score -= mistakesScore;
         }
-        LocalizationHelper.LocalizeTMP($"{(int)score}%", ScoreValue);
+        LocalizationHelper.LocalizeTMP(string.Empty, ScoreValue);
+        ScoreValue.text = $"{score.ToString("f2")}%";
         if(ScoreValue != null && score >= 100) ScoreValue.color = Color.green; // Wow! awesome!
-        //Util.Print("FINAL SCORE: " + ScoreValue.text + " | Score: " + score);
     }
 
     void AddMistakeChild(GameManager.ExamPenalty penalty)
@@ -54,7 +54,10 @@ public class ExamResults : MonoBehaviour
         TextMeshProUGUI times = go.transform.FindComponent<TextMeshProUGUI>("MistakeTimes");
         LocalizationHelper.LocalizeTMP(penalty.penaltyName, info);
         if(penalty.penaltyAmount > 0)
-            LocalizationHelper.LocalizeTMP($"-{Mathf.RoundToInt(penalty.penaltyAmount)}", times);
+        {
+            LocalizationHelper.LocalizeTMP(string.Empty, times);
+            times.text = $"-{penalty.penaltyAmount.ToString("f2")}";
+        }
         else
             times.text = "";       
     }    
