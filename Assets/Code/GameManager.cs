@@ -154,6 +154,7 @@ public class GameManager : MonoBehaviour
 
     public void AddExamPenalty(string mistakeLocalization, float scorePenalty)
     {
+        if(scorePenalty <= 0) return; // 0? alright
         if(!isExam) return;
         if(_ExamPenalty == null) return;
         
@@ -169,6 +170,7 @@ public class GameManager : MonoBehaviour
             _ExamPenalty[i] = new ExamPenalty(_ExamPenalty[i].penaltyName, _ExamPenalty[i].penaltyAmount + scorePenalty);
             return;
         }
+        
         _ExamPenalty.Add(new ExamPenalty(mistakeLocalization, scorePenalty));
     }
     // after avg, every 2 seconds reduces this score by 1, up to 5.
