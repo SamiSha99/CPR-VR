@@ -179,7 +179,8 @@ public static class LocalizationHelper
             if(!c.gameObject.HasComponent<RectTransform>(out RectTransform canvasTransform)) continue;
             FlipComponent(canvasTransform);
         }
-        
+
+        bool rtl = UsingRightToLeftLanguage();
         foreach (UIScript s in Util.FindAllInScene<UIScript>(true))
         {
             if(!s.supportsRightToLeftUI) continue;
