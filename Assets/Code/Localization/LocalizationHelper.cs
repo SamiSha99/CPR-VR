@@ -186,6 +186,7 @@ public static class LocalizationHelper
             if(!s.supportsRightToLeftUI) continue;
             if(!s.gameObject.HasComponent<RectTransform>(out RectTransform canvasTransform)) continue;
             FlipComponent(canvasTransform);
+            s.isRight = rtl;
             Util.Print("Flipping gameobject: " + canvasTransform.gameObject.name);
         }
 
