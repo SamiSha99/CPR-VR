@@ -1253,6 +1253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   supportsRightToLeftUI: 1
   dontFixArabic: 1
+  isRight: 0
 --- !u!1001 &347340643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7918,6 +7919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   supportsRightToLeftUI: 0
   dontFixArabic: 1
+  isRight: 0
 --- !u!1001 &1648348348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8928,6 +8930,7 @@ MonoBehaviour:
   isExam: 0
   completed: 0
   _ExamQuestsLine:
+  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
   - {fileID: 11400000, guid: bdbb2ef8048e14b4599c44ab927c0993, type: 2}
   - {fileID: 11400000, guid: baa483dd6cf61e0409633fbfb487b8d9, type: 2}
   - {fileID: 11400000, guid: d755e33b7ed897d418f38f1880513fcb, type: 2}
