@@ -16,6 +16,5 @@ public class UIScript : MonoBehaviour
         if(!gameObject.HasComponent<RectTransform>(out RectTransform rt)) return;
         LocalizationHelper.FlipComponent(rt);
         isRight = LocalizationHelper.UsingRightToLeftLanguage();
-        Util.Print("UI Script FLIPPED @ " + gameObject.name);
     }
 }

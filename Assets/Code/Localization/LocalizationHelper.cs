@@ -187,7 +187,6 @@ public static class LocalizationHelper
             if(!s.gameObject.HasComponent<RectTransform>(out RectTransform canvasTransform)) continue;
             FlipComponent(canvasTransform);
             s.isRight = rtl;
-            Util.Print("Flipping gameobject: " + canvasTransform.gameObject.name);
         }
 
         FixArabicFormat(UsingLanguage("ar"));
