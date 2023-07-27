@@ -113,6 +113,7 @@ public class LiveLineDrawer : MonoBehaviour
         _TimerNumberText.text = (cct != null ? cct._TrialDuration : ChestCompressionTrial.DEFAULT_TIME_TRIAL).ToString(TIMER_FORMAT);
         _ChestCompressionTrial = cct;
         SetCompressionText(PERFECT_CHEST_COMPRESSION_PER_MINUTE);
+        SetCompressionDepthText(PERFECT_CHEST_COMPRESSION_DEPTH_INCHES);
     }
     public void OnCompressionRecieved()
     {
