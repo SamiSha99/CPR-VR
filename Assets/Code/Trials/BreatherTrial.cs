@@ -103,7 +103,7 @@ public class BreatherTrial : MonoBehaviour
         GameObject cam = Util.GetPlayer().GetPlayerCameraObject();
         float range = Vector3.Distance(cam.transform.position, transform.position);
         float maxRange = Util.GetPlayer().transform.FindComponent<PlayerLookAtObject>("XREvents").lookRange;
-        return Mathf.Lerp(1.0f, 5.0f, Mathf.Lerp(1, 0, range/maxRange));
+        return Mathf.Lerp(1.0f, 3.0f, Mathf.Lerp(1, 0, range/maxRange));
     }
 
     void DoPenalty()
