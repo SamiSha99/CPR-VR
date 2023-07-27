@@ -41,7 +41,7 @@ MonoBehaviour:
   information:
     name: Quest.GiveBreatherTitle
     description: Quest.GiveBreatherDesc
-  averageTime: 5
+  averageTime: 6
   questCommand: Give_2_Airflows
   nextQuest: {fileID: 0}
   goals:
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   editorQuestGoalName: Face Mouth
   description: Quest.GiveBreatherGoal1
-  requiredAmount: 0.15
+  requiredAmount: 0.1
   _GoalUIType: 1
   goalCompletedCommand: Face_Mouth
   objectiveNameList:
