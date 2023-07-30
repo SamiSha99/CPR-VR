@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnPause: {fileID: 11400000, guid: 7d9b275af9a644a4ebbb39da903db9ff, type: 2}
-  pauseMenuPrefab: {fileID: 0}
+  pauseMenuPrefab: {fileID: 392957307991186433, guid: b4276dc78b1d84c47939e0e7b0760c09,
+    type: 3}
   pauseMenuObject: {fileID: 0}
   pauseButton:
     m_UseReference: 1
