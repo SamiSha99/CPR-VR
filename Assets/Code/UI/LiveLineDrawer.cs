@@ -24,6 +24,8 @@ public class LiveLineDrawer : MonoBehaviour
     const int PERFECT_CHEST_COMPRESSION_DEPTH_INCHES = 2;
     const string TIMER_FORMAT = "f1";
     
+    private int slowMistakes, fastMistakes, highPressMistakes, lowPressMistakes;
+
     void Awake()
     {
         gameObject.SetActive(false);
@@ -152,6 +154,10 @@ public class LiveLineDrawer : MonoBehaviour
         _ChestCompressionTrial.OnTrialFinish(compressionAmount);
         compressionAmount = 0;
         gameObject.SetActive(false);
+        slowMistakes = 0;
+        fastMistakes = 0;
+        lowPressMistakes = 0;
+        highPressMistakes = 0;
     }
 
     void SetCompressionText(int amount)
@@ -161,11 +167,23 @@ public class LiveLineDrawer : MonoBehaviour
         QuestManager q = QuestManager._Instance;
         if(amount < 100)
         {
-            gm.AddExamPenalty("ExamPenalty.CPRSlow", 0.1f);
+            slowMistakes++;
+            if(slowMistakes >= 5)
+            {
+                gm.AddExamPenalty("ExamPenalty.CPRSlow", 0.1f);
+                QuestManager._Instance.AddQuestToRetry();
+                slowMistakes = 0;
+            }
         }
         else if(amount >= 130)
         {
-            gm.AddExamPenalty("ExamPenalty.CPRFast", 0.1f);
+            fastMistakes++;
+            if(fastMistakes >= 5)
+            {
+                gm.AddExamPenalty("ExamPenalty.CPRFast", 0.1f);
+                QuestManager._Instance.AddQuestToRetry();
+                fastMistakes = 0;
+            }
         }
 
         LocalizationHelper.LocalizeTMP($"{amount} cc/m", _CompressionAverageText);
@@ -177,7 +195,24 @@ public class LiveLineDrawer : MonoBehaviour
         if(amount >= 2.5f || amount <= 1.5f)
         {
             GameManager gm = GameManager._Instance;
-            gm.AddExamPenalty(amount >= 2.5f ? "ExamPenalty.CPRPressHigh" : "ExamPenalty.CPRPressLow", 0.1f);   
+            if(amount >= 2.5)
+                lowPressMistakes++;
+            else 
+                highPressMistakes++;
+
+            if(lowPressMistakes >= 5)
+            {
+                gm.AddExamPenalty("ExamPenalty.CPRPressLow", 2.0f);
+                QuestManager._Instance.AddQuestToRetry();
+                lowPressMistakes = 0;
+            }
+
+            if(highPressMistakes >= 5)
+            {
+                gm.AddExamPenalty("ExamPenalty.CPRPressHigh", 2.0f);
+                QuestManager._Instance.AddQuestToRetry();
+                highPressMistakes = 0;
+            }
         }
         if (useCentimeter) amount *= Util.INCH_TO_CENTIMETER;
         LocalizationHelper.LocalizeTMP($"{Mathf.Round(amount)}" + (useCentimeter ? "cm" : " inch"), _CompressionDepthText);

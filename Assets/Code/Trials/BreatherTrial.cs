@@ -112,8 +112,8 @@ public class BreatherTrial : MonoBehaviour
         GameManager gm = GameManager._Instance;
         switch(breathResult)
         {
-            case BreathResult.Slow: gm.AddExamPenalty("ExamPenalty.BreatherSlow", 2); break;
-            case BreathResult.Fast: gm.AddExamPenalty("ExamPenalty.BreatherFast", 2); break;
+            case BreathResult.Slow: gm.AddExamPenalty("ExamPenalty.BreatherSlow", 2); QuestManager._Instance.AddQuestToRetry(); break;
+            case BreathResult.Fast: gm.AddExamPenalty("ExamPenalty.BreatherFast", 2); QuestManager._Instance.AddQuestToRetry(); break;
             default: break;
         };
     }

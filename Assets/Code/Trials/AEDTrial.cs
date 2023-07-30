@@ -57,13 +57,15 @@ public class AEDTrial : MonoBehaviour
     // Interacted with the button -> apply shock
     public void OnButtonPressed()
     {
-
         AudioSource.PlayClipAtPoint(aedShockEffect, transform.position);
         //Util.Invoke(this, () => QuestManager._Instance.CompleteCommandGoal("Press_Shock_Button_Goal_Command"), 3.0f);
         Util.Invoke(this, () => { 
             QuestManager qm = QuestManager._Instance;
             if(!qm.IsQuestGoalCompleted("Said_Clear"))
+            {
                 GameManager._Instance.AddExamPenalty("ExamPenalty.NotSayingClear", 10.0f);
+                QuestManager._Instance.AddQuestToRetry();
+            }
             qm.CompleteCommandGoal("Press_Shock_Button_Goal_Command");
             qm.ForceCompleteQuest();
         }, 3.0f);

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager _Instance;
     public List<Object> _TutorialQuestsLine;
     private List<Object> default_TutotrialQuestsLine;
+    public List<Quest> retryQuests = new List<Quest>();
     [Header("EXAM MANAGER")]
     // Exam
     public bool isExam;
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
     public List<ExamPenalty> _ExamPenalty = new List<ExamPenalty>();
     public int accumulatedPenalties;
     public ExamResults resultCanvas;
-    [Tooltip("These tasks are repeated continuously X times, depeding on Repeatable Amount, also evaulated")]
+    [Tooltip("These tasks are repeated continuously X times, depending on Repeatable Amount, also evaulated")]
     //public List<Object> _RepeatableQuestLine;
     [Min(1)]
     //public int _RepeatableAmount = 1;
@@ -60,7 +61,6 @@ public class GameManager : MonoBehaviour
         {
             if(default_ExamQuestsLine.Count <= 0) return;
             score = maxScore;
-            BuildExam();
             InstigateNextExamObject();
         }
         else
@@ -73,31 +73,35 @@ public class GameManager : MonoBehaviour
     public void InstigateNextTutorialObject()
     {
         string command = "";
+
         if(OnGameComplete()) return;
-        
-        switch(_TutorialQuestsLine[0])
+        if(_TutorialQuestsLine.Count > 0)
         {
-            case Quest q:
-                QuestManager._Instance.BeginQuest(q);
-                command = q.questCommand;
-                break;
-            case AudioClip ac:
-                GameObject head = Util.GetPlayer().GetPlayerCameraObject();
-                AudioClip localizedAudio = LocalizationHelper.GetAsset<AudioClip>("VA." + ac.name);
-                if(localizedAudio == null) localizedAudio = ac; // cannot be found, use the english one
-                Util.PlayClipAt(localizedAudio, head.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 1.0f), head);
-                Util.Invoke(this, () => InstigateNextTutorialObject(), localizedAudio.length + 0.25f);
-                command = ac.name;
-                break;
+            switch(_TutorialQuestsLine[0])
+            {
+                case Quest q:
+                    QuestManager._Instance.BeginQuest(q);
+                    command = q.questCommand;
+                    break;
+                case AudioClip ac:
+                    GameObject head = Util.GetPlayer().GetPlayerCameraObject();
+                    AudioClip localizedAudio = LocalizationHelper.GetAsset<AudioClip>("VA." + ac.name);
+                    if(localizedAudio == null) localizedAudio = ac; // cannot be found, use the english one
+                    Util.PlayClipAt(localizedAudio, head.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 1.0f), head);
+                    Util.Invoke(this, () => InstigateNextTutorialObject(), localizedAudio.length + 0.25f);
+                    command = ac.name;
+                    break;
+            }
+            _TutorialQuestsLine.RemoveAt(0);
+        }
+        else
+        {
+            QuestManager._Instance.BeginQuest(retryQuests[0]);
+            command = retryQuests[0].questCommand;
+            retryQuests.RemoveAt(0);
         }
         OnModuleProgressed.TriggerEvent(command + TUTORIAL_EVENT);
         OnModuleProgressed.TriggerEvent(command);
-        _TutorialQuestsLine.RemoveAt(0);
-    }
-
-    public void BuildExam()
-    {
-
     }
 
     public void InstigateNextExamObject()
@@ -134,6 +138,8 @@ public class GameManager : MonoBehaviour
         if(completed) return true;
         if(isExam && _ExamQuestsLine.Count > 0) return false;
         if(!isExam && _TutorialQuestsLine.Count > 0) return false;
+        if(!isExam && retryQuests.Count > 0) return false;
+
         completed = true;
 
         if(isExam)
@@ -152,10 +158,19 @@ public class GameManager : MonoBehaviour
         resultCanvas.ShowFinalScore(score, _ExamPenalty);
     }
 
+    public void AddQuestToRetry(Quest q)
+    {
+        if(isExam) return;
+        if(retryQuests == null || retryQuests.Contains(q)) return;
+        retryQuests.Add(q);
+    }
+
     public void AddExamPenalty(string mistakeLocalization, float scorePenalty)
     {
         if(scorePenalty <= 0) return; // 0? alright
-        if(!isExam) return;
+        
+        if(!isExam) return; 
+
         if(_ExamPenalty == null) return;
         
         if(_ExamPenalty.Count <= 0)

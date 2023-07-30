@@ -14,7 +14,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private GameObject questGoalList;
     [SerializeField] private GameObject questGoalCellPrefab;
     [Header("Data")]
-    [SerializeField] static public Quest activeQuest;
+    [SerializeField] static public Quest activeQuest, referenceQuest;
     [Header("Sound")]
     [SerializeField] private AudioClip checkmarkSound;
     [SerializeField] private AudioClip writingSound;
@@ -55,6 +55,7 @@ public class QuestManager : MonoBehaviour
         isQuestTimePaused = false;
         questCurrentTime = 0;
         
+        referenceQuest = q;
         activeQuest = q.Initialize(OnQuestCompleted, OnUpdateGoalProgress);
         onQuestBegin?.TriggerEvent(activeQuest.questCommand);
 
@@ -121,8 +122,10 @@ public class QuestManager : MonoBehaviour
     }
     private void OnPostQuestComplete(Quest q)
     {
-        CleanUpGoalList();
-        //if (q.nextQuest != null) BeginQuest(q.nextQuest);
+        while(questGoalList.transform.childCount > 0) DestroyImmediate(questGoalList.transform.GetChild(0).gameObject);
+        SetTextToDefault();
+        activeQuest = null;
+        referenceQuest = null;
         if(GameManager._Instance.isExam)
             GameManager._Instance.InstigateNextExamObject();
         else
@@ -179,11 +182,7 @@ public class QuestManager : MonoBehaviour
         else
             goalTextCell.color = Color.white;
     }
-    private void CleanUpGoalList()
-    {
-        while(questGoalList.transform.childCount > 0) DestroyImmediate(questGoalList.transform.GetChild(0).gameObject);
-        SetTextToDefault();
-    }
+
     private void SetTextToDefault()
     {
         LocalizationHelper.LocalizeTMP("QuestUI.TitleEmpty", questName);
@@ -242,6 +241,15 @@ public class QuestManager : MonoBehaviour
     // AED requires time to wait, that is unspecified based on how long for the AED to wait, to not punish, we pause it until the button gets enabled.
     public void ToggleTimer(bool _enabled) => isQuestTimePaused = !_enabled;
     
+    /// <summary>Adds a quest reference to retry, if not defined, will take hte currently active quest, if there's any</summary>
+    public void AddQuestToRetry(Quest q = null)
+    {
+        if(!Util.IsQuestActive()) return;
+        if(referenceQuest == null) return;
+        GameManager gm = GameManager._Instance;
+        gm.AddQuestToRetry(q == null ? referenceQuest : q);
+    }
+
     void OnLanguageChanged(Locale selectedLanguage)
     {
         if(QuestManager._Instance == null) return;
