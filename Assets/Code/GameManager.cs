@@ -9,10 +9,9 @@ public class GameManager : MonoBehaviour
     public List<Object> _TutorialQuestsLine;
     private List<Object> default_TutotrialQuestsLine;
     public List<Quest> retryQuests = new List<Quest>();
-    [Header("EXAM MANAGER")]
     // Exam
-    public bool isExam;
-    public bool completed;
+    [HideInInspector] public bool isExam;
+    [HideInInspector] public bool completed;
     [Tooltip("The exam's content step by step, each step is evaulated.")]
     public List<Object> _ExamQuestsLine; // We do this step by step to examinate how fast/slow and effecient the player is and we add score
     public struct ExamPenalty {
@@ -165,12 +164,15 @@ public class GameManager : MonoBehaviour
         retryQuests.Add(q);
     }
 
-    public void AddExamPenalty(string mistakeLocalization, float scorePenalty)
+    public void AddExamPenalty(string mistakeLocalization, float scorePenalty, bool noPrompt = false)
     {
         if(scorePenalty <= 0) return; // 0? alright
         
-        if(!isExam) return; 
-
+        if(!isExam)
+        {
+            if(!noPrompt) MistakeManager._Instance?.OnMistakeRecieved(mistakeLocalization);
+            return; 
+        }
         if(_ExamPenalty == null) return;
         
         if(_ExamPenalty.Count <= 0)
@@ -194,7 +196,7 @@ public class GameManager : MonoBehaviour
     public void AdjustScore(float timeTaken, float averageTime)
     {
         if(timeTaken <= averageTime) return;
-        AddExamPenalty("ExamPenalty.Time", GetTimePenalty(timeTaken, averageTime));
+        AddExamPenalty("ExamPenalty.Time", GetTimePenalty(timeTaken, averageTime), true);
     }
 
     private int GetTimePenalty(float timeTaken, float averageTime)

@@ -8834,6 +8834,7 @@ GameObject:
   - component: {fileID: 1758367136}
   - component: {fileID: 1758367138}
   - component: {fileID: 1758367137}
+  - component: {fileID: 1758367139}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -8888,8 +8889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TutorialQuestsLine:
-  - {fileID: 11400000, guid: 22c476cf74137064293ebb830786a5f1, type: 2}
-  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
+  - {fileID: 11400000, guid: bc8e5f38bc0d98e4db0cee9bd7f7e973, type: 2}
   - {fileID: 8300000, guid: eec57c2a67cab4e48ac5241837d7d4fd, type: 3}
   - {fileID: 8300000, guid: 665a40052a7b3b54dae5b68684124c0d, type: 3}
   - {fileID: 11400000, guid: bdbb2ef8048e14b4599c44ab927c0993, type: 2}
@@ -8955,6 +8955,22 @@ MonoBehaviour:
   score: 0
   maxScore: 100
   OnModuleProgressed: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
+--- !u!114 &1758367139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758367135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504fce95c4e911b4d9747ec793bab38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mistakePrefab: {fileID: 5830578290812231364, guid: 9926f973132b64247aa0bfe4abd8ae1d,
+    type: 3}
+  activeMistake: {fileID: 0}
+  duration: 6
 --- !u!1001 &1785667357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10709,6 +10725,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: CPRCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 249702940674750002, guid: 0e0648f7dbfaba0459105f73beefc9a4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 249702940674750002, guid: 0e0648f7dbfaba0459105f73beefc9a4,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1894469521
+      objectReference: {fileID: 0}
     - target: {fileID: 249702940674750005, guid: 0e0648f7dbfaba0459105f73beefc9a4,
         type: 3}
       propertyPath: m_Pivot.x
@@ -10828,6 +10854,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 249702940674750007, guid: 0e0648f7dbfaba0459105f73beefc9a4,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 249702940728063286, guid: 0e0648f7dbfaba0459105f73beefc9a4,
         type: 3}
@@ -13351,7 +13382,12 @@ PrefabInstance:
     - target: {fileID: 5548396111691642697, guid: 3ce128b8e97f12841bd7cec1008c77c9,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5548396111691642697, guid: 3ce128b8e97f12841bd7cec1008c77c9,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1894469521
       objectReference: {fileID: 0}
     - target: {fileID: 5548396111691642698, guid: 3ce128b8e97f12841bd7cec1008c77c9,
         type: 3}

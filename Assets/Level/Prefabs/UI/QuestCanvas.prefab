@@ -525,7 +525,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5548396111691642699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,7 +567,6 @@ MonoBehaviour:
   onQuestCompleted: {fileID: 11400000, guid: a9dc52f9a9332254ea934904cf19177b, type: 2}
   onQuestGoalCompleted: {fileID: 11400000, guid: 2f2823b2633d1bc44b04d51728707996,
     type: 2}
-  debugging: 0
 --- !u!1 &5548396111984584351
 GameObject:
   m_ObjectHideFlags: 0

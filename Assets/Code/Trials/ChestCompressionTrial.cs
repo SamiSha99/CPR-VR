@@ -56,13 +56,13 @@ public class ChestCompressionTrial : MonoBehaviour
             qm.AddQuestToRetry();
         }
         if (qm.IsQuestType("CPR")) qm.ForceCompleteQuest();
-        SetChestCompression(1);
         ToggleCPRHand(false);
         enabled = false;
         leftHand.transform.ToggleHidden(false);
         rightHand.transform.ToggleHidden(false);
         leftController.transform.ToggleHidden(false);
         rightController.transform.ToggleHidden(false);
+        Util.Invoke(this, () => SetChestCompression(1), 0.01f);
     }
     
     void Update()

@@ -222,8 +222,12 @@ public static class Util
 
     // Invoke that allows parameter passing via lambda expression
     // Example: Util.Invoke(this, () => MyFunctionName(parameter1, parameter2), 3.0f);
-    public static void Invoke(this MonoBehaviour mb, Action f, float delay) => mb.StartCoroutine(InvokeRoutine(f, delay));    
-    private static IEnumerator InvokeRoutine(System.Action f, float delay)
+    public static void Invoke(this MonoBehaviour mb, Action f, float delay) => mb.StartCoroutine(InvokeRoutine(f, delay));
+    
+    // Not tested!!  
+    public static void CancelInvoke(this MonoBehaviour mb, Action f) => mb.StopCoroutine(InvokeRoutine(f));
+    
+    private static IEnumerator InvokeRoutine(System.Action f, float delay = 0)
     {
         yield return new WaitForSeconds(delay);
         f();

@@ -91,10 +91,10 @@ public class BreatherTrial : MonoBehaviour
 
         if(!lastTalk)
             notalkDuration += Time.deltaTime;
-        else if(breathesGive == 1 && (notalkDuration <= 0.7f || notalkDuration >= 1.3f))
+        else if(breathesGive == 1 && (notalkDuration >= 0.15f && notalkDuration <= 0.7f || notalkDuration >= 1.3f))
         {
             incorrectSecondBreathInterval = true;
-            breathResult = (BreathResult)(notalkDuration <= 0.75f ? 2 : (notalkDuration >= 1.25f ? 1 : 0));
+            breathResult = (BreathResult)(notalkDuration <= 0.7f ? 2 : (notalkDuration >= 1.3f ? 1 : 0));
         }
     }
     
@@ -103,7 +103,7 @@ public class BreatherTrial : MonoBehaviour
         GameObject cam = Util.GetPlayer().GetPlayerCameraObject();
         float range = Vector3.Distance(cam.transform.position, transform.position);
         float maxRange = Util.GetPlayer().transform.FindComponent<PlayerLookAtObject>("XREvents").lookRange;
-        return Mathf.Lerp(1.0f, 3.0f, Mathf.Lerp(1, 0, range/maxRange));
+        return Mathf.Lerp(1.0f, 4.0f, Mathf.Lerp(1, 0, range/maxRange));
     }
 
     void DoPenalty()
