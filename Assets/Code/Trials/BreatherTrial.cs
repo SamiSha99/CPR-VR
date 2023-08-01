@@ -91,10 +91,10 @@ public class BreatherTrial : MonoBehaviour
 
         if(!lastTalk)
             notalkDuration += Time.deltaTime;
-        else if(breathesGive == 1 && (notalkDuration >= 0.15f && notalkDuration <= 0.7f || notalkDuration >= 1.3f))
+        else if(breathesGive == 1 && (notalkDuration >= 0.25f && notalkDuration <= 0.7f || notalkDuration >= 1.3f))
         {
             incorrectSecondBreathInterval = true;
-            breathResult = (BreathResult)(notalkDuration <= 0.7f ? 2 : (notalkDuration >= 1.3f ? 1 : 0));
+            breathResult = (BreathResult)(notalkDuration >= 0.25f && notalkDuration <= 0.7f ? 2 : (notalkDuration >= 1.3f ? 1 : 0));
         }
     }
     

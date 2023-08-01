@@ -351,8 +351,8 @@ RectTransform:
   m_GameObject: {fileID: 5830578290812231364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.0007, y: 0.0007, z: 0.0007}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5830578290355603471}
   - {fileID: 5830578289892972508}
@@ -439,8 +439,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
-  m_TargetOffset: {x: 0, y: 0, z: 0.7}
-  m_MovementSpeed: 5
+  m_TargetOffset: {x: 0, y: 0.1, z: 0.425}
+  m_MovementSpeed: 6
   m_SnapOnEnable: 1
   m_MinDistanceAllowed: 0.01
   m_MaxDistanceAllowed: 0.3

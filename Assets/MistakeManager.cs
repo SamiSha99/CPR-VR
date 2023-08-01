@@ -6,7 +6,7 @@ public class MistakeManager : MonoBehaviour
 {
     public static MistakeManager _Instance;
     public GameObject mistakePrefab;
-    public float duration = 6;
+    public float duration = 5;
     [HideInInspector] public GameObject activeMistake;
     void Awake() => _Instance = this;
     public void OnMistakeRecieved(string localization)
@@ -18,7 +18,7 @@ public class MistakeManager : MonoBehaviour
         if(activeMistake != null)
         {
             if(activeMistake.HasComponent<MistakePrompt>(out MistakePrompt mp)) mp.DoLocalization(localization);
-            Destroy(activeMistake, duration);
+            Destroy(activeMistake, duration / (GameManager._Instance.isExam ? 2 : 1));
         }
     }
 }

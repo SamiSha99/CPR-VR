@@ -192,10 +192,12 @@ public class LiveLineDrawer : MonoBehaviour
     {
         if(_CompressionDepthText == null) return;
         bool useCentimeter = SettingsUtility.ShouldUseCentimeter();
+        if (useCentimeter) amount *= Util.INCH_TO_CENTIMETER;
+
         if(amount >= 2.5f || amount <= 1.5f)
         {
             GameManager gm = GameManager._Instance;
-            if(amount >= 2.5)
+            if(amount <= 1.5f)
                 lowPressMistakes++;
             else 
                 highPressMistakes++;
@@ -214,7 +216,7 @@ public class LiveLineDrawer : MonoBehaviour
                 highPressMistakes = 0;
             }
         }
-        if (useCentimeter) amount *= Util.INCH_TO_CENTIMETER;
+        
         LocalizationHelper.LocalizeTMP($"{Mathf.Round(amount)}" + (useCentimeter ? "cm" : " inch"), _CompressionDepthText);
     }
     // 0 implies that we haven't done our first compression, this happens when _UILineRendererPlayer graph hits bottom as 0 value

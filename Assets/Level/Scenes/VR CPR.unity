@@ -4453,7 +4453,7 @@ Transform:
   - {fileID: 128133826}
   - {fileID: 733900913}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1056489461
 PrefabInstance:
@@ -5309,7 +5309,7 @@ PrefabInstance:
     - target: {fileID: 2253102733995751309, guid: 5fe6746fcf5216649b9a2185772a7682,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2253102733995751309, guid: 5fe6746fcf5216649b9a2185772a7682,
         type: 3}
@@ -5956,7 +5956,7 @@ Transform:
   - {fileID: 564276430}
   - {fileID: 2131735484}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1249405062
 PrefabInstance:
@@ -8889,7 +8889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TutorialQuestsLine:
-  - {fileID: 11400000, guid: bc8e5f38bc0d98e4db0cee9bd7f7e973, type: 2}
+  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
   - {fileID: 8300000, guid: eec57c2a67cab4e48ac5241837d7d4fd, type: 3}
   - {fileID: 8300000, guid: 665a40052a7b3b54dae5b68684124c0d, type: 3}
   - {fileID: 11400000, guid: bdbb2ef8048e14b4599c44ab927c0993, type: 2}
@@ -8928,7 +8928,6 @@ MonoBehaviour:
   isExam: 0
   completed: 0
   _ExamQuestsLine:
-  - {fileID: 11400000, guid: bf849ee0beccd3442b9ab2fa163f8d57, type: 2}
   - {fileID: 11400000, guid: bdbb2ef8048e14b4599c44ab927c0993, type: 2}
   - {fileID: 11400000, guid: baa483dd6cf61e0409633fbfb487b8d9, type: 2}
   - {fileID: 11400000, guid: d755e33b7ed897d418f38f1880513fcb, type: 2}
@@ -8969,8 +8968,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mistakePrefab: {fileID: 5830578290812231364, guid: 9926f973132b64247aa0bfe4abd8ae1d,
     type: 3}
+  duration: 5
   activeMistake: {fileID: 0}
-  duration: 6
 --- !u!1001 &1785667357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10748,7 +10747,7 @@ PrefabInstance:
     - target: {fileID: 249702940674750005, guid: 0e0648f7dbfaba0459105f73beefc9a4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 249702940674750005, guid: 0e0648f7dbfaba0459105f73beefc9a4,
         type: 3}
@@ -11496,7 +11495,7 @@ PrefabInstance:
     - target: {fileID: 2189469772829458089, guid: a1ae4dea341e9154981d9ee275f542ac,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2189469772829458089, guid: a1ae4dea341e9154981d9ee275f542ac,
         type: 3}

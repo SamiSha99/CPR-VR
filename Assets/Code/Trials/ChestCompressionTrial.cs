@@ -28,7 +28,7 @@ public class ChestCompressionTrial : MonoBehaviour
     public bool handsInRange;
 
     private HandVisualizer handVisualizer;
-
+    private Vector3 lastHandPosition;
     public void BeginTrial()
     {
         _GraphScript.gameObject.SetActive(true);
@@ -43,6 +43,7 @@ public class ChestCompressionTrial : MonoBehaviour
         SetChestCompression(1);
         currentCompressionAmount = 1.0f;
         enabled = true;
+        lastHandPosition = _CPRHand.transform.position;
     }
 
     public void OnTrialFinish(int finalCompressionAmount = 0)
@@ -63,11 +64,13 @@ public class ChestCompressionTrial : MonoBehaviour
         leftController.transform.ToggleHidden(false);
         rightController.transform.ToggleHidden(false);
         Util.Invoke(this, () => SetChestCompression(1), 0.01f);
+        lastHandPosition = Vector3.zero;
     }
     
     void Update()
     {
         if(!_GraphScript.enabled) return;
+        
         if(leftHand == null || rightHand == null || !leftHand.activeInHierarchy || !rightHand.activeInHierarchy) 
         {
             if(handVisualizer != null)
@@ -77,14 +80,25 @@ public class ChestCompressionTrial : MonoBehaviour
         float ccValue = CalculatePlayerHandPosition();
         currentCompressionAmount = Mathf.Lerp(currentCompressionAmount, ccValue, Time.deltaTime * 20);
         _GraphScript.OnCompressionGraphInfo(ccValue);
+        
+        float hitSpeed = Vector3.Distance(lastHandPosition, _CPRHand.transform.position);
+        //Util.Print("HIT SPEED:" + Mathf.Clamp01(hitSpeed*100/3).ToString("f4"));
+        
         if(currentCompressionAmount <= 0.4f && !_CompressionPressed)
         {
+            hitSpeed = Mathf.Clamp01(hitSpeed*100/2.5f);
+            Util.Print("HIT SPEED:" + hitSpeed.ToString("f4"));
             _GraphScript.OnCompressionRecieved();
             _CompressionPressed = true;
-            timeTillDepthCalc = 0.15f;
+
+            timeTillDepthCalc = 0.2f;
             AudioSource.PlayClipAtPoint(_CompressionSound, transform.position, 3.0f);
             BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.2f, 0.3f, 20.0f, 3.0f);
             BhapticsLibrary.PlayParam(BhapticsEvent.RIGHT_CPR_PRESS, 0.2f, 0.3f, 20.0f, 3.0f);
+            
+            float inches = Mathf.Lerp(1.0f, 3.0f, hitSpeed);
+            Util.Print($"{inches}");
+            _GraphScript.OnCompressionDepthRecived(inches);
         }
         else if(currentCompressionAmount >= 0.7f && _CompressionPressed)
         {
@@ -93,15 +107,16 @@ public class ChestCompressionTrial : MonoBehaviour
 
         timeTillDepthCalc -= Time.deltaTime;
 
-        if(_CompressionPressed && timeTillDepthCalc <= 0)
+        if(false && _CompressionPressed && timeTillDepthCalc <= 0)
         {
             timeTillDepthCalc = Mathf.Infinity;
-            float inches = Mathf.Lerp(1.0f, 2.55f, 1 - currentCompressionAmount/0.3f);
+            float inches = Mathf.Lerp(1.0f, 2.5f, 1 - currentCompressionAmount/0.3f);
             Util.Print($"{inches}");
             _GraphScript.OnCompressionDepthRecived(inches);
         }
 
         SetChestCompression(ccValue);
+        lastHandPosition = _CPRHand.transform.position;
     }
 
     float CalculatePlayerHandPosition()

@@ -9,7 +9,7 @@ public class CSVSaver
     static string evaulationDate = "1_1_1970_00_00_00";
     static string newEvaluationText;
     static string fileName;
-    static string pathDirectory = Application.persistentDataPath + "/CPR/";
+    static string pathDirectory = Application.persistentDataPath + "/ExamResults/";
     static string fullPathToSave;
 
     public struct EvaulationData
@@ -48,7 +48,7 @@ public class CSVSaver
     {
         SetPathAndDirectory();
 
-        EvaulationData ed = new EvaulationData(100, timetaken, recievedPenalties);
+        EvaulationData ed = new EvaulationData(finalMark, timetaken, recievedPenalties);
 
         if(evaulationDate != "1_1_1970_00_00_00")
         {
@@ -57,8 +57,7 @@ public class CSVSaver
             newEvaluationText += $",\n";
             newEvaluationText += "mistakes, mistakes amount\n";
             for(int i = 0; i < ed.penalty_names.Count && i < ed.penalty_scores.Count; i++)
-                newEvaluationText += ed.penalty_names[i] + "," + ed.penalty_scores[i] + "\n";
-
+                newEvaluationText += ed.penalty_names[i] + "," + string.Format("{0:0.##}", Mathf.Clamp(ed.penalty_scores[i], 0, 10.0f)) + "(" + ed.penalty_scores[i] +")" + "\n";
             CreateTextFile();
         }
         else
@@ -73,12 +72,16 @@ public class CSVSaver
         Util.Print($"Saved {fileName} to: <a href='{pathDirectory}'>{pathDirectory}</a>", Util.PrintType.Save);
     }
 
+    // <summary>Still need to debug this stuff</summary>
     public static void DEBUG_GenerateDataTesT()
     {
-        List<GameManager.ExamPenalty> penalties = new List<GameManager.ExamPenalty>();
-        penalties.Add(new GameManager.ExamPenalty("Dies from cringe", 5));
-        penalties.Add(new GameManager.ExamPenalty("Touched his nose", 10));
-        penalties.Add(new GameManager.ExamPenalty("Doesn't like teahcer", 2));
+        List<GameManager.ExamPenalty> penalties = new List<GameManager.ExamPenalty>()
+        {
+            new GameManager.ExamPenalty("Dies from cringe", 5),
+            new GameManager.ExamPenalty("Touched his nose (ew!)", 10),
+            new GameManager.ExamPenalty("Doesn't like teahcer", 2),
+            new GameManager.ExamPenalty("skill issue?!? o.o? 🤨📸", 25)
+        };
 
         SaveData(100, penalties, 330.10);
     }
