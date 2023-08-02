@@ -62,6 +62,10 @@ MonoBehaviour:
     m_Localized: Not saying clear before applying a shock.
     m_Metadata:
       m_Items: []
+  - m_Id: 22873528027947008
+    m_Localized: You were breathing for too long!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
