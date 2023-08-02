@@ -38,7 +38,7 @@ public class ExamResults : MonoBehaviour
         {    
             for(int i = 0; i < MistakesLocalization.Count; i++) AddMistakeChild(MistakesLocalization[i]);
             float mistakesScore = MistakesLocalization.Sum(x => Mathf.Clamp(x.penaltyAmount, 0, 10.0f));
-             // We don't want to recalculate the score, its already defined!
+            // We don't want to recalculate the score, its already defined!
             if(score >= 100) score -= mistakesScore;
             GameManager._Instance.score = score;
         }
