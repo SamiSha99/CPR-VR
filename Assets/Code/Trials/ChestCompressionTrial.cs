@@ -18,7 +18,7 @@ public class ChestCompressionTrial : MonoBehaviour
     public float chestCompressionAmountScale = 0.25f;
     public float _TrialDuration = 20.0f;
     public const float DEFAULT_TIME_TRIAL = 20.0f;
-    private float currentCompressionAmount, timeTillDepthCalc;
+    private float currentCompressionAmount;
     [SerializeField] AudioClip _CompressionSound;
     [Header("Hands")]
     public GameObject leftHand;
@@ -87,32 +87,21 @@ public class ChestCompressionTrial : MonoBehaviour
         if(currentCompressionAmount <= 0.4f && !_CompressionPressed)
         {
             hitSpeed = Mathf.Clamp01(hitSpeed*100/2.5f);
-            Util.Print("HIT SPEED:" + hitSpeed.ToString("f4"));
+            Util.Print("HIT SPEED:" + hitSpeed.ToString("f2"));
             _GraphScript.OnCompressionRecieved();
             _CompressionPressed = true;
 
-            timeTillDepthCalc = 0.2f;
             AudioSource.PlayClipAtPoint(_CompressionSound, transform.position, 3.0f);
             BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.2f, 0.3f, 20.0f, 3.0f);
             BhapticsLibrary.PlayParam(BhapticsEvent.RIGHT_CPR_PRESS, 0.2f, 0.3f, 20.0f, 3.0f);
             
-            float inches = Mathf.Lerp(1.0f, 3.0f, hitSpeed);
-            Util.Print($"{inches}");
+            // above 0.1875 and below to be ok 
+            float inches = Mathf.Lerp(1.2f, 2.8f, hitSpeed);
             _GraphScript.OnCompressionDepthRecived(inches);
         }
         else if(currentCompressionAmount >= 0.7f && _CompressionPressed)
         {
             _CompressionPressed = false;
-        }
-
-        timeTillDepthCalc -= Time.deltaTime;
-
-        if(false && _CompressionPressed && timeTillDepthCalc <= 0)
-        {
-            timeTillDepthCalc = Mathf.Infinity;
-            float inches = Mathf.Lerp(1.0f, 2.5f, 1 - currentCompressionAmount/0.3f);
-            Util.Print($"{inches}");
-            _GraphScript.OnCompressionDepthRecived(inches);
         }
 
         SetChestCompression(ccValue);
