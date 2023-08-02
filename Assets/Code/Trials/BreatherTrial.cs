@@ -6,16 +6,18 @@ public class BreatherTrial : MonoBehaviour
 {
     public GameObject chest;
     public float chestRiseAmount = 0.15f;
-    private bool facingMouth, lastTalk, complete;
-    public bool incorrectSecondBreathInterval;
+    private bool facingMouth, complete;
+    public bool incorrectSecondBreathInterval, chestRaised;
     private float talkDuration, notalkDuration, notalkforgiveness;
     private int breathesGive;
+    private float breathNormal;
 
     public enum BreathResult
     {
         Normal,
         Slow,
-        Fast
+        Fast,
+        TooLong
     }
     public BreathResult breathResult;
 
@@ -48,54 +50,61 @@ public class BreatherTrial : MonoBehaviour
         }
 
         Vector3 scale = chest.transform.localScale;
-        scale.z = Mathf.Clamp(scale.z + (!complete && xrEvent.isTalking ? Time.deltaTime : -Time.deltaTime), 1.0f, 1.0f + chestRiseAmount);
+        bool isBreathing = !complete && (xrEvent.isTalking || notalkforgiveness > 0);
+        float riseRate = 4.0f*Time.deltaTime;
+        breathNormal = Mathf.Clamp01(breathNormal + (isBreathing ? riseRate : -riseRate));
+        if(chestRaised && breathNormal < 0.8f) chestRaised = false;
+        scale.z = Mathf.Lerp(1.0f, 1.0f + chestRiseAmount, breathNormal);//Mathf.Clamp(scale.z + (!complete && xrEvent.isTalking ? Time.deltaTime : -Time.deltaTime), 1.0f, 1.0f + chestRiseAmount);
         chest.transform.localScale = scale;
 
         if(complete) return;
 
-        if(!facingMouth)
+        switch(breathesGive)
         {
-            //enabled = false;
-            lastTalk = false;
-            talkDuration = 0;
-            return;
+            case 0:
+                if(breathNormal < 0.8f) break;
+                breathesGive++;
+                chestRaised = true;
+                break;
+            case 1:
+                if(chestRaised) break;
+                if(notalkDuration > 0 && xrEvent.isTalking && !incorrectSecondBreathInterval && (notalkDuration <= 0.7f || notalkDuration >= 1.3f))
+                {
+                    incorrectSecondBreathInterval = true;
+                    breathResult = (BreathResult)(notalkDuration <= 0.7f ? 2 : (notalkDuration >= 1.3f ? 1 : 0));
+                }
+                if(breathNormal < 0.8f) break;
+                breathesGive++;
+                //OnComplete();
+                break;
+            default:
+                complete = true;
+                Util.GetXREvents().DisableMicRecording();
+                qm.CompleteCommandGoal("Give_Two_Breaths_Goal_Command");
+                DoPenalty();
+                Util.Invoke(this, () => CleanUp(), 1.0f);
+                break;
         }
-        
+
         if(xrEvent.isTalking)
         {
-            if(lastTalk)
+            if(talkDuration >= 2.5f)
             {
-                if(talkDuration + Time.deltaTime >= 0.15f && talkDuration <= 0.15f) breathesGive++;
-                if(breathesGive >= 2)
-                {
-                    complete = true;
-                    Util.GetXREvents().DisableMicRecording();
-                    qm.CompleteCommandGoal("Give_Two_Breaths_Goal_Command");
-                    DoPenalty();
-                    Util.Invoke(this, () => CleanUp(), 1.0f);
-                }
-                talkDuration += Time.deltaTime;
-                notalkDuration = 0;
+                incorrectSecondBreathInterval = true;
+                breathResult = BreathResult.TooLong;
+                OnComplete();
             }
-            else
-            {
-                notalkforgiveness += Time.deltaTime;
-                if(talkDuration >= 0.25f)
-                {
-                    talkDuration = 0;
-                    notalkforgiveness = 0;
-                }
-            }
+            talkDuration += Time.deltaTime;
+            notalkforgiveness = 0.1f;
+            notalkDuration = 0;
         }
-        lastTalk = xrEvent.isTalking;
-
-        if(!lastTalk)
-            notalkDuration += Time.deltaTime;
-        else if(breathesGive == 1 && (notalkDuration >= 0.25f && notalkDuration <= 0.7f || notalkDuration >= 1.3f))
+        else if(notalkforgiveness <= 0)
         {
-            incorrectSecondBreathInterval = true;
-            breathResult = (BreathResult)(notalkDuration >= 0.25f && notalkDuration <= 0.7f ? 2 : (notalkDuration >= 1.3f ? 1 : 0));
+            talkDuration = 0;
+            notalkDuration += Time.deltaTime;
         }
+        else
+            notalkforgiveness -= Time.deltaTime;
     }
     
     float CalculateMouthToMouthPosition()
@@ -103,19 +112,32 @@ public class BreatherTrial : MonoBehaviour
         GameObject cam = Util.GetPlayer().GetPlayerCameraObject();
         float range = Vector3.Distance(cam.transform.position, transform.position);
         float maxRange = Util.GetPlayer().transform.FindComponent<PlayerLookAtObject>("XREvents").lookRange;
-        return Mathf.Lerp(1.0f, 4.0f, Mathf.Lerp(1, 0, range/maxRange));
+        return Mathf.Lerp(1.5f, 4.0f, Mathf.Lerp(1, 0, range/maxRange));
     }
 
     void DoPenalty()
     {
         if(!incorrectSecondBreathInterval) return;
         GameManager gm = GameManager._Instance;
+        
+        if(breathResult != BreathResult.Normal) QuestManager._Instance.AddQuestToRetry();
         switch(breathResult)
         {
-            case BreathResult.Slow: gm.AddExamPenalty("ExamPenalty.BreatherSlow", 2); QuestManager._Instance.AddQuestToRetry(); break;
-            case BreathResult.Fast: gm.AddExamPenalty("ExamPenalty.BreatherFast", 2); QuestManager._Instance.AddQuestToRetry(); break;
+            case BreathResult.Slow:     gm.AddExamPenalty("ExamPenalty.BreatherSlow", 2);       break;
+            case BreathResult.Fast:     gm.AddExamPenalty("ExamPenalty.BreatherFast", 2);       break;
+            case BreathResult.TooLong:  gm.AddExamPenalty("ExamPenalty.BreatherTooLong", 2);    break;
             default: break;
         };
+    }
+
+    void OnComplete()
+    {
+        QuestManager qm = QuestManager._Instance;
+        complete = true;
+        Util.GetXREvents().DisableMicRecording();
+        qm.CompleteCommandGoal("Give_Two_Breaths_Goal_Command");
+        DoPenalty();
+        Util.Invoke(this, () => CleanUp(), 1.0f);
     }
 
     void CleanUp()
@@ -124,12 +146,13 @@ public class BreatherTrial : MonoBehaviour
         notalkDuration = 0;
         breathesGive = 0;
         notalkforgiveness = 0;
+        breathNormal = 0;
         Util.GetXREvents().micModifier = 1;
-        lastTalk = false;
         incorrectSecondBreathInterval = false;
         breathResult = BreathResult.Normal;
         complete = false;
         enabled = false;
+        chestRaised = false;
     }
     
 }
