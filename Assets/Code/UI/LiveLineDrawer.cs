@@ -132,10 +132,7 @@ public class LiveLineDrawer : MonoBehaviour
         compressionAmount++;
         if(compressionAmount >= 30) ShutdownGraphs();
     }
-    public void OnCompressionDepthRecived(float amount)
-    {
-        SetCompressionDepthText(amount);
-    }
+    public void OnCompressionDepthRecieved(float amount) => SetCompressionDepthText(amount);
     public void OnCompressionGraphInfo(float value) => this.value = value;
 
     public void ShutdownGraphs()
