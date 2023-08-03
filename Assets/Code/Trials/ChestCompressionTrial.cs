@@ -95,9 +95,9 @@ public class ChestCompressionTrial : MonoBehaviour
             BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.2f, 0.3f, 20.0f, 3.0f);
             BhapticsLibrary.PlayParam(BhapticsEvent.RIGHT_CPR_PRESS, 0.2f, 0.3f, 20.0f, 3.0f);
             
-            // above 0.1875 and below to be ok 
-            float inches = Mathf.Lerp(1.2f, 2.8f, hitSpeed);
-            _GraphScript.OnCompressionDepthRecived(inches);
+            // hitspeed must be higher than 0.1667 or lower than 1 - 0.1667 to be correct
+            float offset = 0.25f;
+            _GraphScript.OnCompressionDepthRecieved(Mathf.Lerp(1.0f + offset, 3.0f - offset, hitSpeed));
         }
         else if(currentCompressionAmount >= 0.7f && _CompressionPressed)
         {
