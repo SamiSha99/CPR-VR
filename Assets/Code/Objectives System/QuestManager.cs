@@ -132,7 +132,7 @@ public class QuestManager : MonoBehaviour
             GameManager._Instance.InstigateNextTutorialObject();
     }
     // Updates the cells that is relevant on the goal via passed QuestGoal script using the index
-    private void OnUpdateGoalProgress(Quest.QuestGoal goal)
+    private void OnUpdateGoalProgress(Quest.QuestGoal goal, bool localizeGoals = false)
     {
         List<Transform> transformList = new List<Transform>();
         Transform[] transformArr;
@@ -150,7 +150,8 @@ public class QuestManager : MonoBehaviour
         if(goal._GoalUIType == Quest.QuestGoal.GoalUIType.GUIT_None) return; // Don't update
 
         TextMeshProUGUI goalTextCell = transformArr[index].FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE);
-        if(goal != null && goalTextCell != null)
+        // Do we need this? I do not believe we are updating this in the slightest
+        if(localizeGoals && goal != null && goalTextCell != null)
             LocalizationHelper.LocalizeTMP(goal.GetDescription(), goalTextCell);
         GameObject goalValueCell = transformArr[index].Find(GAMEOBJECT_NAME_GOAL_VALUE).gameObject;
 
@@ -232,13 +233,11 @@ public class QuestManager : MonoBehaviour
         return false;
     }
 
-    public bool IsQuestType(string questTitle)
-    {
-        return IsQuestActive() && activeQuest.name == questTitle;
-    }
+    public bool IsQuestType(string questTitle) => IsQuestActive() && activeQuest.name == questTitle;
+    
     public void ForceUpdateGoal(Quest.QuestGoal g) => OnUpdateGoalProgress(g);
 
-    // AED requires time to wait, that is unspecified based on how long for the AED to wait, to not punish, we pause it until the button gets enabled.
+    // For cases where we think its not relevant to value, we pause the timer.
     public void ToggleTimer(bool _enabled) => isQuestTimePaused = !_enabled;
     
     /// <summary>Adds a quest reference to retry, if not defined, will take hte currently active quest, if there's any</summary>
@@ -259,7 +258,7 @@ public class QuestManager : MonoBehaviour
             LocalizationHelper.LocalizeTMP(activeQuest.information.name, questName);
             LocalizationHelper.LocalizeTMP(activeQuest.information.description, questDescription);
             if(activeQuest.goals.Count > 0)
-                foreach(Quest.QuestGoal g in activeQuest.goals) ForceUpdateGoal(g);
+                foreach(Quest.QuestGoal g in activeQuest.goals) OnUpdateGoalProgress(g, true);
         }
         else
             SetTextToDefault();
