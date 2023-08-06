@@ -132,7 +132,7 @@ public class QuestManager : MonoBehaviour
             GameManager._Instance.InstigateNextTutorialObject();
     }
     // Updates the cells that is relevant on the goal via passed QuestGoal script using the index
-    private void OnUpdateGoalProgress(Quest.QuestGoal goal, bool localizeGoals = false)
+    private void OnUpdateGoalProgress(Quest.QuestGoal goal)
     {
         List<Transform> transformList = new List<Transform>();
         Transform[] transformArr;
@@ -151,8 +151,8 @@ public class QuestManager : MonoBehaviour
 
         TextMeshProUGUI goalTextCell = transformArr[index].FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE);
         // Do we need this? I do not believe we are updating this in the slightest
-        if(localizeGoals && goal != null && goalTextCell != null)
-            LocalizationHelper.LocalizeTMP(goal.GetDescription(), goalTextCell);
+        //if(goal != null && goalTextCell != null)
+        //    LocalizationHelper.LocalizeTMP(goal.GetDescription(), goalTextCell);
         GameObject goalValueCell = transformArr[index].Find(GAMEOBJECT_NAME_GOAL_VALUE).gameObject;
 
         switch(goal._GoalUIType)
@@ -245,20 +245,34 @@ public class QuestManager : MonoBehaviour
     {
         if(!Util.IsQuestActive()) return;
         if(referenceQuest == null) return;
-        GameManager gm = GameManager._Instance;
-        gm.AddQuestToRetry(q == null ? referenceQuest : q);
+        GameManager._Instance?.AddQuestToRetry(q ?? referenceQuest);
     }
 
     void OnLanguageChanged(Locale selectedLanguage)
     {
-        if(QuestManager._Instance == null) return;
+        if(_Instance == null) return;
         
         if(activeQuest != null)
         {
             LocalizationHelper.LocalizeTMP(activeQuest.information.name, questName);
             LocalizationHelper.LocalizeTMP(activeQuest.information.description, questDescription);
             if(activeQuest.goals.Count > 0)
-                foreach(Quest.QuestGoal g in activeQuest.goals) OnUpdateGoalProgress(g, true);
+            {
+                Transform[] transformArr;
+                List<Transform> transformList = new();
+                transformArr = Util.GetChildren(questGoalList.transform, transformList, false).ToArray();
+                foreach(Quest.QuestGoal g in activeQuest.goals) 
+                {
+                    OnUpdateGoalProgress(g);
+                    // Moved from OnUpdateGoalProgress, unless I figure out something else...
+                    // Fixes an error due per update call, perhaps a fixed update instead?
+                    if(transformArr == null || transformArr.Length <= 0) continue;
+
+                    int index = g.index;
+                    TextMeshProUGUI goalTextCell = transformArr[index].FindComponent<TextMeshProUGUI>(GAMEOBJECT_NAME_GOAL_TITLE);
+                    LocalizationHelper.LocalizeTMP(g.GetDescription(), goalTextCell);
+                }
+            }
         }
         else
             SetTextToDefault();
