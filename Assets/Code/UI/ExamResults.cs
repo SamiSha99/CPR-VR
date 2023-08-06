@@ -37,7 +37,7 @@ public class ExamResults : MonoBehaviour
         else
         {    
             for(int i = 0; i < MistakesLocalization.Count; i++) AddMistakeChild(MistakesLocalization[i]);
-            float mistakesScore = MistakesLocalization.Sum(x => Mathf.Clamp(x.penaltyAmount, 0, 10.0f));
+            float mistakesScore = MistakesLocalization.Sum(x => x.penaltyAmount);
             // We don't want to recalculate the score, its already defined!
             if(score >= 100) score -= mistakesScore;
             GameManager._Instance.score = score;
@@ -57,7 +57,7 @@ public class ExamResults : MonoBehaviour
         if(penalty.penaltyAmount > 0)
         {
             LocalizationHelper.LocalizeTMP(string.Empty, times);
-            times.text = $"-{string.Format("{0:0.##}", Mathf.Clamp(penalty.penaltyAmount, 0, 10.0f))}";
+            times.text = $"-{string.Format("{0:0.##}", penalty.penaltyAmount)}";
         }
         else
             times.text = "";       

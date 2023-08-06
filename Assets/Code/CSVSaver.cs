@@ -57,7 +57,7 @@ public class CSVSaver
             newEvaluationText += $",\n";
             newEvaluationText += "mistakes, mistakes amount\n";
             for(int i = 0; i < ed.penalty_names.Count && i < ed.penalty_scores.Count; i++)
-                newEvaluationText += ed.penalty_names[i] + "," + string.Format("{0:0.##}", Mathf.Clamp(ed.penalty_scores[i], 0, 10.0f)) + "(" + ed.penalty_scores[i] +")" + "\n";
+                newEvaluationText += ed.penalty_names[i] + "," + string.Format("{0:0.##}", ed.penalty_scores[i]) + "\n";
             CreateTextFile();
         }
         else
