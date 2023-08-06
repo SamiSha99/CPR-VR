@@ -63,7 +63,7 @@ public class AEDTrial : MonoBehaviour
             QuestManager qm = QuestManager._Instance;
             if(!qm.IsQuestGoalCompleted("Said_Clear"))
             {
-                GameManager._Instance.AddExamPenalty("ExamPenalty.NotSayingClear", 10.0f);
+                GameManager._Instance.AddExamPenalty("ExamPenalty.NotSayingClear", 5.0f);
                 QuestManager._Instance.AddQuestToRetry();
             }
             qm.CompleteCommandGoal("Press_Shock_Button_Goal_Command");
