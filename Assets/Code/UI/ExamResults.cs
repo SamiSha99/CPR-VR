@@ -9,7 +9,7 @@ using System.Linq;
 
 public class ExamResults : MonoBehaviour
 {
-    public TextMeshProUGUI Title, MistakeTitle, Mistakes, FinalScoreText, ScoreValue, LeaveButton;
+    public TextMeshProUGUI Title, MistakeTitle, Mistakes, FinalScoreText, ScoreValue, LeaveButton, NameText;
     public List<GameManager.ExamPenalty> MistakesLocalization;
     public GameObject MistakeChildTemplate, MistakesList;
     private string localizedMistakes;
@@ -30,6 +30,7 @@ public class ExamResults : MonoBehaviour
         LocalizationHelper.LocalizeTMP("ExamResults.Mistakes", MistakeTitle);
         LocalizationHelper.LocalizeTMP("ExamResults.FinalScore", FinalScoreText);
         LocalizationHelper.LocalizeTMP("ExamResults.Leave", LeaveButton);
+        LocalizationHelper.LocalizeTMP("ExamResults.Name", NameText);
         
         while(MistakesList.transform.childCount > 0) DestroyImmediate(MistakesList.transform.GetChild(0).gameObject);
         if(MistakesLocalization.Count <= 0)

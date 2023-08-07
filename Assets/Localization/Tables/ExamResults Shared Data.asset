@@ -35,6 +35,10 @@ MonoBehaviour:
     m_Key: Perfect
     m_Metadata:
       m_Items: []
+  - m_Id: 24590532040564736
+    m_Key: Name
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
