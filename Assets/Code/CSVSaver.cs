@@ -9,7 +9,7 @@ public class CSVSaver
     static string evaulationDate = "1_1_1970_00_00_00";
     static string newEvaluationText;
     static string fileName;
-    static string pathDirectory = Application.persistentDataPath + "/ExamResults/";
+    static readonly string pathDirectory = Application.persistentDataPath + "/ExamResults/";
     static string fullPathToSave;
 
     public struct EvaulationData
@@ -75,12 +75,12 @@ public class CSVSaver
     /// <summary>Still need to debug this stuff. 😂😂😭😭</summary>
     public static void DEBUG_GenerateDataTesT()
     {
-        List<GameManager.ExamPenalty> penalties = new List<GameManager.ExamPenalty>()
+        List<GameManager.ExamPenalty> penalties = new()
         {
-            new GameManager.ExamPenalty("Dies from cringe", 5),
-            new GameManager.ExamPenalty("Touched his nose (ew!)", 10),
-            new GameManager.ExamPenalty("Doesn't like teahcer", 2),
-            new GameManager.ExamPenalty("skill issue?!? o.o? 🤨📸", 25)
+            new("Dies from cringe", 5),
+            new("Touched his nose (ew!)", 10),
+            new("Doesn't like teahcer", 2),
+            new("skill issue?!? o.o? 🤨📸", 25)
         };
 
         SaveData(100, penalties, 330.10);
