@@ -92,8 +92,8 @@ public class ChestCompressionTrial : MonoBehaviour
             _CompressionPressed = true;
 
             AudioSource.PlayClipAtPoint(_CompressionSound, transform.position, 3.0f);
-            BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.2f, 0.3f, 20.0f, 3.0f);
-            BhapticsLibrary.PlayParam(BhapticsEvent.RIGHT_CPR_PRESS, 0.2f, 0.3f, 20.0f, 3.0f);
+            BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.3f, 1.5f * hitSpeed, 20.0f, 3.0f);
+            BhapticsLibrary.PlayParam(BhapticsEvent.RIGHT_CPR_PRESS, 0.3f, 1.5f * hitSpeed, 20.0f, 3.0f);
             
             // hitspeed must be higher than 0.1667 or lower than 1 - 0.1667 to be correct
             float offset = 0.25f;

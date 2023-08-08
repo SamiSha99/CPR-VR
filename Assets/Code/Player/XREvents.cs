@@ -55,9 +55,9 @@ public class XREvents : MonoBehaviour
         if (exited) OnItemUntouched(o, interactor);
         else OnItemTouched(o, interactor);
 
-        string handName = args.interactorObject.transform.parent.name;
-        if(handName == "Left Hand") BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.4f, 0.5f, 20.0f, 3.0f);
-        if(handName == "Right Hand") BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.4f, 0.5f, 20.0f, 3.0f);
+        //string handName = args.interactorObject.transform.parent.name;
+        //if(handName == "Left Hand") BhapticsLibrary.PlayParam(BhapticsEvent.RIGHT_CPR_PRESS, 0.4f, 0.5f, 20.0f, 3.0f);
+        //if(handName == "Right Hand") BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.4f, 0.5f, 20.0f, 3.0f);
     }
 
     public void EnableMicRecording()
