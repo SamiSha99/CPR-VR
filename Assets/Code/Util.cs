@@ -301,7 +301,7 @@ public static class Util
 
     // AudioSource.PlayClipAtPoint but returns a source and can be used to attach to something else
     // _base = parent we want to attach this AudioSource to.
-    public static AudioSource PlayClipAt(AudioClip ac, Vector3 pos, float volume = 1.0f, GameObject _base = null)
+    public static AudioSource PlayClipAt(AudioClip ac, Vector3 pos, float volume = 1.0f, GameObject _base = null, float pitch = 1.0f)
     {
         GameObject go = new GameObject("PlayClipAt() Audio");
         go.transform.position = pos;
@@ -310,6 +310,7 @@ public static class Util
         AudioSource _as = go.AddComponent<AudioSource>();    
         _as.clip = ac;
         _as.volume = volume;
+        _as.pitch = pitch;
         _as.Play();
         GameObject.Destroy(go, ac.length + 0.25f); // fixes clip cutting off 
         return _as;
