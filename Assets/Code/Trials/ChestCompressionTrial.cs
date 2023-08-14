@@ -86,18 +86,21 @@ public class ChestCompressionTrial : MonoBehaviour
         
         if(currentCompressionAmount <= 0.4f && !_CompressionPressed)
         {
-            hitSpeed = Mathf.Clamp01(hitSpeed*100/2.5f);
+            // hitspeed must be higher than 0.12 or lower than 1 - 0.12 to be correct
+            hitSpeed = Mathf.Clamp01(hitSpeed * 100/3.5f); // division need to be better adjusted
+            float offset = 0.325f;
+            float depthResult = Mathf.Lerp(1.0f + offset, 3.0f - offset, hitSpeed);
             Util.Print("HIT SPEED:" + hitSpeed.ToString("f2"));
             _GraphScript.OnCompressionRecieved();
             _CompressionPressed = true;
-
-            AudioSource.PlayClipAtPoint(_CompressionSound, transform.position, 3.0f);
-            BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.3f, 1.5f * hitSpeed, 20.0f, 3.0f);
-            BhapticsLibrary.PlayParam(BhapticsEvent.RIGHT_CPR_PRESS, 0.3f, 1.5f * hitSpeed, 20.0f, 3.0f);
             
-            // hitspeed must be higher than 0.1667 or lower than 1 - 0.1667 to be correct
-            float offset = 0.25f;
-            _GraphScript.OnCompressionDepthRecieved(Mathf.Lerp(1.0f + offset, 3.0f - offset, hitSpeed));
+            float pitch = (depthResult > 2.5f || depthResult < 1.5f) ? 0.75f : 1.5f;
+
+            Util.PlayClipAt(_CompressionSound, transform.position, 3.0f, Util.GetPlayer().GetPlayerCameraObject(), pitch);
+            BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.1333f, 0.75f * hitSpeed, 0, 0);
+            BhapticsLibrary.PlayParam(BhapticsEvent.RIGHT_CPR_PRESS, 0.1333f, 0.75f * hitSpeed, 0, 0);
+            
+            _GraphScript.OnCompressionDepthRecieved(depthResult);
         }
         else if(currentCompressionAmount >= 0.7f && _CompressionPressed)
         {
