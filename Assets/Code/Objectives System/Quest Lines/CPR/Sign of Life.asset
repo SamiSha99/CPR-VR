@@ -69,7 +69,7 @@ MonoBehaviour:
   information:
     name: Quest.SignOfLifeTitle
     description: Quest.SignOfLifeDesc
-  averageTime: 10
+  averageTime: 12
   questCommand: Sign_of_Life
   nextQuest: {fileID: 0}
   goals:
@@ -101,4 +101,4 @@ MonoBehaviour:
       m_Calls: []
   index: 2
   micDecayAmount: 1.2
-  micSensitivityMultiplier: 1.5
+  micSensitivityMultiplier: 2

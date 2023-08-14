@@ -42,7 +42,7 @@ MonoBehaviour:
   information:
     name: Quest.CheckBreathingTitle
     description: Quest.CheckBreathingDesc
-  averageTime: 10
+  averageTime: 12
   questCommand: Check_for_breathing
   nextQuest: {fileID: 0}
   goals:

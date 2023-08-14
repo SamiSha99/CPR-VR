@@ -15,7 +15,7 @@ MonoBehaviour:
   information:
     name: Quest.CallAmbulanceTitle
     description: Quest.CallAmbulanceDesc
-  averageTime: 5
+  averageTime: 7
   questCommand: Call_the_Ambulance
   nextQuest: {fileID: 0}
   goals:

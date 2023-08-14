@@ -15,7 +15,7 @@ MonoBehaviour:
   information:
     name: Quest.SceneSafetyTitle
     description: Quest.SceneSafetyDesc
-  averageTime: 10
+  averageTime: 8
   questCommand: scene_safety
   nextQuest: {fileID: 0}
   goals:
