@@ -53,7 +53,7 @@ public class ChestCompressionTrial : MonoBehaviour
         if(finalCompressionAmount < 30)
         {
             Util.Print("NOT ENOUGH COMPRESSIONS!");
-            gm.AddExamPenalty("ExamPenalty.InsufficentCompressions", 3.0f);
+            gm.AddExamPenalty("ExamPenalty.InsufficentCompressions", 2.5f);
             qm.AddQuestToRetry();
         }
         if (qm.IsQuestType("CPR")) qm.ForceCompleteQuest();
