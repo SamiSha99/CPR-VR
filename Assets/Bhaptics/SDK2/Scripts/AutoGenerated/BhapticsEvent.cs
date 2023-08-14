@@ -17,16 +17,16 @@ namespace Bhaptics.SDK2
     public class BhapticsEvent
     {
         
-        public const string RIGHT_GLOVE_PINCH = "right_glove_pinch";
-        
         public const string GAME_START = "game_start";
-        
-        public const string LEFT_CPR_PRESS = "left_cpr_press";
-        
-        public const string RIGHT_CPR_PRESS = "right_cpr_press";
         
         public const string AED_GETTING_SHOCKED = "aed_getting_shocked";
         
         public const string LEFT_GLOVE_PINCH = "left_glove_pinch";
+        
+        public const string LEFT_CPR_PRESS = "left_cpr_press";
+        
+        public const string RIGHT_GLOVE_PINCH = "right_glove_pinch";
+        
+        public const string RIGHT_CPR_PRESS = "right_cpr_press";
     }
 }
