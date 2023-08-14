@@ -167,7 +167,7 @@ public class LiveLineDrawer : MonoBehaviour
             slowMistakes++;
             if(slowMistakes >= 5)
             {
-                gm.AddExamPenalty("ExamPenalty.CPRSlow", 0.1f);
+                gm.AddExamPenalty("ExamPenalty.CPRSlow", 1.0f);
                 QuestManager._Instance.AddQuestToRetry();
                 slowMistakes = 0;
             }
@@ -177,7 +177,7 @@ public class LiveLineDrawer : MonoBehaviour
             fastMistakes++;
             if(fastMistakes >= 5)
             {
-                gm.AddExamPenalty("ExamPenalty.CPRFast", 0.1f);
+                gm.AddExamPenalty("ExamPenalty.CPRFast", 1.0f);
                 QuestManager._Instance.AddQuestToRetry();
                 fastMistakes = 0;
             }
@@ -199,14 +199,14 @@ public class LiveLineDrawer : MonoBehaviour
 
             if(lowPressMistakes >= 5)
             {
-                gm.AddExamPenalty("ExamPenalty.CPRPressLow", 2.0f);
+                gm.AddExamPenalty("ExamPenalty.CPRPressLow", 1.0f);
                 QuestManager._Instance.AddQuestToRetry();
                 lowPressMistakes = 0;
             }
 
             if(highPressMistakes >= 5)
             {
-                gm.AddExamPenalty("ExamPenalty.CPRPressHigh", 2.0f);
+                gm.AddExamPenalty("ExamPenalty.CPRPressHigh", 1.0f);
                 QuestManager._Instance.AddQuestToRetry();
                 highPressMistakes = 0;
             }
