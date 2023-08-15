@@ -90,6 +90,7 @@ public static class LocalizationHelper
         if(localizationCommand.Contains(" ") || localizationCommand.Count(f => f == '.') != 1) return localizationCommand;
         string[] text = localizationCommand.Split(".");
         if(text.Length != 2 || text.Contains(" ")) return localizationCommand;
+        if(char.IsNumber(text[0][0]) || char.IsNumber(text[1][0])) return null;
         
         return GetText(text[0], text[1]);
     }

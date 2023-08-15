@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
                     GameObject head = Util.GetPlayer().GetPlayerCameraObject();
                     AudioClip localizedAudio = LocalizationHelper.GetAsset<AudioClip>("VA." + ac.name);
                     if(localizedAudio == null) localizedAudio = ac; // cannot be found, use the english one
-                    Util.PlayClipAt(localizedAudio, head.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 1.0f), head);
+                    Util.PlayClipAt(localizedAudio, head.transform.position, PlayerPrefs.GetFloat(nameof(SettingsManager.textToSpeechVolume), 1.0f), head, 1.0f);
                     Util.Invoke(this, () => InstigateNextTutorialObject(), localizedAudio.length + 0.25f);
                     command = ac.name;
                     break;
@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
 
     public void AddQuestToRetry(Quest q)
     {
-        if(isExam) return;
+        if(true || isExam) return;
         if(retryQuests == null || retryQuests.Contains(q)) return;
         retryQuests.Add(q);
     }

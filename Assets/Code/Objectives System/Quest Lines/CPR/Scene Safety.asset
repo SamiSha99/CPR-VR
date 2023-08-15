@@ -34,14 +34,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   editorQuestGoalName: Remove Hazards
   description: Quest.SceneSafetyGoal1
-  requiredAmount: 4
+  requiredAmount: 2
   _GoalUIType: 0
   goalCompletedCommand: ???
   objectiveNameList:
   - Red Soda
   - Ping Pong Paddle Red
-  - Ping Pong Ball
-  - Ping Pong Paddle Blue
   requiredGoals: []
   silent: 0
   goalCompleted:

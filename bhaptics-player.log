@@ -1,0 +1,47 @@
+2023-08-15 15:28:29.549 [1] WARN BhapticsPlayer.Window.PortalWindow..ctor(): PortalWindow
+2023-08-15 15:28:30.831 [1] EROR BhapticsPlayer.Window.PortalWindow+<<-ctor>b__8_0>d.MoveNext(): Screen size: 1920, 1080
+2023-08-15 15:28:30.837 [1] WARN BhapticsPlayer.Window.PortalWindow+<<-ctor>b__8_0>d.MoveNext(): PortalWindow Loaded
+2023-08-15 15:28:30.960 [1] WARN BhapticsPlayer.Internal.LocalDbRepository.InitializeDatabase(): InitializeDatabase
+2023-08-15 15:28:31.564 [1] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-08-15 15:28:31.565 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-08-15 15:28:31.668 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Util Get BhapticsSettingValue 1
+2023-08-15 15:28:31.670 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): CurrentCulture: en-US
+2023-08-15 15:28:31.671 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language Before: en-US
+2023-08-15 15:28:31.673 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language: en-US
+2023-08-15 15:28:31.761 [1] EROR BhapticsPlayer.ViewModel.PortalMenuViewModel.InitRestMenus(): InitRestMenus
+2023-08-15 15:28:31.909 [1] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-08-15 15:28:31.927 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-08-15 15:28:32.406 [6] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-08-15 15:28:32.406 [6] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-08-15 15:28:32.471 [1] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-08-15 15:28:32.482 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-08-15 15:28:32.499 [1] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-08-15 15:28:32.510 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-08-15 15:28:32.529 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Util Get BhapticsSettingValue 1
+2023-08-15 15:28:32.540 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): CurrentCulture: en-US
+2023-08-15 15:28:32.549 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language Before: en-US
+2023-08-15 15:28:32.558 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language: en-US
+2023-08-15 15:28:32.650 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-08-15 15:28:32.652 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-08-15 15:28:32.657 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-08-15 15:28:32.659 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-08-15 15:28:32.763 [1] WARN BhapticsPlayer.View.PortalWindowMainView+<<-ctor>b__1_0>d.MoveNext(): PortalWindowMainView Loaded
+2023-08-15 15:28:32.944 [1] WARN BhapticsPlayer.View.PortalWindowMainView+<<-ctor>b__1_0>d.MoveNext(): LastVersion: 16
+2023-08-15 15:28:33.304 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Util Get BhapticsSettingValue 1
+2023-08-15 15:28:33.304 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): CurrentCulture: en-US
+2023-08-15 15:28:33.305 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language Before: en-US
+2023-08-15 15:28:33.306 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language: en-US
+2023-08-15 15:28:33.315 [1] EROR BhapticsPlayer.Utils.WindowsUtils.GetBluetoothVersion(): GetBluetoothVersion error No Radio.
+2023-08-15 15:28:33.316 [1] WARN BhapticsPlayer.Window.PortalWindow+<CheckPlayerAndPopup>d__10.MoveNext(): Bluetooth Version: Unknown
+2023-08-15 15:28:33.317 [13] EROR BhapticsPlayer.ViewModel.ProfileMyViewModel+<>c__DisplayClass83_0.<Init>b__0(System.Object, System.ComponentModel.PropertyChangedEventArgs): Changed CanHapticResolution
+2023-08-15 15:28:33.430 [1] WARN BhapticsPlayer.View.PortalWindowMainView+<<-ctor>b__1_0>d.MoveNext(): PortalWindowMainView Loaded
+2023-08-15 15:28:33.496 [1] WARN BhapticsPlayer.View.PortalWindowMainView+<<-ctor>b__1_0>d.MoveNext(): LastVersion: 16
+2023-08-15 15:28:33.494 [11] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-08-15 15:28:33.506 [11] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-08-15 15:28:33.516 [11] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-08-15 15:28:33.534 [11] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-08-15 15:28:41.583 [13] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-08-15 15:28:41.610 [10] WARN BhapticsPlayer.Haptic.AthFilePlayer.Register(BhapticsPlayer.Haptic.RegisterAthRequest): Register() Does not have an app. qglBMDtqurCe5sAkSzd0 create one.
+2023-08-15 15:28:42.405 [21] EROR BhapticsPlayer.Websocket.HapticPatternBehavior.OnMessage(WebSocketSharp.MessageEventArgs): OnMessage : SdkRequestAuthInit
+2023-08-15 15:28:42.407 [21] EROR BhapticsPlayer.Websocket.HapticPatternBehavior.GetHapticDeployMessage(System.String): GetHapticDeployMessage() HapticDeployHttpMessage
+2023-08-15 15:31:16.368 [1] EROR BhapticsPlayer.Window.PortalWindow.Window_Closing(System.Object, System.ComponentModel.CancelEventArgs): Window_Closing

@@ -100,5 +100,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   index: 2
-  micDecayAmount: 1.2
-  micSensitivityMultiplier: 2
+  micDecayAmount: 1.25
+  micSensitivityMultiplier: 2.5
