@@ -49,6 +49,8 @@ public class CSVSaver
         SetPathAndDirectory();
 
         EvaulationData ed = new EvaulationData(finalMark, timetaken, recievedPenalties);
+        
+        newEvaluationText = "";
 
         if(evaulationDate != "1_1_1970_00_00_00")
         {
