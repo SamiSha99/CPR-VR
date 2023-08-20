@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Bhaptics.SDK2;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.XR.Hands;
 using UnityEngine.XR.Hands.Samples.VisualizerSample;
 
@@ -29,8 +30,13 @@ public class ChestCompressionTrial : MonoBehaviour
 
     private HandVisualizer handVisualizer;
     private Vector3 lastHandPosition;
+    public GameObject decaleObject;
+    private DecalProjector r;
     public void BeginTrial()
     {
+        r = decaleObject?.GetComponent<DecalProjector>();
+        r.material = new Material(r.material);
+
         _GraphScript.gameObject.SetActive(true);
         _GraphScript.rate = rate;
         _GraphScript.StartGraphs(this);
@@ -42,6 +48,7 @@ public class ChestCompressionTrial : MonoBehaviour
         ToggleCPRHand(true);
         SetChestCompression(1);
         currentCompressionAmount = 1.0f;
+        SetPressMaterial(1);
         enabled = true;
         lastHandPosition = _CPRHand.transform.position;
     }
@@ -83,6 +90,7 @@ public class ChestCompressionTrial : MonoBehaviour
         
         float hitSpeed = Vector3.Distance(lastHandPosition, _CPRHand.transform.position);
         //Util.Print("HIT SPEED:" + Mathf.Clamp01(hitSpeed*100/3).ToString("f4"));
+        SetPressMaterial(currentCompressionAmount);
         
         if(currentCompressionAmount <= 0.4f && !_CompressionPressed)
         {
@@ -194,5 +202,10 @@ public class ChestCompressionTrial : MonoBehaviour
         rightHand?.transform.ToggleHidden(_enabled);
         _CPRHand.transform.ToggleHidden(!_enabled);
         handsInRange = _enabled;
+    }
+
+    void SetPressMaterial(float amount)
+    {
+        r?.material.SetFloat("_PressNormal", 1-amount);
     }
 }
