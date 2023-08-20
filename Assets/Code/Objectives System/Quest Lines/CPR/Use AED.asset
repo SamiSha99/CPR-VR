@@ -101,8 +101,8 @@ MonoBehaviour:
   goals:
   - {fileID: -1021966818343964752}
   - {fileID: 7791550903679297307}
-  - {fileID: -3953176978329743426}
   - {fileID: -786543335879309778}
+  - {fileID: -3953176978329743426}
 --- !u!114 &7791550903679297307
 MonoBehaviour:
   m_ObjectHideFlags: 0
