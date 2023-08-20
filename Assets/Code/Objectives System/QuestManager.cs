@@ -108,6 +108,13 @@ public class QuestManager : MonoBehaviour
             }
         }
     }
+
+    // To-Do: Retry this quest.
+    private void OnQuestReset(Quest q)
+    {
+        BeginQuest(q);
+    }
+
     private void OnQuestCompleted(Quest q)
     {
         Util.Print(q.name);

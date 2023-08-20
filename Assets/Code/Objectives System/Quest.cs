@@ -56,6 +56,7 @@ public class Quest : ScriptableObject
         [Tooltip("On Goal Completetion run this command, where \"THIS + _Goal_Complete\"")]
         public string goalCompletedCommand = "???";
         public bool completed { get; protected set; }
+        public bool failed { get; protected set; }
         [Tooltip("Contains list of \"names\" for allowed GameObjects.")]
         [SerializeField] [NonReorderable]
         public List<string> objectiveNameList;
