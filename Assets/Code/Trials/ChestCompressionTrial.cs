@@ -98,7 +98,6 @@ public class ChestCompressionTrial : MonoBehaviour
             hitSpeed = Mathf.Clamp01(hitSpeed * 100/3.5f); // division need to be better adjusted
             float offset = 0.325f;
             float depthResult = Mathf.Lerp(1.0f + offset, 3.0f - offset, hitSpeed);
-            Util.Print("HIT SPEED:" + hitSpeed.ToString("f2"));
             _GraphScript.OnCompressionRecieved();
             _CompressionPressed = true;
             
