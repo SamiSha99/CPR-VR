@@ -90,7 +90,8 @@ public class ChestCompressionTrial : MonoBehaviour
         
         float hitSpeed = Vector3.Distance(lastHandPosition, _CPRHand.transform.position);
         //Util.Print("HIT SPEED:" + Mathf.Clamp01(hitSpeed*100/3).ToString("f4"));
-        SetPressMaterial(currentCompressionAmount);
+        float normalizedPress = Mathf.Clamp01(Mathf.Max(currentCompressionAmount-0.4f,0)/0.6f);
+        SetPressMaterial(normalizedPress);
         
         if(currentCompressionAmount <= 0.4f && !_CompressionPressed)
         {
