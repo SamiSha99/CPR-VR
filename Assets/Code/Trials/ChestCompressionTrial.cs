@@ -97,12 +97,12 @@ public class ChestCompressionTrial : MonoBehaviour
         {
             // hitspeed must be higher than 0.12 or lower than 1 - 0.12 to be correct
             hitSpeed = Mathf.Clamp01(hitSpeed * 100/3.5f); // division need to be better adjusted
-            float offset = 0.325f;
+            float offset = 0.3334f;
             float depthResult = Mathf.Lerp(1.0f + offset, 3.0f - offset, hitSpeed);
             _GraphScript.OnCompressionRecieved();
             _CompressionPressed = true;
             
-            float pitch = (depthResult > 2.5f || depthResult < 1.5f) ? 0.75f : 1.5f;
+            float pitch = (depthResult > 2.5f || depthResult < 1.5f) ? 0.65f : 1.7f;
 
             Util.PlayClipAt(_CompressionSound, transform.position, 3.0f, Util.GetPlayer().GetPlayerCameraObject(), pitch);
             BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.1333f, 0.75f * hitSpeed, 0, 0);
