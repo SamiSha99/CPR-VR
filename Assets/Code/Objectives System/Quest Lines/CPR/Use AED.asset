@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   editorQuestGoalName: Say Clear
   description: Quest.AEDGoal4
-  requiredAmount: 10
+  requiredAmount: 5
   _GoalUIType: 2
   goalCompletedCommand: Said_Clear
   objectiveNameList: []
