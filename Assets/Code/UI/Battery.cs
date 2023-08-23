@@ -21,13 +21,13 @@ public class Battery : UIScript
 
         lastUpdate = Time.timeSinceLevelLoad;
         
-//#if UNITY_EDITOR
-//
-//        batteryLevel = Random.value;
-//        if(batteryPrecentageText != null) batteryPrecentageText.text = $"{Mathf.RoundToInt(batteryLevel * 100)}%";
-//        batteryBar.SetProgressBar(batteryLevel);
-//
-//#else
+#if UNITY_EDITOR
+
+        batteryLevel = Random.value;
+        if(batteryPrecentageText != null) batteryPrecentageText.text = "idk%";//$"{Mathf.RoundToInt(batteryLevel * 100)}%";
+        batteryBar.SetProgressBar(batteryLevel);
+
+#else
 
         batteryLevel = SystemInfo.batteryLevel;
         batteryStatus = SystemInfo.batteryStatus;
@@ -38,6 +38,6 @@ public class Battery : UIScript
             batteryBar.SetProgressBar(batteryLevel);
         }
 
-//#endif
+#endif
     }
 }
