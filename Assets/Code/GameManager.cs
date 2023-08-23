@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
             CSVSaver.SaveData(score, _ExamPenalty, Time.timeSinceLevelLoadAsDouble);
         }
         else
-            Util.Invoke(this, () => Util.LoadMenu(), 5.0f);
+            Util.Invoke(this, () => Util.LoadMenu(), 2.5f);
         return true;
     }
 
