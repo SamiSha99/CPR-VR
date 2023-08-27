@@ -72,7 +72,6 @@ MonoBehaviour:
   objectiveNameList: []
   requiredGoals:
   - {fileID: -1021966818343964752}
-  - {fileID: 7791550903679297307}
   silent: 1
   goalCompleted:
     m_PersistentCalls:
