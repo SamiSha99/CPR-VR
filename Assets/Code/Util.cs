@@ -227,7 +227,7 @@ public static class Util
     // Not tested!!  
     public static void CancelInvoke(this MonoBehaviour mb, Action f) => mb.StopCoroutine(InvokeRoutine(f));
     
-    private static IEnumerator InvokeRoutine(System.Action f, float delay = 0)
+    private static IEnumerator InvokeRoutine(Action f, float delay = 0)
     {
         yield return new WaitForSeconds(delay);
         f();
@@ -312,7 +312,7 @@ public static class Util
         _as.volume = volume;
         _as.pitch = pitch;
         _as.Play();
-        GameObject.Destroy(go, ac.length + 0.25f); // fixes clip cutting off 
+        UnityEngine.Object.Destroy(go, ac.length + 0.125f); // fixes clip cutting off 
         return _as;
     }
 
@@ -342,10 +342,7 @@ public static class Util
     //#######//
     
     public static bool IsInMainMenu() => SceneManager.GetActiveScene().name == MENU_SCENE;
-
-    // Loads the main menu
     public static void LoadMenu() => SceneManager.LoadScene(MENU_SCENE);
-
     public static void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     //######//
