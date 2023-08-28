@@ -24,7 +24,7 @@ public class Battery : UIScript
 #if UNITY_EDITOR
 
         batteryLevel = Random.value;
-        if(batteryPrecentageText != null) batteryPrecentageText.text = "idk%";//$"{Mathf.RoundToInt(batteryLevel * 100)}%";
+        if(batteryPrecentageText != null) batteryPrecentageText.text = "idk%";
         batteryBar.SetProgressBar(batteryLevel);
 
 #else
