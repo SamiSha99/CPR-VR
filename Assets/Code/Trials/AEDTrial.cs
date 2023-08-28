@@ -25,9 +25,8 @@ public class AEDTrial : MonoBehaviour
 
     void OnAllPatchesApplied()
     {
-        //AudioSource.PlayClipAtPoint(analyzingNow, transform.position);
         localizedAudioPlayer?.TriggerAudio("VA.analyzing_now");
-        //QuestManager._Instance.ToggleTimer(false);
+        Util.GetXREvents().EnableMicRecording();
         Util.Invoke(this, () => BeepBeep(), 1.5f);
         Util.Invoke(this, () => BeepBeep(), 3.0f);
         Util.Invoke(this, () => BeepBeep(), 4.5f);
@@ -44,13 +43,11 @@ public class AEDTrial : MonoBehaviour
     void OnShockIsRequired()
     {
         localizedAudioPlayer?.TriggerAudio("VA.shock_required");
-        Util.GetXREvents().EnableMicRecording();
         Util.Invoke(this, () => OnButtonEnabled(), LocalizationHelper.UsingLanguage("ar") ? 4.35f : 3.25f);
     }
 
     void OnButtonEnabled()
     {
-        //QuestManager._Instance.ToggleTimer(true);
         localizedAudioPlayer?.TriggerAudio("VA.press_button");
         _ButtonEnabled?.Invoke();
     }
@@ -58,7 +55,6 @@ public class AEDTrial : MonoBehaviour
     public void OnButtonPressed()
     {
         AudioSource.PlayClipAtPoint(aedShockEffect, transform.position);
-        //Util.Invoke(this, () => QuestManager._Instance.CompleteCommandGoal("Press_Shock_Button_Goal_Command"), 3.0f);
         Util.Invoke(this, () => { 
             QuestManager qm = QuestManager._Instance;
             if(!qm.IsQuestGoalCompleted("Said_Clear"))
@@ -68,7 +64,7 @@ public class AEDTrial : MonoBehaviour
             }
             qm.CompleteCommandGoal("Press_Shock_Button_Goal_Command");
             qm.ForceCompleteQuest();
-        }, 3.0f);
+        }, 2.75f);
         
         Reset();
     }
