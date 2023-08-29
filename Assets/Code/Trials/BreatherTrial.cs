@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -112,7 +113,7 @@ public class BreatherTrial : MonoBehaviour
         GameObject cam = Util.GetPlayer().GetPlayerCameraObject();
         float range = Vector3.Distance(cam.transform.position, transform.position);
         float maxRange = Util.GetPlayer().transform.FindComponent<PlayerLookAtObject>("XREvents").lookRange;
-        return Mathf.Lerp(1.5f, 4.0f, Mathf.Lerp(1, 0, range/maxRange));
+        return Mathf.Lerp(1.25f, 4.25f, Mathf.Lerp(1, 0, range/maxRange));
     }
 
     void DoPenalty()
@@ -121,13 +122,7 @@ public class BreatherTrial : MonoBehaviour
         GameManager gm = GameManager._Instance;
         
         if(breathResult != BreathResult.Normal) QuestManager._Instance.AddQuestToRetry();
-        switch(breathResult)
-        {
-            case BreathResult.Slow:     gm.AddExamPenalty("ExamPenalty.BreatherSlow", 2);       break;
-            case BreathResult.Fast:     gm.AddExamPenalty("ExamPenalty.BreatherFast", 2);       break;
-            case BreathResult.TooLong:  gm.AddExamPenalty("ExamPenalty.BreatherTooLong", 2);    break;
-            default: break;
-        };
+        gm.AddExamPenalty("ExamPenalty.Breather" + Enum.GetName(typeof(BreathResult), breathResult), 2);
     }
 
     void OnComplete()
