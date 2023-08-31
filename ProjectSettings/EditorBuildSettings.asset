@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scenes/VR 360 Video.unity
     guid: 734a2e25075e567489aed9bcda334990
-  - enabled: 1
+  - enabled: 0
     path: Assets/Level/Scenes/VR Test.unity
     guid: 25acb1ebdfc75ff4b9e85dd0c8439681
   m_configObjects:

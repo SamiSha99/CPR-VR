@@ -26,6 +26,8 @@ public class LiveLineDrawer : MonoBehaviour
     
     private int slowMistakes, fastMistakes, highPressMistakes, lowPressMistakes;
 
+    public AdaptiveSystem_CPR adaptive;
+
     void Awake()
     {
         gameObject.SetActive(false);
@@ -47,6 +49,7 @@ public class LiveLineDrawer : MonoBehaviour
         playerDrawerValue = Mathf.Lerp(playerDrawerValue, value, Time.deltaTime * lerpRate);
         float y = playerDrawerValue;
         float demoY = 0.5f + 0.5f * Mathf.Sin(2 * Mathf.PI * currentTime * rate - 0.5f * Mathf.PI);
+        adaptive?.SimulateMovement(demoY);
         currentTime += Time.deltaTime;
         if(nextSample > 0)
         {
@@ -116,6 +119,11 @@ public class LiveLineDrawer : MonoBehaviour
         _ChestCompressionTrial = cct;
         SetCompressionText(PERFECT_CHEST_COMPRESSION_PER_MINUTE);
         SetCompressionDepthText(PERFECT_CHEST_COMPRESSION_DEPTH_INCHES);
+        if(!GameManager._Instance.isExam)
+        {
+            adaptive?.gameObject.SetActive(true);
+            adaptive?.FadeIn();
+        }
     }
     public void OnCompressionRecieved()
     {
@@ -155,6 +163,11 @@ public class LiveLineDrawer : MonoBehaviour
         fastMistakes = 0;
         lowPressMistakes = 0;
         highPressMistakes = 0;
+        if(!GameManager._Instance.isExam)
+        {
+            adaptive?.FadeOut(true);
+            adaptive?.gameObject.SetActive(false);
+        }
     }
 
     void SetCompressionText(int amount)
