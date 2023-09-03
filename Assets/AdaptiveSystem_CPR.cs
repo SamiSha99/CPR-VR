@@ -14,6 +14,7 @@ public class AdaptiveSystem_CPR : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.SetActive(false);
         leftHand.material = new Material(leftHand.material);
         rightHand.material = new Material(rightHand.material);
         startingPosition = transform.position;
