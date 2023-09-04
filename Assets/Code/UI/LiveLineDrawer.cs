@@ -27,7 +27,7 @@ public class LiveLineDrawer : MonoBehaviour
     private int slowMistakes, fastMistakes, highPressMistakes, lowPressMistakes;
 
     public AdaptiveSystem_CPR adaptive;
-
+    private float correctPressesInTheRow;
     void Awake()
     {
         gameObject.SetActive(false);
@@ -47,10 +47,13 @@ public class LiveLineDrawer : MonoBehaviour
         if(!_enabled) return;
 
         playerDrawerValue = Mathf.Lerp(playerDrawerValue, value, Time.deltaTime * lerpRate);
+        
         float y = playerDrawerValue;
         float demoY = 0.5f + 0.5f * Mathf.Sin(2 * Mathf.PI * currentTime * rate - 0.5f * Mathf.PI);
-        //adaptive?.SimulateMovement(demoY);
+        
+        if(!GameManager._Instance.isExam || true) adaptive?.SimulateMovement(demoY);
         currentTime += Time.deltaTime;
+        
         if(nextSample > 0)
         {
             nextSample = Mathf.Max(0.0f, nextSample - Time.deltaTime);
@@ -119,11 +122,11 @@ public class LiveLineDrawer : MonoBehaviour
         _ChestCompressionTrial = cct;
         SetCompressionText(PERFECT_CHEST_COMPRESSION_PER_MINUTE);
         SetCompressionDepthText(PERFECT_CHEST_COMPRESSION_DEPTH_INCHES);
-        //if(!GameManager._Instance.isExam)
-        //{
-        //    adaptive?.gameObject.SetActive(true);
-        //    adaptive?.FadeIn();
-        //}
+        if(!GameManager._Instance.isExam)
+        {
+            adaptive?.gameObject.SetActive(true);
+            adaptive?.FadeIn();
+        }
     }
     public void OnCompressionRecieved()
     {
@@ -163,11 +166,11 @@ public class LiveLineDrawer : MonoBehaviour
         fastMistakes = 0;
         lowPressMistakes = 0;
         highPressMistakes = 0;
-        //if(!GameManager._Instance.isExam)
-        //{
-        //    adaptive?.FadeOut(true);
-        //    adaptive?.gameObject.SetActive(false);
-        //}
+        if(!GameManager._Instance.isExam)
+        {
+            adaptive?.FadeOut(true);
+            adaptive?.gameObject.SetActive(false);
+        }
     }
 
     void SetCompressionText(int amount)
@@ -178,23 +181,31 @@ public class LiveLineDrawer : MonoBehaviour
         if(amount < 100)
         {
             slowMistakes++;
+            correctPressesInTheRow = 0;
             if(slowMistakes >= 5)
             {
                 gm.AddExamPenalty("ExamPenalty.CPRSlow", 1.0f);
                 QuestManager._Instance.AddQuestToRetry();
                 slowMistakes = 0;
+                if(!GameManager._Instance.isExam) adaptive?.FadeIn();
             }
         }
         else if(amount >= 130)
         {
             fastMistakes++;
+            correctPressesInTheRow = 0;
             if(fastMistakes >= 5)
             {
                 gm.AddExamPenalty("ExamPenalty.CPRFast", 1.0f);
                 QuestManager._Instance.AddQuestToRetry();
                 fastMistakes = 0;
+                if(!GameManager._Instance.isExam) adaptive?.FadeIn();
             }
         }
+        else
+            correctPressesInTheRow++;
+            
+        if(correctPressesInTheRow >= 4) adaptive?.FadeOut();
 
         LocalizationHelper.LocalizeTMP($"{amount} cc/m", _CompressionAverageText);
     }

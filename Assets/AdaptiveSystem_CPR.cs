@@ -14,10 +14,12 @@ public class AdaptiveSystem_CPR : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);
-        leftHand.material = new Material(leftHand.material);
-        rightHand.material = new Material(rightHand.material);
+        leftHand.sharedMaterial = new Material(leftHand.sharedMaterial);
+        rightHand.sharedMaterial = new Material(rightHand.sharedMaterial);
+        leftHand.enabled = true;
+        rightHand.enabled = true;
         startingPosition = transform.position;
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,7 +28,8 @@ public class AdaptiveSystem_CPR : MonoBehaviour
         if(isFadingIn)
             currentAlpha = fadeInDuration <= 0 ? 1 : Mathf.Clamp01(currentAlpha + Time.deltaTime/fadeInDuration);   
         else
-            currentAlpha = fadeOutDuration <= 0 ? 0 : Mathf.Clamp01(currentAlpha - Time.deltaTime/fadeOutDuration);   
+            currentAlpha = fadeOutDuration <= 0 ? 0 : Mathf.Clamp01(currentAlpha - Time.deltaTime/fadeOutDuration);
+        SetAlpha(currentAlpha);   
     }
     
     public void FadeIn(bool immediate = false)
@@ -44,8 +47,8 @@ public class AdaptiveSystem_CPR : MonoBehaviour
     }
     public void SetAlpha(float amount = 0)
     {
-        leftHand.material.SetFloat("_Opacity", amount);
-        rightHand.material.SetFloat("_Opacity", amount);
+        leftHand?.material.SetFloat("_Opacity", amount);
+        rightHand?.material.SetFloat("_Opacity", amount);
     }
 
     public void SimulateMovement(float yWaveValue)
@@ -55,5 +58,17 @@ public class AdaptiveSystem_CPR : MonoBehaviour
         yWaveValue *= 2;
         // then we apply the wave correctly
         transform.position = new Vector3(startingPosition.x, startingPosition.y + yWaveValue * WaveStrength, startingPosition.z);
+    }
+
+    public void Debug_FadeInLoop()
+    {
+        FadeIn();
+        Util.Invoke(this, () => Debug_FadeOutLoop(), 3.0f);
+    }
+
+    public void Debug_FadeOutLoop()
+    {
+        FadeOut();
+        Util.Invoke(this, () => Debug_FadeInLoop(), 3.0f);
     }
 }
