@@ -185,9 +185,9 @@ public class LiveLineDrawer : MonoBehaviour
             if(slowMistakes >= 5)
             {
                 gm.AddExamPenalty("ExamPenalty.CPRSlow", 1.0f);
-                QuestManager._Instance.AddQuestToRetry();
+                q.AddQuestToRetry();
                 slowMistakes = 0;
-                if(!GameManager._Instance.isExam) adaptive?.FadeIn();
+                if(!gm.isExam) adaptive?.FadeIn();
             }
         }
         else if(amount >= 130)
@@ -197,15 +197,15 @@ public class LiveLineDrawer : MonoBehaviour
             if(fastMistakes >= 5)
             {
                 gm.AddExamPenalty("ExamPenalty.CPRFast", 1.0f);
-                QuestManager._Instance.AddQuestToRetry();
+                q.AddQuestToRetry();
                 fastMistakes = 0;
-                if(!GameManager._Instance.isExam) adaptive?.FadeIn();
+                if(!gm.isExam) adaptive?.FadeIn();
             }
         }
         else
             correctPressesInTheRow++;
             
-        if(correctPressesInTheRow >= 4) adaptive?.FadeOut();
+        if(correctPressesInTheRow >= 3 && !gm.isExam) adaptive?.FadeOut();
 
         LocalizationHelper.LocalizeTMP($"{amount} cc/m", _CompressionAverageText);
     }
