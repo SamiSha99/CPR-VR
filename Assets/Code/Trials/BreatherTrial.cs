@@ -69,10 +69,10 @@ public class BreatherTrial : MonoBehaviour
                 break;
             case 1:
                 if(chestRaised) break;
-                if(notalkDuration > 0 && xrEvent.isTalking && !incorrectSecondBreathInterval && (notalkDuration <= 0.7f || notalkDuration >= 1.3f))
+                if(notalkDuration > 0 && xrEvent.isTalking && !incorrectSecondBreathInterval && (notalkDuration <= 0.625f || notalkDuration >= 1.375f))
                 {
                     incorrectSecondBreathInterval = true;
-                    breathResult = (BreathResult)(notalkDuration <= 0.7f ? 2 : (notalkDuration >= 1.3f ? 1 : 0));
+                    breathResult = (BreathResult)(notalkDuration <= 0.625f ? 2 : (notalkDuration >= 1.375f ? 1 : 0));
                 }
                 if(breathNormal < 0.8f) break;
                 breathesGive++;

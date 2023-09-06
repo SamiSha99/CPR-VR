@@ -45,3 +45,49 @@
 2023-08-15 15:28:42.405 [21] EROR BhapticsPlayer.Websocket.HapticPatternBehavior.OnMessage(WebSocketSharp.MessageEventArgs): OnMessage : SdkRequestAuthInit
 2023-08-15 15:28:42.407 [21] EROR BhapticsPlayer.Websocket.HapticPatternBehavior.GetHapticDeployMessage(System.String): GetHapticDeployMessage() HapticDeployHttpMessage
 2023-08-15 15:31:16.368 [1] EROR BhapticsPlayer.Window.PortalWindow.Window_Closing(System.Object, System.ComponentModel.CancelEventArgs): Window_Closing
+2023-09-05 09:46:35.492 [1] WARN BhapticsPlayer.Window.PortalWindow..ctor(): PortalWindow
+2023-09-05 09:46:36.577 [1] EROR BhapticsPlayer.Window.PortalWindow+<<-ctor>b__8_0>d.MoveNext(): Screen size: 1920, 1080
+2023-09-05 09:46:36.582 [1] WARN BhapticsPlayer.Window.PortalWindow+<<-ctor>b__8_0>d.MoveNext(): PortalWindow Loaded
+2023-09-05 09:46:36.698 [1] WARN BhapticsPlayer.Internal.LocalDbRepository.InitializeDatabase(): InitializeDatabase
+2023-09-05 09:46:37.245 [1] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-09-05 09:46:37.245 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-05 09:46:37.338 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Util Get BhapticsSettingValue 1
+2023-09-05 09:46:37.340 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): CurrentCulture: en-US
+2023-09-05 09:46:37.341 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language Before: en-US
+2023-09-05 09:46:37.343 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language: en-US
+2023-09-05 09:46:37.427 [1] EROR BhapticsPlayer.ViewModel.PortalMenuViewModel.InitRestMenus(): InitRestMenus
+2023-09-05 09:46:37.571 [1] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-09-05 09:46:37.580 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-05 09:46:37.994 [7] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-09-05 09:46:37.995 [7] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-05 09:46:38.053 [1] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-09-05 09:46:38.062 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-05 09:46:38.072 [1] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-09-05 09:46:38.085 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-05 09:46:38.102 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Util Get BhapticsSettingValue 1
+2023-09-05 09:46:38.110 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): CurrentCulture: en-US
+2023-09-05 09:46:38.118 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language Before: en-US
+2023-09-05 09:46:38.126 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language: en-US
+2023-09-05 09:46:38.206 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-05 09:46:38.208 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-05 09:46:38.211 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-05 09:46:38.212 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-05 09:46:38.297 [1] WARN BhapticsPlayer.View.PortalWindowMainView+<<-ctor>b__1_0>d.MoveNext(): PortalWindowMainView Loaded
+2023-09-05 09:46:38.457 [1] WARN BhapticsPlayer.View.PortalWindowMainView+<<-ctor>b__1_0>d.MoveNext(): LastVersion: 16
+2023-09-05 09:46:38.811 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Util Get BhapticsSettingValue 1
+2023-09-05 09:46:38.812 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): CurrentCulture: en-US
+2023-09-05 09:46:38.812 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language Before: en-US
+2023-09-05 09:46:38.813 [1] WARN BhapticsPlayer.Utils.Utilities.SetLanguage(): Properties.Settings.Default.language: en-US
+2023-09-05 09:46:38.824 [1] EROR BhapticsPlayer.Utils.WindowsUtils.GetBluetoothVersion(): GetBluetoothVersion error No Radio.
+2023-09-05 09:46:38.825 [1] WARN BhapticsPlayer.Window.PortalWindow+<CheckPlayerAndPopup>d__10.MoveNext(): Bluetooth Version: Unknown
+2023-09-05 09:46:38.826 [4] EROR BhapticsPlayer.ViewModel.ProfileMyViewModel+<>c__DisplayClass83_0.<Init>b__0(System.Object, System.ComponentModel.PropertyChangedEventArgs): Changed CanHapticResolution
+2023-09-05 09:46:38.899 [1] WARN BhapticsPlayer.View.PortalWindowMainView+<<-ctor>b__1_0>d.MoveNext(): PortalWindowMainView Loaded
+2023-09-05 09:46:38.955 [1] WARN BhapticsPlayer.View.PortalWindowMainView+<<-ctor>b__1_0>d.MoveNext(): LastVersion: 16
+2023-09-05 09:46:39.388 [16] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-09-05 09:46:39.409 [16] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamLibFolder(): path C:\Program Files (x86)\Steam
+2023-09-05 09:46:39.436 [16] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-09-05 09:46:39.455 [16] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-09-05 09:46:39.472 [16] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamLibFolder(): path C:\Program Files (x86)\Steam
+2023-09-05 09:46:39.500 [16] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-09-05 09:48:44.827 [1] WARN BhapticsPlayer.Utils.UpdateService.Start(): updaterPath C:\Users\Administrator\AppData\Local\bhaptics\Updater.exe
+2023-09-05 09:48:45.007 [1] EROR BhapticsPlayer.Window.PortalWindow.Window_Closing(System.Object, System.ComponentModel.CancelEventArgs): Window_Closing
