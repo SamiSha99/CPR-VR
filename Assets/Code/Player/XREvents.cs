@@ -12,11 +12,13 @@ public class XREvents : MonoBehaviour
     private bool listenToMic;
     public bool isTalking;
     public float micModifier = 1;
+    public GameObject micSensorPrefab;
+    private GameObject activeMicSensor;
 
     public static event Action<GameObject, GameObject, bool> onItemGrabbed, onItemInteracted, onItemTouched;
     public static event Action<GameObject, GameObject, bool, float> onItemLookedAt;
     public static event Action<GameObject, GameObject, float> onItemShaked; // Grab Innteractable 2
-    public static event Action<GameObject, GameObject, float> onTalking; // Grab Innteractable 2
+    public static event Action<float, float> onTalking; // Grab Innteractable 2
     public static event Action<GameObject, GameObject> onItemGrabbedNearby; // Grab Innteractable 2
     // XR Events
     public void OnSelectEnteredEvent(SelectEnterEventArgs args) => ProcessSelectEvent(args, false);
@@ -65,9 +67,18 @@ public class XREvents : MonoBehaviour
         if(microphoneClip == null) microphoneClip = Util.MicrophoneToAudioClip();
         lastAudioDetectionTime = Time.timeSinceLevelLoad;
         listenToMic = true;
+        if(micSensorPrefab != null)
+            activeMicSensor = Instantiate(micSensorPrefab);
     }
-    public void DisableMicRecording() => listenToMic = false;
-
+    public void DisableMicRecording()
+    {
+        listenToMic = false;
+        if(activeMicSensor != null)
+        {
+            Destroy(activeMicSensor);
+            activeMicSensor = null;
+        }
+    }
     public void OnPauseMenuPinch() => BhapticsLibrary.Play(BhapticsEvent.LEFT_GLOVE_PINCH);
     
 
@@ -78,7 +89,7 @@ public class XREvents : MonoBehaviour
 
         float loudness = Util.GetLoudnessFromMicrophone(microphoneClip, 32) * Util.MICROPHONE_LOUDNESS_MULTIPLIER * micModifier;
         isTalking = loudness >= Util.MICROPHONE_LOUDNESS_THRESHOLD;
-        
+        OnTalking(loudness, Mathf.Clamp01(loudness/Util.MICROPHONE_LOUDNESS_THRESHOLD));
         // Reinstate it again in 5 seconds
         if(loudness < Util.MICROPHONE_LOUDNESS_THRESHOLD)
         {
@@ -93,7 +104,6 @@ public class XREvents : MonoBehaviour
             return;
         }
         lastAudioDetectionTime = Time.timeSinceLevelLoad;
-        OnTalking(gameObject, gameObject, loudness);
     }
 
     // Events
@@ -105,7 +115,8 @@ public class XREvents : MonoBehaviour
     private void OnItemUninteracted(GameObject o, GameObject instigator) => onItemInteracted?.Invoke(o, instigator, true);
     private void OnItemTouched(GameObject o, GameObject instigator) => onItemTouched?.Invoke(o, instigator, false);
     private void OnItemUntouched(GameObject o, GameObject instigator) => onItemTouched?.Invoke(o, instigator, true);
-    private void OnTalking(GameObject o, GameObject instigator, float talkAmount = 0) => onTalking?.Invoke(gameObject, gameObject, talkAmount);
+    // talkAmount = raw value with no cap, talkAmountNoramlized = 0 - 1 and clamped, 1 = talking, anything less = not talking
+    private void OnTalking(float talkAmount = 0, float talkAmountNormalized = 0) => onTalking?.Invoke(talkAmount, talkAmountNormalized);
     public static void OnItemShake(GameObject o, GameObject instigator, float shakeAmount = 0) => onItemShaked?.Invoke(o, instigator, shakeAmount);
     public static void OnItemGrabbedNearby(GameObject o, GameObject instigator) => onItemGrabbedNearby?.Invoke(o, instigator);
 }

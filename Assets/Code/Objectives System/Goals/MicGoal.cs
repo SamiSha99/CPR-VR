@@ -17,10 +17,10 @@ public class MicGoal : Quest.QuestGoal
         Util.GetXREvents().EnableMicRecording();
         _GoalUIType = GoalUIType.GUIT_ProgressBar;
     }
-    private void OnTalkingRecieved(GameObject o, GameObject instigator, float talkAmount)
+    private void OnTalkingRecieved(float talkAmount, float talkAmountNormalized)
     {
-        if (!IsValidToEvaluate(o.name)) return;
-        
+        if(talkAmountNormalized < 1.0f) return;
+
         talkAmount *= micSensitivityMultiplier;
         currentAmount += talkAmount;
         Evaluate();
@@ -29,8 +29,8 @@ public class MicGoal : Quest.QuestGoal
     {
         if(micDecayAmount <= 0) return;
         if(completed) return;
-        
-        if(!Util.GetXREvents().isTalking)
+        XREvents xrE = Util.GetXREvents();
+        if(xrE != null && !xrE.isTalking)
             currentAmount = Mathf.Max(currentAmount - Time.deltaTime * micDecayAmount, 0.0f);
         QuestManager._Instance.ForceUpdateGoal(this);
     }
@@ -38,6 +38,6 @@ public class MicGoal : Quest.QuestGoal
     {
         base.CleanUp();
         XREvents.onTalking -= OnTalkingRecieved;
-        Util.GetXREvents().DisableMicRecording();
+        Util.GetXREvents()?.DisableMicRecording();
     }
 }

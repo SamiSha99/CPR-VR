@@ -4828,7 +4828,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.4281397, y: 1.098147, z: 0.8037561}
+  m_Size: {x: 2.4281397, y: 1.098147, z: 1.62}
   m_Center: {x: 0.113438435, y: 0.4813251, z: 0.09812235}
 --- !u!1001 &977921442
 PrefabInstance:
@@ -5787,6 +5787,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5354673517395924551, guid: a16d4f5b80ef2fa48a9c15fe19fdf497,
+        type: 3}
+      propertyPath: micSensorPrefab
+      value: 
+      objectReference: {fileID: 1303087598443726655, guid: eca00764d7f00b944966d7df406f4c0f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a16d4f5b80ef2fa48a9c15fe19fdf497, type: 3}
 --- !u!1 &1114760658 stripped
@@ -9969,6 +9975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TutorialQuestsLine:
+  - {fileID: 11400000, guid: baa483dd6cf61e0409633fbfb487b8d9, type: 2}
   - {fileID: 8300000, guid: eec57c2a67cab4e48ac5241837d7d4fd, type: 3}
   - {fileID: 8300000, guid: 665a40052a7b3b54dae5b68684124c0d, type: 3}
   - {fileID: 11400000, guid: bdbb2ef8048e14b4599c44ab927c0993, type: 2}
@@ -13609,6 +13616,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.097
       objectReference: {fileID: 0}
+    - target: {fileID: 423252670185205558, guid: 02ae6fd292718d34a8991eaff0fc4cd3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 493480599898599366, guid: 02ae6fd292718d34a8991eaff0fc4cd3,
         type: 3}
       propertyPath: m_Quality
@@ -15174,6 +15186,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220217402662198476, guid: 02ae6fd292718d34a8991eaff0fc4cd3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.080575295
       objectReference: {fileID: 0}
     - target: {fileID: 8220217402662198476, guid: 02ae6fd292718d34a8991eaff0fc4cd3,
         type: 3}
