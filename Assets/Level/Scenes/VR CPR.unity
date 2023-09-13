@@ -15491,12 +15491,12 @@ PrefabInstance:
     - target: {fileID: 5548396111691642697, guid: 3ce128b8e97f12841bd7cec1008c77c9,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5548396111691642697, guid: 3ce128b8e97f12841bd7cec1008c77c9,
         type: 3}
       propertyPath: m_SortingLayerID
-      value: -1894469521
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5548396111691642698, guid: 3ce128b8e97f12841bd7cec1008c77c9,
         type: 3}

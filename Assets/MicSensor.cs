@@ -1,22 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MicSensor : MonoBehaviour
 {
-    public GameObject TalkingImage;
+    public GameObject TalkingImage, TextPrompt;
     public ProgressBar micProgressBar;
 
-    void Awake() => XREvents.onTalking += OnTalking; 
+    void Awake()
+    {
+        XREvents.onTalking += OnTalking;
+        ShowTalkImage(false);
+    }
     void OnDestroy() => XREvents.onTalking -= OnTalking; 
+
+    public void SetText(string localizationKey)
+    {
+        if(localizationKey == "") localizationKey = "Other.MicSensorDefault";
+        
+        TextMeshProUGUI tmp = TextPrompt?.GetComponent<TextMeshProUGUI>();
+        if(tmp == null) return; 
+        LocalizationHelper.LocalizeTMP(localizationKey, tmp);
+    }
 
     void OnTalking(float loud, float loudNormal)
     {
         // tell no one hush
-        ShowTalkImage(loudNormal >= 0.8f);
-        micProgressBar.SetProgressBar(loudNormal);
+        ShowTalkImage(loudNormal >= 0.9f);
+        // just in case, a dead zone for inaccuracy
+        micProgressBar.SetProgressBar(loudNormal <= 0.025f ? 0.0f : loudNormal);
     }
 
-    void ShowTalkImage(bool enable = false) => TalkingImage?.SetActive(enable);
-    
+    void ShowTalkImage(bool enable = false)
+    {
+        TalkingImage?.SetActive(enable);
+        TextPrompt?.SetActive(!enable);
+    } 
 }

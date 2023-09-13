@@ -195,6 +195,8 @@ public static class LocalizationHelper
 
     static public void FlipComponent(RectTransform rect)
     {
+        bool scriptableUI = rect.gameObject.HasComponent<UIScript>(out UIScript s);
+        if(scriptableUI && !s.supportsRightToLeftUI) return;
         rect.localScale = Vector3.Scale(rect.localScale, new Vector3(-1, 1, 1));
     }
 }

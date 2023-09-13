@@ -26,7 +26,7 @@ public class AEDTrial : MonoBehaviour
     void OnAllPatchesApplied()
     {
         localizedAudioPlayer?.TriggerAudio("VA.analyzing_now");
-        Util.GetXREvents().EnableMicRecording();
+        Util.GetXREvents().EnableMicRecording("Other.MicSensorClear");
         Util.Invoke(this, () => BeepBeep(), 1.5f);
         Util.Invoke(this, () => BeepBeep(), 3.0f);
         Util.Invoke(this, () => BeepBeep(), 4.5f);

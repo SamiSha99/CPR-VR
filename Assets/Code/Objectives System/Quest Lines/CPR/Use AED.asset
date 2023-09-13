@@ -78,7 +78,7 @@ MonoBehaviour:
       m_Calls: []
   index: 2
   micDecayAmount: 0.5
-  micSensitivityMultiplier: 2.5
+  micSensitivityMultiplier: 1.5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

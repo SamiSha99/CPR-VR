@@ -62,13 +62,18 @@ public class XREvents : MonoBehaviour
         //if(handName == "Right Hand") BhapticsLibrary.PlayParam(BhapticsEvent.LEFT_CPR_PRESS, 0.4f, 0.5f, 20.0f, 3.0f);
     }
 
-    public void EnableMicRecording()
+    public void EnableMicRecording(string localizeSensorMicPrompt = "")
     {
         if(microphoneClip == null) microphoneClip = Util.MicrophoneToAudioClip();
         lastAudioDetectionTime = Time.timeSinceLevelLoad;
         listenToMic = true;
+        if(GameManager._Instance != null && GameManager._Instance.isExam) return;
         if(micSensorPrefab != null)
-            activeMicSensor = Instantiate(micSensorPrefab);
+        {
+            if(activeMicSensor == null)
+                activeMicSensor = Instantiate(micSensorPrefab);
+            activeMicSensor.GetComponent<MicSensor>()?.SetText(localizeSensorMicPrompt);
+        }
     }
     public void DisableMicRecording()
     {

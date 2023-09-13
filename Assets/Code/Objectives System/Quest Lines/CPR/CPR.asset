@@ -39,7 +39,7 @@ MonoBehaviour:
   goalCompletedCommand: CPR
   objectiveNameList: []
   requiredGoals: []
-  silent: 0
+  silent: 1
   goalCompleted:
     m_PersistentCalls:
       m_Calls: []
