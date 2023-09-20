@@ -10029,15 +10029,27 @@ MonoBehaviour:
     conditions:
     - ExamPenalty.Time
     amount: 10
-  - name: 3 conditions | >= 6
+  - name: 1 condition | >= 5
+    conditions:
+    - ExamPenalty.InsufficentCompressions
+    amount: 5
+  - name: 1 condition | >= 5
+    conditions:
+    - ExamPenalty.NotSayingClear
+    amount: 5
+  - name: 3 conditions | >= 5
     conditions:
     - ExamPenalty.BreatherSlow
     - ExamPenalty.BreatherFast
     - ExamPenalty.BreatherTooLong
-    amount: 6
-  - name: 0 condition | >= 6
-    conditions: []
-    amount: 6
+    amount: 5
+  - name: 4 conditions | >= 10
+    conditions:
+    - ExamPenalty.CPRSlow
+    - ExamPenalty.CPRFast
+    - ExamPenalty.CPRPressLow
+    - ExamPenalty.CPRPressHigh
+    amount: 10
   _ExamPenalty: []
   accumulatedPenalties: 0
   resultCanvas: {fileID: 1154143197}
