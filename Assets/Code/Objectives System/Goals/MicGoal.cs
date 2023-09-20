@@ -10,17 +10,21 @@ public class MicGoal : Quest.QuestGoal
     [Tooltip("Multiply the recieved talkAmount value in the OnTalkingRecieved(...).\nMakes goal completion more forgiving... or harder...")]
     [Min(0.01f)]
     public float micSensitivityMultiplier = 1.0f;
+    [Tooltip("If checked will immediatly start recording mic, otherwise, it might be handled elsewhere.")]
+    public bool startListening = true;
     public override void Initialize()
     {
         base.Initialize();
         XREvents.onTalking += OnTalkingRecieved;
-        Util.GetXREvents().EnableMicRecording();
+        if(startListening)
+            Util.GetXREvents().EnableMicRecording();
         _GoalUIType = GoalUIType.GUIT_ProgressBar;
     }
     private void OnTalkingRecieved(float talkAmount, float talkAmountNormalized)
     {
         if(talkAmountNormalized < 1.0f) return;
-
+        if(!IsValidToEvaluate()) return;
+        
         talkAmount *= micSensitivityMultiplier;
         currentAmount += talkAmount;
         Evaluate();

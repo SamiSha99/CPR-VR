@@ -105,7 +105,7 @@ public class Quest : ScriptableObject
             if(quest != null) quest.questGoalUpdated?.Invoke(this);
         }
         public virtual void QuestGoalUpdate() {}
-        public bool IsValidToEvaluate(string objectname)
+        public bool IsValidToEvaluate(string objectname = "")
         {
             if(RequiresQuestGoalsCompleted()) return false;
             if(objectiveNameList.Count > 0 && !objectiveNameList.Contains(objectname)) return false;

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool completed;
     [Tooltip("The exam's content step by step, each step is evaulated.")]
     public List<Object> _ExamQuestsLine; // We do this step by step to examinate how fast/slow and effecient the player is and we add score
+    [System.Serializable]
     public struct ExamPenalty {
         public string penaltyName;
         public float penaltyAmount;
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour
             this.penaltyAmount = penaltyAmount;
         }
     }
+    public List<FailedConditions> FailedConditions;
+    [HideInInspector]
     public List<ExamPenalty> _ExamPenalty = new List<ExamPenalty>();
     public int accumulatedPenalties;
     public ExamResults resultCanvas;
@@ -143,18 +146,30 @@ public class GameManager : MonoBehaviour
 
         if(isExam)
         {
-            ShowFinalScore();
-            CSVSaver.SaveData(score, _ExamPenalty, Time.timeSinceLevelLoadAsDouble);
+            bool hasPassed = !IsFailedConditionMet();
+            resultCanvas?.ShowFinalScore(score, _ExamPenalty, hasPassed);
+            CSVSaver.SaveData(score, _ExamPenalty, Time.timeSinceLevelLoadAsDouble, hasPassed);
         }
         else
-            Util.Invoke(this, () => Util.LoadMenu(), 2.5f);
+            Util.Invoke(this, () => Util.LoadMenu(), 1.25f);
         return true;
     }
 
-    private void ShowFinalScore()
+    private bool IsFailedConditionMet()
     {
-        if(resultCanvas == null) return;
-        resultCanvas.ShowFinalScore(score, _ExamPenalty);
+        float amount;
+        foreach (FailedConditions fc in FailedConditions)
+        {
+            amount = 0;
+            for(int i = 0; i < _ExamPenalty.Count; i++)
+            {
+                if(!fc.conditions.Contains(_ExamPenalty[i].penaltyName)) continue;
+                amount += _ExamPenalty[i].penaltyAmount;
+            }
+            if(amount < fc.amount) continue;
+            return true;
+        }
+        return false;
     }
 
     public void AddQuestToRetry(Quest q)
@@ -212,4 +227,6 @@ public class GameManager : MonoBehaviour
         if(GameMenuManager._Instance == null) return false;
         return GameMenuManager._Instance.IsPaused();
     }
+
+    public void OnValidate() => FailedConditions?.ForEach(l => l.Validate());
 }

@@ -8673,3 +8673,34 @@ Parameter name: index
 2023-09-13 16:45:10.623 [24] WARN BhapticsPlayer.Haptic.AthFilePlayer.Register(BhapticsPlayer.Haptic.RegisterAthRequest): Register() Does not have an app. qglBMDtqurCe5sAkSzd0 create one.
 2023-09-13 16:45:11.422 [76] EROR BhapticsPlayer.Websocket.HapticPatternBehavior.OnMessage(WebSocketSharp.MessageEventArgs): OnMessage : SdkRequestAuthInit
 2023-09-13 16:45:11.423 [76] EROR BhapticsPlayer.Websocket.HapticPatternBehavior.GetHapticDeployMessage(System.String): GetHapticDeployMessage() HapticDeployHttpMessage
+2023-09-17 13:28:08.933 [1] WARN BhapticsPlayer.Window.PortalWindow..ctor(): PortalWindow
+2023-09-17 13:28:10.163 [1] WARN BhapticsPlayer.Window.PortalWindow+<<-ctor>b__8_0>d.MoveNext(): PortalWindow Loaded
+2023-09-17 13:28:10.286 [1] WARN BhapticsPlayer.Internal.LocalDbRepository.InitializeDatabase(): InitializeDatabase
+2023-09-17 13:28:10.889 [1] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-09-17 13:28:10.889 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-17 13:28:11.047 [1] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-09-17 13:28:11.050 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-17 13:28:11.053 [1] EROR BhapticsPlayer.Audio.UserService.GetUser(): User not ready.
+2023-09-17 13:28:11.056 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-17 13:28:11.148 [1] EROR BhapticsPlayer.ViewModel.PortalMenuViewModel.InitRestMenus(): InitRestMenus
+2023-09-17 13:28:11.303 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-17 13:28:11.778 [6] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-17 13:28:11.814 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-17 13:28:11.837 [1] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-17 13:28:12.027 [1] WARN BhapticsPlayer.View.PortalWindowMainView+<<-ctor>b__1_0>d.MoveNext(): PortalWindowMainView Loaded
+2023-09-17 13:28:12.123 [1] EROR BhapticsPlayer.Utils.WindowsUtils.GetBluetoothVersion(): GetBluetoothVersion error No Radio.
+2023-09-17 13:28:12.125 [1] WARN BhapticsPlayer.Window.PortalWindow+<SetPlayerData>d__13.MoveNext(): Bluetooth Version: Unknown
+2023-09-17 13:28:12.195 [1] WARN BhapticsPlayer.View.PortalWindowMainView+<<-ctor>b__1_0>d.MoveNext(): LastVersion: 18
+2023-09-17 13:28:12.569 [1] EROR BhapticsPlayer.ViewModel.ProfileMyViewModel+<>c__DisplayClass83_0.<Init>b__0(System.Object, System.ComponentModel.PropertyChangedEventArgs): Changed CanHapticResolution
+2023-09-17 13:28:13.542 [8] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-09-17 13:28:13.558 [8] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamLibFolder(): path C:\Program Files (x86)\Steam
+2023-09-17 13:28:13.581 [8] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-09-17 13:28:13.603 [8] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-09-17 13:28:13.613 [8] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamLibFolder(): path C:\Program Files (x86)\Steam
+2023-09-17 13:28:13.635 [8] EROR BhapticsPlayer.Utils.SteamUtils.GetSteamInstalledDir(): GetSteamInstalledDir: SOFTWARE\Wow6432Node\Valve\Steam, C:\Program Files (x86)\Steam
+2023-09-17 13:28:13.704 [15] WARN BhapticsPlayer.Login.UserRepository.GetCurrentUser(): GetCurrentUser User null
+2023-09-17 13:28:13.738 [9] WARN BhapticsPlayer.Haptic.AthFilePlayer.Register(BhapticsPlayer.Haptic.RegisterAthRequest): Register() Does not have an app. qglBMDtqurCe5sAkSzd0 create one.
+2023-09-17 13:28:14.815 [11] EROR BhapticsPlayer.Websocket.HapticPatternBehavior.OnMessage(WebSocketSharp.MessageEventArgs): OnMessage : SdkRequestAuthInit
+2023-09-17 13:28:14.818 [11] EROR BhapticsPlayer.Websocket.HapticPatternBehavior.GetHapticDeployMessage(System.String): GetHapticDeployMessage() HapticDeployHttpMessage
+2023-09-17 13:42:29.667 [1] EROR BhapticsPlayer.Window.PortalWindow.Window_Closing(System.Object, System.ComponentModel.CancelEventArgs): Window_Closing
+2023-09-17 15:51:44.592 [1] EROR BhapticsPlayer.Window.PortalWindow.Window_Closing(System.Object, System.ComponentModel.CancelEventArgs): Window_Closing

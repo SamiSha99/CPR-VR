@@ -44,7 +44,7 @@ public class CSVSaver
         }
     }
 
-    public static void SaveData(float finalMark, List<GameManager.ExamPenalty> recievedPenalties, double timetaken)
+    public static void SaveData(float finalMark, List<GameManager.ExamPenalty> recievedPenalties, double timetaken, bool hasPassed)
     {
         SetPathAndDirectory();
 
@@ -55,6 +55,7 @@ public class CSVSaver
         if(evaulationDate != "1_1_1970_00_00_00")
         {
             newEvaluationText += $"final mark:,{ed.finalMark}\n";
+            newEvaluationText += $"has passed?:,{hasPassed}\n";
             newEvaluationText += $"time taken:,{ed.timetaken}\n";
             newEvaluationText += $",\n";
             newEvaluationText += "mistakes, mistakes amount\n";
@@ -85,6 +86,6 @@ public class CSVSaver
             new("skill issue?!? o.o? 🤨📸", 25)
         };
 
-        SaveData(100, penalties, 330.10);
+        SaveData(100, penalties, 330.10, false);
     }
 }

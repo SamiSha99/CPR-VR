@@ -9,17 +9,19 @@ using System.Linq;
 
 public class ExamResults : MonoBehaviour
 {
-    public TextMeshProUGUI Title, MistakeTitle, Mistakes, FinalScoreText, ScoreValue, LeaveButton, NameText;
+    public TextMeshProUGUI Title, MistakeTitle, Mistakes, FinalScoreText, ScoreValue, LeaveButton, NameText, PassText, PassResultText;
     public List<GameManager.ExamPenalty> MistakesLocalization;
     public GameObject MistakeChildTemplate, MistakesList;
     private string localizedMistakes;
     private float score;
+    private bool passed;
     void Awake() => LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
     void OnDestroy() => LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
-    public void ShowFinalScore(float score, List<GameManager.ExamPenalty> mistakeLocalizations)
+    public void ShowFinalScore(float score, List<GameManager.ExamPenalty> mistakeLocalizations, bool passed = false)
     {
         MistakesLocalization = mistakeLocalizations;
         this.score = score;
+        this.passed = passed;
         LocalizeContent();
         gameObject.SetActive(true);
     }
@@ -32,6 +34,9 @@ public class ExamResults : MonoBehaviour
         LocalizationHelper.LocalizeTMP("ExamResults.Leave", LeaveButton);
         LocalizationHelper.LocalizeTMP("ExamResults.Name", NameText);
         
+        LocalizationHelper.LocalizeTMP("ExamResults.Passed", PassText);
+        LocalizationHelper.LocalizeTMP("ExamResults." + (passed ? "Yes" : "No"), PassResultText);
+
         while(MistakesList.transform.childCount > 0) DestroyImmediate(MistakesList.transform.GetChild(0).gameObject);
         if(MistakesLocalization.Count <= 0)
             AddMistakeChild(new GameManager.ExamPenalty("ExamResults.Perfect"));

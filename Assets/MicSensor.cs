@@ -8,11 +8,7 @@ public class MicSensor : MonoBehaviour
     public GameObject TalkingImage, TextPrompt;
     public ProgressBar micProgressBar;
 
-    void Awake()
-    {
-        XREvents.onTalking += OnTalking;
-        ShowTalkImage(false);
-    }
+    void Awake() => XREvents.onTalking += OnTalking;
     void OnDestroy() => XREvents.onTalking -= OnTalking; 
 
     public void SetText(string localizationKey)
@@ -26,15 +22,7 @@ public class MicSensor : MonoBehaviour
 
     void OnTalking(float loud, float loudNormal)
     {
-        // tell no one hush
-        ShowTalkImage(loudNormal >= 0.9f);
-        // just in case, a dead zone for inaccuracy
+        // dead zone
         micProgressBar.SetProgressBar(loudNormal <= 0.025f ? 0.0f : loudNormal);
     }
-
-    void ShowTalkImage(bool enable = false)
-    {
-        TalkingImage?.SetActive(enable);
-        TextPrompt?.SetActive(!enable);
-    } 
 }

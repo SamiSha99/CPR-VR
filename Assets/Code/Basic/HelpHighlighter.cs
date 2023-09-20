@@ -36,8 +36,22 @@ public class HelpHighlighter : MonoBehaviour
             return;
         }
 
-        Vector3 leftHandPos = leftHand.transform.position, rightHandPos = rightHand.transform.position;
-        bool belowDistance = Vector3.Distance(leftHandPos, pos) <= radiusRange  || Vector3.Distance(rightHandPos, pos) <= radiusRange;
+        Vector3 leftHandPos, rightHandPos;
+        bool belowDistance = false;
+        
+        if(rightHand != null)
+        {
+            rightHandPos = rightHand.transform.position;
+            belowDistance = Vector3.Distance(rightHandPos, pos) <= radiusRange;
+        }
+
+        if(leftHand != null)
+        {
+            leftHandPos = leftHand.transform.position;
+            // So it doesn't override the above if true.
+            belowDistance = belowDistance || Vector3.Distance(leftHandPos, pos) <= radiusRange;
+        }
+
         ToggleHighlighter(ShouldHideOnGrab(belowDistance) ? false : belowDistance);
     }
     
@@ -45,7 +59,7 @@ public class HelpHighlighter : MonoBehaviour
     {
         if(inRange == b) return;
         inRange = b;
-        if(hiderScript != null) hiderScript.SetHidden(!inRange);
+        hiderScript?.SetHidden(!inRange);
     }
 
     void OnDrawGizmosSelected()

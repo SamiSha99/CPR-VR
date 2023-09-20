@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   editorQuestGoalName: Ask if they are ok
   description: Quest.SignOfLifeGoal3
-  requiredAmount: 8
+  requiredAmount: 4
   _GoalUIType: 2
   goalCompletedCommand: Are_You_Alright
   objectiveNameList: []
@@ -102,3 +102,4 @@ MonoBehaviour:
   index: 2
   micDecayAmount: 1.25
   micSensitivityMultiplier: 1.25
+  startListening: 1

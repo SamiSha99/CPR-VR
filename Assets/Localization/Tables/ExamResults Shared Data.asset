@@ -39,6 +39,18 @@ MonoBehaviour:
     m_Key: Name
     m_Metadata:
       m_Items: []
+  - m_Id: 40589092217266176
+    m_Key: Passed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40589161981124608
+    m_Key: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40589213382320128
+    m_Key: No
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

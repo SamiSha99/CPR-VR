@@ -110,10 +110,11 @@ public class BreatherTrial : MonoBehaviour
     
     float CalculateMouthToMouthPosition()
     {
-        GameObject cam = Util.GetPlayer().GetPlayerCameraObject();
+        GameObject plyr = Util.GetPlayer();
+        GameObject cam = plyr.GetPlayerCameraObject();
         float range = Vector3.Distance(cam.transform.position, transform.position);
-        float maxRange = Util.GetPlayer().transform.FindComponent<PlayerLookAtObject>("XREvents").lookRange;
-        return Mathf.Lerp(2.0f, 5.0f, Mathf.Lerp(1, 0, range/maxRange));
+        float maxRange = plyr.transform.FindComponent<PlayerLookAtObject>("XREvents").lookRange;
+        return Mathf.Lerp(2.25f, 4.0f, Mathf.Lerp(1, 0, range/maxRange));
     }
 
     void DoPenalty()
