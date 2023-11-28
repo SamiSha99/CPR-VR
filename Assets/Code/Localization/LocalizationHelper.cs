@@ -94,13 +94,6 @@ public static class LocalizationHelper
         
         return GetText(text[0], text[1]);
     }
-    /// <summary>Returns a localized string of the inputted table and key.</summary>
-    static public string GetText(string table, string key)
-    {
-        //string text = LocalizationSettings.StringDatabase.GetLocalizedStringAsync(table, key, null).Result;
-        string text = LocalizationSettings.StringDatabase.GetLocalizedString(table, key, null);
-        return text;
-    }
     /// <summary>Returns a localized asset of the passed localization command. Command format: "TableName.KeyName".</summary>
     static public T GetAsset<T>(string localizationCommand) where T : UnityEngine.Object
     {
@@ -108,6 +101,12 @@ public static class LocalizationHelper
         string[] text = localizationCommand.Split(".");
         if(text.Length != 2) return null;
         return GetAsset<T>(text[0], text[1]);
+    }
+    /// <summary>Returns a localized string of the inputted table and key.</summary>
+    static public string GetText(string table, string key)
+    {
+        string text = LocalizationSettings.StringDatabase.GetLocalizedString(table, key, null);
+        return text;
     }
     /// <summary>Returns a localized asset of the inputted table and key.</summary>
     static public T GetAsset<T>(string table, string key) where T : UnityEngine.Object

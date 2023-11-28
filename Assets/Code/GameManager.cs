@@ -58,7 +58,9 @@ public class GameManager : MonoBehaviour
 
         default_TutotrialQuestsLine = new List<Object>(_TutorialQuestsLine);
         default_ExamQuestsLine = new List<Object>(_ExamQuestsLine);
-        
+
+        //Util.Invoke(this, () => {AddExamPenalty("ExamPenalty.CPRSlow", 1.0f);}, 5.0f);
+
         if(isExam)
         {
             if(default_ExamQuestsLine.Count <= 0) return;
@@ -95,12 +97,6 @@ public class GameManager : MonoBehaviour
                     break;
             }
             _TutorialQuestsLine.RemoveAt(0);
-        }
-        else
-        {
-            QuestManager._Instance.BeginQuest(retryQuests[0]);
-            command = retryQuests[0].questCommand;
-            retryQuests.RemoveAt(0);
         }
         OnModuleProgressed.TriggerEvent(command + TUTORIAL_EVENT);
         OnModuleProgressed.TriggerEvent(command);

@@ -17,8 +17,8 @@ public class MistakeManager : MonoBehaviour
         activeMistake = Instantiate(mistakePrefab);
         if(activeMistake != null)
         {
-            if(activeMistake.HasComponent<MistakePrompt>(out MistakePrompt mp)) mp.DoLocalization(localization);
-            Destroy(activeMistake, duration / (GameManager._Instance.isExam ? 2 : 1));
+            if(activeMistake.HasComponent(out MistakePrompt mp)) mp.DoLocalization(localization);
+            Destroy(activeMistake, duration);
         }
     }
 }

@@ -17,9 +17,9 @@ public class XREvents : MonoBehaviour
 
     public static event Action<GameObject, GameObject, bool> onItemGrabbed, onItemInteracted, onItemTouched;
     public static event Action<GameObject, GameObject, bool, float> onItemLookedAt;
-    public static event Action<GameObject, GameObject, float> onItemShaked; // Grab Innteractable 2
-    public static event Action<float, float> onTalking; // Grab Innteractable 2
-    public static event Action<GameObject, GameObject> onItemGrabbedNearby; // Grab Innteractable 2
+    public static event Action<GameObject, GameObject, float> onItemShaked;
+    public static event Action<float, float> onTalking;
+    public static event Action<GameObject, GameObject> onItemGrabbedNearby;
     // XR Events
     public void OnSelectEnteredEvent(SelectEnterEventArgs args) => ProcessSelectEvent(args, false);
     public void OnSelectExitedEvent(SelectExitEventArgs args) => ProcessSelectEvent(args, true);
@@ -120,7 +120,9 @@ public class XREvents : MonoBehaviour
     private void OnItemUninteracted(GameObject o, GameObject instigator) => onItemInteracted?.Invoke(o, instigator, true);
     private void OnItemTouched(GameObject o, GameObject instigator) => onItemTouched?.Invoke(o, instigator, false);
     private void OnItemUntouched(GameObject o, GameObject instigator) => onItemTouched?.Invoke(o, instigator, true);
-    // talkAmount = raw value with no cap, talkAmountNoramlized = 0 - 1 and clamped, 1 = talking, anything less = not talking
+    // talkAmount = raw value with no cap
+    //talkAmountNoramlized = 0 - 1 and clamped
+    // 1 = talking, <1 = not talking
     private void OnTalking(float talkAmount = 0, float talkAmountNormalized = 0) => onTalking?.Invoke(talkAmount, talkAmountNormalized);
     public static void OnItemShake(GameObject o, GameObject instigator, float shakeAmount = 0) => onItemShaked?.Invoke(o, instigator, shakeAmount);
     public static void OnItemGrabbedNearby(GameObject o, GameObject instigator) => onItemGrabbedNearby?.Invoke(o, instigator);

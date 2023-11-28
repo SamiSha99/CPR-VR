@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameManager">
+    <Position X="4" Y="4.25" Width="2.25" />
+    <NestedTypes>
+      <Struct Name="GameManager.ExamPenalty">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAAggAYCiBAFAggAAEPAAAACACAAKAAMEAiAAAAAFA=</HashCode>
+      <FileName>Assets\Code\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Quest">
+    <Position X="9" Y="4.25" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="Quest.Info" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\Objectives System\Quest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="Quest.QuestGoal">
+        <NestedTypes>
+          <Enum Name="Quest.QuestGoal.GoalUIType" Collapsed="true">
+            <TypeIdentifier>
+              <NewMemberFileName>Assets\Code\Objectives System\Quest.cs</NewMemberFileName>
+            </TypeIdentifier>
+          </Enum>
+        </NestedTypes>
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\Objectives System\Quest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgEhAAAQAAAAAAAAAIgBAAAAAAAAAgAFAAACA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Quest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuestEditor">
+    <Position X="6.5" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAgAAAAIAAQCAAAAgACACAAAAAAAAAASAA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Quest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandGoal">
+    <Position X="17.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Goals\CommandGoal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GrabNearObject">
+    <Position X="15.5" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="GrabNearObject.NearbyType">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\Objectives System\Goals\GrabNearObject.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AgAAAAABAAAAAQAAAAAAAAAgAAAAAABAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Goals\GrabNearObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GrabObject">
+    <Position X="13.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAEAAAAgAEAAAAA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Goals\GrabObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InteractWithObject">
+    <Position X="15.5" Y="9.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAABAAAAAgAEAAAAA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Goals\InteractWithObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LookinAtObject">
+    <Position X="17.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAIAAAQAAAAAAAgAAEAAAAEAAAAAAAEABAAA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Goals\LookinAtObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MicGoal">
+    <Position X="13.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAIAAAQAIAAAEAAAAAAAAAAAACAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Goals\MicGoal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NearObject">
+    <Position X="13.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAQAAAAAAAAAAAAAAAAEAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Goals\NearObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShakeObject">
+    <Position X="15.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Goals\ShakeObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TouchAndInteractWithObject">
+    <Position X="15.5" Y="13.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAACABAAAAAAQAAAAAAAAAAAAAAABAAAAAAAEAIAAA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Goals\TouchAndInteractWithObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TouchObject">
+    <Position X="13.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAQAAAAAAAAAABAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Code\Objectives System\Goals\TouchObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

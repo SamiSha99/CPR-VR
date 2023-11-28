@@ -120,7 +120,7 @@ public class LiveLineDrawer : MonoBehaviour
         _CompressionTimerBar.FillProgressBar();
         _TimerNumberText.text = (cct != null ? cct._TrialDuration : ChestCompressionTrial.DEFAULT_TIME_TRIAL).ToString(TIMER_FORMAT);
         _ChestCompressionTrial = cct;
-        SetCompressionText(PERFECT_CHEST_COMPRESSION_PER_MINUTE);
+        SetCompression(PERFECT_CHEST_COMPRESSION_PER_MINUTE);
         SetCompressionDepthText(PERFECT_CHEST_COMPRESSION_DEPTH_INCHES);
         if(!GameManager._Instance.isExam)
         {
@@ -131,14 +131,10 @@ public class LiveLineDrawer : MonoBehaviour
     public void OnCompressionRecieved()
     {
         int avgChestCompression;
-        // Player started
-        //if(!PlayerStartedCompressing())
-        //{
-        //    lastCompressionTime = currentTime;
-        //}
-        avgChestCompression = (PlayerStartedCompressing() ? Mathf.RoundToInt(1/(currentTime - lastCompressionTime) * 60) : PERFECT_CHEST_COMPRESSION_PER_MINUTE);
+        avgChestCompression = PlayerStartedCompressing() ? Mathf.RoundToInt(1/(currentTime - lastCompressionTime) * 60) : PERFECT_CHEST_COMPRESSION_PER_MINUTE;
         lastCompressionTime = currentTime;
-        SetCompressionText(avgChestCompression);
+        CheckIfCompressionAccurate(avgChestCompression);
+        SetCompression(avgChestCompression);
         
         compressionAmount++;
         if(compressionAmount >= 30) ShutdownGraphs();
@@ -173,9 +169,15 @@ public class LiveLineDrawer : MonoBehaviour
         }
     }
 
-    void SetCompressionText(int amount)
+    void SetCompression(int amount)
     {
         if(_CompressionAverageText == null) return;
+        CheckIfCompressionAccurate(amount);
+        LocalizationHelper.LocalizeTMP($"{amount} cc/m", _CompressionAverageText);
+    }
+
+    void CheckIfCompressionAccurate(int amount)
+    {
         GameManager gm = GameManager._Instance;
         QuestManager q = QuestManager._Instance;
         if(amount < 100)
@@ -205,10 +207,10 @@ public class LiveLineDrawer : MonoBehaviour
         else
             correctPressesInTheRow++;
             
-        if(correctPressesInTheRow >= 3 && !gm.isExam) adaptive?.FadeOut();
-
-        LocalizationHelper.LocalizeTMP($"{amount} cc/m", _CompressionAverageText);
+        if(correctPressesInTheRow >= 3 && !gm.isExam) 
+            adaptive?.FadeOut();
     }
+
     void SetCompressionDepthText(float amount)
     {
         if(_CompressionDepthText == null) return;

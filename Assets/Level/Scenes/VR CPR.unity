@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.20391634, g: 0.35299325, b: 0.47605628, a: 1}
+  m_IndirectSpecularColor: {r: 0.20389943, g: 0.3529697, b: 0.47603285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9802,6 +9802,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+  - name: On Module Progressed (scene_safety_Tutorial)
+    gameEvent: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
+    command: scene_safety_Tutorial
+    delay: 0
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 377563186}
           m_TargetAssemblyTypeName: PlayAudioAtLocation, Assembly-CSharp
           m_MethodName: TriggerAudio
@@ -9814,9 +9821,9 @@ MonoBehaviour:
             m_StringArgument: VA.scene_safety_begin
             m_BoolArgument: 1
           m_CallState: 2
-  - name: On Module Progressed (CPR)
+  - name: On Module Progressed (CPR_Tutorial)
     gameEvent: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
-    command: CPR
+    command: CPR_Tutorial
     delay: 0
     onEventTriggered:
       m_PersistentCalls:
@@ -9833,9 +9840,9 @@ MonoBehaviour:
             m_StringArgument: VA.CPR_begin
             m_BoolArgument: 1
           m_CallState: 2
-  - name: On Module Progressed (Give_2_Airflows)
+  - name: On Module Progressed (Give_2_Airflows_Tutorial)
     gameEvent: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
-    command: Give_2_Airflows
+    command: Give_2_Airflows_Tutorial
     delay: 0
     onEventTriggered:
       m_PersistentCalls:
@@ -9852,9 +9859,9 @@ MonoBehaviour:
             m_StringArgument: VA.emergency_breath_begin
             m_BoolArgument: 1
           m_CallState: 2
-  - name: On Module Progressed (AED_Quest)
+  - name: On Module Progressed (AED_Quest_Tutorial)
     gameEvent: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
-    command: AED_Quest
+    command: AED_Quest_Tutorial
     delay: 0
     onEventTriggered:
       m_PersistentCalls:
@@ -9871,9 +9878,9 @@ MonoBehaviour:
             m_StringArgument: VA.AED_begin
             m_BoolArgument: 1
           m_CallState: 2
-  - name: On Module Progressed (Check_for_breathing)
+  - name: On Module Progressed (Check_for_breathing_Tutorial)
     gameEvent: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
-    command: Check_for_breathing
+    command: Check_for_breathing_Tutorial
     delay: 0
     onEventTriggered:
       m_PersistentCalls:
@@ -9890,9 +9897,9 @@ MonoBehaviour:
             m_StringArgument: VA.check_for_breathing_begin
             m_BoolArgument: 1
           m_CallState: 2
-  - name: On Module Progressed (PocketMask) in 0.5 seconds
+  - name: On Module Progressed (PocketMask_Tutorial) in 0.5 seconds
     gameEvent: {fileID: 11400000, guid: a14309760317f5c44ac8add58f32d2c1, type: 2}
-    command: PocketMask
+    command: PocketMask_Tutorial
     delay: 0.5
     onEventTriggered:
       m_PersistentCalls:
