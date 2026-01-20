@@ -11,10 +11,8 @@ Has bHaptic support for TactGlove DK1 to allow for immersive experience with han
 
 Arabic is complete but English is still missing in some areas and uses Text to Speech. Testers were all Arabs from the West Bank and Arabs within (aka Arabs of Israel) so English wasn't a high priority.
 
-## Copyright
+## License
 
-Copyright © 2023 Arab American University of Palestine (AAUP).
+This project, **CPR-VR**, is the intellectual property of **Arab American University of Palestine (AAUP)**.
 
-All rights reserved.
-
-This project, **CPR-VR**, and all associated source code, assets, documentation, and materials are the intellectual property of Arab American University of Palestine (AAUP). Unauthorized copying, modification, distribution, or use of this project, in whole or in part, is strictly prohibited without prior written permission from the owner.
+All rights are reserved. Use, copying, modification, or distribution of this project is governed by the terms described in the [`LICENSE`](./LICENSE) file.
